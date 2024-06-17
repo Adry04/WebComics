@@ -63,8 +63,23 @@ nav > img {
 .section-container ul {
     display: flex;
     justify-content: space-between;
-    gap: 3em;
+    gap: 8em;
     list-style: none;
+    position: relative;
+}
+
+.section-container ul li a{
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.section-container ul li{
+    position: relative;
 }
 
 .search-container {
@@ -72,4 +87,25 @@ nav > img {
     justify-content: space-between;
     gap: .4em;
     align-items: center;
+}
+
+.subcontainer{
+    width: auto;
+    position: absolute;
+    top: 34px;
+    padding: 10px 30px 10px 10px;
+    display: none;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    gap: 4px;
+    background-color: #AA0505;
+    color: white;
+    border-radius: 10px;
+    justify-content: flex-start;
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+.subcontainer p{
+    cursor: pointer;
 }

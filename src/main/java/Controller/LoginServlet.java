@@ -8,8 +8,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet("/WebComics")
-public class Servlet extends HttpServlet {
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
 
     public void init() {
     }
@@ -17,14 +17,8 @@ public class Servlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
-        /*ServletContext context = getServletContext();
-        if (context.getAttribute("counter") == null) {
-            context.setAttribute("counter", );
-        }
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("src/main/webapp/navbar.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");  //tenere d'occhio
         dispatcher.forward(request, response);
-        PrintWriter out = response.getWriter();*/
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

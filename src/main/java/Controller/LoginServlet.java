@@ -1,7 +1,13 @@
 package Controller;
 
 import java.io.*;
+import java.math.BigDecimal;
+import java.sql.*;import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import Model.ConPool;
+import Model.Hash;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -16,13 +22,58 @@ public class LoginServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
+        HttpSession session = request.getSession(false);
+        if(session != null && session.getAttribute("userId") != null){
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + "/");
+            return;
+        }
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");  //tenere d'occhio
         dispatcher.forward(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        doGet(request, response);
+        HttpSession s = request.getSession(false);
+        String contextPath = request.getContextPath();
+        if(s != null && s.getAttribute("userId") != null){
+            response.sendRedirect(contextPath + "/");
+            return;
+        }
+        try {
+            Connection conn = ConPool.getConnection();
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            String query = "SELECT id, nome, cognome, isAdmin, email, pass FROM utente WHERE email = ?";
+            PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                String hashedPassword = rs.getString("pass");
+                if(Hash.checkPassword(password, hashedPassword)){
+                    HttpSession session = request.getSession();
+                    session.setAttribute("email", email);
+                    session.setAttribute("nome", rs.getString("nome"));
+                    session.setAttribute("cognome", rs.getString("cognome"));
+                    session.setAttribute("isAdmin", rs.getBoolean("isAdmin"));
+                    session.setAttribute("userId", rs.getInt("id"));
+                    response.sendRedirect(contextPath + "/");
+                    return;
+                } else {
+                    request.setAttribute("error", "Password sbagliata");
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");  //tenere d'occhio
+                    dispatcher.forward(request, response);
+                    return;
+                }
+            } else {
+                request.setAttribute("error", "Utente non trovato, ritenta");
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");  //tenere d'occhio
+                dispatcher.forward(request, response);
+                return;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void destroy() {

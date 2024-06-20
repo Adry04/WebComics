@@ -20,7 +20,7 @@
             <input type="password" placeholder="Inserisci la tua password" id="password-input" name="password" required>
             <label for="password-confirm"> Conferma Password </label>
             <input type="password" placeholder="Inserisci la tua password" id="password-confirm" name="passwordConfirm" required>
-            <p><%=request.getAttribute("errore")%></p>
+            <p><%=request.getAttribute("error") != null ? request.getAttribute("error") : ""%></p>
             <button type="submit"> Registrati </button>
             <div class="link-container">
                 <p> Hai già un account? </p>

@@ -14,7 +14,7 @@
             <input type="email" placeholder="Inserisci la tua email" id="email-input" name="email" required/>
             <label for="password-input"> Password </label>
             <input type="password" placeholder="Inserisci la tua password" id="password-input" name="password" required/>
-            <p class="error-text"></p>
+            <p class="error-text"><%=request.getAttribute("error") != null ? request.getAttribute("error") : ""%></p>
             <button type="submit"> Login </button>
             <div class="link-container">
                 <p> Non hai ancora un account? </p>

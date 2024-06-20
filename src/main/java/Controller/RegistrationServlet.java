@@ -20,43 +20,58 @@ public class RegistrationServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
+        HttpSession session = request.getSession(false);
+        if(session != null && session.getAttribute("userId") != null){
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + "/");
+            return;
+        }
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/registration.jsp");  //tenere d'occhio
         dispatcher.forward(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String firstName = (String) request.getAttribute("firstName");
-        String lastName = (String) request.getAttribute("lastName");
-        String email = (String) request.getAttribute("email");
-        String password = (String) request.getAttribute("password");
-        String passwordConfirm = (String) request.getAttribute("passwordConfirm");
+        HttpSession s = request.getSession(false);
+        if(s != null){
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + "/");
+        }
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String passwordConfirm = request.getParameter("passwordConfirm");
         try {
             Connection connection = ConPool.getConnection();
-            String query = "SELECT `email` FROM `utente` WHERE `email` = ?";
+            String query = "SELECT email FROM utente WHERE email = ?";
             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, email);
-            if (ps.execute()) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
                 connection.close();
                 request.setAttribute("error", "Esiste già un utente con questa email");
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/registration.jsp");  //tenere d'occhio
                 dispatcher.forward(request, response);
+                return;
             }
-            ResultSet rs = ps.getGeneratedKeys();
-            rs.next();
-            if (password.equals(passwordConfirm)) {
+            System.out.println("ARRIVO 2" + password + " " + passwordConfirm);
+            if (password.equals(passwordConfirm)) { //se non esiste già la mail e la password è confermata
                 User user = new User(firstName, lastName, email, false);
                 UserDAO userDao = new UserDAO();
-                userDao.doSave(user);
+                if (!userDao.doSave(user, password)) {
+                    request.setAttribute("error", "Errore nel salvataggio dei dati, ritenta");
+                }
                 connection.close();
             } else {
                 connection.close();
                 request.setAttribute("error", "Le due password devono coincidere");
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/registration.jsp");  //tenere d'occhio
                 dispatcher.forward(request, response);
+                return;
             }
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/index.jsp");  //tenere d'occhio
-            dispatcher.forward(request, response);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + "/login");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -2,7 +2,7 @@
 <html>
 <head>
     <title> WebComics - Registrazione </title>
-    <link rel="stylesheet" href="../Styles/form.css">
+    <link rel="stylesheet" href="Styles/form.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>

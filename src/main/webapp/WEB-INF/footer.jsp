@@ -5,7 +5,9 @@
 <body>
     <footer>
         <div class="subsection section-image">
-            <img src="assets/logo.png" alt="Logo WebComics"/>
+            <a href="./">
+                <img src="assets/logo.png" alt="Logo WebComics"/>
+            </a>
             <p>Via UNISA</p>
         </div>
         <div class="subsection">

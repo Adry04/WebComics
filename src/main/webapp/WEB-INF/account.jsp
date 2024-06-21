@@ -18,6 +18,7 @@
         </div>
         <button onclick="logout()" class="logout-button">LOGOUT</button>
     </div>
+    <%@include file="footer.jsp"%>
     <script type="text/javascript">
         const logout = () => {
             const url = document.URL

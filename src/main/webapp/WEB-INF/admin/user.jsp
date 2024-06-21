@@ -2,7 +2,7 @@
 <%@ page import="Model.User" %>
 <html>
 <head>
-    <link rel="stylesheet" href="../../Styles/admin/user.css">
+    <link rel="stylesheet" href="Styles/admin/user.css">
 </head>
 <body>
     <div class="container-page">

@@ -26,7 +26,7 @@
     </div>
   </div>
   <nav>
-    <a href="">
+    <a href="./">
       <img src="assets/logo.png" alt="Logo WebComics">
     </a>
     <div class="section-container">

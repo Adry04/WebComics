@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="../../Styles/admin/product.css">
+    <link rel="stylesheet" href="Styles/admin/product.css">
 </head>
 <body>
     <div class="container-page">

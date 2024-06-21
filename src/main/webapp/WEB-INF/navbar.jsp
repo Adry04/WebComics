@@ -3,7 +3,7 @@
 <html>
 <head>
   <title> WebComics - Vendita Fumetti </title>
-  <link rel="stylesheet" href="Styles/style.css">
+  <link rel="stylesheet" href="Styles/nav.css">
   <script src="js/navbar.js" type="text/javascript"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>

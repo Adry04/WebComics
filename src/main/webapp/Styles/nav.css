@@ -6,6 +6,10 @@
     padding: 0;
 }
 
+body {
+    min-height: 90vh !important;
+}
+
 .top-nav {
     position: absolute;
     top: 0;

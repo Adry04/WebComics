@@ -21,7 +21,6 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        response.setContentType("text/html");
         HttpSession session = request.getSession(false);
         if(session != null && session.getAttribute("userId") != null){
             String contextPath = request.getContextPath();
@@ -61,18 +60,17 @@ public class LoginServlet extends HttpServlet {
                     return;
                 } else {
                     request.setAttribute("error", "Password sbagliata");
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");  //tenere d'occhio
-                    dispatcher.forward(request, response);
-                    return;
+                    throw new ServletException("Password sbagliata");
                 }
             } else {
                 request.setAttribute("error", "Utente non trovato, ritenta");
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");  //tenere d'occhio
-                dispatcher.forward(request, response);
-                return;
+                throw new ServletException("Utente non trovato, ritenta");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ServletException e) {
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");  //tenere d'occhio
+            dispatcher.forward(request, response);
         }
     }
 

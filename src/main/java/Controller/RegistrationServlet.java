@@ -7,7 +7,6 @@ import Model.ConPool;
 import Model.User;
 import Model.UserDAO;
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -19,7 +18,6 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        response.setContentType("text/html");
         HttpSession session = request.getSession(false);
         if(session != null && session.getAttribute("userId") != null){
             String contextPath = request.getContextPath();
@@ -33,9 +31,10 @@ public class RegistrationServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession s = request.getSession(false);
-        if(s != null){
+        if(s != null && s.getAttribute("userId") != null){
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/");
+            return;
         }
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -51,9 +50,7 @@ public class RegistrationServlet extends HttpServlet {
             if (rs.next()) {
                 connection.close();
                 request.setAttribute("error", "Esiste già un utente con questa email");
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/registration.jsp");  //tenere d'occhio
-                dispatcher.forward(request, response);
-                return;
+                throw new ServletException("Email already exists");
             }
             System.out.println("ARRIVO 2" + password + " " + passwordConfirm);
             if (password.equals(passwordConfirm)) { //se non esiste già la mail e la password è confermata
@@ -61,19 +58,21 @@ public class RegistrationServlet extends HttpServlet {
                 UserDAO userDao = new UserDAO();
                 if (!userDao.doSave(user, password)) {
                     request.setAttribute("error", "Errore nel salvataggio dei dati, ritenta");
+                    throw new ServletException("Errore nel salvataggio dei dati");
                 }
                 connection.close();
             } else {
                 connection.close();
                 request.setAttribute("error", "Le due password devono coincidere");
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/registration.jsp");  //tenere d'occhio
-                dispatcher.forward(request, response);
-                return;
+                throw new ServletException("Le due password devono coincidere");
             }
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/login");
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ServletException e) {
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/registration.jsp");   //tenere d'occhio
+            dispatcher.forward(request, response);
         }
     }
 

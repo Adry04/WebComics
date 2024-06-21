@@ -1,9 +1,8 @@
 package Model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
@@ -25,5 +24,18 @@ public class UserDAO {
         }
     }
 
-    //public User
+    public static List<User> getUsers() throws SQLException {
+        Connection con = ConPool.getConnection();
+        String query = "SELECT * FROM utente";
+        PreparedStatement ps = con.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+        List<User> users = new ArrayList<>();
+        while (rs.next()) {
+            String nome = rs.getString("nome");
+            String cognome = rs.getString("cognome");
+            String email = rs.getString("email");
+            users.add(new User(nome, cognome, email));
+        }
+        return users;
+    }
 }

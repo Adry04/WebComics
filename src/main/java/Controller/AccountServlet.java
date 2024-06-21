@@ -32,9 +32,8 @@ public class AccountServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter("action");
-        System.out.println(action);
         HttpSession session = request.getSession(false);
-        if(action.equals("logout")) {
+        if(action.equals("logout") && session != null) {
             session.invalidate();
         }
     }

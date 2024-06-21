@@ -21,9 +21,8 @@
     <script type="text/javascript">
         const logout = () => {
             const url = document.URL
-            console.log(url)
             const body = 'action=logout';
-            const response = fetch(url, {
+            fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

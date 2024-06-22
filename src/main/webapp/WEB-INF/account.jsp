@@ -1,6 +1,7 @@
 <html>
 <head>
-        <title> <%=session.getAttribute("nome")%> - Account </title>
+    <title> <%=session.getAttribute("nome")%> - Account </title>
+    <link rel="stylesheet" href="Styles/account.css">
 </head>
 <body>
     <%@include file="navbar.jsp"%>

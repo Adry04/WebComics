@@ -1,15 +1,75 @@
-.container-page {
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
+form h1 {
+    text-align: center;
+    font-family: "Comic Sans MS", sans-serif;
 }
 
 .input-container {
-
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    width: 100%;
 }
 
-label {
-
+.input-container div {
+    display: flex;
+    flex-direction: column;
+    gap: .4em;
+    width: 100%;
 }
 
-option {
+.input-container div label {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", sans-serif;
+}
 
+.input-container div input, select {
+    width: 100%;
+    padding: .4em 2%;
+    font-size: 18px;
+    border: 1px #6A0C0B solid;
+    border-radius: 4px;
+}
+
+.input-container div input:focus, select:focus {
+    outline: 2px #6A0C0B solid;
+}
+
+.input-container div select option {
+    background-color: white;
+    color: #00BF62;
+    font-size: 18px;
+    padding: .2em .8em;
+    transition: .4s;
+}
+
+.input-container div select option:checked {
+    background-color: #00BF62;
+    color: white;
+    cursor: pointer;
+}
+
+.input-container button {
+    align-self: center;
+    font-size: 18px;
+    background-color: white;
+    color: #00BF62;
+    border: 2px #00BF62 solid;
+    border-radius: 8px;
+    padding: .4em .8em;
+    font-family: "Comic Sans MS", sans-serif;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.input-container button:hover {
+    background-color: #00BF62;
+    color: white;
 }

@@ -22,6 +22,7 @@ body {
 .top-section img {
     width: 80px;
     height: 80px;
+    cursor: pointer;
 }
 
 .link-section {

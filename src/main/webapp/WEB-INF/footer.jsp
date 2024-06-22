@@ -4,7 +4,7 @@
 </head>
 <body>
     <footer>
-        <div class="subsection section-image">
+        <div class="section-image">
             <a href="./">
                 <img src="assets/logo.png" alt="Logo WebComics"/>
             </a>
@@ -12,15 +12,15 @@
         </div>
         <div class="subsection">
             <p class="title">INFORMAZIONI</p>
-            <p>Creatori</p>
-            <p>Contattaci</p>
+            <p class="subtext">Creatori</p>
+            <p class="subtext">Contattaci</p>
         </div>
         <div class="subsection">
             <p class="title">IL TUO ACCOUNT</p>
-            <p>Pagina personale</p>
-            <p>Ordini</p>
-            <p>Indirizzi</p>
-            <p>Metodi di pagamento</p>
+            <p class="subtext">Pagina personale</p>
+            <p class="subtext">Ordini</p>
+            <p class="subtext">Indirizzi</p>
+            <p class="subtext">Metodi di pagamento</p>
         </div>
     </footer>
 </body>

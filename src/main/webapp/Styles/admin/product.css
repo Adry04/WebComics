@@ -1,5 +1,45 @@
-.container-page {
+.top-section {
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
-    width: 100%;
+    align-items: center;
+}
+
+.top-section .text-top-section {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: .4em;
+    align-items: center;
+}
+
+.top-section .text-top-section h1 {
+    font-weight: bold;
+    font-family: "Comic Sans MS", sans-serif;
+}
+
+.top-section .text-top-section svg {
+    width: 40px;
+    height: 40px;
+}
+
+.top-section .add-button svg {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.top-section .add-button {
+    color: white;
+    background-color: #00BF62;
+    padding: .4em .8em;
+    border: 1px #00BF62 solid;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    gap: .4em;
+    cursor: pointer;
+    font-family: "Comic Sans MS", sans-serif;
 }

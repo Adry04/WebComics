@@ -10,6 +10,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.owasp.encoder.Encode;
 
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
@@ -41,7 +42,18 @@ public class RegistrationServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirm = request.getParameter("passwordConfirm");
+        email = Encode.forHtml(email);
+        password = Encode.forHtml(password);
+        String emailPattern = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9_-]+\\.[a-zA-Z]{2,}$";
+        String passwordPattern = "^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z]).{6,}$";
         try {
+            if(!email.matches(emailPattern)) {
+                request.setAttribute("error", "Email non valida");
+                throw new ServletException("Email non valida");
+            } if (!password.matches(passwordPattern)) {
+                request.setAttribute("error", "La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero.");
+                throw new ServletException("La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero");
+            }
             Connection connection = ConPool.getConnection();
             String query = "SELECT email FROM utente WHERE email = ?";
             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -52,7 +64,6 @@ public class RegistrationServlet extends HttpServlet {
                 request.setAttribute("error", "Esiste già un utente con questa email");
                 throw new ServletException("Email already exists");
             }
-            System.out.println("ARRIVO 2" + password + " " + passwordConfirm);
             if (password.equals(passwordConfirm)) { //se non esiste già la mail e la password è confermata
                 User user = new User(firstName, lastName, email, false);
                 UserDAO userDao = new UserDAO();

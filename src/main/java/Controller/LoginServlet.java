@@ -13,6 +13,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.owasp.encoder.Encode;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -43,6 +44,17 @@ public class LoginServlet extends HttpServlet {
             Connection conn = ConPool.getConnection();
             String email = request.getParameter("email");
             String password = request.getParameter("password");
+            email = Encode.forHtml(email);
+            password = Encode.forHtml(password);
+            String emailPattern =  "^[a-zA-Z0-9._-]+@[a-zA-Z0-9_-]+\\.[a-zA-Z]{2,}$";
+            String passwordPattern = "^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z]).{6,}$";
+            if(!email.matches(emailPattern)) {
+                request.setAttribute("error", "Email non valida");
+                throw new ServletException("Email non valida");
+            } if (!password.matches(passwordPattern)){
+                request.setAttribute("error", "La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero.");
+                throw new ServletException("La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero.");
+            }
             String query = "SELECT id, nome, cognome, isAdmin, email, pass FROM utente WHERE email = ?";
             PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, email);

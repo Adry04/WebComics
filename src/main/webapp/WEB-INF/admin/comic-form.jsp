@@ -29,7 +29,7 @@
                     <input type="text" placeholder="Inserisci la descrizione del fumetto" id="desc-input" name="desc" required>
                 </div>
                 <div>
-                    <label for="catId-input"> Id Categoria </label>
+                    <label for="catId-input"> Categoria </label>
                     <select id="catId-input">
                         <option value="shonen">SHONEN</option>
                         <option value="seinen">SEINEN</option>

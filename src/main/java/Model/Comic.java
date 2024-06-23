@@ -8,9 +8,9 @@ public class Comic {
     private String title;
     private String desc;
     private String category;
-    private double sale;
+    private int sale;
 
-    public Comic(String ISBN, String author, double price, String title, String desc, String category, double sale) {
+    public Comic(String ISBN, String author, double price, String title, String desc, String category, int sale) {
         this.ISBN = ISBN;
         this.author = author;
         this.price = price;
@@ -68,11 +68,11 @@ public class Comic {
         this.category = category;
     }
 
-    public double getSale() {
+    public int getSale() {
         return sale;
     }
 
-    public void setSale(double sale) {
+    public void setSale(int sale) {
         this.sale = sale;
     }
 }

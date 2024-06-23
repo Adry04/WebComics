@@ -1,5 +1,7 @@
 package Model;
 
+import jakarta.servlet.ServletException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,5 +39,17 @@ public class UserDAO {
             users.add(new User(nome, cognome, email));
         }
         return users;
+    }
+
+    public static boolean existsUser(String email) throws SQLException{
+        try (Connection connection = ConPool.getConnection()){
+            String query = "SELECT email FROM utente WHERE email = ?";
+            PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

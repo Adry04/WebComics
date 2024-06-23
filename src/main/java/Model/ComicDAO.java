@@ -1,14 +1,16 @@
 package Model;
 
+import jakarta.servlet.ServletException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ComicDAO {
 
-    public boolean doSave(Comic comic) {
+    public static boolean doSave(Comic comic) {
         try (Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("INSERT INTO fumetto (ISBN, autore, prezzo, titolo, descrizione, categoriaid, sconto) VALUES (?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO fumetto (ISBN, autore, prezzo, titolo, descrizione, categoria, sconto) VALUES (?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, comic.getISBN());
             ps.setString(2, comic.getAuthor());
             ps.setDouble(3, comic.getPrice());
@@ -37,13 +39,13 @@ public class ComicDAO {
             String titolo = rs.getString("titolo");
             String descrizione = rs.getString("descrizione");
             String categoria = rs.getString("categoria");
-            double sconto = rs.getDouble("sconto");
+            int sconto = rs.getInt("sconto");
             comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto));
         }
         return comics;
     }
 
-    public static Comic getComic(int isbn){
+    public static Comic getComic(String isbn){
         try (Connection con = ConPool.getConnection()) {
             String query = "SELECT * FROM fumetto WHERE isbn = ?";
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -54,8 +56,21 @@ public class ComicDAO {
             String titolo = rs.getString("titolo");
             String descrizione = rs.getString("descrizione");
             String categoria = rs.getString("categoria");
-            double sconto = rs.getDouble("sconto");
+            int sconto = rs.getInt("sconto");
             return new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean existsISBN(String isbn, String titolo) throws SQLException {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM fumetto WHERE isbn = ? OR titolo = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, isbn);
+            ps.setString(2, titolo);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

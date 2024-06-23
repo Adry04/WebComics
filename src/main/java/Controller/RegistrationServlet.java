@@ -54,13 +54,7 @@ public class RegistrationServlet extends HttpServlet {
                 request.setAttribute("error", "La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero.");
                 throw new ServletException("La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero.");
             }
-            Connection connection = ConPool.getConnection();
-            String query = "SELECT email FROM utente WHERE email = ?";
-            PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                connection.close();
+            if (UserDAO.existsUser(email)) {
                 request.setAttribute("error", "Esiste già un utente con questa email");
                 throw new ServletException("Email already exists");
             }
@@ -71,9 +65,7 @@ public class RegistrationServlet extends HttpServlet {
                     request.setAttribute("error", "Errore nel salvataggio dei dati, ritenta");
                     throw new ServletException("Errore nel salvataggio dei dati");
                 }
-                connection.close();
             } else {
-                connection.close();
                 request.setAttribute("error", "Le due password devono coincidere");
                 throw new ServletException("Le due password devono coincidere");
             }

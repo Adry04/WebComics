@@ -38,20 +38,29 @@ form h1 {
     border-radius: 4px;
 }
 
-.input-container div input:focus, select:focus {
+.input-container div input:focus, select:focus, textarea:focus {
     outline: 2px #6A0C0B solid;
+}
+
+.input-container div textarea {
+    width: 100%;
+    padding: .4em 2%;
+    font-size: 18px;
+    border: 1px #6A0C0B solid;
+    border-radius: 4px;
+    height: 5em;
 }
 
 .input-container div select option {
     background-color: white;
-    color: #00BF62;
+    color: #6A0C0B;
     font-size: 18px;
     padding: .2em .8em;
     transition: .4s;
 }
 
 .input-container div select option:checked {
-    background-color: #00BF62;
+    background-color: #6A0C0B;
     color: white;
     cursor: pointer;
 }
@@ -72,4 +81,16 @@ form h1 {
 .input-container button:hover {
     background-color: #00BF62;
     color: white;
+}
+
+.error-text {
+    color: #6A0C0B;
+    text-align: center;
+    font-size: 18px;
+    font-family: "Comic Sans MS", sans-serif;
+    margin: 0;
+}
+
+.remove-item {
+    display: none;
 }

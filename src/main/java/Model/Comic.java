@@ -7,16 +7,16 @@ public class Comic {
     private double price;
     private String title;
     private String desc;
-    private int categoryId;
+    private String category;
     private double sale;
 
-    public Comic(String ISBN, String author, double price, String title, String desc, int categoryId, double sale) {
+    public Comic(String ISBN, String author, double price, String title, String desc, String category, double sale) {
         this.ISBN = ISBN;
         this.author = author;
         this.price = price;
         this.title = title;
         this.desc = desc;
-        this.categoryId = categoryId;
+        this.category = category;
         this.sale = sale;
     }
 
@@ -60,12 +60,12 @@ public class Comic {
         this.desc = desc;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public double getSale() {

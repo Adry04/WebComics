@@ -14,7 +14,7 @@ public class ComicDAO {
             ps.setDouble(3, comic.getPrice());
             ps.setString(4, comic.getTitle());
             ps.setString(5, comic.getDesc());
-            ps.setInt(6, comic.getCategoryId());
+            ps.setString(6, comic.getCategory());
             ps.setDouble(7, comic.getSale());
             ps.executeUpdate();
             return true;
@@ -36,9 +36,9 @@ public class ComicDAO {
             double prezzo = rs.getDouble("prezzo");
             String titolo = rs.getString("titolo");
             String descrizione = rs.getString("descrizione");
-            int categoriaId = rs.getInt("categoriaid");
+            String categoria = rs.getString("categoria");
             double sconto = rs.getDouble("sconto");
-            comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoriaId, sconto));
+            comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto));
         }
         return comics;
     }
@@ -53,9 +53,9 @@ public class ComicDAO {
             double prezzo = rs.getDouble("prezzo");
             String titolo = rs.getString("titolo");
             String descrizione = rs.getString("descrizione");
-            int categoriaId = rs.getInt("categoriaid");
+            String categoria = rs.getString("categoria");
             double sconto = rs.getDouble("sconto");
-            return new Comic(ISBN, autore, prezzo, titolo, descrizione, categoriaId, sconto);
+            return new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

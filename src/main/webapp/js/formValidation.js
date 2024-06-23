@@ -1,7 +1,7 @@
 const validateForm = function () {
     const email = document.getElementById("email-input").value
     const password = document.getElementById("password-input").value
-    const emailPattern = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9_-]+\.[a-zA-Z]{2,}$/;
+    const emailPattern = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9_.-]+\.[a-zA-Z]{2,}$/;
     const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z]).{6,}$/;
     if (!emailPattern.test(email)) {
         alert("L'email non è valida")

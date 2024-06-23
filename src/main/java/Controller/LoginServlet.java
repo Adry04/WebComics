@@ -1,8 +1,8 @@
 package Controller;
 
 import java.io.*;
-import java.math.BigDecimal;
-import java.sql.*;import java.sql.PreparedStatement;
+import java.sql.*;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
             String password = request.getParameter("password");
             email = Encode.forHtml(email);
             password = Encode.forHtml(password);
-            String emailPattern =  "^[a-zA-Z0-9._-]+@[a-zA-Z0-9_-]+\\.[a-zA-Z]{2,}$";
+            String emailPattern =  "^[a-zA-Z0-9._-]+@[a-zA-Z0-9_.-]+\\.[a-zA-Z]{2,}$";
             String passwordPattern = "^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z]).{6,}$";
             if(!email.matches(emailPattern)) {
                 request.setAttribute("error", "Email non valida");

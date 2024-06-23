@@ -44,15 +44,15 @@ public class RegistrationServlet extends HttpServlet {
         String passwordConfirm = request.getParameter("passwordConfirm");
         email = Encode.forHtml(email);
         password = Encode.forHtml(password);
-        String emailPattern = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9_-]+\\.[a-zA-Z]{2,}$";
+        String emailPattern = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9_.-]+\\.[a-zA-Z]{2,}$";
         String passwordPattern = "^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z]).{6,}$";
         try {
             if(!email.matches(emailPattern)) {
                 request.setAttribute("error", "Email non valida");
                 throw new ServletException("Email non valida");
-            } if (!password.matches(passwordPattern)) {
+            } if (!password.matches(passwordPattern)){
                 request.setAttribute("error", "La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero.");
-                throw new ServletException("La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero");
+                throw new ServletException("La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero.");
             }
             Connection connection = ConPool.getConnection();
             String query = "SELECT email FROM utente WHERE email = ?";

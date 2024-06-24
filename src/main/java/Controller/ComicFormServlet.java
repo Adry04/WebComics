@@ -7,10 +7,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.RequestContext;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,8 +45,15 @@ public class ComicFormServlet extends HttpServlet {
             String descrizione = request.getParameter("descrizione");
             String categoria = request.getParameter("categoria");
             int sconto = 0;
+
+            //CARICAMENTO IMMAGINE PRODOTTO
             Part filePart = request.getPart("image");
             String fileName = filePart.getSubmittedFileName();
+            String mimeType = filePart.getContentType();
+            if (!(mimeType.equals("image/jpeg") || mimeType.equals("image/png"))) {
+                request.setAttribute("error-form", "Tipo di file non supportato");
+                throw new ServletException("Tipo di file non supportato");
+            }
             String path = request.getServletContext().getRealPath("") + "uploads" + File.separator;
             String immagine = path + fileName;
             File dir = new File(path);
@@ -66,6 +69,7 @@ public class ComicFormServlet extends HttpServlet {
             } else {
                 System.out.println("Errore nel caricamento del file: " + fileName);
             }
+
             if(!request.getParameter("sconto").isEmpty()) {
                 sconto = Integer.parseInt(request.getParameter("sconto"));
             }

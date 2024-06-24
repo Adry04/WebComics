@@ -126,4 +126,19 @@ nav img {
 .link-container p a {
     text-decoration: none;
     color: #747373;
+    cursor: pointer;
+}
+
+.link-container p a:hover {
+    color: black;
+}
+
+.title-top-nav a {
+    text-decoration: none;
+    color: #747373;
+    cursor: pointer;
+}
+
+.title-top-nav a:hover {
+    color: black;
 }

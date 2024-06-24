@@ -10,6 +10,7 @@ public class Comic {
     private String category;
     private int sale;
     private String immagine;
+    private double finalPrice;
 
     public Comic(String ISBN, String author, double price, String title, String desc, String category, int sale, String immagine) {
         this.ISBN = ISBN;
@@ -20,6 +21,11 @@ public class Comic {
         this.category = category;
         this.sale = sale;
         this.immagine = immagine;
+        if(sale >= 0){
+            setFinalPrice(price - ((price * sale)/100));
+        } else {
+            setFinalPrice(price);
+        }
     }
 
     public String getISBN() {
@@ -84,5 +90,13 @@ public class Comic {
 
     public void setImmagine(String immagine) {
         this.immagine = immagine;
+    }
+
+    public double getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(double finalPrice) {
+        this.finalPrice = finalPrice;
     }
 }

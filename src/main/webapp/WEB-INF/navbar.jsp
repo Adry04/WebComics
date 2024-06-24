@@ -9,7 +9,11 @@
 </head>
 <body>
   <div class="top-nav">
-    <p class="title-top-nav">SERVIZIO CLIENTI</p>
+    <p class="title-top-nav">
+      <a href="service.jsp">
+        SERVIZIO CLIENTI
+      </a>
+    </p>
     <div class="link-top-nav">
       <div class="link-container">
         <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 20v-1a7 7 0 0 1 7-7v0a7 7 0 0 1 7 7v1m-7-8a4 4 0 1 0 0-8a4 4 0 0 0 0 8"/></svg>

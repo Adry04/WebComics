@@ -55,15 +55,16 @@ public class ComicFormServlet extends HttpServlet {
                 throw new ServletException("Tipo di file non supportato");
             }
             String path = request.getServletContext().getRealPath("") + "uploads" + File.separator;
-            String immagine = path + fileName;
+            String filePath = path + fileName;
             File dir = new File(path);
             if (!dir.exists()) {
                 if (!dir.mkdir()) {
                     throw new ServletException("Errore nel salvataggio del file");
                 }
             }
-            filePart.write(immagine);
-            File uploadedFile = new File(immagine);
+            filePart.write(filePath);
+            File uploadedFile = new File(filePath);
+            String immagine = "uploads" + File.separator + fileName;
             if (uploadedFile.exists()) {
                 System.out.println("File caricato con successo: " + fileName);
             } else {

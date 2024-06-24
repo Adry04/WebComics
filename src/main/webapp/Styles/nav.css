@@ -23,10 +23,6 @@ body {
     z-index: 99;
 }
 
-.top-nav p {
-    color: #747373;
-}
-
 .link-top-nav {
     display: flex;
     justify-content: space-between;
@@ -125,4 +121,9 @@ nav img {
 
 .subcontainer p {
     cursor: pointer;
+}
+
+.link-container p a {
+    text-decoration: none;
+    color: #747373;
 }

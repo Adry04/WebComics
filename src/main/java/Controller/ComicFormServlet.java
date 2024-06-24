@@ -4,18 +4,24 @@ import Model.Comic;
 import Model.ComicDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.RequestContext;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @WebServlet("/admin-comic-form")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024, // 1 MB
+        maxFileSize = 1024 * 1024 * 10,      // 10 MB
+        maxRequestSize = 1024 * 1024 * 100   // 100 MB
+)
 public class ComicFormServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,6 +39,7 @@ public class ComicFormServlet extends HttpServlet {
             response.sendRedirect(contextPath + "/");
         }
     }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String ISBN = request.getParameter("ISBN");
@@ -42,7 +49,24 @@ public class ComicFormServlet extends HttpServlet {
             String descrizione = request.getParameter("descrizione");
             String categoria = request.getParameter("categoria");
             int sconto = 0;
-            if(request.getParameter("sconto") != "") {
+            Part filePart = request.getPart("image");
+            String fileName = filePart.getSubmittedFileName();
+            String path = request.getServletContext().getRealPath("") + "uploads" + File.separator;
+            String immagine = path + fileName;
+            File dir = new File(path);
+            if (!dir.exists()) {
+                if (!dir.mkdir()) {
+                    throw new ServletException("Errore nel salvataggio del file");
+                }
+            }
+            filePart.write(immagine);
+            File uploadedFile = new File(immagine);
+            if (uploadedFile.exists()) {
+                System.out.println("File caricato con successo: " + fileName);
+            } else {
+                System.out.println("Errore nel caricamento del file: " + fileName);
+            }
+            if(!request.getParameter("sconto").isEmpty()) {
                 sconto = Integer.parseInt(request.getParameter("sconto"));
             }
             if(ComicDAO.existsISBN(ISBN, titolo)) {
@@ -54,7 +78,7 @@ public class ComicFormServlet extends HttpServlet {
                 request.setAttribute("error-form", "ISBN non conforme");
                 throw new ServletException("ISBN non conforme");
             }
-            Comic comic = new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto);
+            Comic comic = new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine);
             if(!ComicDAO.doSave(comic)){
                 request.setAttribute("error-form", "Errore nell'aggiunta del fumetto");
                 throw new ServletException("Errore nell'aggiunta del fumetto");
@@ -67,6 +91,8 @@ public class ComicFormServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new ServletException("Errore durante il salvataggio del file", e);
         }
     }
 }

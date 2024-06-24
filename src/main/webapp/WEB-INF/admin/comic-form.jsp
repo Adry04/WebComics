@@ -5,7 +5,7 @@
 <body>
     <div class="container-page">
         <%@include file="navadmin.jsp"%>
-        <form action="" method="POST" onsubmit="return validateComic()">
+        <form action="" method="POST" onsubmit="return validateComic()" enctype="multipart/form-data">
             <h1>Crea un nuovo fumetto</h1>
             <div class="input-container">
                 <div>
@@ -44,6 +44,10 @@
                 <div>
                     <label for="sconto-input"> Sconto </label>
                     <input type="number" placeholder="Inserisci lo sconto del fumetto" id="sconto-input" name="sconto" min="0" step="1">
+                </div>
+                <div>
+                    <label for="image-input">Carica immagine</label>
+                    <input type="file" name="image" id="image-input" required>
                 </div>
                 <p class="error-text <%=request.getAttribute("error-form") == null ? "remove-item" : ""%>"><%=request.getAttribute("error-form") != null ? request.getAttribute("error-form") : ""%></p>
                 <button type="submit">Aggiungi il nuovo fumetto</button>

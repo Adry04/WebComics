@@ -21,7 +21,7 @@ public class AdminServlet extends HttpServlet {
             } else if(!(Boolean) session.getAttribute("isAdmin")) {
                 throw new ServletException("L'utente non è un admin");
             }
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/admin/product.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/admin/comic.jsp");
             rd.forward(request, response);
         } catch (ServletException e) {
             String contextPath = request.getContextPath();

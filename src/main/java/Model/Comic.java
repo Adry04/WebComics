@@ -1,10 +1,6 @@
 //attributi di fumetto
 package Model;
 
-import javax.xml.crypto.Data;
-import java.time.LocalDate;
-import java.util.Date;
-
 public class Comic {
 
     private String ISBN;

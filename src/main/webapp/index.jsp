@@ -2,6 +2,7 @@
 <%@ page import="Model.Comic" %>
 <%@ page import="java.util.List" %>
 <%@ page import="Model.ComicDAO" %>
+<%@ page import="java.text.DecimalFormat" %>
 <html>
 <%
     List<Comic> comics = ComicDAO.getComics();
@@ -13,12 +14,15 @@
 </head>
 <body>
     <%@include file="WEB-INF/navbar.jsp"%>
+    <h1 class="title-section">MANGA & FUMETTI</h1>
     <div class="comics-container">
         <%
             if (!comics.isEmpty()) {
             for(Comic comic : comics) {
+                DecimalFormat df = new DecimalFormat("#.00");
+                String price = df.format(comic.getPrice());
+                String finalPrice = df.format(comic.getFinalPrice());
         %>
-            <h1 class="title-section">MANGE & FUMETTI</h1>
             <div class="comic-card">
                 <img src="<%=comic.getImmagine()%>" alt="<%=comic.getTitle()%>">
                 <p class="title">
@@ -29,19 +33,16 @@
                 %>
                     <p class="sale-section">
                         <span class="price">
-                            <%=comic.getPrice() + " €"%>
+                            <%=price + " €"%>
                         </span>
                         <span class="sale">
                             <%=comic.getSale() + "%"%>
-                        </span>
-                        <span>
-                            <%=comic.getData()%>
                         </span>
                     </p>
                 <%
                     }
                 %>
-                <p class="price"><%=comic.getFinalPrice() + " €"%></p>
+                <p class="price"><%=finalPrice + " €"%></p>
             </div>
         <%
             }}

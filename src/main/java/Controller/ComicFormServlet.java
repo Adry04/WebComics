@@ -50,7 +50,6 @@ public class ComicFormServlet extends HttpServlet {
             String descrizione = request.getParameter("descrizione");
             String categoria = request.getParameter("categoria");
             int sconto = 0;
-
             //CARICAMENTO IMMAGINE PRODOTTO
             Part filePart = request.getPart("image");
             String fileName = filePart.getSubmittedFileName();
@@ -67,15 +66,16 @@ public class ComicFormServlet extends HttpServlet {
                     throw new ServletException("Errore nel salvataggio del file");
                 }
             }
-            filePart.write(filePath);
             File uploadedFile = new File(filePath);
-            String immagine = request.getServletContext().getRealPath("") + "uploads" + File.separator + fileName;
-            if (uploadedFile.exists()) {
+            String immagine = "uploads" + File.separator + fileName;
+            if (!uploadedFile.exists()) {
                 System.out.println("File caricato con successo: " + fileName);
+                filePart.write(filePath);
             } else {
+                request.setAttribute("error-form", "L'immagine esiste già");
                 System.out.println("Errore nel caricamento del file: " + fileName);
+                throw new ServletException("L'immagine esiste già");
             }
-
             if(!request.getParameter("sconto").isEmpty()) {
                 sconto = Integer.parseInt(request.getParameter("sconto"));
             }

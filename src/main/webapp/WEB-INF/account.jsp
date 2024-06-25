@@ -7,7 +7,7 @@
     <%@include file="navbar.jsp"%>
     <h1>Ciao <%=session.getAttribute("nome")%></h1>
     <h2>Il mio account</h2>
-    <div class="section-container">
+    <div class="account-section-container">
         <div class="subsection">
             <!--ORDINI-->
         </div>

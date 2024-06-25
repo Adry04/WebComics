@@ -1,4 +1,4 @@
-//
+//Controlli sul fumetto
 package Controller;
 
 import Model.Comic;

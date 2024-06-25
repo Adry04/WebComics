@@ -1,4 +1,4 @@
-//Attributi di utente
+//Bean dell'utente
 package Model;
 
 public class User {

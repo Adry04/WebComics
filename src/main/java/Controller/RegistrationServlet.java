@@ -4,7 +4,6 @@ package Controller;
 import java.io.*;
 import java.sql.*;
 
-import Model.ConPool;
 import Model.User;
 import Model.UserDAO;
 import jakarta.servlet.RequestDispatcher;

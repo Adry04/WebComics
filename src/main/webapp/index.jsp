@@ -5,7 +5,7 @@
 <%@ page import="java.text.DecimalFormat" %>
 <html>
 <%
-    List<Comic> comics = ComicDAO.getComics();
+    List<Comic> comics = ComicDAO.getComics();  //se non ci sono fumetti non deve dare exception
 %>
 <head>
     <title> WebComics - Home </title>

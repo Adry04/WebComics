@@ -1,4 +1,4 @@
-//attributi di fumetto
+//Bean del fumetto
 package Model;
 
 public class Comic {

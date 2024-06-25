@@ -25,7 +25,7 @@ public class AccountServlet extends HttpServlet {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/account.jsp");
             rd.forward(request, response);
         } catch (ServletException e) {
-            System.out.println(e);
+            System.err.println("\n" + e + "\n");
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/");
         }

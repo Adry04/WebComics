@@ -26,7 +26,7 @@
                 </div>
                 <div>
                     <label for="desc-input"> Descrizione </label>
-                    <textarea type="text" placeholder="Inserisci la descrizione del fumetto" id="desc-input" name="descrizione" required></textarea>
+                    <textarea placeholder="Inserisci la descrizione del fumetto" id="desc-input" name="descrizione" required></textarea>
                 </div>
                 <div>
                     <label for="catId-input"> Categoria </label>

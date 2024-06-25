@@ -30,7 +30,7 @@
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 body: body //passa il parametro con questo valore
-            }).then(e => {
+            }).then(() => {
                 window.location = document.baseURI
             }).catch(error => {
                 console.log(error)

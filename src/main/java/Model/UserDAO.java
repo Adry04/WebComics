@@ -1,7 +1,6 @@
-//Salvataggi di utenti
+//Salvataggi di utenti nel db e query utenti
 package Model;
 
-import jakarta.servlet.ServletException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

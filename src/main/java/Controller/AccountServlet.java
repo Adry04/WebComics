@@ -1,3 +1,4 @@
+//Servlet per la gestione dell'accout es logout
 package Controller;
 
 import java.io.*;

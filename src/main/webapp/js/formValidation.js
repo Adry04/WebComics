@@ -1,3 +1,4 @@
+//Pulizia e correttezza delle stringhe email e password
 const validateForm = function () {
     const email = document.getElementById("email-input").value;
     const password = document.getElementById("password-input").value;

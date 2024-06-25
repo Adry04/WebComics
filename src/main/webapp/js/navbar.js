@@ -1,3 +1,4 @@
+//Menu a cascata della navbar
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("category-manga").onmouseenter = function () {
         document.getElementById("list-category-manga").classList.add("display-on");

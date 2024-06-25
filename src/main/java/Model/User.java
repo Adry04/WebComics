@@ -1,3 +1,4 @@
+//Attributi di utente
 package Model;
 
 public class User {

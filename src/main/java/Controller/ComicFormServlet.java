@@ -1,3 +1,4 @@
+//aggiunta di prodotti
 package Controller;
 
 import Model.Comic;
@@ -11,6 +12,10 @@ import jakarta.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @WebServlet("/admin-comic-form")
 @MultipartConfig(
@@ -64,7 +69,7 @@ public class ComicFormServlet extends HttpServlet {
             }
             filePart.write(filePath);
             File uploadedFile = new File(filePath);
-            String immagine = "uploads" + File.separator + fileName;
+            String immagine = request.getServletContext().getRealPath("") + "uploads" + File.separator + fileName;
             if (uploadedFile.exists()) {
                 System.out.println("File caricato con successo: " + fileName);
             } else {
@@ -83,7 +88,10 @@ public class ComicFormServlet extends HttpServlet {
                 request.setAttribute("error-form", "ISBN non conforme");
                 throw new ServletException("ISBN non conforme");
             }
-            Comic comic = new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine);
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
+            String formattedDate = currentDate.format(formatter);
+            Comic comic = new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, formattedDate);
             if(!ComicDAO.doSave(comic)){
                 request.setAttribute("error-form", "Errore nell'aggiunta del fumetto");
                 throw new ServletException("Errore nell'aggiunta del fumetto");

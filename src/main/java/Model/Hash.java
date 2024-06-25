@@ -1,3 +1,4 @@
+//Codifica delle password
 package Model;
 
 import org.mindrot.jbcrypt.BCrypt;

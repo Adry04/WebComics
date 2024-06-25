@@ -1,3 +1,4 @@
+//Pulizia e correttezza delle stringhe ISBN
 const validateComic = function () {
     const ISBN = document.getElementById("email-input").value;
     const ISBNPattern = /^[0-9]{13}$/;

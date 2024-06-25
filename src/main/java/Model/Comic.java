@@ -1,4 +1,9 @@
+//attributi di fumetto
 package Model;
+
+import javax.xml.crypto.Data;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class Comic {
 
@@ -11,8 +16,9 @@ public class Comic {
     private int sale;
     private String immagine;
     private double finalPrice;
+    private String data;
 
-    public Comic(String ISBN, String author, double price, String title, String desc, String category, int sale, String immagine) {
+    public Comic(String ISBN, String author, double price, String title, String desc, String category, int sale, String immagine, String data) {
         this.ISBN = ISBN;
         this.author = author;
         this.price = price;
@@ -21,8 +27,12 @@ public class Comic {
         this.category = category;
         this.sale = sale;
         this.immagine = immagine;
+        this.data = data;
+
         if(sale >= 0){
-            setFinalPrice(price - ((price * sale)/100));
+            double finalPrice = (price - ((price * sale)/100));
+            finalPrice = (double) Math.round(finalPrice * 100)/100;
+            setFinalPrice(finalPrice);
         } else {
             setFinalPrice(price);
         }
@@ -98,5 +108,13 @@ public class Comic {
 
     public void setFinalPrice(double finalPrice) {
         this.finalPrice = finalPrice;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }

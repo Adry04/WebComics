@@ -1,6 +1,6 @@
+//visualizzazione degli utenti
 package Controller;
 
-import Model.ConPool;
 import Model.User;
 import Model.UserDAO;
 import jakarta.servlet.RequestDispatcher;
@@ -12,11 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/admin-user")

@@ -2,7 +2,7 @@
 <%@ page import="Model.Comic" %>
 <html>
 <head>
-    <link rel="stylesheet" href="Styles/admin/product.css">
+    <link rel="stylesheet" href="Styles/admin/comic.css">
 </head>
 <body>
     <%@include file="navadmin.jsp"%>

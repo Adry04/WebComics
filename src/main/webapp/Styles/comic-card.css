@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.comics-container {
+    width: 80%;
+    margin: 4em auto;
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%;
+    gap: 1%;
+    flex-direction: row;
+}
+
+.comic-card {
+    width: 250px;
+    height: 450px;
+    padding: .2em 0;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(196,196,196,1);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(196,196,196,1);
+    box-shadow: 0px 0px 15px 0px rgba(196,196,196,1);
+    transition: .4s;
+    cursor: pointer;
+}
+
+.comic-card:hover {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.comic-card img {
+    width: 98%;
+    margin: 0 1%;
+    object-fit: contain;
+    align-self: center;
+}
+
+.comic-card .title, .author{
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin: .8em 0;
+}
+
+.comic-card .sale-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: .2em;
+    align-items: center;
+    margin: .4em 0;
+}
+
+.comic-card .sale-section .price {
+    font-size: 18px;
+    text-decoration: line-through;
+}
+
+.comic-card .sale-section .sale {
+    font-size: 18px;
+    color: #AA0505;
+    font-weight: bold;
+}
+
+.comic-card .price {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}

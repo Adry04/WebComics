@@ -1,70 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-.slider-container
-{
+.slider {
+    position: relative;
     width: 100%;
     height: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0px;
-    text-align: center;
     overflow: hidden;
+    background-color: #fff;
 }
 
-.image-container
-{
-    width: 300%;
-    background-color: red;
-    height: 600px;
-    position: relative;
+.slides {
     display: flex;
-    flex-direction: row;
-
-    -webkit-transition: left .8s;
-    -moz-transition: left .8s;
-    -o-transition: left .8s;
-    transition: left .8s;
+    transition: transform 0.5s ease-in-out;
 }
 
-.slider-image {
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.slide img {
     width: 100%;
-    object-fit: cover;
 }
 
-#slider-image-1:target ~ .image-container
-{
-    left: 0;
-}
-
-#slider-image-2:target ~ .image-container
-{
-    left: -100%;
-}
-
-#slider-image-3:target ~ .image-container
-{
-    left: -200%;
-}
-
-.button-container
-{
-    position: relative;
-    top: -40px;
-}
-
-.slider-change
-{
-    display: inline-block;
-    height: 16px;
-    width: 16px;
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
     border-radius: 50%;
-    background-color: white;
-    margin: 0 .4em;
-    border: 2px #AA0505 solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#slider-image-1:target ~ .button-container .slider-change:nth-child(1),
-#slider-image-2:target ~ .button-container .slider-change:nth-child(2),
-#slider-image-3:target ~ .button-container .slider-change:nth-child(3) {
-    background-color: #AA0505;
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.no-transition {
+    transition: none !important;
 }

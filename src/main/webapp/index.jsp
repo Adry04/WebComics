@@ -15,20 +15,14 @@
 </head>
 <body>
     <%@include file="WEB-INF/navbar.jsp"%>
-    <div class="slider-container">
-        <span id="slider-image-1"></span>
-        <span id="slider-image-2"></span>
-        <span id="slider-image-3"></span>
-        <div class="image-container">
-            <img src="assets/slider-image/image1.png" class="slider-image" alt="Slider 1"/>
-            <img src="assets/slider-image/image2.png" class="slider-image" alt="Slider 2"/>
-            <img src="assets/slider-image/image3.png" class="slider-image" alt="Slider 3"/>
+    <div class="slider">
+        <div class="slides">
+            <div class="slide"><img src="assets/slider-image/image1.png" alt="Image 1"></div>
+            <div class="slide"><img src="assets/slider-image/image2.png" alt="Image 2"></div>
+            <div class="slide"><img src="assets/slider-image/image3.png" alt="Image 3"></div>
         </div>
-        <div class="button-container">
-            <a href="#slider-image-1" class="slider-change"></a>
-            <a href="#slider-image-2" class="slider-change"></a>
-            <a href="#slider-image-3" class="slider-change"></a>
-        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
     </div>
     <h1 class="title-section">MANGA & FUMETTI</h1>
     <div class="comics-container">
@@ -73,5 +67,6 @@
     </div>
     <%@include file="WEB-INF/footer.jsp"%>
     <script src="js/comicCard.js"></script>
+    <script src="js/slider.js"></script>
 </body>
 </html>

@@ -20,9 +20,9 @@
         <span id="slider-image-2"></span>
         <span id="slider-image-3"></span>
         <div class="image-container">
-            <img src="" class="slider-image" alt="Slider 1"/>
-            <img src="" class="slider-image" alt="Slider 2"/>
-            <img src="" class="slider-image" alt="Slider 3"/>
+            <img src="assets/slider-image/image1.png" class="slider-image" alt="Slider 1"/>
+            <img src="assets/slider-image/image2.png" class="slider-image" alt="Slider 2"/>
+            <img src="assets/slider-image/image3.png" class="slider-image" alt="Slider 3"/>
         </div>
         <div class="button-container">
             <a href="#slider-image-1" class="slider-change"></a>

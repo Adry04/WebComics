@@ -94,6 +94,7 @@
 .comic-card .wish{
     width: 1.8em;
     height: 1.8em;
+    display: block;
 }
 
 .comic-card .wish-container{

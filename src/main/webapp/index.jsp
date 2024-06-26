@@ -34,7 +34,7 @@
                 String finalPrice = df.format(comic.getFinalPrice());
         %>
             <div class="comic-card">
-                <img src="<%=comic.getImmagine()%>" alt="<%=comic.getTitle()%>">
+                <img src="<%=comic.getImmagine()%>" alt="<%=comic.getTitle()%>" onclick="location.href = 'comic?isbn=<%=comic.getISBN()%>'">
                 <p class="title">
                     <%=comic.getTitle().length() > 20 ? comic.getTitle().substring(0, 20) + "..." : comic.getTitle() %>
                 </p>

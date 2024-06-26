@@ -16,12 +16,12 @@ import java.io.IOException;
 public class ComicPageServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
-            String id = (String) request.getAttribute("id");
-            if(id.isEmpty()) {
+            String isbn = (String) request.getParameter("isbn");
+            if(isbn.isEmpty()) {
                 String contextPath = request.getContextPath();
                 response.sendRedirect(contextPath + "/");
             }
-            Comic comic = ComicDAO.getComic(id);
+            Comic comic = ComicDAO.getComic(isbn);
             request.setAttribute("comic", comic);
 
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/comic-page.jsp");

@@ -1,4 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="Model.Comic" %>
+<%@ page import="java.text.DecimalFormat" %>
 <html>
 <head>
     <link rel="stylesheet" href="Styles/comic-page.css">
@@ -7,15 +9,43 @@
     <%@include file="navbar.jsp"%>
     <%
         Comic comic = (Comic) request.getAttribute("comic");
+        DecimalFormat df = new DecimalFormat("#.00");
+        String price = df.format(comic.getPrice());
+        String finalPrice = df.format(comic.getFinalPrice());
     %>
     <div class="comic-page">
-        <img src="<%=comic.getImmagine()%>" alt="<%=comic.getTitle()%>">
-        <p class="title"><%=comic.getTitle()%></p>
-        <p class="description"><%=comic.getDesc()%></p>
-        <p class="author"><%=comic.getAuthor()%></p>
-        <p class="price"><%=comic.getPrice()%></p>
-        <svg class="heart" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 256"><path fill="currentColor" d="M178 40c-20.65 0-38.73 8.88-50 23.89C116.73 48.88 98.65 40 78 40a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 228.66 240 172 240 102a62.07 62.07 0 0 0-62-62m-50 174.8c-18.26-10.64-96-59.11-96-112.8a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8"></path></svg>
+        <div class="image-section">
+            <img src="<%=comic.getImmagine()%>" alt="<%=comic.getTitle()%>">
+        </div>
+        <div class="data-section">
+            <p class="title"><%=comic.getTitle()%></p>
+            <p class="description"><%=comic.getDesc()%></p>
+            <p class="author"><%=comic.getAuthor()%></p>
+            <div class="price-section">
+                <%
+                    if (comic.getSale() > 0) {
+                %>
+                <p class="sale-section">
+                    <span class="price">
+                        <%=price + " €"%>
+                    </span>
+                    <span class="sale">
+                        <%=comic.getSale() + "%"%>
+                    </span>
+                </p>
+                <%
+                    }
+                %>
+                <p class="final-price"><%=finalPrice + " €"%></p>
+            </div>
+            <button class="cart-button">Aggiungi al carrello</button>
+        </div>
+        <div class="wish-container">
+            <svg id="no-wish" class="wish" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#AA5050" d="m12.1 18.55l-.1.1l-.11-.1C7.14 14.24 4 11.39 4 8.5C4 6.5 5.5 5 7.5 5c1.54 0 3.04 1 3.57 2.36h1.86C13.46 6 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5c0 2.89-3.14 5.74-7.9 10.05M16.5 3c-1.74 0-3.41.81-4.5 2.08C10.91 3.81 9.24 3 7.5 3C4.42 3 2 5.41 2 8.5c0 3.77 3.4 6.86 8.55 11.53L12 21.35l1.45-1.32C18.6 15.36 22 12.27 22 8.5C22 5.41 19.58 3 16.5 3"/></svg>
+            <svg id="wish" class="wish no-display" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="#AA5050" d="m12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53z"/></svg>
+        </div>
     </div>
     <%@include file="footer.jsp"%>
+    <script src="js/comicCard.js"></script>
 </body>
 </html>

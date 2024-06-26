@@ -58,19 +58,23 @@ public class ComicDAO {
         try (Connection con = ConPool.getConnection()) {
             String query = "SELECT * FROM fumetto WHERE isbn = ?";
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, isbn);
             ResultSet rs = ps.executeQuery();
-            String ISBN = rs.getString("ISBN");
-            String autore = rs.getString("autore");
-            double prezzo = rs.getDouble("prezzo");
-            String titolo = rs.getString("titolo");
-            String descrizione = rs.getString("descrizione");
-            String categoria = rs.getString("categoria");
-            int sconto = rs.getInt("sconto");
-            String immagine = rs.getString("immagine");
-            LocalDate data = rs.getDate("ddi").toLocalDate();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
-            String comicDate = data.format(formatter);
-            return new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate);
+            if(rs.next()) {
+                String ISBN = rs.getString("ISBN");
+                String autore = rs.getString("autore");
+                double prezzo = rs.getDouble("prezzo");
+                String titolo = rs.getString("titolo");
+                String descrizione = rs.getString("descrizione");
+                String categoria = rs.getString("categoria");
+                int sconto = rs.getInt("sconto");
+                String immagine = rs.getString("immagine");
+                LocalDate data = rs.getDate("ddi").toLocalDate();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
+                String comicDate = data.format(formatter);
+                return new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate);
+            }
+            return null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

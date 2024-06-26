@@ -3,6 +3,7 @@
 .comics-container {
     width: 80%;
     margin: 4em auto;
+    padding-bottom: 4em;
     display: grid;
     grid-template-columns: 24% 24% 24% 24%;
     gap: 1%;

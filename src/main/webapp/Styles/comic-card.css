@@ -10,38 +10,38 @@
 }
 
 .comic-card {
-    width: 250px;
-    height: 450px;
-    padding: .2em 0;
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(196,196,196,1);
-    -moz-box-shadow: 0px 0px 15px 0px rgba(196,196,196,1);
-    box-shadow: 0px 0px 15px 0px rgba(196,196,196,1);
+    width: 100%;
+    height: 508px;
+    padding: 0;
     transition: .4s;
-    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .comic-card:hover {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(196,196,196,1);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(196,196,196,1);
+    box-shadow: 0px 0px 15px 0px rgba(196,196,196,1);
+    outline: none;
 }
 
 .comic-card img {
-    width: 98%;
-    margin: 0 1%;
+    width: 100%;
+    margin: 0;
     object-fit: contain;
     align-self: center;
+    cursor: pointer;
 }
 
 .comic-card .title, .author{
     font-size: 18px;
     font-family: "Poppins", sans-serif;
     text-align: center;
-    margin: .8em 0;
+    margin: .4em 0;
 }
 
 .comic-card .sale-section {
-    width: 100%;
     display: flex;
     justify-content: center;
     gap: .2em;
@@ -49,8 +49,11 @@
     margin: .4em 0;
 }
 
+.comic-card .sale-section::after {
+    content: "-";
+}
+
 .comic-card .sale-section .price {
-    font-size: 18px;
     text-decoration: line-through;
 }
 
@@ -60,8 +63,53 @@
     font-weight: bold;
 }
 
-.comic-card .price {
+.comic-card .price, .final-price {
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+}
+
+.comic-card .button-product{
+    border: 1px transparent solid;
+    border-radius: 50px;
+    background-color: #AA0505;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    padding: .4em 0;
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+
+.comic-card .price-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: .2em
+}
+
+.comic-card .wish{
+    width: 1.8em;
+    height: 1.8em;
+}
+
+.comic-card .wish-container{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.no-display {
+    display: none;
 }

@@ -89,16 +89,49 @@ public class ComicDAO {
         }
     }
 
-    /*public static List<Comic> getNews(String category, int limit) {
+    public static List<Comic> getNews(String category, int limit) {
         try (Connection con = ConPool.getConnection()) {
             List<Comic> comics = new ArrayList<>();
+            ResultSet rs = null;
             if (limit == 0 && category.isEmpty()) {
-                String query = "SELECT * FROM fumetto ORDER BY d";
+                String query = "SELECT * FROM fumetto ORDER BY ddi";
+                PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                rs = ps.executeQuery();
+            } else if (limit == 0 && !category.isEmpty()) {
+                String query = "SELECT * FROM fumetto WHERE categoria = ? ORDER BY ddi";
+                PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, category);
+                rs = ps.executeQuery();
+            } else if (limit != 0 && category.isEmpty()) {
+                String query = "SELECT * FROM fumetto ORDER BY ddi LIMIT ?";
+                PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, limit);
+                rs = ps.executeQuery();
+            } else {
+                String query = "SELECT * FROM fumetto WHERE categoria = ? ORDER BY ddi LIMIT ?";
+                PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, category);
+                ps.setInt(2, limit);
+                rs = ps.executeQuery();
+            }
+            while (rs.next()) {
+                String ISBN = rs.getString("ISBN");
+                String autore = rs.getString("autore");
+                double prezzo = rs.getDouble("prezzo");
+                String titolo = rs.getString("titolo");
+                String descrizione = rs.getString("descrizione");
+                String categoria = rs.getString("categoria");
+                int sconto = rs.getInt("sconto");
+                String immagine = rs.getString("immagine");
+                LocalDate data = rs.getDate("ddi").toLocalDate();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
+                String comicDate = data.format(formatter);
+                comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
             }
             return comics;
         } catch (SQLException e) {
             System.err.println(e);
         }
         return null;
-    }*/
+    }
 }

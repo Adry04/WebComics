@@ -72,14 +72,14 @@
 
 .comic-card .button-product{
     border: 1px transparent solid;
-    border-radius: 50px;
+    border-radius: 15px;
     background-color: #AA0505;
     color: white;
     cursor: pointer;
     font-size: 14px;
     font-family: "Poppins", sans-serif;
     padding: .4em 0;
-    width: 80%;
+    width: 65%;
     display: block;
     margin: 0 auto;
 }

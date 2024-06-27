@@ -106,7 +106,7 @@ public class ComicDAO {
                 PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 ps.setString(1, category);
                 rs = ps.executeQuery();
-            } else if (limit != 0 && category.isEmpty()) {
+            } else if (category.isEmpty()) {
                 String query = "SELECT * FROM fumetto ORDER BY ddi LIMIT ?";
                 PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, limit);
@@ -137,5 +137,59 @@ public class ComicDAO {
             System.err.println(e);
         }
         return null;
+    }
+
+    public static boolean addWish(String isbn, int idUtente) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "INSERT INTO wishlist (idUtente, isbn) VALUES (?, ?)";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idUtente);
+            ps.setString(2, isbn);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public static List<Comic> getWishes(int idUtente) {
+        try (Connection con = ConPool.getConnection()) {
+            List<Comic> wishComics = new ArrayList<>();
+            String query = "SELECT * FROM wishlist JOIN fumetto ON fumetto.ISBN = wishlist.isbn WHERE wishlist.idUtente = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idUtente);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String ISBN = rs.getString("ISBN");
+                String autore = rs.getString("autore");
+                double prezzo = rs.getDouble("prezzo");
+                String titolo = rs.getString("titolo");
+                String descrizione = rs.getString("descrizione");
+                String categoria = rs.getString("categoria");
+                int sconto = rs.getInt("sconto");
+                String immagine = rs.getString("immagine");
+                LocalDate data = rs.getDate("ddi").toLocalDate();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
+                String comicDate = data.format(formatter);
+                wishComics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
+            }
+            return wishComics;
+        } catch (SQLException e){
+            System.err.println(e);
+            return null;
+        }
+    }
+
+    public static boolean removeWish(String isbn, int idUtente) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "DELETE FROM wishlist WHERE idUtente = ? AND isbn = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idUtente);
+            ps.setString(2, isbn);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
     }
 }

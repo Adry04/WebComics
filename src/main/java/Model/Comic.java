@@ -1,6 +1,8 @@
 //Bean del fumetto
 package Model;
 
+import java.util.Objects;
+
 public class Comic {
 
     private String ISBN;
@@ -112,5 +114,18 @@ public class Comic {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comic comic = (Comic) o;
+        return ISBN.equals(comic.ISBN);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ISBN);
     }
 }

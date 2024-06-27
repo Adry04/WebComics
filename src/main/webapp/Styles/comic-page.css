@@ -51,8 +51,8 @@
 
 .wish-container {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
     background-color: white;
     border-radius: 50%;
     width: 40px;
@@ -94,17 +94,53 @@
 
 .cart-button {
     border: 1px transparent solid;
-    border-radius: 50px;
+    border-radius: 15px;
     background-color: #AA0505;
     color: white;
     cursor: pointer;
     font-size: 14px;
     font-family: "Poppins", sans-serif;
     padding: .4em 0;
-    width: 100%;
+    width: 69%;
     display: block;
-    margin: 2em auto 0 auto;
+    margin: 0;
 }
+
+.button-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1%;
+    margin-top: 1em;
+}
+
+.button-section .quantity-section {
+    width: 36%;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    background-color: lightgrey;
+    justify-content: space-between;
+    border-radius: 15px;
+    padding: .4em 2%;
+}
+
+.button-section .quantity-section span {
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.button-section .quantity-section .click-quantity {
+    cursor: pointer;
+    font-weight: 600;
+}
+
 
 .no-display {
     display: none;

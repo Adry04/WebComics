@@ -7,7 +7,7 @@ function incrementQuantity () {
 }
 
 function decrementQuantity () {
-    if(parseInt(quantity.innerHTML) > 0) {
+    if(parseInt(quantity.innerHTML) > 1) {
         quantity.innerHTML = parseInt(quantity.innerHTML, 10) - 1
         if (isNaN(quantity.innerHTML)) {
             console.log("Il valore non è un numero")

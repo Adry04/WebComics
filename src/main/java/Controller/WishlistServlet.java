@@ -20,21 +20,16 @@ public class WishlistServlet extends HttpServlet {
             if (session == null || session.getAttribute("userId") == null) {
                 throw new ServletException("Utente non loggato");
             }
-            System.out.println("arrivo 1");
             int idUtente = (int) session.getAttribute("userId");
             String ISBN = request.getParameter("ISBN");
             String type = request.getParameter("requestType");
-            System.out.println("arrivo 2");
             if(type.equals("add")) {
-                System.out.println("arrivo 3");
                 if (ComicDAO.addWish(ISBN, idUtente)) {
-                    System.out.println("arrivo 4");
                     response.setStatus(HttpServletResponse.SC_OK);
                 } else {
                     response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 }
             } else {
-                System.out.println("arrivo 5");
                 if (ComicDAO.removeWish(ISBN, idUtente)) {
                     response.setStatus(HttpServletResponse.SC_OK);
                 } else {

@@ -42,7 +42,7 @@
             <div class="button-section">
                 <div class="quantity-section">
                     <span onclick="decrementQuantity()" class="click-quantity">- 1</span>
-                    <span id="quantity">0</span>
+                    <span id="quantity">1</span>
                     <span onclick="incrementQuantity()" class="click-quantity">+ 1</span>
                 </div>
                 <button class="cart-button">Aggiungi al carrello</button>

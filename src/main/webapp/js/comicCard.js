@@ -5,7 +5,6 @@ const wishContainer = document.getElementById("wish-container")
  function toggleWish() {
      let isWished = wishContainer.getAttribute('data-is-wished')
      let isbn = wishContainer.getAttribute("data-isbn")
-     console.log(isWished + " dnadiwandjiwbadnwadawhbwah")
      if(isWished === "false") {
          let xhttp = new XMLHttpRequest();
          xhttp.onreadystatechange = function () {
@@ -20,7 +19,6 @@ const wishContainer = document.getElementById("wish-container")
          xhttp.send("ISBN=" + isbn + "&requestType=add")
          wishContainer.setAttribute('data-is-wished', 'true')
      } else {
-         console.log('arrivo js remove')
          let xhttp = new XMLHttpRequest();
          xhttp.onreadystatechange = function () {
              if (this.readyState === 4 && this.status === 200) {

@@ -192,4 +192,17 @@ public class ComicDAO {
             return false;
         }
     }
+
+    public static boolean isWished(String isbn, int idUtente) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT FROM wishlist WHERE idUtente = ? AND isbn = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idUtente);
+            ps.setString(2, isbn);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 }

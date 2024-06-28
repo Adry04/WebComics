@@ -2,18 +2,22 @@
 <%@ page import="Model.Comic" %>
 <%@ page import="java.text.DecimalFormat" %>
 <html>
+<%
+    Comic comic = (Comic) request.getAttribute("comic");
+    boolean isWished = (boolean) request.getAttribute("isWished");
+    DecimalFormat df = new DecimalFormat("#.00");
+    String price = df.format(comic.getPrice());
+    String finalPrice = df.format(comic.getFinalPrice());
+%>
 <head>
     <link rel="stylesheet" href="Styles/comic-page.css">
+    <link rel="stylesheet" href="Styles/nav.css">
+    <link rel="stylesheet" href="Styles/footer.css">
+    <script src="js/navbar.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
     <%@include file="navbar.jsp"%>
-    <%
-        Comic comic = (Comic) request.getAttribute("comic");
-        boolean isWished = (boolean) request.getAttribute("isWished");
-        DecimalFormat df = new DecimalFormat("#.00");
-        String price = df.format(comic.getPrice());
-        String finalPrice = df.format(comic.getFinalPrice());
-    %>
     <div class="comic-page">
         <div class="image-section">
             <img src="<%=comic.getImmagine()%>" alt="<%=comic.getTitle()%>">

@@ -3,14 +3,9 @@
 <%@ page import="Model.Comic" %>
 <%@ page import="Model.ComicDAO" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
 <html>
 <%
     List<Comic> comics = ComicDAO.getNews("", 4);   //Stringa vuota vuol dire che non vogliamo specificare la categoria 4 vogliamo che il limite di fumetti sia 4
-    List<Comic> wishComics = new ArrayList<>();
-    if(session.getAttribute("userId") != null) {
-        wishComics = ComicDAO.getWishes((int) session.getAttribute("userId"));
-    }
 %>
 <head>
     <title> WebComics - Home </title>

@@ -30,7 +30,7 @@ public class WishlistServlet extends HttpServlet {
             rd.forward(request, response);
         } catch (ServletException e) {
             String contextPath = request.getContextPath();
-            response.sendRedirect(contextPath + "/");
+            response.sendRedirect(contextPath + "/login");
         }
     }
 

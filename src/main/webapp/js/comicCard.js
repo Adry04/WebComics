@@ -18,6 +18,8 @@ const url = window.location.origin + "/tswProject_war_exploded/wishlist"
                  numberWishes += 1
                  counterWishes.setAttribute("data-wishes", numberWishes);
                  counterWishes.innerHTML = numberWishes;
+             } else if (this.readyState === 4 && this.status === 500) {
+                 alert("È necessario eseguire l'accesso")
              }
          }
          xhttp.open("POST", url, true);

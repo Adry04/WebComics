@@ -40,7 +40,6 @@
                 if(wishComics != null && !wishComics.isEmpty()) {
                     isWished = wishComics.contains(comic);
                 }
-                System.out.println(isWished);
         %>
            <%@include file="WEB-INF/comicCard.jsp"%>
         <%

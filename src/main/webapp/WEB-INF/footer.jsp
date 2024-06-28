@@ -1,8 +1,4 @@
-<html>
-<head>
-    <link rel="stylesheet" href="Styles/footer.css">
-</head>
-<body>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <footer>
         <div class="section-image">
             <a href="./">
@@ -23,5 +19,3 @@
             <p class="subtext">Metodi di pagamento</p>
         </div>
     </footer>
-</body>
-</html>

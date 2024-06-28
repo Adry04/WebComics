@@ -3,35 +3,40 @@ const wish = document.getElementById("wish");
 const wishContainer = document.getElementById("wish-container");
 const counterWishes = document.getElementById("counter-wishes");
 let numberWishes = parseInt(counterWishes.getAttribute("data-wishes"), 10);
+const url = window.location.origin + "/tswProject_war_exploded/wishlist"
 
  function toggleWish() {
-     let isWished = wishContainer.getAttribute('data-is-wished')
-     let isbn = wishContainer.getAttribute("data-isbn")
+     let isWished = wishContainer.getAttribute('data-is-wished');
+     let isbn = wishContainer.getAttribute("data-isbn");
      if(isWished === "false") {
          let xhttp = new XMLHttpRequest();
          xhttp.onreadystatechange = function () {
              if (this.readyState === 4 && this.status === 200) {
                  noWish.classList.add("no-display");
                  wish.classList.remove("no-display");
+                 wishContainer.setAttribute('data-is-wished', 'true');
+                 numberWishes += 1
+                 counterWishes.setAttribute("data-wishes", numberWishes);
+                 counterWishes.innerHTML = numberWishes;
              }
          }
-         const url = window.location.origin + "/tswProject_war_exploded/wish-operation"
          xhttp.open("POST", url, true);
          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-         xhttp.send("ISBN=" + isbn + "&requestType=add")
-         wishContainer.setAttribute('data-is-wished', 'true')
+         xhttp.send("ISBN=" + isbn + "&requestType=add");
      } else {
          let xhttp = new XMLHttpRequest();
          xhttp.onreadystatechange = function () {
              if (this.readyState === 4 && this.status === 200) {
                  noWish.classList.remove("no-display");
                  wish.classList.add("no-display");
+                 wishContainer.setAttribute('data-is-wished', 'false');
+                 numberWishes -= 1
+                 counterWishes.setAttribute("data-wishes", numberWishes);
+                 counterWishes.innerHTML = numberWishes;
              }
          }
-         const url = window.location.origin + "/tswProject_war_exploded/wish-operation"
          xhttp.open("POST", url, true);
          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-         xhttp.send("ISBN=" + isbn + "&requestType=remove")
-         wishContainer.setAttribute('data-is-wished', 'false')
+         xhttp.send("ISBN=" + isbn + "&requestType=remove");
      }
 }

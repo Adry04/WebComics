@@ -1,23 +1,4 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="Model.ComicDAO" %>
-<%@ page import="Model.Comic" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
-<%
-  List<Comic> wishComics = new ArrayList<>();
-  if(session.getAttribute("userId") != null) {
-    wishComics = ComicDAO.getWishes((int) session.getAttribute("userId"));
-  }
-%>
-<head>
-  <title> WebComics - Vendita Fumetti </title>
-  <link rel="stylesheet" href="Styles/nav.css">
-  <script src="js/navbar.js" type="text/javascript"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
   <div class="top-nav">
     <p class="title-top-nav">
       <a href="service.jsp">
@@ -36,7 +17,7 @@
       <div class="link-container">
         <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 256"><path fill="currentColor" d="M178 40c-20.65 0-38.73 8.88-50 23.89C116.73 48.88 98.65 40 78 40a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 228.66 240 172 240 102a62.07 62.07 0 0 0-62-62m-50 174.8c-18.26-10.64-96-59.11-96-112.8a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8"></path></svg>
         <p>
-          <a href="wishlist.jsp">
+          <a href="wishlist">
             LISTA DEI DESIDERI: <span data-wishes="<%=wishComics.size()%>" id="counter-wishes"><%=wishComics.size()%></span>
           </a>
         </p>
@@ -90,5 +71,3 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14"></path></svg>
     </div>
   </nav>
-</body>
-</html>

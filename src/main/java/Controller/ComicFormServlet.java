@@ -51,6 +51,10 @@ public class ComicFormServlet extends HttpServlet {
             int sconto = 0;
             //CARICAMENTO IMMAGINE PRODOTTO
             Part filePart = request.getPart("image");
+            if(ComicDAO.existsISBN(ISBN, titolo)) {
+                request.setAttribute("error-form", "Esiste già un fumetto con questo ISBN");
+                throw new ServletException("Esiste già un fumetto con questo ISBN");
+            }
             String fileName = filePart.getSubmittedFileName();
             String mimeType = filePart.getContentType();
             if (!(mimeType.equals("image/jpeg") || mimeType.equals("image/png"))) {
@@ -77,10 +81,6 @@ public class ComicFormServlet extends HttpServlet {
             }
             if(!request.getParameter("sconto").isEmpty()) {
                 sconto = Integer.parseInt(request.getParameter("sconto"));
-            }
-            if(ComicDAO.existsISBN(ISBN, titolo)) {
-                request.setAttribute("error-form", "Esiste già questo fumetto");
-                throw new ServletException("Esiste già un fumetto con questo ISBN");
             }
             String ISBNPattern = "[0-9]{13}";
             if (!ISBN.matches(ISBNPattern)) {

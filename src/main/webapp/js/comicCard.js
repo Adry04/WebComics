@@ -1,13 +1,12 @@
-const noWish = document.getElementById("no-wish");
-const wish = document.getElementById("wish");
-const wishContainer = document.getElementById("wish-container");
 const counterWishes = document.getElementById("counter-wishes");
 let numberWishes = parseInt(counterWishes.getAttribute("data-wishes"), 10);
 const url = window.location.origin + "/tswProject_war_exploded/wishlist"
 
- function toggleWish() {
+ function toggleWish(isbn) {
+     const wishContainer = document.getElementById("wish-container-"+isbn);
+     const noWish = document.getElementById("no-wish-" + isbn);
+     const wish = document.getElementById("wish-" + isbn);
      let isWished = wishContainer.getAttribute('data-is-wished');
-     let isbn = wishContainer.getAttribute("data-isbn");
      if(isWished === "false") {
          let xhttp = new XMLHttpRequest();
          xhttp.onreadystatechange = function () {

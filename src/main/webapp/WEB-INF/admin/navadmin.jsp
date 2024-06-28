@@ -1,11 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<html>
-<head>
-    <title>Admin Page - <%=session.getAttribute("nome")%></title>
-    <link rel="stylesheet" href="Styles/admin/navadmin.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
     <nav>
         <div class="top-section">
             <img onclick="window.open('./')" src="assets/logo.png" alt="Logo WebComics">
@@ -40,5 +33,3 @@
             document.getElementById("prodotti-link").style.fontWeight = '700'
         }
     </script>
-</body>
-</html>

@@ -1,10 +1,13 @@
 <html>
 <head>
     <link rel="stylesheet" href="Styles/admin/comic-form.css">
+    <title>Admin Page - <%=session.getAttribute("nome")%></title>
+    <link rel="stylesheet" href="Styles/admin/navadmin.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <%@include file="navadmin.jsp"%>
     <div class="container-page">
-        <%@include file="navadmin.jsp"%>
         <form action="" method="POST" onsubmit="return validateComic()" enctype="multipart/form-data">
             <h1>Crea un nuovo fumetto</h1>
             <div class="input-container">

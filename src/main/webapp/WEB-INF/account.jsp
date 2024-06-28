@@ -2,6 +2,10 @@
 <head>
     <title> <%=session.getAttribute("nome")%> - Account </title>
     <link rel="stylesheet" href="Styles/account.css">
+    <link rel="stylesheet" href="Styles/nav.css">
+    <link rel="stylesheet" href="Styles/footer.css">
+    <script src="js/navbar.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
     <%@include file="navbar.jsp"%>

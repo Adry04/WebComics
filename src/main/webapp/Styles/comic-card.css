@@ -116,3 +116,24 @@
 .no-display {
     display: none !important;
 }
+
+.empty-section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 4em;
+    gap: 2em;
+}
+
+.empty-section h1 {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+}
+
+.empty-section img {
+    width: 200px;
+    height: 200px;
+}

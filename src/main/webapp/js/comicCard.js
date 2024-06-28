@@ -1,6 +1,8 @@
 const noWish = document.getElementById("no-wish");
 const wish = document.getElementById("wish");
-const wishContainer = document.getElementById("wish-container")
+const wishContainer = document.getElementById("wish-container");
+const counterWishes = document.getElementById("counter-wishes");
+let numberWishes = parseInt(counterWishes.getAttribute("data-wishes"), 10);
 
  function toggleWish() {
      let isWished = wishContainer.getAttribute('data-is-wished')

@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="Model.User" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <link rel="stylesheet" href="Styles/admin/user.css">

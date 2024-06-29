@@ -1,11 +1,14 @@
 <%@ page import="java.util.List" %>
 <%@ page import="Model.Comic" %>
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <link rel="stylesheet" href="Styles/admin/comic.css">
     <title>Admin Page - <%=session.getAttribute("nome")%></title>
     <link rel="stylesheet" href="Styles/admin/navadmin.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Styles/admin/comicCard.css">
 </head>
 <body>
     <%@include file="navadmin.jsp"%>
@@ -25,14 +28,12 @@
                 if(request.getAttribute("comics") != null) {
                     List<Comic> comics = (List<Comic>) request.getAttribute("comics");
                     for (Comic comic : comics) {
+                        DecimalFormat df = new DecimalFormat("#.00");
+                        String price = df.format(comic.getPrice());
+                        String finalPrice = df.format(comic.getFinalPrice());
             %>
             <div class="comic-container">
-                <img src="<%=comic.getImmagine()%>%>" alt="<%=comic.getTitle()%>">
-                <div class="data-section">
-                    <p class="title"><%=comic.getTitle()%></p>
-                    <p class="author"><%=comic.getAuthor()%></p>
-                    <p class="price"><%=comic.getPrice()%></p>
-                </div>
+                <%@include file="comicCardAdmin.jsp"%>
             </div>
             <%
                     }

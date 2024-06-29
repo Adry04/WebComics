@@ -21,13 +21,13 @@
                 String price = df.format(comic.getPrice());
                 String finalPrice = df.format(comic.getFinalPrice());
                 boolean isWished = false;
-                if(wishComics != null && !wishComics.isEmpty()) {
+                if(!wishComics.isEmpty()) {
                     isWished = wishComics.contains(comic);
                 }
         %>
             <%@include file="comicCard.jsp"%>
         <%
-            }
+                }
         %>
     </div>
     <%

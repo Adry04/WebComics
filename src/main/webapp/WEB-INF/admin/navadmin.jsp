@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
-    <nav>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<nav>
         <div class="top-section">
             <img onclick="window.open('./')" src="assets/logo.png" alt="Logo WebComics">
             <div title="Visualizza sito">

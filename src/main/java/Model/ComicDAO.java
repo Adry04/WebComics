@@ -96,7 +96,7 @@ public class ComicDAO {
     public static List<Comic> getNews(String category, int limit) {
         try (Connection con = ConPool.getConnection()) {
             List<Comic> comics = new ArrayList<>();
-            ResultSet rs = null;
+            ResultSet rs;
             if (limit == 0 && category.isEmpty()) {
                 String query = "SELECT * FROM fumetto ORDER BY ddi";
                 PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -202,6 +202,25 @@ public class ComicDAO {
             ResultSet rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public static boolean doUpdate(Comic comic) {
+        try (Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("UPDATE fumetto SET (autore, prezzo, titolo, descrizione, categoria, sconto, immagine) VALUES (?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, comic.getAuthor());
+            ps.setDouble(2, comic.getPrice());
+            ps.setString(3, comic.getTitle());
+            ps.setString(4, comic.getDesc());
+            ps.setString(5, comic.getCategory());
+            ps.setDouble(6, comic.getSale());
+            ps.setString(7, comic.getImmagine());
+            LocalDate currentDate = LocalDate.now();
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e){
+            System.out.println(e);
             return false;
         }
     }

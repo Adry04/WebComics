@@ -28,8 +28,9 @@
 
 .comic-card img {
     width: 100%;
+    height: 350px;
     margin: 0;
-    object-fit: contain;
+    object-fit: cover;
     align-self: center;
     cursor: pointer;
 }

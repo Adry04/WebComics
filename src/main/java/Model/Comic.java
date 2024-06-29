@@ -36,6 +36,24 @@ public class Comic {
         }
     }
 
+    public Comic(String author, double price, String title, String desc, String category, int sale, String immagine) {
+        this.author = author;
+        this.price = price;
+        this.title = title;
+        this.desc = desc;
+        this.category = category;
+        this.sale = sale;
+        this.immagine = immagine;
+
+        if(sale >= 0){
+            double finalPrice = (price - ((price * sale)/100));
+            finalPrice = (double) Math.round(finalPrice * 100)/100;
+            setFinalPrice(finalPrice);
+        } else {
+            setFinalPrice(price);
+        }
+    }
+
     public String getISBN() {
         return ISBN;
     }

@@ -4,6 +4,7 @@ import Model.Comic;
 import Model.ComicDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
@@ -11,6 +12,11 @@ import java.io.File;
 import java.io.IOException;
 
 @WebServlet("/admin-update-comic")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024, // 1 MB
+        maxFileSize = 1024 * 1024 * 10,      // 10 MB
+        maxRequestSize = 1024 * 1024 * 100   // 100 MB
+)
 public class UpdateComicServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -38,22 +44,11 @@ public class UpdateComicServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String ISBN = request.getParameter("isbn");
-            System.out.println(ISBN);
-
             String autore = request.getParameter("autore");
-            System.out.println(request.getParameter("autore"));
-
             double prezzo = Double.parseDouble(request.getParameter("prezzo"));
-            System.out.println(prezzo);
-
             String titolo = request.getParameter("titolo");
-            System.out.println(titolo);
-
             String descrizione = request.getParameter("descrizione");
-            System.out.println(descrizione);
-
             String categoria = request.getParameter("categoria");
-            System.out.println(categoria);
 
             Comic oldComic = ComicDAO.getComic(ISBN);
             int sconto = 0;

@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 @WebServlet("/admin-comic-form")
-@MultipartConfig(
+@MultipartConfig(   //serve per il multipart form data
         fileSizeThreshold = 1024 * 1024, // 1 MB
         maxFileSize = 1024 * 1024 * 10,      // 10 MB
         maxRequestSize = 1024 * 1024 * 100   // 100 MB

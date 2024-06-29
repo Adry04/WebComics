@@ -13,7 +13,7 @@
   %>
   <div class="top-nav">
     <p class="title-top-nav">
-      <a href="service.jsp">
+      <a href="service">
         SERVIZIO CLIENTI
       </a>
     </p>

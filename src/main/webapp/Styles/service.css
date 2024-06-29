@@ -1,0 +1,67 @@
+.contact {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+    margin: 4em 0;
+}
+
+.contact a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.contact a:hover {
+    font-weight: bold;
+}
+
+.smile {
+    display: block;
+    margin: 2em auto;
+    width: 250px;
+    height: 250px;
+    background-color: #00BF62;
+    border-radius: 10px;
+}
+
+.contact h1 {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.contact ul {
+    background-color: lightgray;
+    text-align: center;
+    width: 35%;
+    margin: 0 auto;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    gap: .4em;
+    flex-direction: column;
+    list-style: none;
+    padding: .8em 0;
+    -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 20px 0 rgba(0,0,0,0.75);
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.75);
+    transition: 1.2s;
+}
+
+.contact ul:hover {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.contact ul li {
+    font-size: 22px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+
+.contact p {
+    font-size: 22px;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+}

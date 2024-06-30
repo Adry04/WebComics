@@ -8,8 +8,8 @@
         </div>
         <div class="subsection">
             <p class="title">INFORMAZIONI</p>
-            <p class="subtext">Creatori</p>
-            <p class="subtext">Contattaci</p>
+            <p class="subtext" onclick="">Creatori</p>
+            <p class="subtext" onclick="">Contattaci</p>
         </div>
         <div class="subsection">
             <p class="title">IL TUO ACCOUNT</p>

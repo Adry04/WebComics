@@ -14,16 +14,16 @@
         <h1>Benvenuto nel servizio clienti, da qui potrai contattarci attraverso i seguenti numeri e indirizzi mail:</h1>
         <ul>
             <li>
-                <a href="">(numero di cellulare di Pellegrino)</a>
-                <a href="">(email)</a>
+                <a href="tel: +39">Pellegrino:</a>
+                <a href="mailto:rinogianni9@gmail.com">rinogianni9@gmail.com</a>
             </li>
             <li>
-                <a href="">(numero di cellulare di Christian)</a>
-                <a href="">(email)</a>
+                <a href="tel: +39">Christian:</a>
+                <a href="mailto:biancochristian62@gmail.com">biancochristian62@gmail.com</a>
             </li>
             <li>
-                <a href="" >(numero di cellulare di Adriano)</a>
-                <a href="" >(email)</a>
+                <a href="tel: +39 328-211-2285">Adriano:</a>
+                <a href="mailto: adrianodevita8@gmail.com" >adrianodevita8@gmail.com</a>
             </li>
         </ul>
         <p>Saremo lieti di aiutarti</p>

@@ -44,7 +44,7 @@ const url = window.location.origin + "/tswProject_war_exploded/wishlist"
 
 const urlCart = window.location.origin + "/tswProject_war_exploded/cart"
 
-function addCart(isbn, quantita) {
+function addCart(isbn, quantita, comic) {
     let counterCarts = document.getElementById("counter-carts")
     let numberCarts = counterCarts.getAttribute("data-carts")
     let xhttp = new XMLHttpRequest();
@@ -56,5 +56,5 @@ function addCart(isbn, quantita) {
     }
     xhttp.open("POST", urlCart, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("ISBN=" + isbn + "&quantita=" + quantita +"&requestType=add");
+    xhttp.send("ISBN=" + isbn + "&quantita=" + quantita + "&comic=" + JSON.stringify(comic) + "&requestType=add");
 }

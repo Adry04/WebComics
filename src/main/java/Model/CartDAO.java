@@ -1,18 +1,42 @@
 package Model;
 
+import jakarta.servlet.ServletException;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class CartDAO {
-    public static boolean addComic(String ISBN, int idUtente, int quantity) {
+    public static boolean addCart(Cart cart, int idUtente) {
         try (Connection con = ConPool.getConnection()){
-            String query = "INSERT INTO carrello (idUtente, isbn, quantita) VALUES (?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            List<Comic> comics = cart.getComics();
+            Map map = cart.getQuantities();
+            for(Comic comic : comics) {
+                if(CartDAO.isIn(comic.getISBN(), idUtente)) {
+                    if(!CartDAO.changeQuantity(comic.getISBN(), idUtente, (Integer) map.get(comic.getISBN()))) {
+                        throw new ServletException("errore di changeQuantity");
+                    }
+                } else {
+                    if(!CartDAO.addComic(idUtente, comic, (Integer) map.get(comic.getISBN()))){
+                        throw new ServletException("errore nel caricamento del fumetto");
+                    }
+                }
+            }
+            return true;
+        } catch (SQLException | ServletException e) {
+            System.err.println(e);
+            return false;
+        }
+    }
+
+    public static boolean addComic(int idUtente, Comic comic, int quantita) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "INSERT INTO carrello (idUtente, ISBN, quantita) VALUES (?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, idUtente);
-            ps.setString(2, ISBN);
-            ps.setInt(3, quantity);
+            ps.setString(2, comic.getISBN());
+            ps.setInt(3, quantita);
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {

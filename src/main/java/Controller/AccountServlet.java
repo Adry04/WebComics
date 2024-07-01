@@ -3,6 +3,8 @@ package Controller;
 
 import java.io.*;
 
+import Model.Cart;
+import Model.CartDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -35,7 +37,13 @@ public class AccountServlet extends HttpServlet {
         String action = request.getParameter("action");
         HttpSession session = request.getSession(false);
         if(action.equals("logout") && session != null) {
-            session.invalidate();
+            if(session.getAttribute("cart") == null) {
+                session.invalidate();
+            } else {
+                Cart cart = (Cart) session.getAttribute("cart");
+                CartDAO.addCart(cart, (Integer) session.getAttribute("userId"));
+                session.invalidate();
+            }
         }
     }
 

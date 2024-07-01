@@ -4,6 +4,7 @@ import Model.Cart;
 import Model.CartDAO;
 import Model.Comic;
 import Model.ComicDAO;
+import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -38,39 +39,48 @@ public class CartServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            HttpSession session = request.getSession(false);
-            String ISBN = request.getParameter("ISBN");
-            int quantita = Integer.parseInt(request.getParameter("quantita"));
-            String type = request.getParameter("requestType");
-            if (type.equals("add")) {
-                if (session.getAttribute("userId") != null) {
-                    if (CartDAO.isIn(ISBN, (int) session.getAttribute("userId"))) {
-                        if (!CartDAO.addQuantity(ISBN, (int) session.getAttribute("userId"), quantita)) {
-                            throw new ServletException("Errore aggiunta quantità");
-                        }
-                    } else {
-                        if (!CartDAO.addComic(ISBN, (int) session.getAttribute("userId"), quantita)) {
-                            throw new ServletException("Errore aggiunta fumetto nel carrello");
-                        }
-                    }
+        HttpSession session = request.getSession();
+        String ISBN = request.getParameter("ISBN");
+        int quantita = Integer.parseInt(request.getParameter("quantita"));
+        String comicJson = request.getParameter("comic");
+        Gson gson = new Gson();
+        // Parsing della stringa JSON in un oggetto Comic
+        Comic comic = gson.fromJson(comicJson, Comic.class);
+        String type = request.getParameter("requestType");
+        if (type.equals("add")) {
+            if (session.getAttribute("userId") != null) {
+                List<Comic> cartComics = new ArrayList<>();
+                if (session.getAttribute("cart") == null) {
+                    cartComics.add(comic);
+                    Cart cart = new Cart((Integer) session.getAttribute("userId"), cartComics);
+                    cart.updateQuantity(ISBN, quantita);
+                    session.setAttribute("cart", cart);
                 } else {
-                    List<Comic> cartComics = new ArrayList<>();
-                    if (session.getAttribute("cart") == null) {
-                        Cart cart = new Cart(cartComics);
-                        session.setAttribute("cart", cart);
-                        cart.updateQuantity(ISBN, quantita);
-                    } else {
-                        Cart cart = (Cart) session.getAttribute("cart");
-                        int oldQuantity = cart.getQuantity(ISBN);
-                        cart.updateQuantity(ISBN, (oldQuantity + quantita));
-                    }
+                    Cart cart = (Cart) session.getAttribute("cart");
+                    cartComics = cart.getComics();
+                    cartComics.add(comic);
+                    cart.setComics(cartComics);
+                    cart.updateQuantity(ISBN, (cart.getQuantity(ISBN) + quantita));
+                    session.setAttribute("cart", cart);
+                }
+            } else {
+                List<Comic> cartComics = new ArrayList<>();
+                if (session.getAttribute("cart") == null) {
+                    Cart cart = new Cart(cartComics);
+                    cartComics.add(comic);
+                    cart.setComics(cartComics);
+                    cart.updateQuantity(ISBN, quantita);
+                    session.setAttribute("cart", cart);
+                } else {
+                    Cart cart = (Cart) session.getAttribute("cart");
+                    cartComics = cart.getComics();
+                    cartComics.add(comic);
+                    cart.setComics(cartComics);
+                    cart.updateQuantity(ISBN, (cart.getQuantity(ISBN) + quantita));
+                    session.setAttribute("cart", cart);
                 }
             }
-        } catch (ServletException e) {
-            System.err.println(e);
-            RequestDispatcher rs = request.getRequestDispatcher("/");
-            rs.forward(request, response);
+            response.setStatus(HttpServletResponse.SC_OK);
         }
     }
 }

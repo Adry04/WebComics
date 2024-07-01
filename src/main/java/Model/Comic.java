@@ -55,6 +55,19 @@ public class Comic {
         }
     }
 
+
+    public Comic(String ISBN, String author, double price, String title, String desc, String category, int sale, String immagine, double finalPrice, String data) {
+        this.ISBN = ISBN;
+        this.author = author;
+        this.price = price;
+        this.title = title;
+        this.desc = desc;
+        this.category = category;
+        this.sale = sale;
+        this.immagine = immagine;
+        this.finalPrice = finalPrice;
+        this.data = data;
+    }
     public String getISBN() {
         return ISBN;
     }

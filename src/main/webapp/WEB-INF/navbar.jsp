@@ -3,17 +3,21 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="Model.CartDAO" %>
+<%@ page import="Model.Cart" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%
     int sizeWishes = 0;
     int sizeCartComics = 0;
     List<Comic> wishComics = new ArrayList<>();
-    List<Comic> cartComics = new ArrayList<>();
+    Cart cartComics;
     if(session.getAttribute("userId") != null) {
       wishComics = ComicDAO.getWishes((Integer) session.getAttribute("userId"));
       sizeWishes = wishComics.size();
-      cartComics = CartDAO.getCart();
-      sizeCartComics = cartComics.size();
+      cartComics = CartDAO.getCart((int) session.getAttribute("userId"));
+      sizeCartComics = cartComics.getTotalQuantity();
+    } else if(session.getAttribute("cart") != null) {
+      Cart cart = (Cart) session.getAttribute("cart");
+      sizeCartComics = cart.getTotalQuantity();
     }
   %>
   <div class="top-nav">

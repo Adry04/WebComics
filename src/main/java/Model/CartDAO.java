@@ -3,9 +3,7 @@ package Model;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class CartDAO {
     public static boolean addComic(String ISBN, int idUtente, int quantity) {
@@ -23,12 +21,17 @@ public class CartDAO {
         }
     }
 
-    public static List<Comic> getCart() {
-        try (Connection con = ConPool.getConnection()){
-            String query = "SELECT * FROM carrello JOIN fumetto ON carrello.isbn=fumetto.ISBN";
-            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+    public static Cart getCart(int utenteId) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT carrello.quantita, fumetto.ISBN, fumetto.autore, fumetto.prezzo, fumetto.titolo, " +
+                    "fumetto.descrizione, fumetto.categoria, fumetto.sconto, fumetto.immagine, fumetto.ddi " +
+                    "FROM carrello JOIN fumetto ON carrello.isbn = fumetto.ISBN WHERE carrello.idUtente = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, utenteId);
             ResultSet rs = ps.executeQuery();
             List<Comic> comics = new ArrayList<>();
+            Map<String, Integer> quantities = new HashMap<>();
+
             while (rs.next()) {
                 String ISBN = rs.getString("ISBN");
                 String autore = rs.getString("autore");
@@ -41,28 +44,47 @@ public class CartDAO {
                 LocalDate data = rs.getDate("ddi").toLocalDate();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
                 String comicDate = data.format(formatter);
-                comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
+                int quantita = rs.getInt("quantita");
+
+                Comic comic = new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate);
+                comics.add(comic);
+                quantities.put(ISBN, quantita);
             }
-            return comics;
+
+            Cart cart = new Cart(utenteId, comics);
+            for (Map.Entry<String, Integer> entry : quantities.entrySet()) {
+                cart.updateQuantity(entry.getKey(), entry.getValue());
+            }
+
+            return cart;
         } catch (SQLException e) {
             System.err.println(e);
             return null;
         }
     }
 
+
     public static boolean addQuantity(String ISBN, int idUtente, int newQuantity) {
         try (Connection con = ConPool.getConnection()){
             String firstQuery = "SELECT quantita FROM carrello WHERE idUtente = ? AND isbn = ?";
             PreparedStatement ps1 = con.prepareStatement(firstQuery, Statement.RETURN_GENERATED_KEYS);
+            ps1.setInt(1, idUtente);
+            ps1.setString(2, ISBN);
             ResultSet rs = ps1.executeQuery();
-            int quantita = rs.getInt("quantita");
-            String query = "UPDATE carrello SET quantita=? WHERE idUtente = ? AND isbn = ?";
-            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, quantita + newQuantity);
-            ps.setInt(2, idUtente);
-            ps.setString(3, ISBN);
-            ps.executeUpdate();
-            return true;
+            if(rs.next()) {
+                int quantita = rs.getInt("quantita");
+                String query = "UPDATE carrello SET quantita = ? WHERE idUtente = ? AND isbn = ?";
+                PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                int quantita2 = quantita + newQuantity;
+                ps.setInt(1, quantita2);
+                ps.setInt(2, idUtente);
+                ps.setString(3, ISBN);
+                ps.executeUpdate();
+                return true;
+            } else {
+                System.out.println("Nessuna voce trovata nel carrello per l'utente e ISBN specificati.");
+                return false;
+            }
         } catch (SQLException e) {
             System.err.println(e);
             return false;

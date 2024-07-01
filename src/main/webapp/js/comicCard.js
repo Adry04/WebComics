@@ -41,3 +41,20 @@ const url = window.location.origin + "/tswProject_war_exploded/wishlist"
          xhttp.send("ISBN=" + isbn + "&requestType=remove");
      }
 }
+
+const urlCart = window.location.origin + "/tswProject_war_exploded/cart"
+
+function addCart(isbn, quantita) {
+    let counterCarts = document.getElementById("counter-carts")
+    let numberCarts = counterCarts.getAttribute("data-carts")
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            counterCarts.innerHTML = parseInt(numberCarts, 10) + quantita;
+            counterCarts.setAttribute("data-carts", parseInt(numberCarts, 10) + quantita);
+        }
+    }
+    xhttp.open("POST", urlCart, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("ISBN=" + isbn + "&quantita=" + quantita +"&requestType=add");
+}

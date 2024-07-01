@@ -11,11 +11,9 @@
     List<Comic> wishComics = new ArrayList<>();
     Cart cartComics;
     if(session.getAttribute("userId") != null) {
-      wishComics = ComicDAO.getWishes((Integer) session.getAttribute("userId"));
+      wishComics = ComicDAO.getWishes((int) session.getAttribute("userId"));
       sizeWishes = wishComics.size();
-      cartComics = CartDAO.getCart((int) session.getAttribute("userId"));
-      sizeCartComics = cartComics.getTotalQuantity();
-    } else if(session.getAttribute("cart") != null) {
+    } if(session.getAttribute("cart") != null) {
       Cart cart = (Cart) session.getAttribute("cart");
       sizeCartComics = cart.getTotalQuantity();
     }

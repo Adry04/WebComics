@@ -1,11 +1,12 @@
-//registrazioni
+//Registrazioni utente
 package Controller;
 
 import java.io.*;
 import java.sql.*;
+import java.util.List;
+import java.util.Map;
 
-import Model.User;
-import Model.UserDAO;
+import Model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -14,9 +15,6 @@ import org.owasp.encoder.Encode;
 
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
-
-    public void init() {
-    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession(false);
@@ -69,6 +67,22 @@ public class RegistrationServlet extends HttpServlet {
                 request.setAttribute("error", "Le due password devono coincidere");
                 throw new ServletException("Le due password devono coincidere");
             }
+            if (s.getAttribute("cart") != null) {
+                Cart cart = (Cart) s.getAttribute("cart");
+                Map map = cart.getQuantities();
+                List<Comic> comics = cart.getComics();
+                int id;
+                if ((id = UserDAO.getUserId(email)) > 0) {
+                    for (Comic comic : comics) {
+                        if (!CartDAO.addCart(cart, id)) {
+                            throw new ServletException("Errore nel caricamento del carrello");
+                        }
+                    }
+                } else {
+                    throw new ServletException("Errore nel prendere l'id");
+                }
+            }
+            s.invalidate();
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/login");
         } catch (SQLException e) {
@@ -77,8 +91,5 @@ public class RegistrationServlet extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/registration.jsp");   //tenere d'occhio
             dispatcher.forward(request, response);
         }
-    }
-
-    public void destroy() {
     }
 }

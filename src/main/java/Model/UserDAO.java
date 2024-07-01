@@ -51,4 +51,20 @@ public class UserDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public static int getUserId(String email) throws SQLException{
+        try (Connection connection = ConPool.getConnection()){
+            String query = "SELECT id FROM utente WHERE email = ?";
+            PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                int id = rs.getInt("id");
+                return id;
+            }
+            return -1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

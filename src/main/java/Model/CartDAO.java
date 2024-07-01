@@ -47,9 +47,7 @@ public class CartDAO {
 
     public static Cart getCart(int utenteId) {
         try (Connection con = ConPool.getConnection()) {
-            String query = "SELECT carrello.quantita, fumetto.ISBN, fumetto.autore, fumetto.prezzo, fumetto.titolo, " +
-                    "fumetto.descrizione, fumetto.categoria, fumetto.sconto, fumetto.immagine, fumetto.ddi " +
-                    "FROM carrello JOIN fumetto ON carrello.isbn = fumetto.ISBN WHERE carrello.idUtente = ?";
+            String query = "SELECT carrello.quantita, fumetto.ISBN, fumetto.autore, fumetto.prezzo, fumetto.titolo, fumetto.descrizione, fumetto.categoria, fumetto.sconto, fumetto.immagine, fumetto.ddi FROM carrello JOIN fumetto ON carrello.isbn = fumetto.ISBN WHERE carrello.idUtente = ?";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, utenteId);
             ResultSet rs = ps.executeQuery();

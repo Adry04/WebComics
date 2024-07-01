@@ -20,9 +20,6 @@ import org.owasp.encoder.Encode;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    public void init() {
-    }
-
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession(false);
         if(session != null && session.getAttribute("userId") != null){
@@ -88,6 +85,9 @@ public class LoginServlet extends HttpServlet {
                                 }
                             }
                         }
+                    } else {
+                        Cart cart = CartDAO.getCart(rs.getInt("id"));
+                        session.setAttribute("cart", cart);
                     }
                     response.sendRedirect(contextPath + "/");
                 } else {

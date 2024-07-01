@@ -6,9 +6,10 @@ import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
-import Model.ConPool;
-import Model.Hash;
+import Model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -69,8 +70,26 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("cognome", rs.getString("cognome"));
                     session.setAttribute("isAdmin", rs.getBoolean("isAdmin"));
                     session.setAttribute("userId", rs.getInt("id"));
+                    if (session.getAttribute("cart") != null) {
+                        Cart cart = (Cart) session.getAttribute("cart");
+                        List<Comic> comics = cart.getComics();
+                        Cart userCart = CartDAO.getCart(rs.getInt("id"));
+                        List<Comic> userComics = userCart.getComics();
+                        Map map = cart.getQuantities();
+                        Map userMap = userCart.getQuantities();
+                        for (Comic comic : comics) {
+                            if (userComics.contains(comic)) {
+                                if(!CartDAO.changeQuantity(comic.getISBN(), rs.getInt("id"), ((int) map.get(comic.getISBN()) + (int) userMap.get(comic.getISBN())))) {
+                                    throw new ServletException("Errore nel cambio quantità");
+                                }
+                            } else {
+                                if(!CartDAO.addComic(rs.getInt("id"), comic, (int) map.get(comic.getISBN()))) {
+                                    throw new ServletException("Errore nell'aggiungere");
+                                }
+                            }
+                        }
+                    }
                     response.sendRedirect(contextPath + "/");
-                    return;
                 } else {
                     request.setAttribute("error", "Password sbagliata");
                     throw new ServletException("Password sbagliata");
@@ -85,8 +104,5 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");  //tenere d'occhio
             dispatcher.forward(request, response);
         }
-    }
-
-    public void destroy() {
     }
 }

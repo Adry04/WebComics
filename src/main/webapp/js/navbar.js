@@ -17,9 +17,11 @@ document.addEventListener("DOMContentLoaded", function() {
 function checkDisplay(text){
     let check = document.getElementById("check-box")
     let checkText = document.getElementById("check-box-text")
-    check.classList.add('check-box-display')
-    checkText.innerHTML = text
-    setTimeout(function() {
-        check.classList.remove('check-box-display')
-    }, 4000);
+    if(!check.classList.contains("check-box-display")) {
+        check.classList.add('check-box-display')
+        checkText.innerHTML = text
+        setTimeout(function () {
+            check.classList.remove('check-box-display')
+        }, 4000);
+    }
 }

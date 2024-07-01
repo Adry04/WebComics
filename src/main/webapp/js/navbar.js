@@ -13,3 +13,13 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("list-category-fumetti").classList.remove("display-on");
     }
 })
+
+function checkDisplay(text){
+    let check = document.getElementById("check-box")
+    let checkText = document.getElementById("check-box-text")
+    check.classList.add('check-box-display')
+    checkText.innerHTML = text
+    setTimeout(function() {
+        check.classList.remove('check-box-display')
+    }, 4000);
+}

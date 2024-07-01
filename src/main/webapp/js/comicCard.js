@@ -51,7 +51,8 @@ function addCart(isbn, quantita, comic) {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             counterCarts.innerHTML = parseInt(numberCarts, 10) + quantita;
-            counterCarts.setAttribute("data-carts", parseInt(numberCarts, 10) + quantita);
+            counterCarts.setAttribute("data-carts", parseInt(numberCarts, 10) + quantita)
+            checkDisplay("ELEMENTO AGGIUNTO AL CARRELLO") //si trova dentro nav.js
         }
     }
     xhttp.open("POST", urlCart, true);

@@ -144,3 +144,34 @@ nav img {
 .title-top-nav a:hover {
     color: black;
 }
+
+#check-box {
+    position: fixed;
+    top: 8em;
+    right: 1em;
+    padding: .4em .8em;
+    background-color: green;
+    z-index: 99;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .4em;
+    transform: translateX(200%);
+    transition: .8s;
+}
+
+#check-box p{
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+}
+
+#check-box svg{
+    width: 1.4em;
+    height: 1.4em;
+}
+
+.check-box-display {
+    transform: translateX(0%) !important;
+}

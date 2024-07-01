@@ -35,7 +35,6 @@ public class UpdateComicServlet extends HttpServlet {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/admin/update-comic.jsp");
             rd.forward(request, response);
         } catch (ServletException e) {
-            System.out.println(e);
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/");
         }
@@ -57,16 +56,16 @@ public class UpdateComicServlet extends HttpServlet {
             }
             //immagine
             Part filePart = request.getPart("immagine");
-            String immagine = "";
-            if (filePart != null) {
+            String immagine = oldComic.getImmagine();
+            if (filePart != null && filePart.getSize() > 0) {
                 String fileName = filePart.getSubmittedFileName();
                 String mimeType = filePart.getContentType();
                 if (!(mimeType.equals("image/jpeg") || mimeType.equals("image/png"))) {
                     request.setAttribute("error-form", "Tipo di file non supportato");
                     throw new ServletException("Tipo di file non supportato");
                 }
-                String path = request.getServletContext().getRealPath("") + "uploads" + File.separator;
-                String filePath = path + fileName;
+                String path = request.getServletContext().getRealPath("") + File.separator;
+                String filePath = path + File.separator + "uploads" + File.separator + fileName;
                 String oldFilePath = path + oldComic.getImmagine();
                 File dir = new File(path);
                 if (!dir.exists()) {
@@ -85,7 +84,7 @@ public class UpdateComicServlet extends HttpServlet {
                     }
                 }
             }
-            if(!ComicDAO.doUpdate(new Comic(autore, prezzo, titolo, descrizione, categoria, sconto, immagine))){
+            if(!ComicDAO.doUpdate(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine))){
                 request.setAttribute("error-form", "Errore nell'aggiunta del fumetto");
                 throw new ServletException("Errore nell'aggiunta del fumetto");
             } else {
@@ -93,6 +92,7 @@ public class UpdateComicServlet extends HttpServlet {
                 response.sendRedirect(contextPath + "/admin");
             }
         } catch (ServletException e) {
+            System.out.println(e);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/admin/comic.jsp");  //tenere d'occhio
             dispatcher.forward(request, response);
         }

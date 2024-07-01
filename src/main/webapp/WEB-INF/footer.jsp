@@ -8,12 +8,11 @@
         </div>
         <div class="subsection">
             <p class="title">INFORMAZIONI</p>
-            <p class="subtext" onclick="">Creatori</p>
-            <p class="subtext" onclick="">Contattaci</p>
+            <p class="subtext" onclick="location.href = 'service'">Contattaci</p>
         </div>
         <div class="subsection">
             <p class="title">IL TUO ACCOUNT</p>
-            <p class="subtext">Pagina personale</p>
+            <p class="subtext" onclick="location.href = 'account'">Pagina personale</p>
             <p class="subtext">Ordini</p>
             <p class="subtext">Indirizzi</p>
             <p class="subtext">Metodi di pagamento</p>

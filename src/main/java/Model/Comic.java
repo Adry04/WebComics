@@ -36,7 +36,8 @@ public class Comic {
         }
     }
 
-    public Comic(String author, double price, String title, String desc, String category, int sale, String immagine) {
+    public Comic(String ISBN, String author, double price, String title, String desc, String category, int sale, String immagine) {
+        this.ISBN = ISBN;
         this.author = author;
         this.price = price;
         this.title = title;

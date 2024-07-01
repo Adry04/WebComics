@@ -208,7 +208,7 @@ public class ComicDAO {
 
     public static boolean doUpdate(Comic comic) {
         try (Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("UPDATE fumetto SET (autore, prezzo, titolo, descrizione, categoria, sconto, immagine) VALUES (?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement("UPDATE fumetto SET autore = ?, prezzo = ?, titolo = ?, descrizione = ?, categoria = ?, sconto = ?, immagine = ? WHERE ISBN = ?", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, comic.getAuthor());
             ps.setDouble(2, comic.getPrice());
             ps.setString(3, comic.getTitle());
@@ -216,7 +216,7 @@ public class ComicDAO {
             ps.setString(5, comic.getCategory());
             ps.setDouble(6, comic.getSale());
             ps.setString(7, comic.getImmagine());
-            LocalDate currentDate = LocalDate.now();
+            ps.setString(8, comic.getISBN());
             ps.executeUpdate();
             return true;
         } catch (SQLException e){

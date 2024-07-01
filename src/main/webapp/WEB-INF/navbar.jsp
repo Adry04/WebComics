@@ -2,13 +2,18 @@
 <%@ page import="Model.Comic" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="Model.CartDAO" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%
     int sizeWishes = 0;
+    int sizeCartComics = 0;
     List<Comic> wishComics = new ArrayList<>();
+    List<Comic> cartComics = new ArrayList<>();
     if(session.getAttribute("userId") != null) {
       wishComics = ComicDAO.getWishes((Integer) session.getAttribute("userId"));
       sizeWishes = wishComics.size();
+      cartComics = CartDAO.getCart();
+      sizeCartComics = cartComics.size();
     }
   %>
   <div class="top-nav">
@@ -38,7 +43,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 512 512"><circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></circle><circle cx="400" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M48 80h64l48 272h256"></path><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M160 288h249.44a8 8 0 0 0 7.85-6.43l28.8-144a8 8 0 0 0-7.85-9.57H128"></path></svg>
         <p>
           <a href="cart.jsp">
-            CARRELLO
+            CARRELLO: <span data-carts="<%=sizeCartComics%>" id="counter-carts"><%=sizeCartComics%></span>
           </a>
         </p>
       </div>

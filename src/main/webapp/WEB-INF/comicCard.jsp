@@ -1,11 +1,10 @@
-<%@ page import="org.ietf.jgss.GSSContext" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.google.gson.Gson" %>
 <%
     Gson gson = new Gson();
     String comicJson = gson.toJson(comic);
 %>
-<div class="comic-card">
+<div class="comic-card" id="comic-card-<%=comic.getISBN()%>">
     <img src="<%=comic.getImmagine()%>" alt="<%=comic.getTitle()%>" onclick="location.href = 'comic?isbn=<%=comic.getISBN()%>'">
     <p class="title">
         <%=comic.getTitle().length() > 20 ? comic.getTitle().substring(0, 20) + "..." : comic.getTitle() %>

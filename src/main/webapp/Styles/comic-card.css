@@ -138,3 +138,10 @@
     width: 200px;
     height: 200px;
 }
+
+.title-section{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    margin: 2em 0 1em 0;
+}

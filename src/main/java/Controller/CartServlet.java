@@ -1,9 +1,7 @@
 package Controller;
 
 import Model.Cart;
-import Model.CartDAO;
 import Model.Comic;
-import Model.ComicDAO;
 import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -14,27 +12,20 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<Comic> comics = ComicDAO.getComics();
-            request.setAttribute("comics", comics);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/admin/comic.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp");
             rd.forward(request, response);
         } catch (ServletException e) {
-            System.out.println(e);
+            System.err.println(e);
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
 

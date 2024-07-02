@@ -7,6 +7,7 @@ const url = window.location.origin + "/tswProject_war_exploded/wishlist"
      const noWish = document.getElementById("no-wish-" + isbn);
      const wish = document.getElementById("wish-" + isbn);
      let isWished = wishContainer.getAttribute('data-is-wished');
+     const comicCard = document.getElementById("comic-card-"+isbn);
      if(isWished === "false") {
          let xhttp = new XMLHttpRequest();
          xhttp.onreadystatechange = function () {
@@ -34,6 +35,7 @@ const url = window.location.origin + "/tswProject_war_exploded/wishlist"
                  numberWishes -= 1
                  counterWishes.setAttribute("data-wishes", numberWishes);
                  counterWishes.innerHTML = numberWishes;
+                 comicCard.classList.add("no-display");
              }
          }
          xhttp.open("POST", url, true);

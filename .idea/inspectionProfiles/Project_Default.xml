@@ -6,15 +6,21 @@
       <option name="ignoredModules">
         <list>
           <option value="tswProject" />
+          <option value="tswProject" />
+          <option value="tswProject" />
         </list>
       </option>
       <option name="ignoredPackages">
         <list>
           <option value="com.google.protobuf:protobuf-java:3.11.4" />
+          <option value="commons-fileupload:commons-fileupload:1.4" />
+          <option value="taglibs:standard:1.1.2" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
           <option value="Not exploitable" />
         </list>
       </option>

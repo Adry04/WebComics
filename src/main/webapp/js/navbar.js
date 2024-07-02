@@ -25,3 +25,15 @@ function checkDisplay(text){
         }, 4000);
     }
 }
+
+function checkErrorDisplay(text){
+    let check = document.getElementById("check-error-box")
+    let checkText = document.getElementById("check-error-box-text")
+    if(!check.classList.contains("check-box-display")) {
+        check.classList.add('check-box-display')
+        checkText.innerHTML = text
+        setTimeout(function () {
+            check.classList.remove('check-box-display')
+        }, 4000);
+    }
+}

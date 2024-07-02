@@ -82,8 +82,7 @@ public class CartServlet extends HttpServlet {
             }
         } catch (ServletException e) {
             System.err.println(e);
-            String contextPath = request.getContextPath();
-            response.sendRedirect(contextPath + "/");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
 }

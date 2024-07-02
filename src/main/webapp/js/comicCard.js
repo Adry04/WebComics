@@ -60,7 +60,7 @@ function addCart(isbn, quantita, comic) {
         quantity = parseInt(document.getElementById("quantity").innerHTML, 10);
     }
     if (quantity < 1) {
-        alert("Devi inserire una quantita maggiore di 0");
+        checkErrorDisplay("LA QUANTITA' NON PUO ESSERE NEGATIVA")
         return;
     }
     let xhttp = new XMLHttpRequest();
@@ -69,6 +69,8 @@ function addCart(isbn, quantita, comic) {
             counterCarts.innerHTML = parseInt(numberCarts, 10) + quantity;
             counterCarts.setAttribute("data-carts", parseInt(numberCarts, 10) + quantity)
             checkDisplay("ELEMENTO AGGIUNTO AL CARRELLO") //si trova dentro nav.js
+        } else if (this.readyState === 4 && this.status === 400) {
+            checkErrorDisplay("LA QUANTITA' NON PUO ESSERE NEGATIVA")
         }
     }
     xhttp.open("POST", urlCart, true);

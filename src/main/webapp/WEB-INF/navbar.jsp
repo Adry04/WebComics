@@ -13,7 +13,8 @@
     if(session.getAttribute("userId") != null) {
       wishComics = ComicDAO.getWishes((int) session.getAttribute("userId"));
       sizeWishes = wishComics.size();
-    } if(session.getAttribute("cart") != null) {
+    }
+    if(session.getAttribute("cart") != null) {
       Cart cart = (Cart) session.getAttribute("cart");
       sizeCartComics = cart.getTotalQuantity();
     }

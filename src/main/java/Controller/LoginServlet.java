@@ -76,7 +76,9 @@ public class LoginServlet extends HttpServlet {
                         Map userMap = userCart.getQuantities();
                         for (Comic comic : comics) {
                             if (userComics.contains(comic)) {
-                                if(!CartDAO.changeQuantity(comic.getISBN(), rs.getInt("id"), ((int) map.get(comic.getISBN()) + (int) userMap.get(comic.getISBN())))) {
+                                int comicQuantity = Integer.parseInt(map.get(comic.getISBN()).toString());
+                                int userComicQuantity = Integer.parseInt(userMap.get(comic.getISBN()).toString());
+                                if(!CartDAO.changeQuantity(comic.getISBN(), rs.getInt("id"),(comicQuantity+userComicQuantity))) {
                                     throw new ServletException("Errore nel cambio quantità");
                                 }
                             } else {
@@ -85,10 +87,9 @@ public class LoginServlet extends HttpServlet {
                                 }
                             }
                         }
-                    } else {
-                        Cart cart = CartDAO.getCart(rs.getInt("id"));
-                        session.setAttribute("cart", cart);
                     }
+                    Cart cart = CartDAO.getCart(rs.getInt("id"));
+                    session.setAttribute("cart", cart);
                     response.sendRedirect(contextPath + "/");
                 } else {
                     request.setAttribute("error", "Password sbagliata");

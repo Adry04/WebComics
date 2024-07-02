@@ -13,7 +13,7 @@
 <body>
     <%@include file="navbar.jsp"%>
     <h1 class="title-section">CARRELLO</h1>
-    <c:set var="sizeComics" scope="session" value="${sizeCartComics}"/>
+    <c:set var="sizeCartComics" scope="page" value="<%=sizeCartComics%>"/>
     <c:if test="${sizeCartComics > 0}">
         <div class="comics-container">
         <%

@@ -18,6 +18,7 @@ const url = window.location.origin + "/tswProject_war_exploded/wishlist"
                  numberWishes += 1
                  counterWishes.setAttribute("data-wishes", numberWishes);
                  counterWishes.innerHTML = numberWishes;
+                 checkDisplay("ELEMENTO AGGIUNTO ALLA WISHLIST") //si trova dentro nav.js
              } else if (this.readyState === 4 && this.status === 500) {
                  alert("È necessario eseguire l'accesso")
              }
@@ -35,7 +36,10 @@ const url = window.location.origin + "/tswProject_war_exploded/wishlist"
                  numberWishes -= 1
                  counterWishes.setAttribute("data-wishes", numberWishes);
                  counterWishes.innerHTML = numberWishes;
-                 comicCard.classList.add("no-display");
+                 if(document.URL.includes("wishlist")) {
+                     comicCard.classList.add("no-display");
+                 }
+                 checkDisplay("ELEMENTO TOLTO DALLA WISHLIST") //si trova dentro nav.js
              }
          }
          xhttp.open("POST", url, true);
@@ -49,15 +53,25 @@ const urlCart = window.location.origin + "/tswProject_war_exploded/cart"
 function addCart(isbn, quantita, comic) {
     let counterCarts = document.getElementById("counter-carts")
     let numberCarts = counterCarts.getAttribute("data-carts")
+    let quantity = 0;
+    if(quantita > 0) {
+        quantity = quantita;
+    } else if (quantita === -1) {
+        quantity = parseInt(document.getElementById("quantity").innerHTML, 10);
+    }
+    if (quantity < 1) {
+        alert("Devi inserire una quantita maggiore di 0");
+        return;
+    }
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            counterCarts.innerHTML = parseInt(numberCarts, 10) + quantita;
-            counterCarts.setAttribute("data-carts", parseInt(numberCarts, 10) + quantita)
+            counterCarts.innerHTML = parseInt(numberCarts, 10) + quantity;
+            counterCarts.setAttribute("data-carts", parseInt(numberCarts, 10) + quantity)
             checkDisplay("ELEMENTO AGGIUNTO AL CARRELLO") //si trova dentro nav.js
         }
     }
     xhttp.open("POST", urlCart, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("ISBN=" + isbn + "&quantita=" + quantita + "&comic=" + JSON.stringify(comic) + "&requestType=add");
+    xhttp.send("ISBN=" + isbn + "&quantita=" + quantity + "&comic=" + JSON.stringify(comic) + "&requestType=add");
 }

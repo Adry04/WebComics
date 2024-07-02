@@ -8,6 +8,7 @@
           <option value="tswProject" />
           <option value="tswProject" />
           <option value="tswProject" />
+          <option value="tswProject" />
         </list>
       </option>
       <option name="ignoredPackages">
@@ -15,10 +16,12 @@
           <option value="com.google.protobuf:protobuf-java:3.11.4" />
           <option value="commons-fileupload:commons-fileupload:1.4" />
           <option value="taglibs:standard:1.1.2" />
+          <option value="org.glassfish.web:jakarta.servlet.jsp.jstl:2.0.0" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
+          <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />

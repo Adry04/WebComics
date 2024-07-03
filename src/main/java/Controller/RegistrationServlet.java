@@ -5,6 +5,7 @@ import java.io.*;
 import java.sql.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import Model.*;
 import jakarta.servlet.RequestDispatcher;
@@ -67,9 +68,9 @@ public class RegistrationServlet extends HttpServlet {
                 request.setAttribute("error", "Le due password devono coincidere");
                 throw new ServletException("Le due password devono coincidere");
             }
-            if (s.getAttribute("cart") != null) {
+            if (Objects.requireNonNull(s).getAttribute("cart") != null) {
                 Cart cart = (Cart) s.getAttribute("cart");
-                Map map = cart.getQuantities();
+                Map<String, Integer> map = cart.getQuantities();
                 List<Comic> comics = cart.getComics();
                 int id;
                 if ((id = UserDAO.getUserId(email)) > 0) {
@@ -77,6 +78,7 @@ public class RegistrationServlet extends HttpServlet {
                         if (!CartDAO.addCart(cart, id)) {
                             throw new ServletException("Errore nel caricamento del carrello");
                         }
+
                     }
                 } else {
                     throw new ServletException("Errore nel prendere l'id");

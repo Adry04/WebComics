@@ -13,7 +13,7 @@
         <div class="subsection">
             <p class="title">IL TUO ACCOUNT</p>
             <p class="subtext" onclick="location.href = 'account'">Pagina personale</p>
-            <p class="subtext">Ordini</p>
+            <p class="subtext" onclick="location.href = 'order'">Ordini</p>
             <p class="subtext">Indirizzi</p>
             <p class="subtext">Metodi di pagamento</p>
         </div>

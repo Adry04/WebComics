@@ -13,13 +13,11 @@
     String comicJson = gson.toJson(comic);
 
 %>
-<head>
-    <link rel="stylesheet" href="Styles/comic-page.css">
-    <link rel="stylesheet" href="Styles/nav.css">
-    <link rel="stylesheet" href="Styles/footer.css">
-    <script src="js/navbar.js" type="text/javascript"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+<link rel="stylesheet" href="Styles/comic-page.css">
+<link rel="stylesheet" href="Styles/nav.css">
+<link rel="stylesheet" href="Styles/footer.css">
+<script src="js/navbar.js" type="text/javascript"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <body>
     <%@include file="navbar.jsp"%>
     <div class="comic-page">

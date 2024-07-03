@@ -22,7 +22,7 @@ public class CartServlet extends HttpServlet {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp");
             rd.forward(request, response);
         } catch (ServletException e) {
-            System.err.println(e);
+            e.printStackTrace(System.out);
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/");
         }
@@ -81,7 +81,7 @@ public class CartServlet extends HttpServlet {
                 response.setStatus(HttpServletResponse.SC_OK);
             }
         } catch (ServletException e) {
-            System.err.println(e);
+            e.printStackTrace(System.out);
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }

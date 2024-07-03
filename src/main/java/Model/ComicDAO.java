@@ -26,7 +26,7 @@ public class ComicDAO {
             ps.executeUpdate();
             return true;
         } catch (SQLException e){
-            System.out.println(e);
+            e.printStackTrace(System.out);
             return false;
         }
     }
@@ -134,7 +134,7 @@ public class ComicDAO {
             }
             return comics;
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace(System.out);
         }
         return null;
     }
@@ -175,7 +175,7 @@ public class ComicDAO {
             }
             return wishComics;
         } catch (SQLException e){
-            System.err.println(e);
+            e.printStackTrace(System.out);
             return null;
         }
     }
@@ -220,7 +220,7 @@ public class ComicDAO {
             ps.executeUpdate();
             return true;
         } catch (SQLException e){
-            System.out.println(e);
+            e.printStackTrace(System.out);
             return false;
         }
     }

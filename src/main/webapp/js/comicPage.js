@@ -1,16 +1,17 @@
-const quantity = document.getElementById("quantity")
+const quantity = document.getElementById("quantity");
+
 function incrementQuantity () {
-    quantity.innerHTML = parseInt(quantity.innerHTML, 10) + 1
-    if (isNaN(quantity.innerHTML)) {
-        console.log("Il valore non è un numero")
+    if (isNaN(parseInt(quantity.innerHTML, 10))) {
+        console.log("Errore, Il valore non è un numero");
     }
+    quantity.innerHTML = parseInt(quantity.innerHTML, 10) + 1;
 }
 
 function decrementQuantity () {
     if(parseInt(quantity.innerHTML) > 1) {
-        quantity.innerHTML = parseInt(quantity.innerHTML, 10) - 1
-        if (isNaN(quantity.innerHTML)) {
-            console.log("Il valore non è un numero")
+        if (isNaN(parseInt(quantity.innerHTML, 10))) {
+            console.log("Errore, Il valore non è un numero");
         }
+        quantity.innerHTML = parseInt(quantity.innerHTML, 10) - 1;
     }
 }

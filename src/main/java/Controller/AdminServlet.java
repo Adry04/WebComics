@@ -31,7 +31,7 @@ public class AdminServlet extends HttpServlet {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/admin/comic.jsp");
             rd.forward(request, response);
         } catch (ServletException e) {
-            System.out.println(e);
+            e.printStackTrace(System.out);
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/");
         } catch (SQLException e) {

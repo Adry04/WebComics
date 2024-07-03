@@ -10,18 +10,18 @@
 <body>
     <%@include file="navbar.jsp"%>
     <h1>Ciao <%=session.getAttribute("nome")%></h1>
-    <h2>Il mio account</h2>
+    <h2>Il mio account:</h2>
     <div class="account-section-container">
         <div class="subsection">
-            <!--ORDINI-->
+            <h2  onclick="location.href = ''">I miei ordini</h2>
         </div>
         <div class="subsection">
-            <!--PAGAMENTI-->
+            <h2 onclick="location.href = ''">Metodi di pagamento</h2>
         </div>
         <div class="subsection">
-            <!--INDIRIZZI DI SPEDIZIONE-->
+            <h2 onclick="location.href = ''">Indirizzi di spedizione</h2>
         </div>
-        <button onclick="logout()" class="logout-button">LOGOUT</button>
+        <button type="button" onclick="logout()" class="logout-button">LOGOUT</button>
     </div>
     <%@include file="footer.jsp"%>
     <script type="text/javascript">

@@ -58,11 +58,7 @@ public class Cart {
     }
 
     public void updateQuantity(String ISBN, int newQuantity) {
-        if (quantities.containsKey(ISBN)) {
-            quantities.put(ISBN, newQuantity);
-        } else {
-            quantities.put(ISBN, newQuantity);
-        }
+        quantities.put(ISBN, newQuantity);
     }
 
     public int getQuantity(String ISBN) {

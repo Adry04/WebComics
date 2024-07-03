@@ -4,15 +4,16 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="Model.CartDAO" %>
 <%@ page import="Model.Cart" %>
+<%@ page import="java.util.Objects" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-  <%
+<%
     int sizeWishes = 0;
     int sizeCartComics = 0;
     List<Comic> wishComics = new ArrayList<>();
     List<Comic> cartComics = new ArrayList<>();
     if(session.getAttribute("userId") != null) {
       wishComics = ComicDAO.getWishes((int) session.getAttribute("userId"));
-      sizeWishes = wishComics.size();
+      sizeWishes = wishComics != null ? wishComics.size() : 0;
     }
     if (session.getAttribute("cart") != null) {
       Cart cart = (Cart) session.getAttribute("cart");
@@ -20,11 +21,11 @@
       sizeCartComics = cart.getTotalQuantity();
     } else if (session.getAttribute("userId") != null) {
       Cart cart = CartDAO.getCart((int) session.getAttribute("userId"));
-      cartComics = cart.getComics();
+      cartComics = Objects.requireNonNull(cart).getComics();
       sizeCartComics = cart.getTotalQuantity();
     }
-  %>
-  <div class="top-nav">
+%>
+<div class="top-nav">
     <p class="title-top-nav">
       <a href="service">
         SERVIZIO CLIENTI
@@ -56,8 +57,8 @@
         </p>
       </div>
     </div>
-  </div>
-  <nav>
+</div>
+<nav>
     <a href="./">
       <img src="assets/logo.png" alt="Logo WebComics">
     </a>
@@ -95,12 +96,12 @@
       CERCA
       <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14"></path></svg>
     </div>
-  </nav>
+</nav>
   <div id="check-box" class="">
     <p id="check-box-text"></p>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="m9 20.42l-6.21-6.21l2.83-2.83L9 14.77l9.88-9.89l2.83 2.83z"></path></svg>
   </div>
   <div id="check-error-box" class="">
     <p id="check-error-box-text"></p>
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="white" fill-rule="evenodd" d="M1.707.293A1 1 0 0 0 .293 1.707L5.586 7L.293 12.293a1 1 0 1 0 1.414 1.414L7 8.414l5.293 5.293a1 1 0 0 0 1.414-1.414L8.414 7l5.293-5.293A1 1 0 0 0 12.293.293L7 5.586z" clip-rule="evenodd"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="white" fill-rule="evenodd" d="M1.707.293A1 1 0 0 0 .293 1.707L5.586 7L.293 12.293a1 1 0 1 0 1.414 1.414L7 8.414l5.293 5.293a1 1 0 0 0 1.414-1.414L8.414 7l5.293-5.293A1 1 0 0 0 12.293.293L7 5.586z" clip-rule="evenodd"></path></svg>
   </div>

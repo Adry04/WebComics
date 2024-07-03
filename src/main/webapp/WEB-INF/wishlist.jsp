@@ -12,7 +12,7 @@
 <body>
     <%@include file="navbar.jsp"%>
         <%
-            if(sizeWishes > 0) {
+            if (sizeWishes > 0) {
         %>
         <div class="comics-container">
         <%

@@ -8,14 +8,11 @@ import Model.CartDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
-import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletContext;  //Contatore di accessi da implementare
 import jakarta.servlet.annotation.*;
 
 @WebServlet("/account")
 public class AccountServlet extends HttpServlet {
-
-    public void init() {
-    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
@@ -45,8 +42,5 @@ public class AccountServlet extends HttpServlet {
                 session.invalidate();
             }
         }
-    }
-
-    public void destroy() {
     }
 }

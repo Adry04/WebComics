@@ -20,7 +20,7 @@ public class UserDAO {
             ps.executeUpdate();
             return true;
         } catch (SQLException e){
-            System.out.println(e);
+            e.printStackTrace(System.out);
             return false;
         }
     }
@@ -59,8 +59,7 @@ public class UserDAO {
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                int id = rs.getInt("id");
-                return id;
+                return rs.getInt("id");
             }
             return -1;
         } catch (SQLException e) {

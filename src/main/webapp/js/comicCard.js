@@ -60,7 +60,7 @@ function addCart(isbn, quantita, comic) {
         quantity = parseInt(document.getElementById("quantity").innerHTML, 10);
     }
     if (quantity < 1) {
-        checkErrorDisplay("LA QUANTITA' NON PUO ESSERE NEGATIVA")
+        checkErrorDisplay("QUANTITA' NON VALIDA")
         return;
     }
     let xhttp = new XMLHttpRequest();

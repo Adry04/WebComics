@@ -1,6 +1,5 @@
 let currentSlide = 0;
 let autoPlayInterval;
-let isDragging = false;
 
 function showSlide(index)            {
     const slides = document.querySelectorAll('.slide')

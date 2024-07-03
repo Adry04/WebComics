@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import Model.*;
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -71,9 +71,9 @@ public class LoginServlet extends HttpServlet {
                         Cart cart = (Cart) session.getAttribute("cart");
                         List<Comic> comics = cart.getComics();
                         Cart userCart = CartDAO.getCart(rs.getInt("id"));
-                        List<Comic> userComics = userCart.getComics();
-                        Map map = cart.getQuantities();
-                        Map userMap = userCart.getQuantities();
+                        List<Comic> userComics = Objects.requireNonNull(userCart).getComics();
+                        Map<String, Integer> map = cart.getQuantities();
+                        Map<String, Integer> userMap = userCart.getQuantities();
                         for (Comic comic : comics) {
                             if (userComics.contains(comic)) {
                                 int comicQuantity = Integer.parseInt(map.get(comic.getISBN()).toString());
@@ -82,7 +82,7 @@ public class LoginServlet extends HttpServlet {
                                     throw new ServletException("Errore nel cambio quantità");
                                 }
                             } else {
-                                if(!CartDAO.addComic(rs.getInt("id"), comic, (int) map.get(comic.getISBN()))) {
+                                if(!CartDAO.addComic(rs.getInt("id"), comic, map.get(comic.getISBN()))) {
                                     throw new ServletException("Errore nell'aggiungere");
                                 }
                             }

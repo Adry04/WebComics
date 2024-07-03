@@ -10,6 +10,7 @@ import jakarta.servlet.http.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 @WebServlet("/admin-update-comic")
 @MultipartConfig(
@@ -56,7 +57,7 @@ public class UpdateComicServlet extends HttpServlet {
             }
             //immagine
             Part filePart = request.getPart("immagine");
-            String immagine = oldComic.getImmagine();
+            String immagine = Objects.requireNonNull(oldComic).getImmagine();
             if (filePart != null && filePart.getSize() > 0) {
                 String fileName = filePart.getSubmittedFileName();
                 String mimeType = filePart.getContentType();
@@ -92,7 +93,7 @@ public class UpdateComicServlet extends HttpServlet {
                 response.sendRedirect(contextPath + "/admin");
             }
         } catch (ServletException e) {
-            System.out.println(e);
+            e.printStackTrace(System.out);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/admin/comic.jsp");  //tenere d'occhio
             dispatcher.forward(request, response);
         }

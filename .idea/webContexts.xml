@@ -3,10 +3,24 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/account.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF" />
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/comic.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin" />
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/cart.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF" />
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/navbar.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/account.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/comic-form.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/comic.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/comicCardAdmin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/navadmin.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/order.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/update-comic.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/user.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/cart.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/comic-page.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/comicCard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/footer.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/navbar.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/order.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/registration.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/service.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/wishlist.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>
     </option>

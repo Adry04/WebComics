@@ -8,23 +8,23 @@ import java.util.*;
 
 public class CartDAO {
     public static boolean addCart(Cart cart, int idUtente) {
-        try (Connection con = ConPool.getConnection()){
+        try {
             List<Comic> comics = cart.getComics();
-            Map map = cart.getQuantities();
+            Map<String, Integer> map = cart.getQuantities();
             for(Comic comic : comics) {
                 if(CartDAO.isIn(comic.getISBN(), idUtente)) {
-                    if(!CartDAO.changeQuantity(comic.getISBN(), idUtente, (Integer) map.get(comic.getISBN()))) {
+                    if(!CartDAO.changeQuantity(comic.getISBN(), idUtente, map.get(comic.getISBN()))) {
                         throw new ServletException("errore di changeQuantity");
                     }
                 } else {
-                    if(!CartDAO.addComic(idUtente, comic, (Integer) map.get(comic.getISBN()))){
+                    if(!CartDAO.addComic(idUtente, comic, map.get(comic.getISBN()))){
                         throw new ServletException("errore nel caricamento del fumetto");
                     }
                 }
             }
             return true;
-        } catch (SQLException | ServletException e) {
-            System.err.println(e);
+        } catch (ServletException e) {
+            e.printStackTrace(System.out);
             return false;
         }
     }
@@ -39,7 +39,7 @@ public class CartDAO {
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace(System.out);
             return false;
         }
     }
@@ -71,15 +71,13 @@ public class CartDAO {
                 comics.add(comic);
                 quantities.put(ISBN, quantita);
             }
-
             Cart cart = new Cart(utenteId, comics);
             for (Map.Entry<String, Integer> entry : quantities.entrySet()) {
                 cart.updateQuantity(entry.getKey(), entry.getValue());
             }
-
             return cart;
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace(System.out);
             return null;
         }
     }
@@ -107,7 +105,7 @@ public class CartDAO {
                 return false;
             }
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace(System.out);
             return false;
         }
     }
@@ -126,7 +124,7 @@ public class CartDAO {
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace(System.out);
             return false;
         }
     }
@@ -141,7 +139,7 @@ public class CartDAO {
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace(System.out);
             return false;
         }
     }
@@ -155,7 +153,7 @@ public class CartDAO {
             ResultSet rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace(System.out);
             return false;
         }
     }
@@ -169,7 +167,7 @@ public class CartDAO {
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace(System.out);
             return false;
         }
     }

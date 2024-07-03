@@ -2,8 +2,6 @@ package Controller;
 
 import Model.Comic;
 import Model.ComicDAO;
-import Model.User;
-import Model.UserDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,7 +11,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/wishlist")

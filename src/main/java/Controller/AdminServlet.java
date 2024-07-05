@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -40,6 +39,15 @@ public class AdminServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        try {
+            String ISBN = request.getParameter("ISBN");
+            if(!ComicDAO.doDelete(ISBN)){
+                throw new ServletException("Errore eliminazione prodotto");
+            }
+            response.setStatus(HttpServletResponse.SC_OK);
+        } catch (ServletException e) {
+            e.printStackTrace(System.out);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
     }
 }

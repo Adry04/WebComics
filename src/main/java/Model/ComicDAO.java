@@ -101,7 +101,7 @@ public class ComicDAO {
                 String query = "SELECT * FROM fumetto ORDER BY ddi";
                 PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 rs = ps.executeQuery();
-            } else if (limit == 0 && !category.isEmpty()) {
+            } else if (limit == 0) {
                 String query = "SELECT * FROM fumetto WHERE categoria = ? ORDER BY ddi";
                 PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 ps.setString(1, category);
@@ -217,6 +217,18 @@ public class ComicDAO {
             ps.setDouble(6, comic.getSale());
             ps.setString(7, comic.getImmagine());
             ps.setString(8, comic.getISBN());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e){
+            e.printStackTrace(System.out);
+            return false;
+        }
+    }
+
+    public static boolean doDelete(String ISBN) {
+        try (Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("DELETE FROM fumetto WHERE isbn = ?", Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, ISBN);
             ps.executeUpdate();
             return true;
         } catch (SQLException e){

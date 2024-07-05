@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="Styles/footer.css">
     <script src="js/navbar.js" type="text/javascript"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="Styles/comic-card.css"/>
+    <link rel="stylesheet" href="Styles/cart-card-comic.css"/>
 </head>
 <body>
     <%@include file="navbar.jsp"%>
@@ -18,15 +18,11 @@
         <div class="comics-container">
         <%
             for(Comic comic : cartComics){
+                System.out.println(comic);
                 DecimalFormat df = new DecimalFormat("#.00");
-                String price = df.format(comic.getPrice());
                 String finalPrice = df.format(comic.getFinalPrice());
-                boolean isWished = false;
-                if(wishComics != null && !wishComics.isEmpty()) {
-                    isWished = wishComics.contains(comic);
-                }
         %>
-            <%@include file="comicCard.jsp"%>
+            <%@include file="cartCardComic.jsp"%>
         <%
             }
         %>
@@ -39,6 +35,6 @@
         </div>
     </c:if>
     <%@include file="footer.jsp"%>
-    <script src="js/comicCard.js"></script>
+    <script src="js/comicCart.js"></script>
 </body>
 </html>

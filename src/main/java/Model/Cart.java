@@ -9,6 +9,8 @@ public class Cart {
     private List<Comic> comics;
     private Map<String, Integer> quantities;
 
+    public Cart(){}
+
     public Cart(int utenteId, List<Comic> comics) {
         this.utenteId = utenteId;
         this.comics = comics;

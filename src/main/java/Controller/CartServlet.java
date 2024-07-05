@@ -79,10 +79,23 @@ public class CartServlet extends HttpServlet {
                     }
                 }
                 response.setStatus(HttpServletResponse.SC_OK);
+            } else if(type.equals("remove")) {
+                List<Comic> cartComics;
+                Cart cart = (Cart) session.getAttribute("cart");
+                cartComics = cart.getComics();
+                int quantity = cart.getQuantity(comic.getISBN());
+                if((quantity - quantita) < 0) {
+                    cartComics.remove(comic);
+                    cart.setComics(cartComics);
+                } else {
+                    cart.updateQuantity(comic.getISBN(), (quantity - quantita));
+                }
             }
         } catch (ServletException e) {
             e.printStackTrace(System.out);
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
         }
     }
 }

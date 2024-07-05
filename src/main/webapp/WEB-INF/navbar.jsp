@@ -11,16 +11,19 @@
     int sizeCartComics = 0;
     List<Comic> wishComics = new ArrayList<>();
     List<Comic> cartComics = new ArrayList<>();
+    Cart cart = new Cart();
     if(session.getAttribute("userId") != null) {
       wishComics = ComicDAO.getWishes((int) session.getAttribute("userId"));
       sizeWishes = wishComics != null ? wishComics.size() : 0;
     }
     if (session.getAttribute("cart") != null) {
-      Cart cart = (Cart) session.getAttribute("cart");
+      cart = (Cart) session.getAttribute("cart");
+      System.out.println("Arrivo dentro");
+      System.out.println(cart.getComics());
       cartComics = cart.getComics();
       sizeCartComics = cart.getTotalQuantity();
     } else if (session.getAttribute("userId") != null) {
-      Cart cart = CartDAO.getCart((int) session.getAttribute("userId"));
+      cart = CartDAO.getCart((int) session.getAttribute("userId"));
       cartComics = Objects.requireNonNull(cart).getComics();
       sizeCartComics = cart.getTotalQuantity();
     }

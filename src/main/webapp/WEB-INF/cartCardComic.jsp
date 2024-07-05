@@ -16,12 +16,12 @@
         <div class="separation">
             <div class="quantity-section">
                 <span onclick='decrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>)' class="click-quantity">-</span>
-                <span id="quantity-cart-<%=comic.getISBN()%>"><%=cart.getQuantity(comic.getISBN())%></span>
+                <span data-quantity="<%=cart.getQuantity(comic.getISBN())%>" id="quantity-cart-<%=comic.getISBN()%>"><%=cart.getQuantity(comic.getISBN())%></span>
                 <span onclick='incrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>)' class="click-quantity">+</span>
             </div>
         </div>
         <div class="separation">
-            <button>Rimuovi</button>
+            <button onclick='remove(<%=comic.getISBN()%>, <%=comicJson%>)'>Rimuovi</button>
         </div>
     </div>
     <div class="price">

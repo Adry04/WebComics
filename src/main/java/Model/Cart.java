@@ -66,4 +66,7 @@ public class Cart {
     public int getQuantity(String ISBN) {
         return quantities.getOrDefault(ISBN, 0);
     }
+    public void removeQuantity(String ISBN) {
+        quantities.remove(ISBN);
+    }
 }

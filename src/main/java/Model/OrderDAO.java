@@ -94,13 +94,13 @@ public class OrderDAO {
                 String dataOrder = String.valueOf(rs.getDate("dataordine"));
                 double prezzoOrder = rs.getDouble("prezzoacquisto");
                 int quantita = rs.getInt("quantita");
-                query = "SELECT isbn FROM fumettoordinato WHERE ordineid = ?";
+                query = "SELECT ISBN FROM fumettoordinato WHERE ordineid = ?";
                 ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, rs.getInt("id"));
                 ResultSet rsComic = ps.executeQuery();
                 List<Comic> comics = new ArrayList<>();
                 while (rsComic.next()) {
-                    String queryComic = "SELECT * FROM fumetto WHERE isbn = ?";
+                    String queryComic = "SELECT * FROM fumetto WHERE ISBN = ?";
                     PreparedStatement psComic = con.prepareStatement(queryComic, Statement.RETURN_GENERATED_KEYS);
                     psComic.setString(1, rsComic.getString("ISBN"));
                     ResultSet rsComics = psComic.executeQuery();

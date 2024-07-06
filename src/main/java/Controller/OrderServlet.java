@@ -19,7 +19,7 @@ public class OrderServlet extends HttpServlet {
             if (session == null || session.getAttribute("userId") == null) {
                 throw new ServletException("Devi essere loggato");
             }
-            request.setAttribute("orders", OrderDAO.getOrders((int) session.getAttribute("userId")));
+            session.setAttribute("orders", OrderDAO.getOrders((int) session.getAttribute("userId")));
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/order.jsp");  //tenere d'occhio
             dispatcher.forward(request, response);
         } catch (ServletException e) {

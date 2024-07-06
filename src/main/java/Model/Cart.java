@@ -7,7 +7,7 @@ import java.util.Map;
 public class Cart {
     private int utenteId;
     private List<Comic> comics;
-    private Map<String, Integer> quantities;
+    private Map<String, Integer> quantities = new HashMap<>();
 
     public Cart() {
 

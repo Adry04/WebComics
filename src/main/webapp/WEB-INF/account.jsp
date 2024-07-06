@@ -13,7 +13,7 @@
     <h2>Il mio account:</h2>
     <div class="account-section-container">
         <div class="subsection">
-            <h2  onclick="location.href = ''">I miei ordini</h2>
+            <h2  onclick="location.href = 'order'">I miei ordini</h2>
         </div>
         <div class="subsection">
             <h2 onclick="location.href = ''">Metodi di pagamento</h2>

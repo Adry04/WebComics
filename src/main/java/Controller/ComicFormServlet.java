@@ -57,8 +57,8 @@ public class ComicFormServlet extends HttpServlet {
             String fileName = filePart.getSubmittedFileName();
             String mimeType = filePart.getContentType();
             if (!(mimeType.equals("image/jpeg") || mimeType.equals("image/png"))) {
-                request.setAttribute("error-form", "Tipo di file non supportato");
-                throw new ServletException("Tipo di file non supportato");
+                request.setAttribute("error-form", "Tipo di file non supportato, inserisci un .jpg o un .png");
+                throw new ServletException("Tipo di file non supportato, inserisci un .jpg o un .png");
             }
             String path = request.getServletContext().getRealPath("") + "uploads" + File.separator;
             String filePath = path + fileName;

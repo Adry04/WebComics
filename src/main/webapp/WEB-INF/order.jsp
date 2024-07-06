@@ -25,8 +25,8 @@
                 String totalPrice = df.format(order.getPrezzoTotale());
         %>
         <div class="order-container" onclick="location.href = 'order-page?id=<%=order.getIdOrdine()%>'">
-            <p class="data"><%=order.getQuantita()%></p>
-            <p class="price"><%=totalPrice%> €</p>
+            <p class="data">Quantità: <%=order.getQuantita()%></p>
+            <p class="price">Prezzo: <%=totalPrice%> €</p>
         </div>
         <%
             }

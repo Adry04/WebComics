@@ -104,3 +104,21 @@ function remove (isbn, comic, totalQuantity, price) {
         xhttp.send("ISBN=" + isbn + "&quantita=0&comic=" + JSON.stringify(comic) + "&requestType=remove");
     }
 }
+
+function onOrder () {
+    if (!requestInProgress) {
+        const urlOrder = window.location.origin + "/tswProject_war_exploded/order";
+        requestInProgress = true;
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200) {
+                location.href = 'order';
+            } else if(this.readyState === 4 && this.status === 400) {
+                checkErrorDisplay("Errore con la creazione dell'ordine")
+            }
+        }
+        xhttp.open("POST", urlOrder, true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send();
+    }
+}

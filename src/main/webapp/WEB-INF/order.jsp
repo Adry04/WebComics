@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="Styles/comic-card.css" />
 </head>
 <body>
-    <div class="container-page??????????????">
-        <div class="title-page????????????????">
+    <div class="container-page">
+        <div class="title-page">
             <h1>Ordini</h1>
         </div>
         <div class="order-container">
@@ -19,7 +19,7 @@
 
             </div>
             <div class="ordered-comics">
-                <div class="comics-container?????????????????">
+                <div class="comics-container">
 
                 </div>
             </div>

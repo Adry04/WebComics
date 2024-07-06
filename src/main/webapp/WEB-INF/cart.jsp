@@ -31,7 +31,7 @@
         </div>
         <div class="price-section">
             <p class="prezzo">Prezzo totale: <span id="prezzo" data-prezzo="<%=totalPrice%>"><%=totalPriceString%> €</span></p>
-            <button>Effetua ordine</button>
+            <button onclick="onOrder()">Effetua ordine</button>
         </div>
     </c:if>
     <c:if test="${sizeCartComics == 0}">

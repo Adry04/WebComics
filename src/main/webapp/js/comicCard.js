@@ -1,6 +1,6 @@
 const counterWishes = document.getElementById("counter-wishes");
 let numberWishes = parseInt(counterWishes.getAttribute("data-wishes"), 10);
-const url = window.location.origin + "/tswProject_war_exploded/wishlist"
+const url = window.location.origin + "/tswProject_war_exploded/wishlist";
 
  function toggleWish(isbn) {
      const wishContainer = document.getElementById("wish-container-"+isbn);
@@ -18,9 +18,9 @@ const url = window.location.origin + "/tswProject_war_exploded/wishlist"
                  numberWishes += 1
                  counterWishes.setAttribute("data-wishes", numberWishes);
                  counterWishes.innerHTML = numberWishes;
-                 checkDisplay("ELEMENTO AGGIUNTO ALLA WISHLIST") //si trova dentro nav.js
+                 checkDisplay("ELEMENTO AGGIUNTO ALLA WISHLIST"); //si trova dentro nav.js
              } else if (this.readyState === 4 && this.status === 500) {
-                 alert("È necessario eseguire l'accesso")
+                 alert("È necessario eseguire l'accesso");
              }
          }
          xhttp.open("POST", url, true);
@@ -39,7 +39,7 @@ const url = window.location.origin + "/tswProject_war_exploded/wishlist"
                  if(document.URL.includes("wishlist")) {
                      comicCard.classList.add("no-display");
                  }
-                 checkDisplay("ELEMENTO TOLTO DALLA WISHLIST") //si trova dentro nav.js
+                 checkDisplay("ELEMENTO TOLTO DALLA WISHLIST"); //si trova dentro nav.js
              }
          }
          xhttp.open("POST", url, true);
@@ -48,11 +48,11 @@ const url = window.location.origin + "/tswProject_war_exploded/wishlist"
      }
 }
 
-const urlCart = window.location.origin + "/tswProject_war_exploded/cart"
+const urlCart = window.location.origin + "/tswProject_war_exploded/cart";
 
 function addCart(isbn, quantita, comic) {
-    let counterCarts = document.getElementById("counter-carts")
-    let numberCarts = counterCarts.getAttribute("data-carts")
+    let counterCarts = document.getElementById("counter-carts");
+    let numberCarts = counterCarts.getAttribute("data-carts");
     let quantity = 0;
     if(quantita > 0) {
         quantity = quantita;
@@ -60,17 +60,17 @@ function addCart(isbn, quantita, comic) {
         quantity = parseInt(document.getElementById("quantity").innerHTML, 10);
     }
     if (quantity < 1) {
-        checkErrorDisplay("QUANTITA' NON VALIDA")
+        checkErrorDisplay("QUANTITA' NON VALIDA");
         return;
     }
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             counterCarts.innerHTML = parseInt(numberCarts, 10) + quantity;
-            counterCarts.setAttribute("data-carts", parseInt(numberCarts, 10) + quantity)
-            checkDisplay("ELEMENTO AGGIUNTO AL CARRELLO") //si trova dentro nav.js
+            counterCarts.setAttribute("data-carts", parseInt(numberCarts, 10) + quantity);
+            checkDisplay("ELEMENTO AGGIUNTO AL CARRELLO"); //si trova dentro nav.js
         } else if (this.readyState === 4 && this.status === 400) {
-            checkErrorDisplay("LA QUANTITA' NON PUO ESSERE NEGATIVA")
+            checkErrorDisplay("LA QUANTITA' NON PUO ESSERE NEGATIVA");
         }
     }
     xhttp.open("POST", urlCart, true);

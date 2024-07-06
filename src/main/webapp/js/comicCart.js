@@ -1,26 +1,33 @@
 const changeQuantityUrl = window.location.origin + "/tswProject_war_exploded/cart"
 let requestInProgress = false; // Variabile per tracciare lo stato della richiesta
-const counterCarts = document.getElementById("counter-carts")
+const counterCarts = document.getElementById("counter-carts");
 
-function incrementQuantity (isbn, comic) {
-    if(!requestInProgress) {
-        requestInProgress = true
-        const quantity = document.getElementById("quantity-cart-" + isbn)
-        console.log(quantity.innerHTML)
+function incrementQuantity (isbn, comic, price) {
+    if (!requestInProgress) {
+        const prezzo = document.getElementById("prezzo");
+        const dataPrezzo = prezzo.getAttribute("data-prezzo");
+        requestInProgress = true;
+        const quantity = document.getElementById("quantity-cart-" + isbn);
+        console.log(quantity.innerHTML);
         if (isNaN(parseInt(quantity.innerHTML, 10))) {
             console.log("Errore, Il valore non è un numero");
         }
         let newQuantity = parseInt(quantity.innerHTML, 10) + 1;
-        const xhttp = new XMLHttpRequest()
+        const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4) {
-                requestInProgress = false
+                requestInProgress = false;
             }
             if (this.readyState === 4 && this.status === 200) {
-                counterCarts.innerHTML = parseInt(counterCarts.innerHTML, 10) + 1
+                counterCarts.innerHTML = parseInt(counterCarts.innerHTML, 10) + 1;
                 quantity.innerHTML = newQuantity.toString();
+                let newPrezzo = parseFloat(dataPrezzo) + parseFloat(price);
+                newPrezzo = newPrezzo.toFixed(2);
+                newPrezzo = newPrezzo.replace('.', ',');
+                prezzo.innerHTML = newPrezzo + " €";
+                prezzo.setAttribute("data-prezzo", newPrezzo);
             } else if (this.readyState === 4 && this.status === 400) {
-                checkErrorDisplay("Errore di quantità")
+                checkErrorDisplay("Errore di quantità");
             }
         }
         xhttp.open("POST", changeQuantityUrl, true);
@@ -29,28 +36,35 @@ function incrementQuantity (isbn, comic) {
     }
 }
 
-function decrementQuantity (isbn, comic) {
+function decrementQuantity (isbn, comic, price) {
     if(!requestInProgress) {
-        requestInProgress = true
-        const quantity = document.getElementById("quantity-cart-" + isbn)
-        const comicCard = document.getElementById("cart-card-comic-" + isbn)
+        const prezzo = document.getElementById("prezzo");
+        const dataPrezzo = prezzo.getAttribute("data-prezzo");
+        requestInProgress = true;
+        const quantity = document.getElementById("quantity-cart-" + isbn);
+        const comicCard = document.getElementById("cart-card-comic-" + isbn);
         if (isNaN(parseInt(quantity.innerHTML, 10))) {
             console.log("Errore, Il valore non è un numero");
         }
         let newQuantity = parseInt(quantity.innerHTML, 10) - 1;
-        const xhttp = new XMLHttpRequest()
+        const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if(this.readyState === 4) {
-                requestInProgress = false
+                requestInProgress = false;
             }
             if (this.readyState === 4 && this.status === 200) {
-                counterCarts.innerHTML = parseInt(counterCarts.innerHTML, 10) - 1
+                counterCarts.innerHTML = parseInt(counterCarts.innerHTML, 10) - 1;
                 quantity.innerHTML = newQuantity.toString();
                 if(newQuantity <= 0) {
-                    comicCard.style.display = 'none'
+                    comicCard.style.display = 'none';
                 }
+                let newPrezzo = parseFloat(dataPrezzo) - parseFloat(price);
+                newPrezzo = newPrezzo.toFixed(2);
+                newPrezzo = newPrezzo.replace('.', ',');
+                prezzo.innerHTML = newPrezzo + " €";
+                prezzo.setAttribute("data-prezzo", newPrezzo);
             } else if (this.readyState === 4 && this.status === 400) {
-                checkErrorDisplay("Errore di quantità")
+                checkErrorDisplay("Errore di quantità");
             }
         }
         xhttp.open("POST", changeQuantityUrl, true);
@@ -59,23 +73,30 @@ function decrementQuantity (isbn, comic) {
     }
 }
 
-function remove (isbn, comic) {
+function remove (isbn, comic, totalQuantity, price) {
     if(!requestInProgress) {
-        requestInProgress = true
-        const quantity = document.getElementById("quantity-cart-" + isbn)
-        const comicCard = document.getElementById("cart-card-comic-" + isbn)
+        requestInProgress = true;
+        const prezzo = document.getElementById("prezzo");
+        const dataPrezzo = prezzo.getAttribute("data-prezzo");
+        const quantity = document.getElementById("quantity-cart-" + isbn);
+        const comicCard = document.getElementById("cart-card-comic-" + isbn);
         if (isNaN(parseInt(quantity.innerHTML, 10))) {
             console.log("Errore, Il valore non è un numero");
         }
-        let actualQuantity = quantity.getAttribute("data-quantity")
-        const xhttp = new XMLHttpRequest()
+        let actualQuantity = quantity.getAttribute("data-quantity");
+        const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if(this.readyState === 4) {
-                requestInProgress = false
+                requestInProgress = false;
             }
             if (this.readyState === 4 && this.status === 200) {
-                counterCarts.innerHTML = parseInt(counterCarts.innerHTML, 10) - actualQuantity
-                comicCard.style.display = 'none'
+                counterCarts.innerHTML = parseInt(counterCarts.innerHTML, 10) - actualQuantity;
+                comicCard.style.display = 'none';
+                let newPrezzo = parseFloat(dataPrezzo) - (parseFloat(price) * totalQuantity);
+                newPrezzo = newPrezzo.toFixed(2);
+                newPrezzo = newPrezzo.replace('.', ',');
+                prezzo.innerHTML = newPrezzo + " €";
+                prezzo.setAttribute("data-prezzo", newPrezzo);
             }
         }
         xhttp.open("POST", changeQuantityUrl, true);

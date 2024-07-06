@@ -11,7 +11,7 @@ public class ConPool {
     private static DataSource datasource;
 
     public static Connection getConnection() throws SQLException{
-        if(datasource == null){
+        if(datasource == null) {
             PoolProperties p = new PoolProperties();
             p.setUrl("jdbc:mysql://localhost:3306/webcomics?serverTimezone=" + TimeZone.getDefault().getID());
             p.setDriverClassName("com.mysql.cj.jdbc.Driver");

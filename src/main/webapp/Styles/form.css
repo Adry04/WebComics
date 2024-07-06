@@ -95,7 +95,7 @@ form svg {
 button {
     align-self: center;
     border: 3px #00BF62 solid;
-    border-radius: 4px;
+    border-radius: 8px;
     background-color: white;
     color: #00BF62;
     font-weight: 500;

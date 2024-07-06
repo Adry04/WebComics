@@ -1,8 +1,8 @@
 let currentSlide = 0;
 let autoPlayInterval;
 
-function showSlide(index)            {
-    const slides = document.querySelectorAll('.slide')
+function showSlide(index){
+    const slides = document.querySelectorAll('.slide');
     if (index >= slides.length) {
         currentSlide = 0;
     } else if (index < 0) {
@@ -11,7 +11,7 @@ function showSlide(index)            {
         currentSlide = index;
     }
     const offset = -currentSlide * 100;
-    document.querySelector('.slides').style.transform = `translateX(${offset}%)`
+    document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
 }
 
 function moveSlide(direction) {
@@ -32,7 +32,7 @@ function stopAutoPlay() {
 showSlide(currentSlide);
 startAutoPlay();
 
-const slide = document.querySelector('.slider')
+const slide = document.querySelector('.slider');
 
 slide.onmouseover = function () {
     stopAutoPlay()

@@ -9,6 +9,7 @@
     <script src="js/navbar.js" type="text/javascript"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="Styles/cart-card-comic.css"/>
+    <link rel="stylesheet" href="Styles/cart.css"/>
 </head>
 <body>
     <%@include file="navbar.jsp"%>
@@ -17,15 +18,20 @@
     <c:if test="${sizeCartComics > 0}">
         <div class="comics-container">
         <%
-            for(Comic comic : cartComics){
-                System.out.println(comic);
-                DecimalFormat df = new DecimalFormat("#.00");
+            DecimalFormat df = new DecimalFormat("#.00");
+            double totalPrice = cart.getTotalPrice();
+            String totalPriceString = df.format(totalPrice);
+            for(Comic comic : cartComics) {
                 String finalPrice = df.format(comic.getFinalPrice());
         %>
             <%@include file="cartCardComic.jsp"%>
         <%
             }
         %>
+        </div>
+        <div class="price-section">
+            <p class="prezzo">Prezzo totale: <span id="prezzo" data-prezzo="<%=totalPrice%>"><%=totalPriceString%> €</span></p>
+            <button>Effetua ordine</button>
         </div>
     </c:if>
     <c:if test="${sizeCartComics == 0}">

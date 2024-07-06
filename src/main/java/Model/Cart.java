@@ -69,4 +69,14 @@ public class Cart {
     public void removeQuantity(String ISBN) {
         quantities.remove(ISBN);
     }
+
+    public double getTotalPrice() {
+        double totalPrice = 0;
+        for(Comic comic : comics) {
+            double price = comic.getFinalPrice();
+            int quantity = getQuantity(comic.getISBN());
+            totalPrice += price * quantity;
+        }
+        return totalPrice;
+    }
 }

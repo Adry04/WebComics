@@ -9,19 +9,19 @@
     <div class="text-section">
         <div>
             <h1><%=comic.getTitle()%></h1>
-            <p id="desc"><%=comic.getDesc().length() > 200 ? comic.getDesc().substring(0, 200) + "..." : comic.getDesc()%></p>
+            <p id="desc"><%=comic.getDesc().length() > 800 ? comic.getDesc().substring(0, 800) + "..." : comic.getDesc()%></p>
         </div>
     </div>
     <div class="operation-section">
         <div class="separation">
             <div class="quantity-section">
-                <span onclick='decrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>)' class="click-quantity">-</span>
+                <span onclick='decrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=finalPrice%>)' class="click-quantity">-</span>
                 <span data-quantity="<%=cart.getQuantity(comic.getISBN())%>" id="quantity-cart-<%=comic.getISBN()%>"><%=cart.getQuantity(comic.getISBN())%></span>
-                <span onclick='incrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>)' class="click-quantity">+</span>
+                <span onclick='incrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=finalPrice%>)' class="click-quantity">+</span>
             </div>
         </div>
         <div class="separation">
-            <button onclick='remove(<%=comic.getISBN()%>, <%=comicJson%>)'>Rimuovi</button>
+            <button onclick='remove(<%=comic.getISBN()%>, <%=comicJson%>, <%=cart.getQuantity(comic.getISBN())%>, <%=finalPrice%>)'>Rimuovi</button>
         </div>
     </div>
     <div class="price">

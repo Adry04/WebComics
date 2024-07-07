@@ -1,6 +1,8 @@
 const changeQuantityUrl = window.location.origin + "/tswProject_war_exploded/cart"
 let requestInProgress = false; // Variabile per tracciare lo stato della richiesta
 const counterCarts = document.getElementById("counter-carts");
+const cartComicContainer = document.getElementById("cart-comics-container")
+const checkoutSection = document.getElementById("checkout-section")
 
 function incrementQuantity (isbn, comic, price) {
     if (!requestInProgress) {
@@ -26,6 +28,8 @@ function incrementQuantity (isbn, comic, price) {
                 newPrezzo = newPrezzo.replace('.', ',');
                 prezzo.innerHTML = newPrezzo + " €";
                 prezzo.setAttribute("data-prezzo", newPrezzo);
+                let sizeCartComics = cartComicContainer.getAttribute("data-size-cart-comics")
+                cartComicContainer.setAttribute("data-size-cart-comics", parseInt((sizeCartComics + 1), 10))
             } else if (this.readyState === 4 && this.status === 400) {
                 checkErrorDisplay("Errore di quantità");
             }
@@ -63,6 +67,11 @@ function decrementQuantity (isbn, comic, price) {
                 newPrezzo = newPrezzo.replace('.', ',');
                 prezzo.innerHTML = newPrezzo + " €";
                 prezzo.setAttribute("data-prezzo", newPrezzo);
+                let sizeCartComics = cartComicContainer.getAttribute("data-size-cart-comics")
+                cartComicContainer.setAttribute("data-size-cart-comics", parseInt((sizeCartComics - 1), 10))
+                if(parseInt(cartComicContainer.getAttribute("data-size-cart-comics")) === 0) {
+                    checkoutSection.style.display = 'none'
+                }
             } else if (this.readyState === 4 && this.status === 400) {
                 checkErrorDisplay("Errore di quantità");
             }
@@ -97,6 +106,12 @@ function remove (isbn, comic, totalQuantity, price) {
                 newPrezzo = newPrezzo.replace('.', ',');
                 prezzo.innerHTML = newPrezzo + " €";
                 prezzo.setAttribute("data-prezzo", newPrezzo);
+                let sizeCartComics = cartComicContainer.getAttribute("data-size-cart-comics")
+                cartComicContainer.setAttribute("data-size-cart-comics", parseInt((sizeCartComics - totalQuantity), 10))
+                console.log(cartComicContainer.getAttribute("data-size-cart-comics"))
+                if(parseInt(cartComicContainer.getAttribute("data-size-cart-comics")) === 0) {
+                    checkoutSection.style.display = 'none'
+                }
             }
         }
         xhttp.open("POST", changeQuantityUrl, true);
@@ -115,6 +130,8 @@ function onOrder () {
                 location.href = 'order';
             } else if(this.readyState === 4 && this.status === 400) {
                 checkErrorDisplay("Errore con la creazione dell'ordine")
+            } else if(this.readyState === 4 && this.status === 401) {
+                checkErrorDisplay("Non ci sono prodotti nel carrello")
             }
         }
         xhttp.open("POST", urlOrder, true);

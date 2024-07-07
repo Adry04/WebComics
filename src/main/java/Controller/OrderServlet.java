@@ -37,6 +37,10 @@ public class OrderServlet extends HttpServlet {
                 throw new ServletException("Errore, il carrello è vuoto");
             }
             Cart cart = (Cart) session.getAttribute("cart");
+            if(cart.getComics().isEmpty()) {
+                response.setStatus(response.SC_UNAUTHORIZED);
+                return;
+            }
             if(!OrderDAO.doSave((int) session.getAttribute("userId"), cart)){
                 throw new ServletException("Errore nella creazione dell'ordine");
             }

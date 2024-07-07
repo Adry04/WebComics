@@ -16,7 +16,7 @@
     <h1 class="title-section">CARRELLO</h1>
     <c:set var="sizeCartComics" scope="page" value="<%=sizeCartComics%>"/>
     <c:if test="${sizeCartComics > 0}">
-        <div class="comics-container">
+        <div class="comics-container" data-size-cart-comics="<%=sizeCartComics%>" id="cart-comics-container">
         <%
             DecimalFormat df = new DecimalFormat("#.00");
             double totalPrice = cart.getTotalPrice();
@@ -29,13 +29,13 @@
             }
         %>
         </div>
-        <div class="price-section">
+        <div class="checkout-section" id="checkout-section">
             <p class="prezzo">Prezzo totale: <span id="prezzo" data-prezzo="<%=totalPrice%>"><%=totalPriceString%> €</span></p>
             <button onclick="onOrder()">Effetua ordine</button>
         </div>
     </c:if>
     <c:if test="${sizeCartComics == 0}">
-        <div class="empty-section">
+        <div class="empty-section" id="empty-section">
             <h1>Il tuo carrello è vuoto</h1>
             <img src="assets/icons/box.png" alt="Carrello vuoto"/>
         </div>

@@ -2,6 +2,7 @@
 package Model;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +65,40 @@ public class UserDAO {
             return -1;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static PaymentMethods GetPaymentsMethods(int idUtente) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM cdc JOIN cartautente ON cdc.id = cartautente.cdcid WHERE idUtente = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idUtente);
+            ResultSet rs = ps.executeQuery();
+            List<CreditCard> creditCards = new ArrayList<>();
+            while(rs.next()) {
+                String numero = rs.getString("numero");
+                String intestatario = rs.getString("intestatario");
+                int cvc = rs.getInt("cvc");
+                Date scadenza = rs.getDate("scadenza");
+                LocalDate dataOdierna = LocalDate.now();
+                LocalDate dataScadenza = scadenza.toLocalDate();  // Converti java.sql.Date a LocalDate
+                boolean isExpired = !dataOdierna.isBefore(dataScadenza);
+                creditCards.add(new CreditCard(numero, intestatario, cvc, scadenza.toString(), isExpired));
+            }
+            query = "SELECT * FROM cc JOIN contoutente ON contoutente.ccid = cc.id WHERE idUtente = ?";
+            ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idUtente);
+            rs = ps.executeQuery();
+            List<BankAccount> bankAccounts = new ArrayList<>();
+            while (rs.next()) {
+                String intestatario = rs.getString("intestatario");
+                String IBAN = rs.getString("IBAN");
+                bankAccounts.add(new BankAccount(intestatario, IBAN));
+            }
+            return new PaymentMethods(creditCards, bankAccounts);
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return null;
         }
     }
 }

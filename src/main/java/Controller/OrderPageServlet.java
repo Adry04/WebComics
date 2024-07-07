@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 
 @WebServlet("/order-page")
@@ -21,7 +20,8 @@ public class OrderPageServlet extends HttpServlet {
            } else if (request.getParameter("id") == null || request.getParameter("id").isEmpty()) {
                throw new ServletException("Parametro id mancante");
            }
-           request.setAttribute("order", OrderDAO.getOrder((int) session.getAttribute("userId"), Integer.parseInt(request.getParameter("id"))));
+
+           request.setAttribute("order", OrderDAO.getOrder(Integer.parseInt(request.getParameter("id")), (int) session.getAttribute("userId")));
            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/orderPage.jsp");  //tenere d'occhio
            dispatcher.forward(request, response);
        } catch (ServletException e) {

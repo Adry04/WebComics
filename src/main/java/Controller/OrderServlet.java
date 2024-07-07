@@ -44,7 +44,7 @@ public class OrderServlet extends HttpServlet {
             if(!OrderDAO.doSave((int) session.getAttribute("userId"), cart)){
                 throw new ServletException("Errore nella creazione dell'ordine");
             }
-            session.setAttribute("cart", new Cart());
+            session.setAttribute("cart", new Cart((int) session.getAttribute("userId")));
             response.setStatus(response.SC_OK);
         } catch (ServletException e) {
             e.printStackTrace(System.out);

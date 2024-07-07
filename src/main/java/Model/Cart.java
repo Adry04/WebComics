@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,12 @@ public class Cart {
     public Cart(List<Comic> comics) {
         this.comics = comics;
         this.quantities = new HashMap<>();
+    }
+
+    public Cart(int utenteId) {
+        this.utenteId = utenteId;
+        this.quantities = new HashMap<>();
+        this.comics = new ArrayList<>();
     }
 
     public int getUtenteId() {

@@ -16,7 +16,7 @@
             <h2  onclick="location.href = 'order'">I miei ordini</h2>
         </div>
         <div class="subsection">
-            <h2 onclick="location.href = ''">Metodi di pagamento</h2>
+            <h2 onclick="location.href = 'payment-method'">Metodi di pagamento</h2>
         </div>
         <div class="subsection">
             <h2 onclick="location.href = ''">Indirizzi di spedizione</h2>

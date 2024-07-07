@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class OrderDAO {
     public static boolean doSave(int idUtente, Cart cart) {
@@ -38,7 +39,7 @@ public class OrderDAO {
         }
     }
 
-    public static List<Comic> getOrder(int id, int idUtente) {
+    public static Order getOrder(int id, int idUtente) {
         try(Connection con = ConPool.getConnection()){
             String query = "SELECT * FROM ordine WHERE ordine.idUtente = ? AND ordine.id = ?";
             PreparedStatement ps = con.prepareStatement(query);
@@ -46,10 +47,12 @@ public class OrderDAO {
             ps.setInt(2, id);
             ResultSet rs = ps.executeQuery();
             List<Comic> comics = new ArrayList<>();
+            Order order = null;
             while(rs.next()) {
                 String dataOrdine = String.valueOf(rs.getDate("dataordine"));
                 double prezzoOrdine = rs.getDouble("prezzoacquisto");
                 int quantita = rs.getInt("quantita");
+                order = new Order(idUtente, id, dataOrdine, prezzoOrdine, quantita);
                 query = "SELECT isbn FROM fumettoordinato WHERE ordineid = ?";
                 ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, id);
@@ -74,12 +77,13 @@ public class OrderDAO {
                         comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
                     }
                 }
-                return comics;
             }
+            Objects.requireNonNull(order).setComics(comics);
+            return order;
         } catch (SQLException e) {
+            e.printStackTrace(System.out);
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     public static List<Order> getOrders(int idUtente) {

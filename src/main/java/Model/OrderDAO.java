@@ -24,12 +24,13 @@ public class OrderDAO {
                 ordineId = generatedKeys.getInt(1); //Recupera automaticamente la prima chiave generata
             }
             for(Comic comic : cart.getComics()) {
-                String fumettoOrdinatoSQL = "INSERT INTO FumettoOrdinato (ordineid, ISBN, quantita, prezzo_fumetto) VALUES (?, ?, ?, ?)";
+                String fumettoOrdinatoSQL = "INSERT INTO FumettoOrdinato (ordineid, ISBN, quantita, prezzo_fumetto, sconto_fumetto) VALUES (?, ?, ?, ?, ?)";
                 ps = con.prepareStatement(fumettoOrdinatoSQL, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, ordineId);
                 ps.setString(2, comic.getISBN());
                 ps.setInt(3, cart.getQuantity(comic.getISBN()));
                 ps.setDouble(4, comic.getFinalPrice());
+                ps.setInt(5, comic.getSale());
                 ps.executeUpdate();
             }
             return true;
@@ -62,19 +63,22 @@ public class OrderDAO {
                     PreparedStatement psComic = con.prepareStatement(queryComic, Statement.RETURN_GENERATED_KEYS);
                     psComic.setString(1, rsComic.getString("ISBN"));
                     ResultSet rsComics = psComic.executeQuery();
-                    while (rsComics.next()) {
+                    String queryPriceComic = "SELECT prezzo_fumetto FROM fumettoordinato WHERE ordineid = ?";
+                    PreparedStatement psPriceComic = con.prepareStatement(queryPriceComic, Statement.RETURN_GENERATED_KEYS);
+                    psPriceComic.setInt(1, id);
+                    ResultSet rsPriceComics = psPriceComic.executeQuery();
+                    while (rsComics.next() && rsPriceComics.next()) {
                         String ISBN = rsComics.getString("ISBN");
                         String autore = rsComics.getString("autore");
-                        double prezzo = rsComics.getDouble("prezzo");
+                        double prezzo = rsPriceComics.getDouble("prezzo_fumetto");
                         String titolo = rsComics.getString("titolo");
                         String descrizione = rsComics.getString("descrizione");
                         String categoria = rsComics.getString("categoria");
-                        int sconto = rsComics.getInt("sconto");
                         String immagine = rsComics.getString("immagine");
                         LocalDate data = rsComics.getDate("ddi").toLocalDate();
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
                         String comicDate = data.format(formatter);
-                        comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
+                        comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, 0, immagine, comicDate));
                     }
                 }
             }

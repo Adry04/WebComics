@@ -236,4 +236,35 @@ public class ComicDAO {
             return false;
         }
     }
+
+    public static List<Comic> search(String parameter) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM fumetto WHERE titolo LIKE ? OR autore LIKE ? OR categoria LIKE ? OR descrizione LIKE ?", Statement.RETURN_GENERATED_KEYS);
+            String likeParameter = "%" + parameter + "%";
+            ps.setString(1, likeParameter);
+            ps.setString(2, likeParameter);
+            ps.setString(3, likeParameter);
+            ps.setString(4, likeParameter);
+            ResultSet rs = ps.executeQuery();
+            List<Comic> comics = new ArrayList<>();
+            while (rs.next()) {
+                String ISBN = rs.getString("ISBN");
+                String autore = rs.getString("autore");
+                double prezzo = rs.getDouble("prezzo");
+                String titolo = rs.getString("titolo");
+                String descrizione = rs.getString("descrizione");
+                String categoria = rs.getString("categoria");
+                int sconto = rs.getInt("sconto");
+                String immagine = rs.getString("immagine");
+                LocalDate data = rs.getDate("ddi").toLocalDate();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
+                String comicDate = data.format(formatter);
+                comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
+            }
+            return comics;
+        }catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
 }

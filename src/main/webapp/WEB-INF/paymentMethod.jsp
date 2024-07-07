@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Metodi Di Pagamento - <%=session.getAttribute("nome")%></title>
-    <style rel="stylesheet" href="Styles/paymentMethod.css"></style>
+    <link rel="stylesheet" href="Styles/paymentMethods.css">
     <link rel="stylesheet" href="Styles/nav.css">
     <link rel="stylesheet" href="Styles/footer.css">
     <script src="js/navbar.js" type="text/javascript"></script>
@@ -11,6 +11,7 @@
 </head>
 <body>
     <%@include file="navbar.jsp"%>
+    <div class="payments-container">
     <%
         PaymentMethods paymentMethods = (PaymentMethods) request.getAttribute("paymentMethods");
         List<CreditCard> creditCards = paymentMethods.getCreditCards();
@@ -51,6 +52,7 @@
     <%
         }
     %>
+    </div>
     <%@include file="footer.jsp"%>
 </body>
 </html>

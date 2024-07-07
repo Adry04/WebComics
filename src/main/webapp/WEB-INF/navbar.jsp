@@ -68,29 +68,29 @@
     <div class="section-container">
       <ul>
         <li id="category-manga">
-          <a href="">MANGA
+          <a>MANGA
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569z"></path></svg>
           </a>
           <div id="list-category-manga" class="subcontainer">
             <p onclick="location.href = ''">NUOVE USCITE</p>
             <p onclick="location.href = ''">I PIU' LETTI</p>
-            <p onclick="location.href = ''">SHONEN</p>
-            <p onclick="location.href = ''">SEINEN</p>
-            <p onclick="location.href = ''">JOSEI</p>
-            <p onclick="location.href = ''">CODOMO</p>
+            <p onclick="location.href = 'search?parameter=shonen'">SHONEN</p>
+            <p onclick="location.href = 'search?parameter=shinen'">SEINEN</p>
+            <p onclick="location.href = 'search?parameter=josei'">JOSEI</p>
+            <p onclick="location.href = 'search?parameter=comodo'">CODOMO</p>
           </div>
         </li>
         <li id="category-fumetti">
-          <a href="">FUMETTI
+          <a>FUMETTI
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569z"></path></svg>
           </a>
           <div id="list-category-fumetti" class="subcontainer">
             <p onclick="location.href = ''">NUOVE USCITE</p>
             <p onclick="location.href = ''">I PIU' LETTI</p>
-            <p onclick="location.href = ''">FANTASY</p>
-            <p onclick="location.href = ''">COMMEDIA</p>
-            <p onclick="location.href = ''">SUPEREROI</p>
-            <p onclick="location.href = ''">HORROR</p>
+            <p onclick="location.href = 'search?parameter=fantasy'">FANTASY</p>
+            <p onclick="location.href = 'search?parameter=commedia'">COMMEDIA</p>
+            <p onclick="location.href = 'search?parameter=supereroi'">SUPEREROI</p>
+            <p onclick="location.href = 'search?parameter=horror'">HORROR</p>
           </div>
         </li>
       </ul>

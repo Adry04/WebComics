@@ -10,7 +10,7 @@ function incrementQuantity (isbn, comic, price) {
         requestInProgress = true;
         const quantity = document.getElementById("quantity-cart-" + isbn);
         let totalPrice = checkoutSection.getAttribute("data-price")
-        console.log(quantity.innerHTML);
+        let actualQuantity = quantity.getAttribute("data-quantity");
         if (isNaN(parseInt(quantity.innerHTML, 10))) {
             console.log("Errore, Il valore non è un numero");
         }
@@ -22,6 +22,7 @@ function incrementQuantity (isbn, comic, price) {
             }
             if (this.readyState === 4 && this.status === 200) {
                 counterCarts.innerHTML = parseInt(counterCarts.innerHTML, 10) + 1;
+                quantity.setAttribute("data-quantity", (parseInt(actualQuantity) + 1))
                 quantity.innerHTML = newQuantity.toString();
                 let newPrezzo = parseFloat(totalPrice) + parseFloat(price);
                 newPrezzo = newPrezzo.toFixed(2);
@@ -48,10 +49,11 @@ function decrementQuantity (isbn, comic, price) {
         const quantity = document.getElementById("quantity-cart-" + isbn);
         const comicCard = document.getElementById("cart-card-comic-" + isbn);
         let totalPrice = checkoutSection.getAttribute("data-price")
+        let actualQuantity = quantity.getAttribute("data-quantity");
         if (isNaN(parseInt(quantity.innerHTML, 10))) {
             console.log("Errore, Il valore non è un numero");
         }
-        let newQuantity = parseInt(quantity.innerHTML, 10) - 1;
+        let newQuantity = actualQuantity - 1;
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if(this.readyState === 4) {
@@ -59,6 +61,7 @@ function decrementQuantity (isbn, comic, price) {
             }
             if (this.readyState === 4 && this.status === 200) {
                 counterCarts.innerHTML = parseInt(counterCarts.innerHTML, 10) - 1;
+                quantity.setAttribute("data-quantity", (parseInt(actualQuantity) - 1))
                 quantity.innerHTML = newQuantity.toString();
                 if(newQuantity <= 0) {
                     comicCard.style.display = 'none';
@@ -84,7 +87,7 @@ function decrementQuantity (isbn, comic, price) {
     }
 }
 
-function remove (isbn, comic, totalQuantity, price) {
+function remove (isbn, comic, price) {
     if(!requestInProgress) {
         requestInProgress = true;
         const prezzo = document.getElementById("prezzo");
@@ -103,15 +106,14 @@ function remove (isbn, comic, totalQuantity, price) {
             if (this.readyState === 4 && this.status === 200) {
                 counterCarts.innerHTML = parseInt(counterCarts.innerHTML, 10) - actualQuantity;
                 comicCard.style.display = 'none';
-                let newPrezzo = parseFloat(totalPrice) - (parseFloat(price) * totalQuantity);
+                let newPrezzo = parseFloat(totalPrice) - (parseFloat(price) * actualQuantity);
                 newPrezzo = newPrezzo.toFixed(2);
                 checkoutSection.setAttribute("data-price", newPrezzo)
                 newPrezzo = newPrezzo.replace('.', ',');
                 prezzo.innerHTML = newPrezzo + " €";
                 prezzo.setAttribute("data-prezzo", newPrezzo);
                 let sizeCartComics = cartComicContainer.getAttribute("data-size-cart-comics")
-                cartComicContainer.setAttribute("data-size-cart-comics", parseInt((sizeCartComics - totalQuantity), 10))
-                console.log(cartComicContainer.getAttribute("data-size-cart-comics"))
+                cartComicContainer.setAttribute("data-size-cart-comics", parseInt((sizeCartComics - actualQuantity), 10))
                 if(parseInt(cartComicContainer.getAttribute("data-size-cart-comics")) === 0) {
                     checkoutSection.style.display = 'none'
                 }

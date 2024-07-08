@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="separation">
-            <button onclick='remove(<%=comic.getISBN()%>, <%=comicJson%>, <%=cart.getQuantity(comic.getISBN())%>, <%=finalPrice%>)'>Rimuovi</button>
+            <button onclick='remove(<%=comic.getISBN()%>, <%=comicJson%>, <%=finalPrice%>)'>Rimuovi</button>
         </div>
     </div>
     <div class="price">

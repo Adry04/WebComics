@@ -21,7 +21,7 @@
             DecimalFormat df = new DecimalFormat("#.00");
             double totalPrice = cart.getTotalPrice();
             String totalPriceString = df.format(totalPrice);
-            for(Comic comic : cartComics) {
+            for (Comic comic : cartComics) {
                 String finalPrice = df.format(comic.getFinalPrice());
         %>
             <%@include file="cartCardComic.jsp"%>
@@ -30,7 +30,7 @@
         %>
         </div>
         <div class="checkout-section" id="checkout-section" data-price="<%=cart.getTotalPrice()%>">
-            <p class="prezzo">Prezzo totale: <span id="prezzo" data-prezzo="<%=totalPrice%>"><%=totalPriceString%> €</span></p>
+            <p class="prezzo">Prezzo totale: <span id="prezzo"><%=totalPriceString%> €</span></p>
             <button onclick="onOrder()">Effetua ordine</button>
         </div>
     </c:if>

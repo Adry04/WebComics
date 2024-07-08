@@ -7,7 +7,6 @@ const checkoutSection = document.getElementById("checkout-section")
 function incrementQuantity (isbn, comic, price) {
     if (!requestInProgress) {
         const prezzo = document.getElementById("prezzo");
-        const dataPrezzo = prezzo.getAttribute("data-prezzo");
         requestInProgress = true;
         const quantity = document.getElementById("quantity-cart-" + isbn);
         let totalPrice = checkoutSection.getAttribute("data-price")
@@ -24,11 +23,7 @@ function incrementQuantity (isbn, comic, price) {
             if (this.readyState === 4 && this.status === 200) {
                 counterCarts.innerHTML = parseInt(counterCarts.innerHTML, 10) + 1;
                 quantity.innerHTML = newQuantity.toString();
-                console.log("dataPrezzo:", parseFloat(dataPrezzo).toFixed(2));
-                console.log("price:", price);
-
                 let newPrezzo = parseFloat(totalPrice) + parseFloat(price);
-
                 newPrezzo = newPrezzo.toFixed(2);
                 checkoutSection.setAttribute("data-price", newPrezzo)
                 newPrezzo = newPrezzo.replace('.', ',');
@@ -49,7 +44,6 @@ function incrementQuantity (isbn, comic, price) {
 function decrementQuantity (isbn, comic, price) {
     if(!requestInProgress) {
         const prezzo = document.getElementById("prezzo");
-        const dataPrezzo = prezzo.getAttribute("data-prezzo");
         requestInProgress = true;
         const quantity = document.getElementById("quantity-cart-" + isbn);
         const comicCard = document.getElementById("cart-card-comic-" + isbn);
@@ -94,7 +88,6 @@ function remove (isbn, comic, totalQuantity, price) {
     if(!requestInProgress) {
         requestInProgress = true;
         const prezzo = document.getElementById("prezzo");
-        const dataPrezzo = prezzo.getAttribute("data-prezzo");
         const quantity = document.getElementById("quantity-cart-" + isbn);
         const comicCard = document.getElementById("cart-card-comic-" + isbn);
         let totalPrice = checkoutSection.getAttribute("data-price")

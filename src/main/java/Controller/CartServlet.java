@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Cart;
 import Model.Comic;
+import Model.ComicDAO;
 import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -36,7 +37,8 @@ public class CartServlet extends HttpServlet {
             String comicJson = request.getParameter("comic");
             Gson gson = new Gson();
             // Parsing della stringa JSON in un oggetto Comic
-            Comic comic = gson.fromJson(comicJson, Comic.class);
+            Comic sendComic = gson.fromJson(comicJson, Comic.class);
+            Comic comic = ComicDAO.getComic(sendComic.getISBN());
             String type = request.getParameter("requestType");
             if (request.getParameter("actual-quantity") != null) {
                 int actualQuantity = Integer.parseInt(request.getParameter("actual-quantity"));

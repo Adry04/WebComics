@@ -50,3 +50,13 @@ button:hover {
     color: white;
     cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+    h2 {
+        font-size: 18px;
+    }
+
+    .account-section-container {
+        width: 50%;
+    }
+}

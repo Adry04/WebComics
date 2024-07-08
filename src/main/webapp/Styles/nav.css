@@ -383,10 +383,21 @@ nav img {
     #check-box, #check-error-box {
         top: 4em
     }
+
+    .mobile-text-service {
+        width: 100%;
+        position: absolute;
+        bottom: 2em;
+        left: 0;
+        text-align: center;
+        font-family: "Poppins", sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+    }
 }
 
 @media screen and (max-width: 600px) {
     body {
-        padding-bottom: 25em;
+        padding-bottom: 15em;
     }
 }

@@ -15,7 +15,7 @@
         List<Comic> comics = (List<Comic>) request.getAttribute("comics");
         if (!comics.isEmpty()) {
     %>
-       <h1>Ricerca per <%=request.getParameter("parameter")%></h1>
+       <h1 class="title-section">Ricerca per <%=request.getParameter("parameter")%></h1>
     <div class="comics-container">
     <%
             for(Comic comic : comics) {

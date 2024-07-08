@@ -3,11 +3,9 @@
 .container-page {
     display: flex;
     flex-direction: column;
-    align-self: center;
     align-items: center;
-    gap: .2em;
-    font-family: "Poppins", sans-serif;
-    font-size: 24px;
+    gap: 1em;
+    width: 100%;
 }
 
 .order-container {
@@ -21,6 +19,8 @@
     background-color: transparent;
     border: 4px #FBCA03 solid;
     border-radius: 8px;
+    width: 50%;
+    margin: 0 auto;
 }
 
 .order-container:hover {
@@ -28,9 +28,30 @@
     color: #6A0C0B;
 }
 
+.data, .price {
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+    font-size: 24px;
+}
+
 .title-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-weight: bold;
+}
+
+@media screen and (max-width: 500px) {
+    .order-container {
+        width: 90%;
+    }
+
+    .data, .price {
+        font-weight: bold;
+        font-family: "Poppins", sans-serif;
+        font-size: 18px;
+    }
+
+    .container-page {
+        gap: .5em;
+    }
 }

@@ -137,6 +137,7 @@
         <p onclick="location.href = 'search?parameter=josei'">JOSEI</p>
         <p onclick="location.href = 'search?parameter=codomo'">CODOMO</p>
     </div>
+    <p class="mobile-text-service" onclick="location.href = 'service'">Servizio Clienti</p>
 </div>
 
   <div id="check-box" class="">

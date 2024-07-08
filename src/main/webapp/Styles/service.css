@@ -58,10 +58,41 @@
     font-size: 22px;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
+    word-break: unset;
 }
 
 .contact p {
     font-size: 22px;
     font-family: "Poppins", sans-serif;
     text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .contact ul {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .contact ul {
+        width: 90%;
+    }
+
+    .contact ul li {
+        font-size: 14px;
+    }
+
+    .contact h1 {
+        font-size: 22px;
+        margin: 0 .4em;
+    }
+
+    .contact {
+        gap: 2em;
+    }
+
+    .smile {
+        width: 150px;
+        height: 150px;
+    }
 }

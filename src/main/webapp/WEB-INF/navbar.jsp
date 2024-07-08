@@ -128,8 +128,14 @@
         </button>
     </form>
     <div class="mobile-link-section">
-        <a>Fumetti</a>
-        <a>Manga</a>
+        <p onclick="location.href = 'search?parameter=fantasy'">FANTASY</p>
+        <p onclick="location.href = 'search?parameter=commedia'">COMMEDIA</p>
+        <p onclick="location.href = 'search?parameter=supereroi'">SUPEREROI</p>
+        <p onclick="location.href = 'search?parameter=horror'">HORROR</p>
+        <p onclick="location.href = 'search?parameter=shonen'">SHONEN</p>
+        <p onclick="location.href = 'search?parameter=shinen'">SEINEN</p>
+        <p onclick="location.href = 'search?parameter=josei'">JOSEI</p>
+        <p onclick="location.href = 'search?parameter=codomo'">CODOMO</p>
     </div>
 </div>
 

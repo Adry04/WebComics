@@ -31,7 +31,8 @@ function incrementQuantity (isbn, comic, price) {
                 prezzo.innerHTML = newPrezzo + " €";
                 prezzo.setAttribute("data-prezzo", newPrezzo);
                 let sizeCartComics = cartComicContainer.getAttribute("data-size-cart-comics")
-                cartComicContainer.setAttribute("data-size-cart-comics", parseInt((sizeCartComics + 1), 10))
+                cartComicContainer.setAttribute("data-size-cart-comics", parseInt(sizeCartComics, 10) +1)
+                console.log(cartComicContainer.getAttribute("data-size-cart-comics"))
             } else if (this.readyState === 4 && this.status === 400) {
                 checkErrorDisplay("Errore di quantità");
             }
@@ -73,7 +74,8 @@ function decrementQuantity (isbn, comic, price) {
                 prezzo.innerHTML = newPrezzo + " €";
                 prezzo.setAttribute("data-prezzo", newPrezzo);
                 let sizeCartComics = cartComicContainer.getAttribute("data-size-cart-comics")
-                cartComicContainer.setAttribute("data-size-cart-comics", parseInt((sizeCartComics - 1), 10))
+                cartComicContainer.setAttribute("data-size-cart-comics", parseInt(sizeCartComics, 10) -1)
+                console.log(cartComicContainer.getAttribute("data-size-cart-comics"))
                 if(parseInt(cartComicContainer.getAttribute("data-size-cart-comics")) === 0) {
                     checkoutSection.style.display = 'none'
                 }
@@ -113,7 +115,8 @@ function remove (isbn, comic, price) {
                 prezzo.innerHTML = newPrezzo + " €";
                 prezzo.setAttribute("data-prezzo", newPrezzo);
                 let sizeCartComics = cartComicContainer.getAttribute("data-size-cart-comics")
-                cartComicContainer.setAttribute("data-size-cart-comics", parseInt((sizeCartComics - actualQuantity), 10))
+                cartComicContainer.setAttribute("data-size-cart-comics", parseInt(sizeCartComics, 10) - parseInt(quantity.getAttribute("data-quantity"), 10))
+                console.log(cartComicContainer.getAttribute("data-size-cart-comics"))
                 if(parseInt(cartComicContainer.getAttribute("data-size-cart-comics")) === 0) {
                     checkoutSection.style.display = 'none'
                 }

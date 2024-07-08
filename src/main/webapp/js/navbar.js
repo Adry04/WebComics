@@ -45,3 +45,15 @@ function displaySearchBar() {
 function hideSearchBar() {
     document.getElementById("form-search-bar").classList.remove("display-form")
 }
+
+function openMobileNav() {
+    document.body.style.overflow = 'hidden';
+    document.getElementById("background-mobile-nav").classList.add("display-background-mobile-nav")
+    document.getElementById("mobile-nav").classList.add("display-mobile-nav")
+}
+
+function closeMobileNav() {
+    document.body.style.overflow = 'auto';
+    document.getElementById("background-mobile-nav").classList.remove("display-background-mobile-nav")
+    document.getElementById("mobile-nav").classList.remove("display-mobile-nav")
+}

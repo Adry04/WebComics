@@ -26,7 +26,7 @@ public class AccountServlet extends HttpServlet {
         } catch (ServletException e) {
             System.err.println("\n" + e + "\n");
             String contextPath = request.getContextPath();
-            response.sendRedirect(contextPath + "/");
+            response.sendRedirect(contextPath + "/login");
         }
     }
 

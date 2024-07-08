@@ -37,3 +37,11 @@ function checkErrorDisplay(text){
         }, 4000);
     }
 }
+
+function displaySearchBar() {
+    document.getElementById("form-search-bar").classList.add("display-form")
+}
+
+function hideSearchBar() {
+    document.getElementById("form-search-bar").classList.remove("display-form")
+}

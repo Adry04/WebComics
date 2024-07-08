@@ -93,6 +93,7 @@ nav img {
     justify-content: space-between;
     gap: .4em;
     align-items: center;
+    position: relative;
 }
 
 .subcontainer {
@@ -181,4 +182,61 @@ nav img {
 
 .check-box-display {
     transform: translateX(0%) !important;
+}
+
+
+
+.search-container form {
+    position: absolute;
+    top: 1em;
+    right: 0;
+    visibility: hidden;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: .2s;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: .8em 2em;
+    border: 1px transparent solid;
+    -webkit-box-shadow: 0 0 14px 0 rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 14px 0 rgba(0,0,0,0.75);
+    box-shadow: 0 0 14px 0 rgba(0,0,0,0.75);
+    gap: 1em;
+}
+
+.search-container form input {
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    padding: .4em .8em;
+    border: 1px rgba(0.5, 0.5, 0.5, 0.5) solid;
+    border-radius: 8px;
+}
+
+.search-container div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .4em;
+    cursor: pointer;
+}
+
+.search-container form button svg {
+    width: 3em;
+    height: 3em;
+}
+
+.search-container form button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.display-form {
+    visibility: visible !important;
+    transform: translateY(0%) !important;
+    opacity: 1 !important;
 }

@@ -15,9 +15,9 @@
     <div class="operation-section">
         <div class="separation">
             <div class="quantity-section">
-                <span onclick='decrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=finalPrice%>)' class="click-quantity">-</span>
+                <span onclick='decrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)' class="click-quantity">-</span>
                 <span data-quantity="<%=cart.getQuantity(comic.getISBN())%>" id="quantity-cart-<%=comic.getISBN()%>"><%=cart.getQuantity(comic.getISBN())%></span>
-                <span onclick='incrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=finalPrice%>)' class="click-quantity">+</span>
+                <span onclick='incrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)' class="click-quantity">+</span>
             </div>
         </div>
         <div class="separation">

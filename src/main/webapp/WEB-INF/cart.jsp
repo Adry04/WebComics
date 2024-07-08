@@ -29,7 +29,7 @@
             }
         %>
         </div>
-        <div class="checkout-section" id="checkout-section">
+        <div class="checkout-section" id="checkout-section" data-price="<%=cart.getTotalPrice()%>">
             <p class="prezzo">Prezzo totale: <span id="prezzo" data-prezzo="<%=totalPrice%>"><%=totalPriceString%> €</span></p>
             <button onclick="onOrder()">Effetua ordine</button>
         </div>

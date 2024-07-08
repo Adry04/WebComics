@@ -24,13 +24,12 @@ public class OrderDAO {
                 ordineId = generatedKeys.getInt(1); //Recupera automaticamente la prima chiave generata
             }
             for(Comic comic : cart.getComics()) {
-                String fumettoOrdinatoSQL = "INSERT INTO FumettoOrdinato (ordineid, ISBN, quantita, prezzo_fumetto, sconto_fumetto) VALUES (?, ?, ?, ?, ?)";
+                String fumettoOrdinatoSQL = "INSERT INTO FumettoOrdinato (ordineid, ISBN, quantita, prezzo_fumetto) VALUES (?, ?, ?, ?)";
                 ps = con.prepareStatement(fumettoOrdinatoSQL, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, ordineId);
                 ps.setString(2, comic.getISBN());
                 ps.setInt(3, cart.getQuantity(comic.getISBN()));
                 ps.setDouble(4, comic.getFinalPrice());
-                ps.setInt(5, comic.getSale());
                 ps.executeUpdate();
             }
             return true;

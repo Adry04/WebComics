@@ -370,4 +370,23 @@ nav img {
     .ham-menu {
         display: block;
     }
+
+    #check-box p, #check-error-box p {
+        font-size: 12px;
+    }
+
+    #check-box svg, #check-error-box svg {
+        width: 1em;
+        height: 1em;
+    }
+
+    #check-box, #check-error-box {
+        top: 4em
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        padding-bottom: 25em;
+    }
 }

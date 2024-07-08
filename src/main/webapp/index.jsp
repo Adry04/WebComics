@@ -10,7 +10,6 @@
 <head>
     <title> WebComics - Home </title>
     <link rel="stylesheet" href="Styles/comic-card.css" />
-    <link rel="stylesheet" href="Styles/home.css" />
     <link rel="stylesheet" href="Styles/slider.css" />
     <link rel="stylesheet" href="Styles/nav.css">
     <link rel="stylesheet" href="Styles/footer.css">

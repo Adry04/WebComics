@@ -13,7 +13,7 @@ public class ConPool {
     public static Connection getConnection() throws SQLException{
         if(datasource == null) {
             PoolProperties p = new PoolProperties();
-            p.setUrl("jdbc:mysql://localhost:3306/webcomics?serverTimezone=" + TimeZone.getDefault().getID());
+            p.setUrl("jdbc:mysql://localhost:3306/webcomics?serverTimezone=" + TimeZone.getDefault().getID());  //Dipende dalla porta del server e dal database
             p.setDriverClassName("com.mysql.cj.jdbc.Driver");
             p.setUsername("root");
             p.setPassword("Pellegrino!22"); //dipende dalla password del tuo MySql Workbench

@@ -11,6 +11,7 @@ footer {
     align-items: flex-start;
     padding: .8em 0;
     border-top: 1px solid #E9E9E9;
+    background-color: white;
 }
 
 .subsection .subtext {
@@ -55,4 +56,23 @@ footer {
     font-size: 18px;
     font-weight: 400;
     font-family: "Poppins", sans-serif;
+}
+
+@media screen and (max-width: 400px) {
+    .section-image a img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .section-image p {
+        font-size: 12px;
+    }
+
+    .subsection .subtext {
+        font-size: 12px;
+    }
+
+    .title {
+        font-size: 15px;
+    }
 }

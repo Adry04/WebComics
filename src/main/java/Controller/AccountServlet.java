@@ -8,7 +8,6 @@ import Model.CartDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
-import jakarta.servlet.ServletContext;  //Contatore di accessi da implementare
 import jakarta.servlet.annotation.*;
 
 @WebServlet("/account")

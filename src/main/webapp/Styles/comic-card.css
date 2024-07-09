@@ -43,7 +43,10 @@ span {
     font-size: 18px;
     font-family: "Poppins", sans-serif;
     text-align: center;
-    margin: .4em 0;
+    margin: .4em .5em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .comic-card .sale-section {

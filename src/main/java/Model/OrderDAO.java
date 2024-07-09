@@ -62,22 +62,25 @@ public class OrderDAO {
                     PreparedStatement psComic = con.prepareStatement(queryComic, Statement.RETURN_GENERATED_KEYS);
                     psComic.setString(1, rsComic.getString("ISBN"));
                     ResultSet rsComics = psComic.executeQuery();
-                    String queryPriceComic = "SELECT prezzo_fumetto FROM fumettoordinato WHERE ordineid = ?";
-                    PreparedStatement psPriceComic = con.prepareStatement(queryPriceComic, Statement.RETURN_GENERATED_KEYS);
-                    psPriceComic.setInt(1, id);
-                    ResultSet rsPriceComics = psPriceComic.executeQuery();
-                    while (rsComics.next() && rsPriceComics.next()) {
-                        String ISBN = rsComics.getString("ISBN");
-                        String autore = rsComics.getString("autore");
-                        double prezzo = rsPriceComics.getDouble("prezzo_fumetto");
-                        String titolo = rsComics.getString("titolo");
-                        String descrizione = rsComics.getString("descrizione");
-                        String categoria = rsComics.getString("categoria");
-                        String immagine = rsComics.getString("immagine");
-                        LocalDate data = rsComics.getDate("ddi").toLocalDate();
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
-                        String comicDate = data.format(formatter);
-                        comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, 0, immagine, comicDate));
+                    while (rsComics.next()) {
+                        String queryPriceComic = "SELECT prezzo_fumetto FROM fumettoordinato WHERE ordineid = ? AND ISBN = ?";
+                        PreparedStatement psPriceComic = con.prepareStatement(queryPriceComic, Statement.RETURN_GENERATED_KEYS);
+                        psPriceComic.setInt(1, id);
+                        psPriceComic.setString(2, rsComic.getString("ISBN"));
+                        ResultSet rsPriceComics = psPriceComic.executeQuery();
+                        while (rsPriceComics.next()) {
+                            String ISBN = rsComics.getString("ISBN");
+                            String autore = rsComics.getString("autore");
+                            double prezzo = rsPriceComics.getDouble("prezzo_fumetto");
+                            String titolo = rsComics.getString("titolo");
+                            String descrizione = rsComics.getString("descrizione");
+                            String categoria = rsComics.getString("categoria");
+                            String immagine = rsComics.getString("immagine");
+                            LocalDate data = rsComics.getDate("ddi").toLocalDate();
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
+                            String comicDate = data.format(formatter);
+                            comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, 0, immagine, comicDate));
+                        }
                     }
                 }
             }

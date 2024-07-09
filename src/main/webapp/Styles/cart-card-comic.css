@@ -3,6 +3,7 @@
 .title-section {
     font-family: "Poppins", sans-serif;
     text-align: center;
+    margin: 1em 0 2em 0;
 }
 
 .comics-container {
@@ -59,11 +60,20 @@
 .text-section div h1 {
     font-family: "Poppins", sans-serif;
     font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-#desc {
+.desc {
     font-family: "Poppins", sans-serif;
     font-size: 16px;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Change this value to the number of lines you want to display */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .price {

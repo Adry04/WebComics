@@ -9,7 +9,7 @@
     <div class="text-section">
         <div>
             <h1><%=comic.getTitle()%></h1>
-            <p id="desc"><%=comic.getDesc().length() > 800 ? comic.getDesc().substring(0, 800) + "..." : comic.getDesc()%></p>
+            <p id="desc-<%=comic.getISBN()%>" class="desc"><%=comic.getDesc()%></p>
         </div>
     </div>
     <div class="operation-section">

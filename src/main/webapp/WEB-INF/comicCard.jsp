@@ -7,7 +7,7 @@
 <div class="comic-card" id="comic-card-<%=comic.getISBN()%>">
     <img src="<%=comic.getImmagine()%>" alt="<%=comic.getTitle()%>" onclick="location.href = 'comic?isbn=<%=comic.getISBN()%>'">
     <p class="title">
-        <%=comic.getTitle().length() > 20 ? comic.getTitle().substring(0, 20) + "..." : comic.getTitle() %>
+        <%=comic.getTitle()%>
     </p>
     <div class="price-section">
         <%

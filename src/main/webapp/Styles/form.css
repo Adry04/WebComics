@@ -114,13 +114,6 @@ button:hover {
     display: none;
 }
 
-div #credit-card #bank-account {
-    display: flex;
-    flex-direction: column;
-    gap: .5em;
-    padding: 1.5em 0;
-}
-
 .radio-container {
     display: flex;
     flex-direction: column;
@@ -149,14 +142,14 @@ div #credit-card #bank-account {
     margin: 0;
 }
 
-#credit-card, #bank-account {
+.no-display-form {
     display: none;
 }
 
 .show-form {
-    display: flex !important;
     flex-direction: column;
-    gap: 1em;
+    gap: .5em;
+    padding: 1.5em 0;
 }
 
 input[type="radio"]:active {

@@ -41,7 +41,7 @@ form {
     width: 100%;
 }
 
-input {
+.input-container input {
     width: 100%;
     padding: .4em 2%;
     font-size: 18px;
@@ -50,7 +50,7 @@ input {
     border: 1px #00BF62 solid;
 }
 
-input:focus {
+.input-container  input:focus {
     outline: 2px #00BF62 solid;
 }
 
@@ -125,21 +125,27 @@ div #credit-card #bank-account {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
+    justify-content: center;
+    margin: 1em 0 2em 0;
 }
 
 .radio-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 10% 90%;
     align-items: center;
-    gap: 0.5em;
+    column-gap: 1em;
+    row-gap: 1.5em;
+    width: 100%;
 }
 
-.radio-item input{
-    width: 20%;
-    margin: 0;
+.radio-item input[type=radio] {
+    margin: 0 0 0 auto;
+    width: 25px;
+    height: 25px;
 }
 
 .radio-item label {
-    width: 80%;
+    width: 100%;
     margin: 0;
 }
 
@@ -147,10 +153,19 @@ div #credit-card #bank-account {
     display: none;
 }
 
-#credit-card.show, #bank-account.show {
-    display: flex;
+.show-form {
+    display: flex !important;
     flex-direction: column;
     gap: 1em;
+}
+
+input[type="radio"]:active {
+    border-width: 0;
+}
+
+input[type="radio"]:focus {
+    outline: none;
+    border-width: 0;
 }
 
 @media screen and (max-width: 800px) {

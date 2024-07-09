@@ -147,32 +147,7 @@ public class OrderDAO {
                 String dataOrder = String.valueOf(rs.getDate("dataordine"));
                 double prezzoOrder = rs.getDouble("prezzoacquisto");
                 int quantita = rs.getInt("quantita");
-                String queryOrder = "SELECT ISBN FROM fumettoordinato WHERE ordineid = ?";
-                PreparedStatement psOrder = con.prepareStatement(queryOrder, Statement.RETURN_GENERATED_KEYS);
-                psOrder.setInt(1, idOrdine);
-                ResultSet rsComic = ps.executeQuery();
-                List<Comic> comics = new ArrayList<>();
-                while (rsComic.next()) {
-                    String queryComic = "SELECT * FROM fumetto WHERE ISBN = ?";
-                    PreparedStatement psComic = con.prepareStatement(queryComic, Statement.RETURN_GENERATED_KEYS);
-                    psComic.setString(1, rsComic.getString("ISBN"));
-                    ResultSet rsComics = psComic.executeQuery();
-                    while (rsComics.next()) {
-                        String ISBN = rsComics.getString("ISBN");
-                        String autore = rsComics.getString("autore");
-                        double prezzo = rsComics.getDouble("prezzo");
-                        String titolo = rsComics.getString("titolo");
-                        String descrizione = rsComics.getString("descrizione");
-                        String categoria = rsComics.getString("categoria");
-                        int sconto = rsComics.getInt("sconto");
-                        String immagine = rsComics.getString("immagine");
-                        LocalDate data = rsComics.getDate("ddi").toLocalDate();
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
-                        String comicDate = data.format(formatter);
-                        comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
-                    }
-                }
-                orders.add(new Order(idUtente, idOrdine, dataOrder, prezzoOrder, quantita, comics));
+                orders.add(new Order(idUtente, idOrdine, dataOrder, prezzoOrder, quantita));
             }
             return orders;
         } catch (SQLException e) {

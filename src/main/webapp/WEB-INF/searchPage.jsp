@@ -41,5 +41,6 @@
         }
     %>
     <%@include file="footer.jsp"%>
+    <script src="js/comicCard.js"></script>
 </body>
 </html>

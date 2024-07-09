@@ -78,7 +78,7 @@ public class UserDAO {
             while(rs.next()) {
                 String numero = rs.getString("numero");
                 String intestatario = rs.getString("intestatario");
-                int cvc = rs.getInt("cvc");
+                String cvc = rs.getString("cvc");
                 Date scadenza = rs.getDate("scadenza");
                 LocalDate dataOdierna = LocalDate.now();
                 LocalDate dataScadenza = scadenza.toLocalDate();  // Converti java.sql.Date a LocalDate

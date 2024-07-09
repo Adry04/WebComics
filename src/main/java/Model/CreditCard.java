@@ -3,11 +3,18 @@ package Model;
 public class CreditCard {
     private String numero;
     private String intestatario;
-    private int cvc;
+    private String cvc;
     private String dataScadenza;
     private boolean isExpired;
 
-    public CreditCard(String numero, String intestatario, int cvc, String dataScadenza, boolean isExpired) {
+    public CreditCard(String numero, String intestatario, String cvc, String dataScadenza) {
+        this.numero = numero;
+        this.intestatario = intestatario;
+        this.cvc = cvc;
+        this.dataScadenza = dataScadenza;
+    }
+
+    public CreditCard(String numero, String intestatario, String cvc, String dataScadenza, boolean isExpired) {
         this.numero = numero;
         this.intestatario = intestatario;
         this.cvc = cvc;
@@ -31,11 +38,11 @@ public class CreditCard {
         this.intestatario = intestatario;
     }
 
-    public int getCvc() {
+    public String getCvc() {
         return cvc;
     }
 
-    public void setCvc(int cvc) {
+    public void setCvc(String cvc) {
         this.cvc = cvc;
     }
 

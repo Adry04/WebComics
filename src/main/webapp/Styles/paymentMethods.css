@@ -31,5 +31,25 @@
 }
 
 .add-button {
+    display: flex;
+    align-self: center;
+    margin: 1.5em auto;
+    font-family: "Poppins", sans-serif;
+}
 
+.add-button button {
+    border: 3px #00BF62 solid;
+    border-radius: 8px;
+    background-color: white;
+    color: #00BF62;
+    font-weight: 500;
+    font-size: 20px;
+    padding: .2em .8em;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.add-button button:hover {
+    background-color: #00BF62;
+    color: white;
 }

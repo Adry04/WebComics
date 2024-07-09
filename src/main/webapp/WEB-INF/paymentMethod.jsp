@@ -53,7 +53,7 @@
             }
         %>
         <div class="add-button">
-            <button value="Aggiungi metodo di pagamento" onclick="location.href = 'form-payment-method'">Aggiungi metodo di pagamento</button>
+            <button type="submit" value="Aggiungi metodo di pagamento" onclick="location.href = 'form-payment-method'">Aggiungi metodo di pagamento</button>
         </div>
     </div>
     <%@include file="footer.jsp"%>

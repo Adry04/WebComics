@@ -78,7 +78,6 @@ public class RegistrationServlet extends HttpServlet {
                         if (!CartDAO.addCart(cart, id)) {
                             throw new ServletException("Errore nel caricamento del carrello");
                         }
-
                     }
                 } else {
                     throw new ServletException("Errore nel prendere l'id");

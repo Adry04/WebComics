@@ -22,7 +22,7 @@ function incrementQuantity (isbn, comic, price) {
             }
             if (this.readyState === 4 && this.status === 200) {
                 counterCarts.innerHTML = parseInt(counterCarts.innerHTML, 10) + 1;
-                quantity.setAttribute("data-quantity", (parseInt(actualQuantity) + 1))
+                quantity.setAttribute("data-quantity", (parseInt(actualQuantity, 10) + 1))
                 quantity.innerHTML = newQuantity.toString();
                 let newPrezzo = parseFloat(totalPrice) + parseFloat(price);
                 newPrezzo = newPrezzo.toFixed(2);
@@ -62,7 +62,7 @@ function decrementQuantity (isbn, comic, price) {
             }
             if (this.readyState === 4 && this.status === 200) {
                 counterCarts.innerHTML = parseInt(counterCarts.innerHTML, 10) - 1;
-                quantity.setAttribute("data-quantity", (parseInt(actualQuantity) - 1))
+                quantity.setAttribute("data-quantity", (parseInt(actualQuantity, 10) - 1))
                 quantity.innerHTML = newQuantity.toString();
                 if(newQuantity <= 0) {
                     comicCard.style.display = 'none';

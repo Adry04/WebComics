@@ -17,7 +17,7 @@ public class CartDAO {
                         throw new ServletException("errore di changeQuantity");
                     }
                 } else {
-                    if(!CartDAO.addComic(idUtente, comic, map.get(comic.getISBN()))){
+                    if(!CartDAO.addComic(idUtente, comic, map.get(comic.getISBN()))) {
                         throw new ServletException("errore nel caricamento del fumetto");
                     }
                 }
@@ -130,7 +130,7 @@ public class CartDAO {
     }
 
     public static boolean changeQuantity(String ISBN, int idUtente, int quantity) {
-        try (Connection con = ConPool.getConnection()){
+        try (Connection con = ConPool.getConnection()) {
             String query = "UPDATE carrello SET quantita=? WHERE idUtente = ? AND isbn = ?";
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, quantity);

@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
@@ -93,7 +94,7 @@ public class CartServlet extends HttpServlet {
                     List<Comic> cartComics;
                     Cart cart = (Cart) session.getAttribute("cart");
                     cartComics = cart.getComics();
-                    if ((cart.getQuantity(comic.getISBN())-quantita) <= 0) {
+                    if ((cart.getQuantity(Objects.requireNonNull(comic).getISBN())-quantita) <= 0) {
                         cartComics.remove(comic);
                         cart.setComics(cartComics);
                         cart.removeQuantity(comic.getISBN());
@@ -110,7 +111,7 @@ public class CartServlet extends HttpServlet {
                     cartComics = cart.getComics();
                     cartComics.remove(comic);
                     cart.setComics(cartComics);
-                    cart.removeQuantity(comic.getISBN());
+                    cart.removeQuantity(Objects.requireNonNull(comic).getISBN());
                     session.setAttribute("cart", cart);
                     response.setStatus(HttpServletResponse.SC_OK);
                     break;

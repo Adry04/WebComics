@@ -1,6 +1,8 @@
 //Servlet per la gestione deglio ogini Admin
 package Controller;
 
+import Model.Order;
+import Model.OrderDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,8 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/admin-order")
 public class AdminOrderServlet extends HttpServlet {
@@ -21,9 +23,12 @@ public class AdminOrderServlet extends HttpServlet {
             } else if(!(Boolean) session.getAttribute("isAdmin")) {
                 throw new ServletException("L'utente non è un admin");
             }
+            List<Order> orders = OrderDAO.getTotalOrders();
+            request.setAttribute("orders", orders);
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/admin/order.jsp");
             rd.forward(request, response);
         } catch (ServletException e) {
+            e.printStackTrace(System.out);
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/");
         }

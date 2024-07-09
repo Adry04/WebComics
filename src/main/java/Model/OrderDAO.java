@@ -90,7 +90,7 @@ public class OrderDAO {
     }
 
     public static List<Order> getOrders(int idUtente) {
-        try(Connection con = ConPool.getConnection()){
+        try (Connection con = ConPool.getConnection()){
             String query = "SELECT * FROM ordine WHERE idUtente = ?";
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, idUtente);
@@ -104,6 +104,52 @@ public class OrderDAO {
                 query = "SELECT ISBN FROM fumettoordinato WHERE ordineid = ?";
                 ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, rs.getInt("id"));
+                ResultSet rsComic = ps.executeQuery();
+                List<Comic> comics = new ArrayList<>();
+                while (rsComic.next()) {
+                    String queryComic = "SELECT * FROM fumetto WHERE ISBN = ?";
+                    PreparedStatement psComic = con.prepareStatement(queryComic, Statement.RETURN_GENERATED_KEYS);
+                    psComic.setString(1, rsComic.getString("ISBN"));
+                    ResultSet rsComics = psComic.executeQuery();
+                    while (rsComics.next()) {
+                        String ISBN = rsComics.getString("ISBN");
+                        String autore = rsComics.getString("autore");
+                        double prezzo = rsComics.getDouble("prezzo");
+                        String titolo = rsComics.getString("titolo");
+                        String descrizione = rsComics.getString("descrizione");
+                        String categoria = rsComics.getString("categoria");
+                        int sconto = rsComics.getInt("sconto");
+                        String immagine = rsComics.getString("immagine");
+                        LocalDate data = rsComics.getDate("ddi").toLocalDate();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
+                        String comicDate = data.format(formatter);
+                        comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
+                    }
+                }
+                orders.add(new Order(idUtente, idOrdine, dataOrder, prezzoOrder, quantita, comics));
+            }
+            return orders;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static List<Order> getTotalOrders() {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM ordine";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            List<Order> orders = new ArrayList<>();
+            while (rs.next()) {
+                int idUtente = rs.getInt("idUtente");
+                int idOrdine = rs.getInt("id");
+                String dataOrder = String.valueOf(rs.getDate("dataordine"));
+                double prezzoOrder = rs.getDouble("prezzoacquisto");
+                int quantita = rs.getInt("quantita");
+                String queryOrder = "SELECT ISBN FROM fumettoordinato WHERE ordineid = ?";
+                PreparedStatement psOrder = con.prepareStatement(queryOrder, Statement.RETURN_GENERATED_KEYS);
+                psOrder.setInt(1, idOrdine);
                 ResultSet rsComic = ps.executeQuery();
                 List<Comic> comics = new ArrayList<>();
                 while (rsComic.next()) {

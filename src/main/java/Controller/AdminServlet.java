@@ -26,7 +26,6 @@ public class AdminServlet extends HttpServlet {
             }
             List<Comic> comics = ComicDAO.getComics();
             request.setAttribute("comics", comics);
-
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/admin/comic.jsp");
             rd.forward(request, response);
         } catch (ServletException e) {

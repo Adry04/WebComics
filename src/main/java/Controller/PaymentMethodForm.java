@@ -36,7 +36,7 @@ public class PaymentMethodForm extends HttpServlet {
         try {
             HttpSession session = request.getSession(false);
             if (session == null || session.getAttribute("userId") == null) {
-                throw new ServletException("Devi essere loggato");
+                throw new Exception("Devi essere loggato");
             }
             String methodType = request.getParameter("choose-method");
             if (methodType.equals("CreditCard")) {
@@ -73,7 +73,7 @@ public class PaymentMethodForm extends HttpServlet {
                 String IBAN = request.getParameter("iban");
                 String intestatario = request.getParameter("bank-account-owner");
                 String bankIbanPattern = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$";
-                String ownerPattern = "^[A-Za-z]+ [A-Za-z]+$";
+                String ownerPattern = "^[A-Za-z]+[A-Za-z]+$";
                 if (!intestatario.matches(ownerPattern)) {
                     throw new ServletException("Credenziali intestatario non valide");
                 } else if (!IBAN.matches(bankIbanPattern)) {
@@ -88,6 +88,7 @@ public class PaymentMethodForm extends HttpServlet {
             } else {
                 throw new ServletException("Errore, imetodo di pagamento assente");
             }
+            response.setStatus(response.SC_OK);
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/payment-method");
         } catch (ServletException e) {
@@ -97,6 +98,9 @@ public class PaymentMethodForm extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace(System.out);
+            response.setStatus(response.SC_BAD_REQUEST);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + "/");
         }
     }
 }

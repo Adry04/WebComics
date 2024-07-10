@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.UserDAO;
-import Model.PaymentMethods;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,18 +9,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Objects;
 
-@WebServlet("/payment-method")
-public class PaymentMethodServlet extends HttpServlet {
+@WebServlet("/address")
+public class AddressServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             HttpSession session = request.getSession(false);
             if (session == null || session.getAttribute("userId") == null) {
                 throw new ServletException("Devi essere loggato");
             }
-            request.setAttribute("paymentMethods", UserDAO.getPaymentsMethods((int) session.getAttribute("userId")));
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/paymentMethod.jsp");
+            request.setAttribute("address", UserDAO.getAllAddresses((int) session.getAttribute("userId")));
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/address.jsp");
             dispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace(System.out);
@@ -30,7 +28,7 @@ public class PaymentMethodServlet extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

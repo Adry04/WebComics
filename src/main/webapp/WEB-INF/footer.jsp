@@ -9,6 +9,7 @@
     <div class="subsection">
         <p class="title">INFO</p>
         <p class="subtext" onclick="location.href = 'service'">Contattaci</p>
+        <p class="licence-subtext">WebComics© All Rights Reserved</p>
     </div>
     <div class="subsection">
         <p class="title">IL TUO ACCOUNT</p>

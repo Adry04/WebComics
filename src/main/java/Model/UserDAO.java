@@ -160,4 +160,47 @@ public class UserDAO {
             return false;
         }
     }
+
+    public static boolean doAddressSave(int idUtente, Address a) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement psVerify = con.prepareStatement("SELECT * FROM indirizzo WHERE indirizzo = ? AND CAP = ? AND provincia = ? AND idUtente = ?");
+            psVerify.setString(1, a.getIndirizzo());
+            psVerify.setString(2, a.getCap());
+            psVerify.setString(3, a.getProvincia());
+            psVerify.setInt(4, idUtente);
+            ResultSet rsVerify = psVerify.executeQuery();
+            if(rsVerify.next()) {
+                throw new IOException("La carta esiste già");
+            }
+            PreparedStatement ps = con.prepareStatement("INSERT INTO indirizzo (indirizzo, CAP, provincia, idUtente) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, a.getIndirizzo());
+            ps.setString(2, a.getCap());
+            ps.setString(3, a.getProvincia());
+            ps.setInt(4, idUtente);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException | IOException e) {
+            e.printStackTrace(System.out);
+            return false;
+        }
+    }
+
+    public static List<Address> getAllAddresses(int idUtente) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM indirizzo WHERE idUtente = ?", Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idUtente);
+            ResultSet rs = ps.executeQuery();
+            List<Address> addresses = new ArrayList<>();
+            while (rs.next()) {
+                String indirizzo = rs.getString("indirizzo");
+                String CAP = rs.getString("CAP");
+                String provincia = rs.getString("provincia");
+                addresses.add(new Address(indirizzo, CAP, provincia));
+            }
+            return addresses;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
 }

@@ -19,7 +19,7 @@
             <h2 onclick="location.href = 'payment-method'">Metodi di pagamento</h2>
         </div>
         <div class="subsection">
-            <h2 onclick="location.href = ''">Indirizzi di spedizione</h2>
+            <h2 onclick="location.href = 'address'">Indirizzi di spedizione</h2>
         </div>
         <button type="button" onclick="logout()" class="logout-button">LOGOUT</button>
     </div>

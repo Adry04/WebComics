@@ -1,10 +1,13 @@
 //Salvataggi di utenti nel db e query utenti
 package Model;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class UserDAO {
 
@@ -68,7 +71,7 @@ public class UserDAO {
         }
     }
 
-    public static PaymentMethods GetPaymentsMethods(int idUtente) {
+    public static PaymentMethods getPaymentsMethods(int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             String query = "SELECT * FROM cdc JOIN cartautente ON cdc.id = cartautente.cdcid WHERE idUtente = ?";
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -99,6 +102,62 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             return null;
+        }
+    }
+
+    public static boolean doCardSave(int idUtente, CreditCard c) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement psVerify = con.prepareStatement("SELECT * FROM cdc WHERE numero = ? OR cvc = ?");
+            psVerify.setString(1, c.getNumero());
+            psVerify.setString(2, c.getCvc());
+            ResultSet rsVerify = psVerify.executeQuery();
+            if(rsVerify.next()) {
+                throw new IOException("La carta esiste già");
+            }
+            PreparedStatement ps = con.prepareStatement("INSERT INTO cdc (numero, intestatario, CVC, scadenza) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, c.getNumero());
+            ps.setString(2, c.getIntestatario());
+            ps.setString(3, c.getCvc());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
+            ps.setDate(4,  java.sql.Date.valueOf(LocalDate.parse(c.getDataScadenza(), formatter)));
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            while(rs.next()) {
+                ps = con.prepareStatement("INSERT INTO cartautente (cdcid, idUtente) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, rs.getInt(1));
+                ps.setInt(2, idUtente);
+                ps.executeUpdate();
+            }
+            return true;
+        } catch (SQLException | IOException e) {
+            e.printStackTrace(System.out);
+            return false;
+        }
+    }
+
+    public static boolean doBankAccountSave(int idUtente, BankAccount b) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement psVerify = con.prepareStatement("SELECT * FROM cc WHERE IBAN = ?");
+            psVerify.setString(1, b.getIBAN());
+            ResultSet rsVerify = psVerify.executeQuery();
+            if(rsVerify.next()) {
+                throw new IOException("La carta esiste già");
+            }
+            PreparedStatement ps = con.prepareStatement("INSERT INTO cc (intestatario, IBAN) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, b.getIntenstatario());
+            ps.setString(2, b.getIBAN());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            while(rs.next()) {
+                ps = con.prepareStatement("INSERT INTO contoutente (ccid, idUtente) VALUES (?, ?)");
+                ps.setInt(1, rs.getInt(1));
+                ps.setInt(2, idUtente);
+                ps.executeUpdate();
+            }
+            return true;
+        } catch (SQLException | IOException e) {
+            e.printStackTrace(System.out);
+            return false;
         }
     }
 }

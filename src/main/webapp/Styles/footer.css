@@ -58,6 +58,16 @@ footer {
     font-family: "Poppins", sans-serif;
 }
 
+p .address {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+p address:hover {
+    text-underline: black;
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 400px) {
     .section-image a img {
         width: 60px;

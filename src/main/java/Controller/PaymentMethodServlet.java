@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.UserDAO;
+import Model.PaymentMethods;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Objects;
 
 @WebServlet("/payment-method")
 public class PaymentMethodServlet extends HttpServlet {
@@ -18,7 +20,7 @@ public class PaymentMethodServlet extends HttpServlet {
             if (session == null || session.getAttribute("userId") == null) {
                 throw new ServletException("Devi essere loggato");
             }
-            request.setAttribute("paymentMethods", UserDAO.GetPaymentsMethods((int) session.getAttribute("userId")));
+            request.setAttribute("paymentMethods", UserDAO.getPaymentsMethods((int) session.getAttribute("userId")));
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/paymentMethod.jsp");
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -29,6 +31,8 @@ public class PaymentMethodServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        PaymentMethods pm = UserDAO.getPaymentsMethods((int) request.getAttribute("userId"));
+        Objects.requireNonNull(pm).getBankAccounts();
+        Objects.requireNonNull(pm).getCreditCards();
     }
 }

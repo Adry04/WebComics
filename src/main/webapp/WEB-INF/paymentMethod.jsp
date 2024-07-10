@@ -2,7 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>Metodi Di Pagamento - <%=session.getAttribute("nome")%></title>
+    <title> Metodi Di Pagamento - <%=session.getAttribute("nome")%> </title>
     <link rel="stylesheet" href="Styles/paymentMethods.css">
     <link rel="stylesheet" href="Styles/nav.css">
     <link rel="stylesheet" href="Styles/footer.css">
@@ -18,32 +18,33 @@
             List<BankAccount> bankaccounts = paymentMethods.getBankAccounts();
             if (!creditCards.isEmpty()) {
         %>
-        <h1 class="title-payment">Carte Di Credito:</h1>
+        <h1 class="title-payment">Carte Di Credito</h1>
         <%
                 for (CreditCard creditCard : creditCards) {
         %>
-        <div class="payment-container <%=creditCard.isExpired() ? "is-expired" : ""%>" <%=creditCard.isExpired() ? "title='Carta di credito scadura'" : ""%>>
-            <p class="numero"><%=creditCard.getNumero()%></p>
-            <p class="intenstatario"><%=creditCard.getIntestatario()%></p>
-            <p class="cvc"><%=creditCard.getCvc()%></p>
-            <p class="data-scadenza"><%=creditCard.getDataScadenza()%></p>
+        <div class="payment-container<%=creditCard.isExpired() ? "-is-expired" : ""%>" <%=creditCard.isExpired() ? "title='Carta di credito scadura'" : ""%>>
+            <p>Intestatario: <span><%=creditCard.getIntestatario()%></span></p>
+            <p>Numero di carta: <span><%="************" + creditCard.getNumero().substring(creditCard.getNumero().length() - 4)%></span></p>
+            <p>CVC: <span>***</span></p>
+            <p>Data Di Scadenza: <span><%=creditCard.getDataScadenza()%></span></p>
         </div>
         <%
                 }
             }
-            if (!bankaccounts.isEmpty()){
+            if (!bankaccounts.isEmpty()) {
         %>
-        <h1 class="title-payment">Conti Correnti:</h1>
+        <h1 class="title-payment">Conti Correnti</h1>
         <%
             for (BankAccount bankAccount : bankaccounts) {
         %>
         <div class="payment-container">
-            <p class="intestatario"><%=bankAccount.getIntenstatario()%></p>
-            <p class="IBAN"><%=bankAccount.getIBAN()%></p>
+            <p>Intestatario: <span><%=bankAccount.getIntenstatario()%></span></p>
+            <p>IBAN: <span><%=bankAccount.getIBAN().substring(0, 2) + "**********************" + bankAccount.getIBAN().substring(bankAccount.getIBAN().length() - 3)%></span></p>
         </div>
         <%
                 }
-            } else {
+            }
+            if(creditCards.isEmpty() && bankaccounts.isEmpty()){
         %>
         <div class="empty-section">
             <h1>Non possiedi metodi di pagamento</h1>

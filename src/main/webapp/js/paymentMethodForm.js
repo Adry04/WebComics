@@ -3,10 +3,10 @@ const bankAccount = document.getElementById("bank-account")
 const errorText = document.getElementById("error-text")
 
 const cvcPattern = /^[0-9]{3}$/;
-const numberPattern = /^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]$/;
-const datePattern = /^\d{2}-\d{2}-\d{4}$/;
-const bankIbanPattern = /^[A-Z]{2}\+[0-9]{25}]$/;
-const ownerPattern = /^[A-Za-z]$/;
+const numberPattern = /^(?:[0-9]{4}[-\s]?){3}[0-9]{4}$/;
+const datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
+const bankIbanPattern = /^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$/;
+const ownerPattern = /^[A-Za-z]+ [A-Za-z]+$/
 
 function showCreditCard() {
     creditCard.classList.add("show-form")
@@ -50,7 +50,10 @@ function controlForm() {
         const cardNumber = document.getElementById("card-number")
         const cardOwner = document.getElementById("card-owner")
         const cardCvc = document.getElementById("cvc")
-        const cardExpiration = document.getElementById("expiring")
+        const cardExpirationForm = document.getElementById("expiring")
+        const [year, month, day] = cardExpirationForm.value.split("-");
+        const cardExpiration = `${day}/${month}/${year}`;
+        console.log(cardExpiration)
         if (!ownerPattern.test(cardOwner.value) || cardOwner.value.trim() === ''){
             errorText.classList.remove("remove-item")
             errorText.innerHTML = "Credenziali del proprietario non valide";
@@ -63,7 +66,7 @@ function controlForm() {
             errorText.classList.remove("remove-item");
             errorText.innerHTML = "Codice CVC non valido";
             return false;
-        } else if(!datePattern.test(cardExpiration.value) || cardExpiration.value.trim() === '') {
+        } else if(!datePattern.test(cardExpiration) || cardExpiration.trim() === '') {
             errorText.classList.remove("remove-item");
             errorText.innerHTML = "La data inserita non è valida";
             return false

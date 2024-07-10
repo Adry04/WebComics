@@ -8,6 +8,7 @@
     <script src="js/navbar.js" type="text/javascript"></script>
     <link rel="stylesheet" href="Styles/comic-card.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <%@include file="navbar.jsp"%>

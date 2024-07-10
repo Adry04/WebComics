@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="Styles/cart-card-comic.css"/>
     <link rel="stylesheet" href="Styles/cart.css"/>
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <%@include file="navbar.jsp"%>

@@ -4,18 +4,18 @@
         <a href="./">
             <img src="assets/logo.png" alt="Logo WebComics"/>
         </a>
-        <p class="address" onclick="window.open('https://maps.app.goo.gl/JXCRRe5Tcgj3B7Fh6')">Via delle Stelle, 84084 Fisciano SA</p>
+        <p class="address" onclick="window.open('https://maps.app.goo.gl/JXCRRe5Tcgj3B7Fh6')" aria-label="Click Address on maps">Via delle Stelle, 84084 Fisciano SA</p>
     </div>
     <div class="subsection">
         <p class="title">INFO</p>
         <p class="subtext" onclick="location.href = 'service'">Contattaci</p>
-        <p class="licence-subtext">WebComics© All Rights Reserved</p>
+        <p class="subtext">WebComics© All Rights Reserved</p>
     </div>
     <div class="subsection">
         <p class="title">IL TUO ACCOUNT</p>
-        <p class="subtext" onclick="location.href = 'account'">Pagina personale</p>
-        <p class="subtext" onclick="location.href = 'order'">Ordini</p>
-        <p class="subtext" onclick="location.href = 'address'">Indirizzi</p>
-        <p class="subtext" onclick="location.href = 'payment-method'">Metodi di pagamento</p>
+        <p class="subtext" onclick="location.href = 'account'" aria-label="Pagina personale">Pagina personale</p>
+        <p class="subtext" onclick="location.href = 'order'" aria-label="Ordini">Ordini</p>
+        <p class="subtext" onclick="location.href = 'address'" aria-label="Indirizzi">Indirizzi</p>
+        <p class="subtext" onclick="location.href = 'payment-method'" aria-label="Metodi di pagamento">Metodi di pagamento</p>
     </div>
 </footer>

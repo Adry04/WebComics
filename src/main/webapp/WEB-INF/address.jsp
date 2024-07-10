@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="Styles/dataUser.css">
     <script src="js/navbar.js" type="text/javascript"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <%@include file="navbar.jsp"%>
@@ -35,9 +36,7 @@
         <%
             }
         %>
-        <div class="add-button">
-            <button type="submit" value="Aggiungi indirizzo di spedizione" onclick="location.href = 'address-form'">Aggiungi indirizzo di spedizione</button>
-        </div>
+        <button class="add-button" type="submit" value="Aggiungi indirizzo di spedizione" aria-label="aggiungi indirizzo di spedizione" onclick="location.href = 'address-form'">Aggiungi indirizzo di spedizione</button>
     </div>
     <%@include file="footer.jsp"%>
 </body>

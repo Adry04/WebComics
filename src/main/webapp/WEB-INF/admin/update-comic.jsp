@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="Styles/admin/navadmin.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Styles/admin/comic-form.css" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <%@include file="navadmin.jsp"%>

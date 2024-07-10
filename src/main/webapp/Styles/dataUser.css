@@ -65,13 +65,6 @@
 }
 
 .add-button {
-    display: flex;
-    align-self: center;
-    margin: 1.5em auto;
-    font-family: "Poppins", sans-serif;
-}
-
-.add-button button {
     border: 3px #00BF62 solid;
     border-radius: 8px;
     background-color: white;
@@ -81,6 +74,9 @@
     padding: .2em .8em;
     transition: .4s;
     cursor: pointer;
+    display: block;
+    margin: 1em auto;
+    font-family: "Poppins", sans-serif;
 }
 
 .add-button button:hover {

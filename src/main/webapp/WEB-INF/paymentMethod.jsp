@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="Styles/footer.css">
     <script src="js/navbar.js" type="text/javascript"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <%@include file="navbar.jsp"%>
@@ -31,37 +32,34 @@
         <%
                 }
         %>
-        </div>
-        <%
-            }
-            if (!bankaccounts.isEmpty()) {
-        %>
-        <div class="container-section">
-            <h1 class="title title-payment">Conti Correnti</h1>
-            <%
-                for (BankAccount bankAccount : bankaccounts) {
-            %>
-            <div class="container">
-                <p>Intestatario: <span><%=bankAccount.getIntenstatario()%></span></p>
-                <p>IBAN: <span><%=bankAccount.getIBAN().substring(0, 2) + "**********************" + bankAccount.getIBAN().substring(bankAccount.getIBAN().length() - 3)%></span></p>
-            </div>
-            <%
-                    }
-                }
-                if(creditCards.isEmpty() && bankaccounts.isEmpty()){
-            %>
-        </div>
-        <div class="empty-section">
-            <h1>Non possiedi metodi di pagamento</h1>
-            <img src="assets/icons/payment.png" alt="Non possiedi metodi di pagamento"/>
-        </div>
-        <%
-            }
-        %>
-        <div class="add-button">
-            <button type="submit" value="Aggiungi metodo di pagamento" onclick="location.href = 'form-payment-method'">Aggiungi metodo di pagamento</button>
-        </div>
     </div>
+    <%
+        }
+        if (!bankaccounts.isEmpty()) {
+    %>
+    <div class="container-section">
+        <h1 class="title title-payment">Conti Correnti</h1>
+        <%
+            for (BankAccount bankAccount : bankaccounts) {
+        %>
+        <div class="container">
+            <p>Intestatario: <span><%=bankAccount.getIntenstatario()%></span></p>
+            <p>IBAN: <span><%=bankAccount.getIBAN().substring(0, 2) + "**********************" + bankAccount.getIBAN().substring(bankAccount.getIBAN().length() - 3)%></span></p>
+        </div>
+        <%
+                }
+            }
+            if(creditCards.isEmpty() && bankaccounts.isEmpty()){
+        %>
+    </div>
+    <div class="empty-section">
+        <h1>Non possiedi metodi di pagamento</h1>
+        <img src="assets/icons/payment.png" alt="Non possiedi metodi di pagamento"/>
+    </div>
+    <%
+        }
+    %>
+    <button class="add-button" type="submit" value="Aggiungi metodo di pagamento" onclick="location.href = 'form-payment-method'">Aggiungi metodo di pagamento</button>
     <%@include file="footer.jsp"%>
 </body>
 </html>

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="Styles/footer.css">
     <script src="js/navbar.js" type="text/javascript"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <%@include file="/WEB-INF/navbar.jsp"%>
@@ -24,8 +25,8 @@
             <div class="slide"><img src="assets/slider-image/image2.png" alt="Image 2"></div>
             <div class="slide"><img src="assets/slider-image/image3.png" alt="Image 3"></div>
         </div>
-        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        <button class="prev" onclick="moveSlide(-1)" aria-label="Prev Slide">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)" aria-label="Next Slide">&#10095;</button>
     </div>
     <h1 class="title-section">MANGA & FUMETTI</h1>
     <div class="comics-container">

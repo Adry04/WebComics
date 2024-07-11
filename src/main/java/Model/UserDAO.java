@@ -97,8 +97,9 @@ public class UserDAO {
             while (rs.next()) {
                 String intestatario = rs.getString("intestatario");
                 String IBAN = rs.getString("IBAN");
+                String bic = rs.getString("bic");
                 int id = rs.getInt("id");
-                bankAccounts.add(new BankAccount(intestatario, IBAN, id));
+                bankAccounts.add(new BankAccount(intestatario, IBAN, bic, id));
             }
             return new PaymentMethods(creditCards, bankAccounts);
         } catch (SQLException e) {
@@ -145,9 +146,10 @@ public class UserDAO {
             if(rsVerify.next()) {
                 throw new IOException("La carta esiste già");
             }
-            PreparedStatement ps = con.prepareStatement("INSERT INTO cc (intestatario, IBAN) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO cc (intestatario, IBAN, bic) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, b.getIntenstatario());
             ps.setString(2, b.getIBAN());
+            ps.setString(3, b.getBic());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             while(rs.next()) {
@@ -295,7 +297,8 @@ public class UserDAO {
             while (rs.next()) {
                 String intestatario = rs.getString("intestatario");
                 String iban = rs.getString("IBAN");
-                b = new BankAccount(intestatario, iban);
+                String bic = rs.getString("bic");
+                b = new BankAccount(intestatario, iban, bic);
             }
             return b;
         } catch (SQLException e) {
@@ -314,8 +317,9 @@ public class UserDAO {
             while(rs.next()){
                 String intestatario = rs.getString("intestatario");
                 String iban = rs.getString("IBAN");
+                String bic = rs.getString("bic");
                 int id = rs.getInt("id");
-                accounts.add(new BankAccount(intestatario, iban, id));
+                accounts.add(new BankAccount(intestatario, iban, bic, id));
             }
             return accounts;
         } catch (SQLException e) {

@@ -6,7 +6,8 @@ const cvcPattern = /^[0-9]{3}$/;
 const numberPattern = /^(?:[0-9]{4}[-\s]?){3}[0-9]{4}$/;
 const datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
 const bankIbanPattern = /^[A-Z]{2}[0-9A-Z]{25}$/;
-const ownerPattern = /^[A-Za-z]+ [A-Za-z]+$/
+const ownerPattern = /^[A-Za-z]+ [A-Za-z]+$/;
+const bicPattern = /^[A-Z]{6}[0-9]{2}$/;
 
 function showCreditCard() {
     creditCard.classList.add("show-form")
@@ -16,6 +17,7 @@ function showCreditCard() {
     errorText.classList.add("remove-item");
     errorText.innerHTML = "";
 }
+
 function showBankAccount() {
     bankAccount.classList.add("show-form")
     bankAccount.classList.remove("no-display-form")
@@ -75,16 +77,21 @@ function controlForm() {
         }
     } else if(selectedMethod === "BankAccount") {
         // BackAccount Attribute
-        const bankAccountOwner = document.getElementById("bank-account-owner")
-        const IBAN = document.getElementById("iban")
+        const bankAccountOwner = document.getElementById("bank-account-owner");
+        const IBAN = document.getElementById("iban");
+        const bic = document.getElementById("bic");
         if(!ownerPattern.test(bankAccountOwner.value) || bankAccountOwner.value.trim() === '') {
             errorText.classList.remove("remove-item");
             errorText.innerHTML = "Credenziali del proprietario non valide";
-            return false
+            return false;
         } else if (IBAN.value.trim() === '' || !bankIbanPattern.test(IBAN.value)) {
             errorText.classList.remove("remove-item");
             errorText.innerHTML = "IBAN non valido";
-            return false
+            return false;
+        } else if (bic.value.trim() === '' || !bicPattern.test(bic.value)) {
+            errorText.classList.remove("remove-item");
+            errorText.innerHTML = "Codice BIC nonb valido";
+            return false;
         } else {
             return true
         }

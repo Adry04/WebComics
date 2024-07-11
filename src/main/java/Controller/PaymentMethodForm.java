@@ -77,16 +77,20 @@ public class PaymentMethodForm extends HttpServlet {
             } else if (methodType.equals("BankAccount")) {
                 String IBAN = request.getParameter("iban");
                 String intestatario = request.getParameter("bank-account-owner");
+                String bic = request.getParameter("bic");
                 String bankIbanPattern = "^[A-Z]{2}[0-9A-Z]{25}$";
                 String ownerPattern = "^[A-Za-z]+ [A-Za-z]+$";
+                String bicPattern = "^[A-Z]{6}[0-9]{2}$";
                 if (!intestatario.matches(ownerPattern)) {
                     request.setAttribute("error-payment", "Credenziali intestatario non valide");
                     throw new ServletException("Credenziali intestatario non valide");
                 } else if (!IBAN.matches(bankIbanPattern)) {
                     request.setAttribute("error-payment", "IBAN non valido");
                     throw new ServletException("IBAN non valido");
+                } else if (!bic.matches(bicPattern)) {
+                    request.setAttribute("error-payment", "Codice BIC non valido");
                 } else {
-                    BankAccount b = new BankAccount(intestatario, IBAN);
+                    BankAccount b = new BankAccount(intestatario, IBAN, bic);
                     if (!UserDAO.doBankAccountSave((int) session.getAttribute("userId"), b)) {
                         request.setAttribute("error-payment", "Errore aggiunta del conto, controlla se è già presente nel tuo account");
                         throw new ServletException("Errore nel salvataggio del metodo di pagamento (Conto Corrente)");

@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.UserDAO;
-import Model.PaymentMethods;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Objects;
 
 @WebServlet("/payment-method")
 public class PaymentMethodServlet extends HttpServlet {

@@ -45,6 +45,7 @@
         <div class="container">
             <p>Intestatario: <span><%=bankAccount.getIntenstatario()%></span></p>
             <p>IBAN: <span><%=bankAccount.getIBAN().substring(0, 2) + "*********************" + bankAccount.getIBAN().substring(bankAccount.getIBAN().length() - 4)%></span></p>
+            <p>BIC: <span><%=bankAccount.getBic()%></span></p>
         </div>
         <%
                 }

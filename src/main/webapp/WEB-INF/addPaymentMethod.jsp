@@ -50,6 +50,10 @@
                     <label for="iban">Inserisci l'IBAN</label>
                     <input type="text" placeholder="Inserire l'IBAN'" id="iban" name="iban" maxlength="27"/>
                 </div>
+                <div>
+                    <label for="bic">Inserisci l'IBAN</label>
+                    <input type="text" placeholder="Inserire il BIC" id="bic" name="bic" maxlength="8"/>
+                </div>
             </div>
             <p id="error-text" class="error-text <%=request.getAttribute("error-payment") == null ? "remove-item" : ""%>"><%=request.getAttribute("error-payment") != null ? request.getAttribute("error-payment") : ""%></p>
             <button type="submit"> Aggiungi metodo </button>

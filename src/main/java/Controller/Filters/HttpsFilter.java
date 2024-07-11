@@ -20,9 +20,7 @@ public class HttpsFilter extends HttpFilter implements Filter {
             String contextPath = requestServlet.getContextPath(); // Aggiunge il contesto dell'applicazione
             String queryString = requestServlet.getQueryString();
 
-            String redirectUrl = "https://" + serverName + ":" + serverPort + contextPath + "/" +
-                    (queryString == null ? "" : "?" + queryString);
-            System.out.println(redirectUrl);
+            String redirectUrl = "https://" + serverName + ":" + serverPort + contextPath + "/";
             ((HttpServletResponse) response).sendRedirect(redirectUrl);
             return;
         }

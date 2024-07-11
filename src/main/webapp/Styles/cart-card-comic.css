@@ -31,15 +31,15 @@
         'image-button text-section'
         'image-button text-section'
         'image-button operation-section';
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 20% calc(80% - 1em);
     grid-template-rows: auto auto;
-    gap: 1em;
+    column-gap: 1em;
     position: relative;
     width: 80%;
     margin: 0 auto;
 }
 
-.card-container img {
+.card-container button img {
     width: 100%;
     height: 100%;
 }
@@ -77,15 +77,15 @@
 }
 
 .price {
-    position: absolute;
-    top: 8px;
-    right: 8px;
+    position: relative
 }
 
 .price p {
     font-family: "Poppins", sans-serif;
     font-weight: bold;
     font-size: 22px;
+    text-align: right;
+    margin: 1em 0;
 }
 
 .operation-section {
@@ -94,7 +94,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 1em;
-    width: 100%;
+    width: calc(100% - 1em);
     height: 100%;
 }
 
@@ -169,4 +169,90 @@
 .empty-section img {
     width: 200px;
     height: 200px;
+}
+
+@media screen and (max-width: 1200px) {
+    .text-section div h1 {
+        font-size: 18px;
+    }
+
+    .price p {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .text-section div h1 {
+        font-size: 14px;
+    }
+
+    .price {
+        margin: .8em;
+    }
+
+    .price p {
+        font-size: 16px;
+    }
+
+    .desc {
+        font-size: 12px;
+    }
+
+    .operation-section {
+        gap: .6em;
+    }
+
+    .operation-section .separation .quantity-section {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .price p {
+        font-size: 14px;
+    }
+
+    .card-container {
+        width: calc(98% - 1em);
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .price p {
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .operation-section .separation .quantity-section {
+        width: 80px;
+        font-size: 14px;
+    }
+
+    .text-section {
+        gap: 0;
+    }
+
+    .card-container {
+        grid-template-areas:
+        'image-button text-section'
+        'image-button operation-section';
+        grid-template-columns: 30% calc(70% - .4em);
+        column-gap: .4em;
+        width: 98%;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .desc {
+        -webkit-line-clamp: 2; /* Change this value to the number of lines you want to display */
+    }
+
+    .operation-section {
+
+    }
+
+    .operation-section .separation {
+        padding: 0;
+    }
 }

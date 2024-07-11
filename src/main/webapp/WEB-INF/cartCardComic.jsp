@@ -13,6 +13,9 @@
             <h1><%=comic.getTitle()%></h1>
             <p id="desc-<%=comic.getISBN()%>" class="desc"><%=comic.getDesc()%></p>
         </div>
+        <div class="price">
+            <p><%=finalPrice%> €</p>
+        </div>
     </div>
     <div class="operation-section">
         <div class="separation">
@@ -29,8 +32,5 @@
         <div class="separation">
             <button onclick='remove(<%=comic.getISBN()%>, <%=comicJson%>, <%=finalPrice%>)'>Rimuovi</button>
         </div>
-    </div>
-    <div class="price">
-        <p><%=finalPrice%> €</p>
     </div>
 </div>

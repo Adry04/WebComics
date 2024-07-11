@@ -104,6 +104,8 @@ public class ComicFormServlet extends HttpServlet {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new ServletException("Errore durante il salvataggio del file", e);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
         }
     }
 }

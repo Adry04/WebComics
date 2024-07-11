@@ -79,7 +79,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-.add-button button:hover {
+.add-button :hover {
     background-color: #00BF62;
     color: white;
 }

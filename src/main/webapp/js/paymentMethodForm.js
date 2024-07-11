@@ -6,7 +6,7 @@ const cvcPattern = /^[0-9]{3}$/;
 const numberPattern = /^(?:[0-9]{4}[-\s]?){3}[0-9]{4}$/;
 const datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
 const bankIbanPattern = /^[A-Z]{2}[0-9A-Z]{25}$/;
-const ownerPattern = /^[A-Za-z]+ [A-Za-z]+$/;
+const ownerPattern = /^[a-zA-Zà-ÿÀ-ÿ'’\- ]+$/;
 const bicPattern = /^[A-Z]{6}[0-9]{2}$/;
 
 function showCreditCard() {
@@ -90,7 +90,7 @@ function controlForm() {
             return false;
         } else if (bic.value.trim() === '' || !bicPattern.test(bic.value)) {
             errorText.classList.remove("remove-item");
-            errorText.innerHTML = "Codice BIC nonb valido";
+            errorText.innerHTML = "Codice BIC non valido";
             return false;
         } else {
             return true

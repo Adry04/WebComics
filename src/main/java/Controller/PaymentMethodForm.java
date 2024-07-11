@@ -47,7 +47,7 @@ public class PaymentMethodForm extends HttpServlet {
                 String cvcPattern = "^[0-9]{3}$";
                 String numberPattern = "^(?:[0-9]{4}[-\\s]?){3}[0-9]{4}$";
                 String datePattern = "^\\d{2}/\\d{2}/\\d{4}$";
-                String ownerPattern = "^[A-Za-z]+ [A-Za-z]+$";
+                String ownerPattern = "^[a-zA-Zà-ÿÀ-ÿ'’\\- ]+$";
                 LocalDate today = LocalDate.now();
                 LocalDate date = LocalDate.parse(dataScadenzaForm);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
@@ -79,7 +79,7 @@ public class PaymentMethodForm extends HttpServlet {
                 String intestatario = request.getParameter("bank-account-owner");
                 String bic = request.getParameter("bic");
                 String bankIbanPattern = "^[A-Z]{2}[0-9A-Z]{25}$";
-                String ownerPattern = "^[A-Za-z]+ [A-Za-z]+$";
+                String ownerPattern = "^[a-zA-Zà-ÿÀ-ÿ'’\\- ]+$";
                 String bicPattern = "^[A-Z]{6}[0-9]{2}$";
                 if (!intestatario.matches(ownerPattern)) {
                     request.setAttribute("error-payment", "Credenziali intestatario non valide");

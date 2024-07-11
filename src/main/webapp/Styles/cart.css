@@ -39,3 +39,9 @@
     background-color: #00BF62;
     color: white;
 }
+
+@media screen and (max-width: 500px) {
+    .checkout-section {
+        width: 100%;
+    }
+}

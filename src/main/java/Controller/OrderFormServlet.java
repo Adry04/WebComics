@@ -1,18 +1,15 @@
 package Controller;
 
-import Model.Address;
-import Model.BankAccount;
-import Model.CreditCard;
-import Model.UserDAO;
+import Model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 @WebServlet("/order-form")
@@ -50,6 +47,18 @@ public class OrderFormServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        try {   //TODO servlet del post dopo che il checkout è stato effettuato
+            String ISBN = request.getParameter("ISBN");
+            String ISBNPattern = "[0-9]{13}";
+            if (!ISBN.matches(ISBNPattern)) {
+                request.setAttribute("error-form", "ISBN non conforme");
+                throw new ServletException("ISBN non conforme");
+            }
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/order.jsp");
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/order-form.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 }

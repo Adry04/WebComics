@@ -17,6 +17,7 @@
             List<Address> addresses = (List<Address>) request.getAttribute("address");
             if (!addresses.isEmpty()) {
         %>
+        <h1 class="title title-payment">Indirizzi Di Spedizione</h1>
         <%
             for (Address a : addresses) {
         %>

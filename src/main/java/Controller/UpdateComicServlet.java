@@ -79,8 +79,10 @@ public class UpdateComicServlet extends HttpServlet {
                     System.out.println("File caricato con successo: " + fileName);
                     filePart.write(filePath);
                     File oldFile = new File(oldFilePath);
-                    if (!oldFile.delete()) {
-                        throw new ServletException("Errore nella cancellazione del file");
+                    if(oldFile.exists()) {
+                        if (!oldFile.delete()) {
+                            throw new ServletException("Errore nella cancellazione del file");
+                        }
                     }
                 }
             }

@@ -40,6 +40,7 @@ span {
 }
 
 .comic-card .image-button {
+    width: 100%;
     background-color: transparent;
     border: none;
 }

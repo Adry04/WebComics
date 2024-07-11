@@ -6,6 +6,7 @@ public class CreditCard {
     private String cvc;
     private String dataScadenza;
     private boolean isExpired;
+    private int id;
 
     public CreditCard(String numero, String intestatario, String cvc, String dataScadenza) {
         this.numero = numero;
@@ -14,12 +15,21 @@ public class CreditCard {
         this.dataScadenza = dataScadenza;
     }
 
-    public CreditCard(String numero, String intestatario, String cvc, String dataScadenza, boolean isExpired) {
+    public CreditCard(String numero, String intestatario, String cvc, String dataScadenza, int id) {
+        this.numero = numero;
+        this.intestatario = intestatario;
+        this.cvc = cvc;
+        this.dataScadenza = dataScadenza;
+        this.id = id;
+    }
+
+    public CreditCard(String numero, String intestatario, String cvc, String dataScadenza, boolean isExpired, int id) {
         this.numero = numero;
         this.intestatario = intestatario;
         this.cvc = cvc;
         this.dataScadenza = dataScadenza;
         this.isExpired = isExpired;
+        this.id = id;
     }
 
     public String getNumero() {
@@ -60,5 +70,13 @@ public class CreditCard {
 
     public void setExpired(boolean expired) {
         isExpired = expired;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

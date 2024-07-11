@@ -48,8 +48,13 @@ public class AddressServletForm extends HttpServlet {
                 }
             }
             response.setStatus(response.SC_OK);
-            String contextPath = request.getContextPath();
-            response.sendRedirect(contextPath + "/address");
+            if(request.getParameter("order") != null) {
+                String contextPath = request.getContextPath();
+                response.sendRedirect(contextPath + "/order-form");
+            } else {
+                String contextPath = request.getContextPath();
+                response.sendRedirect(contextPath + "/address");
+            }
         } catch (ServletException e) {
             e.printStackTrace(System.out);
             response.setStatus(response.SC_BAD_REQUEST);

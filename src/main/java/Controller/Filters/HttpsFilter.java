@@ -12,7 +12,7 @@ public class HttpsFilter extends HttpFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         boolean isSecure = request.isSecure();
-        if (!isSecure) { //TODO va messo il negato
+        if (!isSecure) {
             HttpServletRequest requestServlet = (HttpServletRequest) request;
             String serverName = requestServlet.getServerName();
             int serverPort = 8443;

@@ -96,8 +96,13 @@ public class PaymentMethodForm extends HttpServlet {
                 throw new ServletException("Errore, imetodo di pagamento assente");
             }
             response.setStatus(response.SC_OK);
-            String contextPath = request.getContextPath();
-            response.sendRedirect(contextPath + "/payment-method");
+            if(request.getParameter("order") != null) {
+                String contextPath = request.getContextPath();
+                response.sendRedirect(contextPath + "/order-form");
+            } else {
+                String contextPath = request.getContextPath();
+                response.sendRedirect(contextPath + "/payment-method");
+            }
         } catch (ServletException e) {
             e.printStackTrace(System.out);
             response.setStatus(response.SC_BAD_REQUEST);

@@ -32,7 +32,7 @@
         </div>
         <div class="checkout-section" id="checkout-section" data-price="<%=cart.getTotalPrice()%>">
             <p class="prezzo">Prezzo totale: <span id="prezzo"><%=totalPriceString%> €</span></p>
-            <button onclick="onOrder()">Effettua ordine</button>
+            <button onclick="location.href = 'order-form'">Effettua ordine</button>
         </div>
     </c:if>
     <c:if test="${sizeCartComics == 0}">

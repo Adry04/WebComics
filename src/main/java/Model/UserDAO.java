@@ -86,7 +86,8 @@ public class UserDAO {
                 LocalDate dataOdierna = LocalDate.now();
                 LocalDate dataScadenza = scadenza.toLocalDate();  // Converti java.sql.Date a LocalDate
                 boolean isExpired = !dataOdierna.isBefore(dataScadenza);
-                creditCards.add(new CreditCard(numero, intestatario, cvc, scadenza.toString(), isExpired));
+                int id = rs.getInt("id");
+                creditCards.add(new CreditCard(numero, intestatario, cvc, scadenza.toString(), isExpired, id));
             }
             query = "SELECT * FROM cc JOIN contoutente ON contoutente.ccid = cc.id WHERE idUtente = ?";
             ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -96,7 +97,8 @@ public class UserDAO {
             while (rs.next()) {
                 String intestatario = rs.getString("intestatario");
                 String IBAN = rs.getString("IBAN");
-                bankAccounts.add(new BankAccount(intestatario, IBAN));
+                int id = rs.getInt("id");
+                bankAccounts.add(new BankAccount(intestatario, IBAN, id));
             }
             return new PaymentMethods(creditCards, bankAccounts);
         } catch (SQLException e) {
@@ -119,7 +121,7 @@ public class UserDAO {
             ps.setString(2, c.getIntestatario());
             ps.setString(3, c.getCvc());
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
-            ps.setDate(4,  java.sql.Date.valueOf(LocalDate.parse(c.getDataScadenza(), formatter)));
+            ps.setDate(4,  Date.valueOf(LocalDate.parse(c.getDataScadenza(), formatter)));
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             while(rs.next()) {
@@ -195,9 +197,127 @@ public class UserDAO {
                 String indirizzo = rs.getString("indirizzo");
                 String CAP = rs.getString("CAP");
                 String provincia = rs.getString("provincia");
-                addresses.add(new Address(indirizzo, CAP, provincia));
+                int id = rs.getInt("id");
+                addresses.add(new Address(indirizzo, CAP, provincia, id));
             }
             return addresses;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
+
+    public static boolean doDeleteAddress(int idUtente, Address a) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "DELETE FROM indirizzo WHERE id = ? AND idUtente = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, a.getId());
+            ps.setInt(2, idUtente);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return false;
+        }
+    }
+
+    public static Address getAddress(int idIndirizzo) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM indirizzo WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idIndirizzo);
+            ResultSet rs = ps.executeQuery();
+            Address a = null;
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String indirizzo = rs.getString("indirizzo");
+                String CAP = rs.getString("CAP");
+                String provincia = rs.getString("provincia");
+                a = new Address(indirizzo, CAP, provincia, id);
+            }
+            return a;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
+
+    public static CreditCard getCard(int idCarta) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM CDC where id = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idCarta);
+            ResultSet rs = ps.executeQuery();
+            CreditCard c = null;
+            while(rs.next()){
+                String numero = rs.getString("numero");
+                String intestatario = rs.getString("intestatario");
+                String cvc  = rs.getString("cvc");
+                String dataScadenza = rs.getString("scadenza");
+                c = new CreditCard(numero, intestatario, cvc, dataScadenza);
+            }
+            return c;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
+
+    public static List<CreditCard> getAllCards(int idUtente) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM cartautente JOIN cdc ON cdc.id = cartautente.cdcid WHERE idUtente = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idUtente);
+            ResultSet rs = ps.executeQuery();
+            List<CreditCard> cards = new ArrayList<>();
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String numero = rs.getString("numero");
+                String intestatario = rs.getString("intestatario");
+                String cvc  = rs.getString("cvc");
+                String dataScadenza = rs.getString("scadenza");
+                cards.add(new CreditCard(numero, intestatario, cvc, dataScadenza, id));
+            }
+            return cards;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
+
+    public static BankAccount getBankAccount(int idBankAccount) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM cc where id = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idBankAccount);
+            ResultSet rs = ps.executeQuery();
+            BankAccount b = null;
+            while (rs.next()) {
+                String intestatario = rs.getString("intestatario");
+                String iban = rs.getString("IBAN");
+                b = new BankAccount(intestatario, iban);
+            }
+            return b;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
+
+    public static List<BankAccount> getAllBankAccounts(int idUtente) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM contoutente JOIN cc ON cc.id = contoutente.ccid WHERE idUtente = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idUtente);
+            ResultSet rs = ps.executeQuery();
+            List<BankAccount> accounts = new ArrayList<>();
+            while(rs.next()){
+                String intestatario = rs.getString("intestatario");
+                String iban = rs.getString("IBAN");
+                int id = rs.getInt("id");
+                accounts.add(new BankAccount(intestatario, iban, id));
+            }
+            return accounts;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             return null;

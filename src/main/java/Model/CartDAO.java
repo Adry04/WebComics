@@ -82,53 +82,6 @@ public class CartDAO {
         }
     }
 
-
-    public static boolean addQuantity(String ISBN, int idUtente, int newQuantity) {
-        try (Connection con = ConPool.getConnection()){
-            String firstQuery = "SELECT quantita FROM carrello WHERE idUtente = ? AND isbn = ?";
-            PreparedStatement ps1 = con.prepareStatement(firstQuery, Statement.RETURN_GENERATED_KEYS);
-            ps1.setInt(1, idUtente);
-            ps1.setString(2, ISBN);
-            ResultSet rs = ps1.executeQuery();
-            if(rs.next()) {
-                int quantita = rs.getInt("quantita");
-                String query = "UPDATE carrello SET quantita = ? WHERE idUtente = ? AND isbn = ?";
-                PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                int quantita2 = quantita + newQuantity;
-                ps.setInt(1, quantita2);
-                ps.setInt(2, idUtente);
-                ps.setString(3, ISBN);
-                ps.executeUpdate();
-                return true;
-            } else {
-                System.out.println("Nessuna voce trovata nel carrello per l'utente e ISBN specificati.");
-                return false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-            return false;
-        }
-    }
-
-    public static boolean removeQuantity(String ISBN, int idUtente, int newQuantity) {
-        try (Connection con = ConPool.getConnection()){
-            String firstQuery = "SELECT quantita FROM carrello WHERE idUtente = ? AND isbn = ?";
-            PreparedStatement ps1 = con.prepareStatement(firstQuery, Statement.RETURN_GENERATED_KEYS);
-            ResultSet rs = ps1.executeQuery();
-            int quantita = rs.getInt("quantita");
-            String query = "UPDATE carrello SET quantita=? WHERE idUtente = ? AND isbn = ?";
-            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, quantita - newQuantity);
-            ps.setInt(2, idUtente);
-            ps.setString(3, ISBN);
-            ps.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-            return false;
-        }
-    }
-
     public static boolean changeQuantity(String ISBN, int idUtente, int quantity) {
         try (Connection con = ConPool.getConnection()) {
             String query = "UPDATE carrello SET quantita=? WHERE idUtente = ? AND isbn = ?";
@@ -166,6 +119,52 @@ public class CartDAO {
             ps.setInt(2, idUtente);
             ps.executeUpdate();
             return true;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return false;
+        }
+    }
+
+    public static boolean removeQuantity(String ISBN, int idUtente, int newQuantity) {
+        try (Connection con = ConPool.getConnection()){
+            String firstQuery = "SELECT quantita FROM carrello WHERE idUtente = ? AND isbn = ?";
+            PreparedStatement ps1 = con.prepareStatement(firstQuery, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps1.executeQuery();
+            int quantita = rs.getInt("quantita");
+            String query = "UPDATE carrello SET quantita=? WHERE idUtente = ? AND isbn = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, quantita - newQuantity);
+            ps.setInt(2, idUtente);
+            ps.setString(3, ISBN);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return false;
+        }
+    }
+
+    public static boolean addQuantity(String ISBN, int idUtente, int newQuantity) {
+        try (Connection con = ConPool.getConnection()){
+            String firstQuery = "SELECT quantita FROM carrello WHERE idUtente = ? AND isbn = ?";
+            PreparedStatement ps1 = con.prepareStatement(firstQuery, Statement.RETURN_GENERATED_KEYS);
+            ps1.setInt(1, idUtente);
+            ps1.setString(2, ISBN);
+            ResultSet rs = ps1.executeQuery();
+            if(rs.next()) {
+                int quantita = rs.getInt("quantita");
+                String query = "UPDATE carrello SET quantita = ? WHERE idUtente = ? AND isbn = ?";
+                PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                int quantita2 = quantita + newQuantity;
+                ps.setInt(1, quantita2);
+                ps.setInt(2, idUtente);
+                ps.setString(3, ISBN);
+                ps.executeUpdate();
+                return true;
+            } else {
+                System.out.println("Nessuna voce trovata nel carrello per l'utente e ISBN specificati.");
+                return false;
+            }
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             return false;

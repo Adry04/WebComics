@@ -4,11 +4,19 @@ public class Address {
     private String indirizzo;
     private String cap;
     private String provincia;
+    private int id;
 
     public Address(String indirizzo, String cap, String provincia) {
         this.indirizzo = indirizzo;
         this.cap = cap;
         this.provincia = provincia;
+    }
+
+    public Address(String indirizzo, String cap, String provincia, int id) {
+        this.indirizzo = indirizzo;
+        this.cap = cap;
+        this.provincia = provincia;
+        this.id = id;
     }
 
     public String getIndirizzo() {
@@ -33,5 +41,13 @@ public class Address {
 
     public void setProvincia(String provincia) {
         this.provincia = provincia;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

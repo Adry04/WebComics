@@ -1,7 +1,6 @@
 package Controller;
 
-import Model.Cart;
-import Model.OrderDAO;
+import Model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Objects;
 
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
@@ -41,7 +41,19 @@ public class OrderServlet extends HttpServlet {
                 response.setStatus(response.SC_UNAUTHORIZED);
                 return;
             }
-            if(!OrderDAO.doSave((int) session.getAttribute("userId"), cart)){
+            Address a = UserDAO.getAddress(Integer.parseInt(request.getParameter("idIndirizzo")));
+            String input = request.getParameter("methodPayment");
+            String[] parts = input.split("-");
+            int id = Integer.parseInt(parts[0]);
+            String method = parts[1];
+            CreditCard c = null;
+            BankAccount b = null;
+            if(method.equalsIgnoreCase("CARTA")) {
+                c = UserDAO.getCard(id);
+            } else if(method.equalsIgnoreCase("CONTO")) {
+                b = UserDAO.getBankAccount(id);
+            }
+            if(!OrderDAO.doSave((int) session.getAttribute("userId"), cart, Objects.requireNonNull(a), c, b)) {
                 throw new ServletException("Errore nella creazione dell'ordine");
             }
             session.setAttribute("cart", new Cart((int) session.getAttribute("userId")));

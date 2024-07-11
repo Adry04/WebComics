@@ -41,13 +41,17 @@ form {
     width: 100%;
 }
 
-.input-container input {
+.input-container input, select {
     width: 100%;
     padding: .4em 2%;
     font-size: 18px;
     font-family: "Poppins", sans-serif;
     border-radius: 2px;
     border: 1px #00BF62 solid;
+}
+
+.input-container select {
+    background-color: white;
 }
 
 .input-container  input:focus {
@@ -83,7 +87,7 @@ form {
     margin: 0;
 }
 
-form svg {
+form .onclick-button {
     position: absolute;
     top: 24px;
     left: 24px;
@@ -92,7 +96,15 @@ form svg {
     height: 2em;
 }
 
-button {
+form svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2em;
+    height: 2em;
+}
+
+button[type=submit] {
     align-self: center;
     border: 3px #00BF62 solid;
     border-radius: 8px;
@@ -104,7 +116,7 @@ button {
     transition: .4s;
 }
 
-button:hover {
+button[type=submit]:hover {
     background-color: #00BF62;
     color: white;
     cursor: pointer;
@@ -160,6 +172,12 @@ input[type="radio"]:focus {
     outline: none;
     border-width: 0;
 }
+
+.onclick-button {
+    border: none;
+    background-color: transparent;
+}
+
 
 @media screen and (max-width: 800px) {
     form {

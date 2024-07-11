@@ -68,6 +68,11 @@ p address:hover {
     text-decoration: underline;
 }
 
+.onclick-button {
+    background-color: transparent;
+    border: none;
+}
+
 @media screen and (max-width: 400px) {
     .section-image a img {
         width: 60px;

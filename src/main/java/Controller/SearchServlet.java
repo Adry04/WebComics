@@ -16,7 +16,11 @@ public class SearchServlet extends HttpServlet {
             if (request.getParameter("parameter") == null || request.getParameter("parameter").isEmpty()) {
                 throw new ServletException("Parametro id mancante");
             }
-            request.setAttribute("comics", ComicDAO.search(request.getParameter("parameter")));
+            if (request.getParameter("nuove-uscite") != null && request.getParameter("nuove-uscite").equals("1")) {
+                request.setAttribute("comics", ComicDAO.getNews(request.getParameter("parameter"), 0));
+            } else {
+                request.setAttribute("comics", ComicDAO.search(request.getParameter("parameter")));
+            }
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/searchPage.jsp");
             dispatcher.forward(request, response);
         } catch (ServletException e) {

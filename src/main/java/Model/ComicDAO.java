@@ -101,12 +101,24 @@ public class ComicDAO {
                 String query = "SELECT * FROM fumetto ORDER BY ddi";
                 PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 rs = ps.executeQuery();
-            } else if (limit == 0) {
-                String query = "SELECT * FROM fumetto WHERE categoria = ? ORDER BY ddi";
+            }  else if (limit == 0 && category.equalsIgnoreCase("manga")) {
+                String query = "SELECT * FROM fumetto WHERE categoria = ? OR categoria = ? OR categoria = ? OR categoria = ? ORDER BY ddi";
                 PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, category);
+                ps.setString(1, "shonen");
+                ps.setString(2, "josei");
+                ps.setString(3, "kodomo");
+                ps.setString(4, "seinen");
                 rs = ps.executeQuery();
-            } else if (category.isEmpty()) {
+            } else if(limit == 0 && category.equalsIgnoreCase("fumetto")) {
+                String query = "SELECT * FROM fumetto WHERE categoria = ? OR categoria = ? OR categoria = ? OR categoria = ? ORDER BY ddi";
+                PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, "commedia");
+                ps.setString(2, "supereroi");
+                ps.setString(3, "fantasy");
+                ps.setString(4, "horror");
+                rs = ps.executeQuery();
+
+            }else if (category.isEmpty()) {
                 String query = "SELECT * FROM fumetto ORDER BY ddi LIMIT ?";
                 PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, limit);

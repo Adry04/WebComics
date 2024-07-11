@@ -110,8 +110,6 @@ nav img {
     color: white;
     border-radius: 10px;
     justify-content: flex-start;
-    font-size: 18px;
-    white-space: nowrap;
     opacity: 0;
     transition: all .5s ease-in-out;
 }
@@ -122,8 +120,16 @@ nav img {
     top: 24px;
 }
 
-.subcontainer p {
+.subcontainer button {
     cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    white-space: nowrap;
+    width: auto;
+    text-align: left;
 }
 
 .link-container p a {
@@ -215,12 +221,20 @@ nav img {
     border-radius: 8px;
 }
 
-.search-container div{
+.search-container .onclick-button{
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: .4em;
     cursor: pointer;
+    background-color: white;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+}
+
+.onclick-button {
+    background-color: transparent;
+    border: none;
 }
 
 .search-container form button svg {
@@ -260,6 +274,7 @@ nav img {
     visibility: hidden;
     opacity: 0;
     transition: .4s;
+    border: none;
 }
 
 .mobile-nav {
@@ -309,7 +324,7 @@ nav img {
     margin-top: 4em;
 }
 
-.mobile-nav .mobile-link-section p {
+.mobile-nav .mobile-link-section button {
     font-size: 24px;
     font-family: "Poppins", sans-serif;
     font-weight: bold;

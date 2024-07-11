@@ -4,18 +4,30 @@
         <a href="./">
             <img src="assets/logo.png" alt="Logo WebComics"/>
         </a>
-        <p class="address" onclick="window.open('https://maps.app.goo.gl/JXCRRe5Tcgj3B7Fh6')" aria-label="Click Address on maps">Via delle Stelle, 84084 Fisciano SA</p>
+        <button class="onclick-button" onclick="window.open('https://maps.app.goo.gl/JXCRRe5Tcgj3B7Fh6')" aria-label="Map link" onkeydown="window.open('https://maps.app.goo.gl/JXCRRe5Tcgj3B7Fh6')">
+            <p class="address" aria-label="Click Address on maps">Via delle Stelle, 84084 Fisciano SA</p>
+        </button>
     </div>
     <div class="subsection">
         <p class="title">INFO</p>
-        <p class="subtext" onclick="location.href = 'service'">Contattaci</p>
+        <button class="onclick-button" onclick="location.href = 'service'" aria-label="Contattaci" onkeydown="location.href = 'service'">
+            <p class="subtext">Contattaci</p>
+        </button>
         <p class="subtext">WebComics© All Rights Reserved</p>
     </div>
     <div class="subsection">
         <p class="title">IL TUO ACCOUNT</p>
-        <p class="subtext" onclick="location.href = 'account'" aria-label="Pagina personale">Pagina personale</p>
-        <p class="subtext" onclick="location.href = 'order'" aria-label="Ordini">Ordini</p>
-        <p class="subtext" onclick="location.href = 'address'" aria-label="Indirizzi">Indirizzi</p>
-        <p class="subtext" onclick="location.href = 'payment-method'" aria-label="Metodi di pagamento">Metodi di pagamento</p>
+        <button class="onclick-button" onclick="location.href = 'account'" aria-label="Pagina personale" onkeydown="location.href = 'account'">
+            <p class="subtext" aria-label="Pagina personale">Pagina personale</p>
+        </button>
+        <button class="onclick-button" onclick="location.href = 'order'" aria-label="Ordini" onkeydown="location.href = 'order'">
+            <p class="subtext">Ordini</p>
+        </button>
+        <button class="onclick-button" onclick="location.href = 'address'" aria-label="Indirizzi" onkeydown="location.href = 'address'">
+            <p class="subtext">Indirizzi</p>
+        </button>
+        <button class="onclick-button" onclick="location.href = 'payment-method'" aria-label="Metodi di Pagamento" onkeydown="location.href = 'payment-method'">
+            <p class="subtext">Metodi di pagamento</p>
+        </button>
     </div>
 </footer>

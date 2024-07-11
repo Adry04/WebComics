@@ -21,9 +21,9 @@
     <%@include file="/WEB-INF/navbar.jsp"%>
     <div class="slider">
         <div class="slides">
-            <div class="slide"><img src="assets/slider-image/image1.png" alt="Image 1"></div>
-            <div class="slide"><img src="assets/slider-image/image2.png" alt="Image 2"></div>
-            <div class="slide"><img src="assets/slider-image/image3.png" alt="Image 3"></div>
+            <div class="slide"><img onclick="location.href ='search?parameter=supereroi'"  aria-label="Supereroi" title="Visualizza i nostri fumetti di supereroi" src="assets/slider-image/image1.png" alt="Image 1"></div>
+            <div class="slide"><img onclick="location.href ='search?parameter=nuove-uscite'" aria-label="Nuove Uscite" title="Visualizza le nostre nuove uscite" src="assets/slider-image/image2.png" alt="Image 2"></div>
+            <div class="slide"><img onclick="location.href = 'search?parameter=shonen'" aria-label="Shonen" title="Visualizza i nostri shonen" src="assets/slider-image/image3.png" alt="Image 3"></div>
         </div>
         <button class="prev" onclick="moveSlide(-1)" aria-label="Prev Slide">&#10094;</button>
         <button class="next" onclick="moveSlide(1)" aria-label="Next Slide">&#10095;</button>

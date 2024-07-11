@@ -5,7 +5,7 @@ const errorText = document.getElementById("error-text")
 const cvcPattern = /^[0-9]{3}$/;
 const numberPattern = /^(?:[0-9]{4}[-\s]?){3}[0-9]{4}$/;
 const datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
-const bankIbanPattern = /^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$/;
+const bankIbanPattern = /^[A-Z]{2}[0-9A-Z]{25}$/;
 const ownerPattern = /^[A-Za-z]+ [A-Za-z]+$/
 
 function showCreditCard() {

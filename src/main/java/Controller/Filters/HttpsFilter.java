@@ -12,13 +12,11 @@ public class HttpsFilter extends HttpFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         boolean isSecure = request.isSecure();
-        System.out.println(isSecure);
         if (!isSecure) { //TODO va messo il negato
             HttpServletRequest requestServlet = (HttpServletRequest) request;
             String serverName = requestServlet.getServerName();
             int serverPort = 8443;
             String contextPath = requestServlet.getContextPath(); // Aggiunge il contesto dell'applicazione
-            String queryString = requestServlet.getQueryString();
 
             String redirectUrl = "https://" + serverName + ":" + serverPort + contextPath + "/";
             ((HttpServletResponse) response).sendRedirect(redirectUrl);

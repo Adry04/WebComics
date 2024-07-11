@@ -5,7 +5,9 @@
     String comicJson = gson.toJson(comic);
 %>
 <div class="card-container" id="cart-card-comic-<%=comic.getISBN()%>">
-    <img onclick="location.href = 'comic?isbn=<%=comic.getISBN()%>'" src="<%=comic.getImmagine()%>" alt="<%=comic.getTitle()%>">
+    <button class="onclick-button image-button" onclick="location.href = 'comic?isbn=<%=comic.getISBN()%>'" aria-label="Image Clickable" onkeydown="location.href = 'comic?isbn=<%=comic.getISBN()%>'">
+        <img src="<%=comic.getImmagine()%>" alt="<%=comic.getTitle()%>">
+    </button>
     <div class="text-section">
         <div>
             <h1><%=comic.getTitle()%></h1>
@@ -15,9 +17,13 @@
     <div class="operation-section">
         <div class="separation">
             <div class="quantity-section">
-                <span onclick='decrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)' class="click-quantity">-</span>
+                <button class="click-quantity onclick-button" onclick='decrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)' aria-label="Decrement Quantity" onkeydown='decrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)'>
+                    -
+                </button>
                 <span data-quantity="<%=cart.getQuantity(comic.getISBN())%>" id="quantity-cart-<%=comic.getISBN()%>"><%=cart.getQuantity(comic.getISBN())%></span>
-                <span onclick='incrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)' class="click-quantity">+</span>
+                <button class="click-quantity onclick-button" onclick='incrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)' aria-label="Increment Quantity" onkeydown='incrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)'>
+                    +
+                </button>
             </div>
         </div>
         <div class="separation">

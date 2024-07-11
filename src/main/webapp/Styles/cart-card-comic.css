@@ -13,8 +13,8 @@
     width: 100%;
 }
 
-.card-container img {
-    grid-area: img;
+.card-container .image-button {
+    grid-area: image-button;
 }
 
 .card-container .text-section {
@@ -28,9 +28,9 @@
 .card-container {
     display: grid;
     grid-template-areas:
-        'img text-section'
-        'img text-section'
-        'img operation-section';
+        'image-button text-section'
+        'image-button text-section'
+        'image-button operation-section';
     grid-template-columns: 20% 80%;
     grid-template-rows: auto auto;
     gap: 1em;
@@ -115,7 +115,7 @@
     flex: 1;
 }
 
-.operation-section div .quantity-section span {
+.operation-section div .quantity-section span, button{
     color: black;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
@@ -124,9 +124,16 @@
     user-select: none;
 }
 
+.onclick-button {
+    background-color: transparent;
+    margin: 0;
+    border: none;
+}
+
 .operation-section div .quantity-section .click-quantity {
     cursor: pointer;
     font-weight: 600;
+    width: auto;
 }
 
 .operation-section div button{

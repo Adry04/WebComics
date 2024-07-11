@@ -53,14 +53,19 @@ public class PaymentMethodForm extends HttpServlet {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
                 String dataScadenza = date.format(formatter);
                 if (!numeroCarta.matches(numberPattern)) {
+                    request.setAttribute("error-payment", "Numero di carta non valido");
                     throw new ServletException("Numero carda non valido");
                 } else if(!cvc.matches(cvcPattern)){
+                    request.setAttribute("error-payment", "Credenziali cvc non valide");
                     throw new ServletException("CVC non valido");
                 } else if(!intestatario.matches(ownerPattern)) {
+                    request.setAttribute("error-payment", "Credenziali intestatario non valide");
                     throw new ServletException("Intestatario non valido");
                 } else if(!dataScadenza.matches(datePattern)) {
+                    request.setAttribute("error-payment", "Data di scadenza non valida");
                     throw new ServletException("Data di scadenza non valida");
                 } else if (today.isAfter(date)) {
+                    request.setAttribute("error-payment", "Carta di credito errata");
                     throw new ServletException("Carta di Credito scaduta");
                 } else {
                     CreditCard c = new CreditCard(numeroCarta, intestatario, cvc, dataScadenza);
@@ -72,11 +77,13 @@ public class PaymentMethodForm extends HttpServlet {
             } else if (methodType.equals("BankAccount")) {
                 String IBAN = request.getParameter("iban");
                 String intestatario = request.getParameter("bank-account-owner");
-                String bankIbanPattern = "^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$";
-                String ownerPattern = "^[A-Za-z]+[A-Za-z]+$";
+                String bankIbanPattern = "^[A-Z]{2}[0-9A-Z]{25}$";
+                String ownerPattern = "^[A-Za-z]+ [A-Za-z]+$";
                 if (!intestatario.matches(ownerPattern)) {
+                    request.setAttribute("error-payment", "Credenziali intestatario non valide");
                     throw new ServletException("Credenziali intestatario non valide");
                 } else if (!IBAN.matches(bankIbanPattern)) {
+                    request.setAttribute("error-payment", "IBAN non valido");
                     throw new ServletException("IBAN non valido");
                 } else {
                     BankAccount b = new BankAccount(intestatario, IBAN);

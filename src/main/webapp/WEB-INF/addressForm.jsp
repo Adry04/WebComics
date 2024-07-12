@@ -19,7 +19,7 @@
             </div>
             <div>
                 <label for="cap">Inserisci il tuo codice di avviamento postale (CAP) </label>
-                <input type="text" placeholder="XXXXX" id="cap" name="cap"/>
+                <input type="text" placeholder="XXXXX" id="cap" name="cap" maxlength="5"/>
             </div>
             <div>
                 <label for="location">Seleziona la tua provincia</label>

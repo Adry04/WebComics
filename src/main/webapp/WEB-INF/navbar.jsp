@@ -136,6 +136,7 @@
         </button>
     </form>
     <div class="mobile-link-section">
+        <button class="onclick-button" onclick="location.href = 'search?parameter=fumetto&nuove-uscite=1'" onkeydown="location.href = 'search?parameter=fumetto&nuove-uscite=1'" aria-label="Nuove uscite">NUOVE USCITE</button>
         <button class="onclick-button" onclick="location.href = 'search?parameter=fantasy'" onkeydown="location.href = 'search?parameter=fantasy'" aria-label="Fantasy">FANTASY</button>
         <button class="onclick-button" onclick="location.href = 'search?parameter=commedia'" aria-label="Commedia" onkeydown="location.href = 'search?parameter=commedia'">COMMEDIA</button>
         <button class="onclick-button" onclick="location.href = 'search?parameter=supereroi'" aria-label="Supereroi" onkeydown="location.href = 'search?parameter=supereroi'">SUPEREROI</button>

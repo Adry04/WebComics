@@ -18,6 +18,9 @@
     box-shadow: 0 0 8px 0 rgba(153,153,153,1);
     transition: .5s;
     cursor: pointer;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
 }
 
 .container:hover {
@@ -33,12 +36,6 @@
 
 .title-payment {
     margin: 2em 0 0 0;
-}
-
-.container p {
-    font-size: 14px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
 }
 
 .container p span{
@@ -79,7 +76,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-.add-button :hover {
+.add-button:hover {
     background-color: #00BF62;
     color: white;
 }

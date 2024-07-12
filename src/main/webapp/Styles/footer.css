@@ -29,6 +29,7 @@ footer {
     font-weight: bold;
     font-family: "Poppins", sans-serif;
     margin-bottom: .4em;
+    align-self: center;
 }
 
 .subsection {

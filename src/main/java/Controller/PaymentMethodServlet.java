@@ -42,11 +42,11 @@ public class PaymentMethodServlet extends HttpServlet {
             if(type.equals("delete")) {
                 String paymentType = request.getParameter("paymentType");
                 if(paymentType.equalsIgnoreCase("carta")) {
-                    if(!UserDAO.doDeleteCreditCard(id, (Integer) session.getAttribute("userId"))){
+                    if(!UserDAO.doDeleteCreditCard(id)){
                         throw new ServletException("Errore eliminazione carta");
                     }
                 } else if (paymentType.equalsIgnoreCase("conto")) {
-                    if(!UserDAO.doDeleteBankAccount(id, (Integer) session.getAttribute("userId"))){
+                    if(!UserDAO.doDeleteBankAccount(id)){
                         throw new ServletException("Errore eliminazione carta");
                     }
                 } else {

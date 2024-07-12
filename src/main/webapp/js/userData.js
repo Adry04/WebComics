@@ -43,3 +43,26 @@ function deleteBankAccount (id) {
         xhttp.send("id=" + id + "&requestType=delete&paymentType=conto");
     }
 }
+
+function deleteAddress (id) {
+    if(confirm("Vuoi davvero eliminare questo indirizzo?")){
+        const address = document.getElementById("address-" + id)
+        const xhttp = new XMLHttpRequest();
+        const titleAddress = document.getElementById("title-address")
+        const dataSize = titleAddress.getAttribute("data-size")
+        const url = window.location.origin + "/tswProject_war_exploded/address";
+        xhttp.onreadystatechange = function (){
+            if(this.readyState ===4 && this.status === 200){
+                address.style.display = 'none';
+            }
+            if((dataSize - 1) === 0) {
+                titleAddress.style.display = "none"
+            } else {
+                titleAddress.setAttribute("data-size", (parseInt(dataSize, 10) - 1))
+            }
+        }
+        xhttp.open("POST", url, true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("id=" + id + "&requestType=delete");
+    }
+}

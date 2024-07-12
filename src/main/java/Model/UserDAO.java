@@ -209,11 +209,11 @@ public class UserDAO {
         }
     }
 
-    public static boolean doDeleteAddress(int idUtente, Address a) {
+    public static boolean doDeleteAddress(int idUtente, int id) {
         try (Connection con = ConPool.getConnection()) {
             String query = "DELETE FROM indirizzo WHERE id = ? AND idUtente = ?";
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, a.getId());
+            ps.setInt(1, id);
             ps.setInt(2, idUtente);
             ps.executeUpdate();
             return true;
@@ -366,7 +366,7 @@ public class UserDAO {
         }
     }
 
-    public static boolean doDeleteCreditCard(int id, int idUtente) {
+    public static boolean doDeleteCreditCard(int id) {
         try (Connection con = ConPool.getConnection()) {
             String query = "DELETE FROM cdc WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -379,7 +379,7 @@ public class UserDAO {
         }
     }
 
-    public static boolean doDeleteBankAccount(int id, int idUtente) {
+    public static boolean doDeleteBankAccount(int id) {
         try (Connection con = ConPool.getConnection()) {
             String query = "DELETE FROM cc WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);

@@ -11,12 +11,21 @@ public class CartDAO {
         try {
             List<Comic> comics = cart.getComics();
             Map<String, Integer> map = cart.getQuantities();
-            for(Comic comic : comics) {
-                if(CartDAO.isIn(comic.getISBN(), idUtente)) {
-                    if(!CartDAO.changeQuantity(comic.getISBN(), idUtente, map.get(comic.getISBN()))) {
+            Cart cartData = CartDAO.getCart(idUtente);
+            List<Comic> comicsData = Objects.requireNonNull(cartData).getComics();
+            for (Comic comic : comicsData) {
+                if (comics.contains(comic)) {
+                    if (!CartDAO.changeQuantity(comic.getISBN(), idUtente, map.get(comic.getISBN()))) {
                         throw new ServletException("errore di changeQuantity");
                     }
                 } else {
+                    if(!CartDAO.removeComic(comic.getISBN(), idUtente)){
+                        throw new ServletException("errore di rimozione");
+                    }
+                }
+            }
+            for(Comic comic : comics) {
+                if(!comicsData.contains(comic)) {
                     if(!CartDAO.addComic(idUtente, comic, map.get(comic.getISBN()))) {
                         throw new ServletException("errore nel caricamento del fumetto");
                     }
@@ -170,6 +179,4 @@ public class CartDAO {
             return false;
         }
     }
-
-
 }

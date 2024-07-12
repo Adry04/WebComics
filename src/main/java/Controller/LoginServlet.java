@@ -51,16 +51,13 @@ public class LoginServlet extends HttpServlet {
             User user = UserDAO.getUserFromEmail(email);
             String hashedPassword = UserDAO.getPassword(Objects.requireNonNull(user).getId());
             if (Hash.checkPassword(password, hashedPassword)) {
-                System.out.println("ARRIVO");
                 HttpSession session = request.getSession();
                 session.setAttribute("email", email);
                 session.setAttribute("nome", user.getFirstName());
                 session.setAttribute("cognome", user.getLastName());
                 session.setAttribute("isAdmin", user.getIsAdmin());
                 session.setAttribute("userId", user.getId());
-                System.out.println("ARRIVO 2");
                 String token = TokenUtil.generateToken(user);
-                System.out.println("ARRIVO 3");
                 Cookie tokenCookie = new Cookie("authToken", token);
                 int maxAgeInSeconds = 14 * 24 * 60 * 60; // 14 giorni * 24 ore * 60 minuti * 60 secondi
                 tokenCookie.setMaxAge(maxAgeInSeconds);

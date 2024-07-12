@@ -36,6 +36,14 @@ public class AccountServlet extends HttpServlet {
         String action = request.getParameter("action");
         HttpSession session = request.getSession(false);
         if(action.equals("logout") && session != null) {
+            List<Cookie> cookies = List.of(request.getCookies());
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("authToken")) {
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+                    break;
+                }
+            }
             if(session.getAttribute("cart") == null) {
                 session.invalidate();
             } else {

@@ -9,9 +9,9 @@ footer {
     gap: 15%;
     flex-direction: row;
     width: 90%;
-    margin: 0 auto;
+    margin: 0;
     align-items: flex-start;
-    padding: .8em 0;
+    padding: .8em 5%;
     border-top: 1px solid #E9E9E9;
     background-color: white;
 }

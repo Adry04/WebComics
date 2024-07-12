@@ -60,5 +60,6 @@
         </form>
     </div>
     <script src="js/comicValidation.js"></script>
+    <script src="js/form.js"></script>
 </body>
 </html>

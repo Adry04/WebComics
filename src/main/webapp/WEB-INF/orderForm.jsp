@@ -45,5 +45,6 @@
             <button type="submit">Effettua ordine</button>
         </div>
     </form>
+    <script src="js/form.js"></script>
 </body>
 </html>

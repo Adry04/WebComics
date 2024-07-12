@@ -181,5 +181,6 @@
         </div>
     </form>
     <script src="js/addressForm.js"></script>
+    <script src="js/form.js"></script>
 </body>
 </html>

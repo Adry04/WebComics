@@ -41,7 +41,7 @@ form {
     width: 100%;
 }
 
-.input-container input, select {
+.input-container input, select, .container-password {
     width: 100%;
     padding: .4em 2%;
     font-size: 18px;
@@ -96,7 +96,7 @@ form .onclick-button {
     height: 2em;
 }
 
-form svg {
+form .back {
     position: absolute;
     top: 0;
     left: 0;
@@ -178,6 +178,40 @@ input[type="radio"]:focus {
     background-color: transparent;
 }
 
+.no-display {
+    display: none;
+}
+
+.container-password  {
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+}
+
+#password-input {
+   border: none !important;
+    width: 90%;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#password-input:focus {
+    outline: none;
+}
+
+.container-password button {
+    position: absolute;
+    top: .8em;
+    right: .4em;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.container-password button svg {
+    width: 1.6em;
+    height: 1.6em;
+}
 
 @media screen and (max-width: 800px) {
     form {

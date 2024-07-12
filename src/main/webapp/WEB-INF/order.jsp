@@ -27,6 +27,7 @@
         %>
         <button class="onclick-button order-container" onclick="location.href = 'order-page?id=<%=order.getIdOrdine()%>'" aria-label="Order Container" onkeydown="location.href = 'order-page?id=<%=order.getIdOrdine()%>'">
             <p class="data">Quantità: <%=order.getQuantita()%></p>
+            <p class="data">Id Ordine: <%=order.getIdOrdine()%></p>
             <p class="price">Prezzo: <%=totalPrice%> €</p>
         </button>
         <%

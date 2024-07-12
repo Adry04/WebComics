@@ -256,7 +256,7 @@ public class UserDAO {
                 String intestatario = rs.getString("intestatario");
                 String cvc  = rs.getString("cvc");
                 String dataScadenza = rs.getString("scadenza");
-                c = new CreditCard(numero, intestatario, cvc, dataScadenza);
+                c = new CreditCard(numero, intestatario, cvc, dataScadenza, idCarta);
             }
             return c;
         } catch (SQLException e) {
@@ -298,7 +298,7 @@ public class UserDAO {
                 String intestatario = rs.getString("intestatario");
                 String iban = rs.getString("IBAN");
                 String bic = rs.getString("bic");
-                b = new BankAccount(intestatario, iban, bic);
+                b = new BankAccount(intestatario, iban, bic, idBankAccount);
             }
             return b;
         } catch (SQLException e) {

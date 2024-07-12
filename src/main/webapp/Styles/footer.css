@@ -26,6 +26,11 @@ footer {
     text-decoration: underline;
 }
 
+.trademark  {
+    text-decoration: none !important;
+    cursor: default !important;
+}
+
 .title {
     font-size: 18px;
     font-weight: bold;

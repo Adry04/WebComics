@@ -47,18 +47,43 @@ public class OrderFormServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {   //TODO servlet del post dopo che il checkout è stato effettuato
-            String ISBN = request.getParameter("ISBN");
-            String ISBNPattern = "[0-9]{13}";
-            if (!ISBN.matches(ISBNPattern)) {
-                request.setAttribute("error-form", "ISBN non conforme");
-                throw new ServletException("ISBN non conforme");
+        try {
+            HttpSession session = request.getSession(false);
+            if(session == null || session.getAttribute("userId") == null || session.getAttribute("cart") == null) {
+                throw new ServletException("Errore utente");
             }
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/order.jsp");
-            dispatcher.forward(request, response);
+            if (request.getParameter("address") == null || request.getParameter("payment") == null) {
+                request.setAttribute("error-form", "Paremtri di richiesta mancanti");
+                throw new ServletException("Parametri mancanti");
+            }
+            int idAddress = Integer.parseInt(request.getParameter("address"));
+            String payment = request.getParameter("payment");
+            String[] parts = payment.split("-");
+            Address a = UserDAO.getAddress(idAddress);
+            CreditCard card = null;
+            BankAccount bankAccount = null;
+            // Estrai le parti
+            int idPayment = Integer.parseInt(parts[0]);
+            String paymentMethod = parts[1];
+            if(paymentMethod.equalsIgnoreCase("Carta")) {
+                card = UserDAO.getCard(idPayment);
+            } else if(paymentMethod.equalsIgnoreCase("conto")) {
+                bankAccount = UserDAO.getBankAccount(idAddress);
+            } else {
+                request.setAttribute("error-form", "Errore di attributi");
+                throw new ServletException("Errore di attributi");
+            }
+            if (!OrderDAO.doSave((int) session.getAttribute("userId"), (Cart) session.getAttribute("cart"), a, card, bankAccount)) {
+                request.setAttribute("error-form", "Errore nel salvataggio riprova più tardi");
+                throw new ServletException("Errore salvataggio ordine");
+            } else {
+                String contextPath = request.getContextPath();
+                response.sendRedirect(contextPath + "/order");
+            }
         } catch (ServletException e) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/order-form.jsp");
-            dispatcher.forward(request, response);
+            e.printStackTrace(System.out);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + "/order-form");
         }
     }
 }

@@ -327,4 +327,42 @@ public class UserDAO {
             return null;
         }
     }
+
+    public static User getUserFromEmail(String email) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT id, nome, cognome, isAdmin, email FROM utente WHERE email = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            User user = null;
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String cognome = rs.getString("cognome");
+                boolean isAdmin = rs.getBoolean("isAdmin");
+                user = new User(nome, cognome, email, isAdmin, id);
+            }
+            return user;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
+
+    public static String getPassword(int idUtente) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT pass FROM utente WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idUtente);
+            ResultSet rs = ps.executeQuery();
+            String pass = null;
+            while (rs.next()) {
+                pass = rs.getString("pass");
+            }
+            return pass;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
 }

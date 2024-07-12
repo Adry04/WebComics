@@ -6,6 +6,7 @@ public class User {
     private String lastName;
     private String email;
     private Boolean isAdmin;
+    private int id;
 
     public User(String firstName, String lastName, String email, Boolean isAdmin) {
         this.firstName = firstName;
@@ -18,6 +19,21 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    public User(String firstName, String lastName, String email, Boolean isAdmin, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.isAdmin = isAdmin;
+        this.id = id;
+    }
+
+    public User(String firstName, String lastName, String email, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.id = id;
     }
 
     public String getFirstName(){
@@ -54,5 +70,13 @@ public class User {
 
     public void setIsAdmin(Boolean admin) {
         isAdmin = admin;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

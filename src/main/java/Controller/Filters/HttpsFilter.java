@@ -9,7 +9,6 @@ import java.io.IOException;
 
 @WebFilter(filterName = "HttpsControlFilter", urlPatterns = "/*")
 public class HttpsFilter extends HttpFilter implements Filter {
-    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         boolean isSecure = request.isSecure();
         if (!isSecure) {

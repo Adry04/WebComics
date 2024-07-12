@@ -2,14 +2,9 @@
 package Controller;
 
 import java.io.*;
-import java.sql.*;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
 import Model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -40,7 +35,6 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         try {
-            Connection conn = ConPool.getConnection();
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             email = Encode.forHtml(email);
@@ -54,56 +48,59 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("error", "La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero.");
                 throw new ServletException("La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero.");
             }
-            String query = "SELECT id, nome, cognome, isAdmin, email, pass FROM utente WHERE email = ?";
-            PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                String hashedPassword = rs.getString("pass");
-                if(Hash.checkPassword(password, hashedPassword)){
-                    HttpSession session = request.getSession();
-                    session.setAttribute("email", email);
-                    session.setAttribute("nome", rs.getString("nome"));
-                    session.setAttribute("cognome", rs.getString("cognome"));
-                    session.setAttribute("isAdmin", rs.getBoolean("isAdmin"));
-                    session.setAttribute("userId", rs.getInt("id"));
-                    if (session.getAttribute("cart") != null) {
-                        Cart cart = (Cart) session.getAttribute("cart");
-                        List<Comic> comics = cart.getComics();
-                        Cart userCart = CartDAO.getCart(rs.getInt("id"));
-                        List<Comic> userComics = Objects.requireNonNull(userCart).getComics();
-                        Map<String, Integer> map = cart.getQuantities();
-                        Map<String, Integer> userMap = userCart.getQuantities();
-                        for (Comic comic : comics) {
-                            if (userComics.contains(comic)) {
-                                int comicQuantity = Integer.parseInt(map.get(comic.getISBN()).toString());
-                                int userComicQuantity = Integer.parseInt(userMap.get(comic.getISBN()).toString());
-                                if(!CartDAO.changeQuantity(comic.getISBN(), rs.getInt("id"),(comicQuantity+userComicQuantity))) {
-                                    throw new ServletException("Errore nel cambio quantità");
-                                }
-                            } else {
-                                if(!CartDAO.addComic(rs.getInt("id"), comic, map.get(comic.getISBN()))) {
-                                    throw new ServletException("Errore nell'aggiungere");
-                                }
+            User user = UserDAO.getUserFromEmail(email);
+            String hashedPassword = UserDAO.getPassword(Objects.requireNonNull(user).getId());
+            if (Hash.checkPassword(password, hashedPassword)) {
+                System.out.println("ARRIVO");
+                HttpSession session = request.getSession();
+                session.setAttribute("email", email);
+                session.setAttribute("nome", user.getFirstName());
+                session.setAttribute("cognome", user.getLastName());
+                session.setAttribute("isAdmin", user.getIsAdmin());
+                session.setAttribute("userId", user.getId());
+                System.out.println("ARRIVO 2");
+                String token = TokenUtil.generateToken(user);
+                System.out.println("ARRIVO 3");
+                Cookie tokenCookie = new Cookie("authToken", token);
+                int maxAgeInSeconds = 14 * 24 * 60 * 60; // 14 giorni * 24 ore * 60 minuti * 60 secondi
+                tokenCookie.setMaxAge(maxAgeInSeconds);
+                tokenCookie.setSecure(true);
+                tokenCookie.setPath("tswProject_war_exploded");
+                response.addCookie(tokenCookie);
+                if (session.getAttribute("cart") != null) {
+                    Cart cart = (Cart) session.getAttribute("cart");
+                    List<Comic> comics = cart.getComics();
+                    Cart userCart = CartDAO.getCart(user.getId());
+                    List<Comic> userComics = Objects.requireNonNull(userCart).getComics();
+                    Map<String, Integer> map = cart.getQuantities();
+                    Map<String, Integer> userMap = userCart.getQuantities();
+                    for (Comic comic : comics) {
+                        if (userComics.contains(comic)) {
+                            int comicQuantity = Integer.parseInt(map.get(comic.getISBN()).toString());
+                            int userComicQuantity = Integer.parseInt(userMap.get(comic.getISBN()).toString());
+                            if(!CartDAO.changeQuantity(comic.getISBN(), user.getId(), (comicQuantity+userComicQuantity))) {
+                                throw new ServletException("Errore nel cambio quantità");
+                            }
+                        } else {
+                            if(!CartDAO.addComic(user.getId(), comic, map.get(comic.getISBN()))) {
+                                throw new ServletException("Errore nell'aggiungere");
                             }
                         }
                     }
-                    Cart cart = CartDAO.getCart(rs.getInt("id"));
-                    session.setAttribute("cart", cart);
-                    response.sendRedirect(contextPath + "/");
-                } else {
-                    request.setAttribute("error", "Password sbagliata");
-                    throw new ServletException("Password sbagliata");
                 }
+                Cart cart = CartDAO.getCart(user.getId());
+                session.setAttribute("cart", cart);
+                response.sendRedirect(contextPath + "/");
             } else {
-                request.setAttribute("error", "Utente non trovato, ritenta");
-                throw new ServletException("Utente non trovato, ritenta");
+                request.setAttribute("error", "Password sbagliata");
+                throw new ServletException("Password sbagliata");
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         } catch (ServletException e) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");  //tenere d'occhio
+            e.printStackTrace(System.out);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");
             dispatcher.forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
         }
     }
 }

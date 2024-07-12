@@ -23,16 +23,21 @@ public class AuthFilter extends HttpFilter implements Filter {
                 }
             }
         }
-        System.out.println("TOKEN: " + token);
         if (token != null && TokenUtil.validateToken(token) && session.getAttribute("userId") == null) {
             String email = TokenUtil.getEmailFromToken(token);
-            System.out.println("EMAIL: " + email);
             User user = UserDAO.getUserFromEmail(email);
             session.setAttribute("email", email);
-            session.setAttribute("nome",user.getFirstName());
+            session.setAttribute("nome", user.getFirstName());
             session.setAttribute("cognome", user.getLastName());
             session.setAttribute("isAdmin", user.getIsAdmin());
             session.setAttribute("userId", user.getId());
+            chain.doFilter(request, response);
+        }  else if (token == null && session.getAttribute("userId") != null) {
+            session.setAttribute("email", null);
+            session.setAttribute("nome", null);
+            session.setAttribute("cognome", null);
+            session.setAttribute("isAdmin", null);
+            session.setAttribute("userId", null);
             chain.doFilter(request, response);
         } else {
             chain.doFilter(request, response);

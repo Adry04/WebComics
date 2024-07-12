@@ -1,13 +1,16 @@
 package Model;
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
+
+import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TokenUtil {
 
-    private static final String SECRET_KEY = "webcomics";
+    private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     public static String generateToken(User user) {
         try {
@@ -20,7 +23,7 @@ public class TokenUtil {
                     .setClaims(claims)
                     .setIssuedAt(new Date(currentTimeMillis))
                     .setExpiration(new Date(expirationTimeMillis))
-                    .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+                    .signWith(SECRET_KEY, SignatureAlgorithm.HS256)
                     .compact();
         } catch (JwtException e) {
             e.printStackTrace(System.out);
@@ -35,16 +38,27 @@ public class TokenUtil {
                     .parseClaimsJws(token)
                     .getBody();
             return claims.getExpiration().after(new Date());
-        } catch (SignatureException e) {
+        } catch (JwtException e) {
+            e.printStackTrace(System.out);
             return false;
         }
     }
 
     public static String getEmailFromToken(String token) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(SECRET_KEY)
-                .parseClaimsJws(token)
-                .getBody();
-        return claims.getSubject();
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(SECRET_KEY)
+                    .parseClaimsJws(token)
+                    .getBody();
+
+            // Verifica se il token è scaduto
+            if (claims.getExpiration().before(new Date())) {
+                return null; // Token scaduto
+            }
+
+            return (String) claims.get("email"); // Restituisce il subject (solitamente l'email) dal token
+        } catch (JwtException e) {
+            return null;
+        }
     }
 }

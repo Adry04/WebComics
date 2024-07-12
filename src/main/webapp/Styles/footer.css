@@ -4,10 +4,12 @@ footer {
     position: absolute;
     bottom: 0;
     left: 0;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 20% 30% 20%;
+    gap: 15%;
     flex-direction: row;
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     align-items: flex-start;
     padding: .8em 0;
     border-top: 1px solid #E9E9E9;
@@ -30,6 +32,10 @@ footer {
     font-family: "Poppins", sans-serif;
     margin-bottom: .4em;
     align-self: center;
+}
+
+p {
+    text-align: center;
 }
 
 .subsection {
@@ -90,5 +96,9 @@ p address:hover {
 
     .title {
         font-size: 15px;
+    }
+
+    footer {
+        width: 98%;
     }
 }

@@ -104,6 +104,7 @@ p address:hover {
     }
 
     footer {
-        width: 98%;
+        width: 92%;
+        padding: .8em 4%;
     }
 }

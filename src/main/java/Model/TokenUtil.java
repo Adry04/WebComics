@@ -39,7 +39,6 @@ public class TokenUtil {
                     .getBody();
             return claims.getExpiration().after(new Date());
         } catch (JwtException e) {
-            e.printStackTrace(System.out);
             return false;
         }
     }

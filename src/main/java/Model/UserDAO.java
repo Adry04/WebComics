@@ -365,4 +365,30 @@ public class UserDAO {
             return null;
         }
     }
+
+    public static boolean doDeleteCreditCard(int id, int idUtente) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "DELETE FROM cdc WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return false;
+        }
+    }
+
+    public static boolean doDeleteBankAccount(int id, int idUtente) {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "DELETE FROM cc WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return false;
+        }
+    }
 }

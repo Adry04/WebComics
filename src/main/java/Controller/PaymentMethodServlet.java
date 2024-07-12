@@ -29,6 +29,34 @@ public class PaymentMethodServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        try {
+            HttpSession session = request.getSession(false);
+            if (session == null || session.getAttribute("userId") == null) {
+                throw new ServletException("Devi essere loggato");
+            }
+            if(request.getParameter("requestType") == null || request.getParameter("id") == null || request.getParameter("paymentType") == null) {
+                throw new ServletException("Errore di parametri");
+            }
+            String type = request.getParameter("requestType");
+            int id = Integer.parseInt(request.getParameter("id"));
+            if(type.equals("delete")) {
+                String paymentType = request.getParameter("paymentType");
+                if(paymentType.equalsIgnoreCase("carta")) {
+                    if(!UserDAO.doDeleteCreditCard(id, (Integer) session.getAttribute("userId"))){
+                        throw new ServletException("Errore eliminazione carta");
+                    }
+                } else if (paymentType.equalsIgnoreCase("conto")) {
+                    if(!UserDAO.doDeleteBankAccount(id, (Integer) session.getAttribute("userId"))){
+                        throw new ServletException("Errore eliminazione carta");
+                    }
+                } else {
+                    throw new ServletException("Errore metodo di pagamento");
+                }
+            }
+        } catch (ServletException e) {
+            e.printStackTrace(System.out);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + "/");
+        }
     }
 }

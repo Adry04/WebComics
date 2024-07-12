@@ -29,10 +29,10 @@
                 <label for="password-input"> Password </label>
                 <div class="container-password">
                     <input type="password" placeholder="Inserisci la tua password" id="password-input" name="password" required/>
-                    <button id="openEye" class="" onclick="displayPassword()" onkeydown="displayPassword()" tabindex="0" aria-label="Display Password">
+                    <button id="openEye" class="" onclick="displayPassword()" onkeydown="displayPassword()" tabindex="0" aria-label="Display Password" type="button">
                         <svg aria-label="Eye icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="black"><path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0"></path><path d="M21.894 11.553C19.736 7.236 15.904 5 12 5c-3.903 0-7.736 2.236-9.894 6.553a1 1 0 0 0 0 .894C4.264 16.764 8.096 19 12 19c3.903 0 7.736-2.236 9.894-6.553a1 1 0 0 0 0-.894M12 17c-2.969 0-6.002-1.62-7.87-5C5.998 8.62 9.03 7 12 7c2.969 0 6.002 1.62 7.87 5c-1.868 3.38-4.901 5-7.87 5"></path></g></svg>
                     </button>
-                    <button id="closeEye" class="no-display" onclick="hidePassword()" onkeydown="hidePassword()" tabindex="0" aria-label="Hide Password">
+                    <button id="closeEye" class="no-display" onclick="hidePassword()" onkeydown="hidePassword()" tabindex="0" aria-label="Hide Password" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828"></path><path d="M16.681 16.673A8.7 8.7 0 0 1 12 18q-5.4 0-9-6q1.908-3.18 4.32-4.674m2.86-1.146A9 9 0 0 1 12 6q5.4 0 9 6q-1 1.665-2.138 2.87M3 3l18 18"></path></g></svg>
                     </button>
                 </div>

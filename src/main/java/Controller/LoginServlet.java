@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession s = request.getSession(false);
         String contextPath = request.getContextPath();
-        if(s != null && s.getAttribute("userId") != null){
+        if (s != null && s.getAttribute("userId") != null) {
             response.sendRedirect(contextPath + "/");
             return;
         }

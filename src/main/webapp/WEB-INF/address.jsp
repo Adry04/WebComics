@@ -37,7 +37,7 @@
         <%
             }
         %>
-        <button class="add-button" type="submit" value="Aggiungi indirizzo di spedizione" aria-label="aggiungi indirizzo di spedizione" onclick="location.href = 'address-form'">Aggiungi indirizzo di spedizione</button>
+        <button class="add-button" aria-label="aggiungi indirizzo di spedizione" onclick="location.href = 'address-form'">Aggiungi indirizzo di spedizione</button>
     </div>
     <%@include file="footer.jsp"%>
 </body>

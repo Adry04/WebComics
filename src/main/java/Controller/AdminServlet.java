@@ -18,7 +18,6 @@ import java.util.List;
 public class AdminServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            System.out.println("SONO FROCIO E SONO IN ADMIN");
             HttpSession session = request.getSession(false);
             if (session == null || session.getAttribute("userId") == null) {
                 throw new ServletException("Utente non loggato");

@@ -68,7 +68,7 @@ public class OrderFormServlet extends HttpServlet {
             if(paymentMethod.equalsIgnoreCase("Carta")) {
                 card = UserDAO.getCard(idPayment);
             } else if(paymentMethod.equalsIgnoreCase("conto")) {
-                bankAccount = UserDAO.getBankAccount(idAddress);
+                bankAccount = UserDAO.getBankAccount(idPayment);
             } else {
                 request.setAttribute("error-form", "Errore di attributi");
                 throw new ServletException("Errore di attributi");

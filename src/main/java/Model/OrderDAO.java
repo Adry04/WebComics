@@ -42,7 +42,7 @@ public class OrderDAO {
                 ps.executeUpdate();
             }
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace(System.out);
             return false;
         }

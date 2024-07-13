@@ -1,5 +1,6 @@
 package Controller.Filters;
 
+import Model.CartDAO;
 import Model.TokenUtil;
 import Model.User;
 import Model.UserDAO;
@@ -31,6 +32,7 @@ public class AuthFilter extends HttpFilter implements Filter {
             session.setAttribute("cognome", user.getLastName());
             session.setAttribute("isAdmin", user.getIsAdmin());
             session.setAttribute("userId", user.getId());
+            session.setAttribute("cart", CartDAO.getCart(user.getId()));
             chain.doFilter(request, response);
         }  else if (token == null && session.getAttribute("userId") != null) {
             session.setAttribute("email", null);

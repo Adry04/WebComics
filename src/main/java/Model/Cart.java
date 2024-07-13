@@ -1,3 +1,4 @@
+//Bean del carrello
 package Model;
 
 import java.util.ArrayList;

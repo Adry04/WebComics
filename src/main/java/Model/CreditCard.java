@@ -1,3 +1,4 @@
+//Bean della carta di credito
 package Model;
 
 public class CreditCard {

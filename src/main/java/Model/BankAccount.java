@@ -1,3 +1,4 @@
+//Bean del Conto Corrente
 package Model;
 
 public class BankAccount {

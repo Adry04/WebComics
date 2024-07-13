@@ -1,3 +1,4 @@
+//Salvataggi dei carrelli nel db e query carrelli
 package Model;
 
 import jakarta.servlet.ServletException;

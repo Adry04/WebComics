@@ -1,3 +1,4 @@
+//Bean degli indirizzi
 package Model;
 
 public class Address {

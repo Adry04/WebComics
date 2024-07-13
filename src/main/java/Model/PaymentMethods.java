@@ -1,3 +1,4 @@
+//Bean dei metodi di pagamento
 package Model;
 
 import java.util.List;

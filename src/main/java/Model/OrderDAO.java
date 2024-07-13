@@ -1,3 +1,4 @@
+//Salvataggio degli ordini del db e query degli ordini
 package Model;
 
 import java.sql.*;

@@ -115,12 +115,12 @@ public class CartServlet extends HttpServlet {
                     break;
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        } catch (Exception e) {
+        } catch (ServletException e) {
             e.printStackTrace(System.out);
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 }

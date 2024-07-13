@@ -62,14 +62,9 @@ public class AddressServletForm extends HttpServlet {
             response.setStatus(response.SC_BAD_REQUEST);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/addressForm.jsp");
             dispatcher.forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
             e.printStackTrace(System.out);
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            String contextPath = request.getContextPath();
-            response.sendRedirect(contextPath + "/");
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         }
     }
 }

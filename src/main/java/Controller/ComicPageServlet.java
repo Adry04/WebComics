@@ -37,8 +37,4 @@ public class ComicPageServlet extends HttpServlet {
             response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         }
     }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

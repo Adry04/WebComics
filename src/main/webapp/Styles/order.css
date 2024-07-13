@@ -41,14 +41,19 @@
 }
 
 @media screen and (max-width: 500px) {
+    .container-page {
+        gap: 1.8em;
+    }
+
     .order-container {
-        width: 90%;
+        width: 96%;
+        padding: .2em 1%;
     }
 
     .data, .price {
         font-weight: bold;
         font-family: "Poppins", sans-serif;
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .container-page {

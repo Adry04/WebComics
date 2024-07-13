@@ -20,7 +20,7 @@ public class AdminServlet extends HttpServlet {
         try {
             HttpSession session = request.getSession(false);
             if (session == null || session.getAttribute("userId") == null) {
-                throw new ServletException("x    non loggato");
+                throw new ServletException("utente non loggato");
             } else if(!(Boolean) session.getAttribute("isAdmin")) {
                 throw new ServletException("L'utente non è un admin");
             }

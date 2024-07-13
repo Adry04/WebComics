@@ -160,3 +160,42 @@
     width: 1.5em;
     height: 1.5em;
 }
+
+@media screen and (max-width: 1400px){
+    .comics-container {
+        width: 100%;
+        grid-template-columns: 30% 30% 30%;
+        gap: 3%;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .comics-container {
+        width: 100%;
+        grid-template-columns: 45% 45%;
+        column-gap: 10%;
+        row-gap: .4em;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .comic-card {
+        height: 340px;
+    }
+
+    .comic-card img {
+        height: 205px;
+    }
+
+    .comic-card .title, .author{
+        font-size: 13px;
+    }
+
+    .comic-card .price, .final-price {
+        font-size: 13px;
+    }
+
+    .comic-card .sale-section .sale {
+        font-size: 13px;
+    }
+}

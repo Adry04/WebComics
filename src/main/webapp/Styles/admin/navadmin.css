@@ -135,6 +135,7 @@ nav {
 
     .container-page {
         width: 96%;
+        padding-top: 2.8em;
     }
 
     .top-section {
@@ -144,5 +145,32 @@ nav {
 
     .button-mobile-menu {
         display: block;
+    }
+
+    .top-section {
+        margin: 0;
+    }
+
+    .top-section .text-top-section h1 {
+        font-size: 25px;
+    }
+
+    .top-section .text-top-section svg {
+        width: 1.6em;
+        height: 1.6em;
+    }
+
+    .top-section .add-button {
+        font-size: 13px;
+        padding: .2em .4em;
+    }
+
+    .title-page h1{
+        font-size: 25px;
+    }
+
+    .title-page svg {
+        width: 1.6em;
+        height: 1.6em;
     }
 }

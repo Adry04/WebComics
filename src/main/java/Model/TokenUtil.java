@@ -33,8 +33,9 @@ public class TokenUtil {
 
     public static boolean validateToken(String token) {
         try {
-            Claims claims = Jwts.parser()
+            Claims claims = Jwts.parserBuilder()
                     .setSigningKey(SECRET_KEY)
+                    .build()
                     .parseClaimsJws(token)
                     .getBody();
             return claims.getExpiration().after(new Date());
@@ -45,8 +46,9 @@ public class TokenUtil {
 
     public static String getEmailFromToken(String token) {
         try {
-            Claims claims = Jwts.parser()
+            Claims claims = Jwts.parserBuilder()
                     .setSigningKey(SECRET_KEY)
+                    .build()
                     .parseClaimsJws(token)
                     .getBody();
 

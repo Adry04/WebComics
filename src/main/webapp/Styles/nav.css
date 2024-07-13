@@ -342,6 +342,7 @@ nav img {
 
 .mobile-nav form input{
     font-size: 14px;
+    width: 100%;
     font-family: "Poppins", sans-serif;
     border: 1px black solid;
     border-radius: 8px;

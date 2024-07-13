@@ -116,16 +116,6 @@ public class CartServlet extends HttpServlet {
                     break;
                 }
             }
-            Cart cart = (Cart) session.getAttribute("cart");
-            Gson gsonCart = new Gson();
-            String cartJson = gson.toJson(cart);
-            String encodedCartJson = Base64.getUrlEncoder().encodeToString(cartJson.getBytes());
-            Cookie tokenCookie = new Cookie("cart", encodedCartJson);
-            int maxAgeInSeconds = 14 * 24 * 60 * 60; // 14 giorni * 24 ore * 60 minuti * 60 secondi
-            tokenCookie.setMaxAge(maxAgeInSeconds);
-            tokenCookie.setSecure(true);
-            tokenCookie.setPath("tswProject_war_exploded");
-            response.addCookie(tokenCookie);
         } catch (Exception e) {
             e.printStackTrace(System.out);
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

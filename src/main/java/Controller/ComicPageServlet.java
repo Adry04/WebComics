@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/comic")
 public class ComicPageServlet extends HttpServlet {
@@ -32,8 +32,9 @@ public class ComicPageServlet extends HttpServlet {
             request.setAttribute("isWished", isWished);
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/comic-page.jsp");
             rd.forward(request, response);
-        } catch (ServletException | IOException e) {
-            throw new RuntimeException(e);
+        } catch (ServletException | IOException | SQLException e) {
+            e.printStackTrace(System.out);
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -6,10 +6,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 @WebServlet("/order-form")
@@ -84,6 +82,9 @@ public class OrderFormServlet extends HttpServlet {
             e.printStackTrace(System.out);
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/order-form");
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         }
     }
 }

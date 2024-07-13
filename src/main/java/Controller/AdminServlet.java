@@ -20,7 +20,7 @@ public class AdminServlet extends HttpServlet {
         try {
             HttpSession session = request.getSession(false);
             if (session == null || session.getAttribute("userId") == null) {
-                throw new ServletException("Utente non loggato");
+                throw new ServletException("x    non loggato");
             } else if(!(Boolean) session.getAttribute("isAdmin")) {
                 throw new ServletException("L'utente non è un admin");
             }
@@ -33,6 +33,7 @@ public class AdminServlet extends HttpServlet {
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/");
         } catch (SQLException e) {
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
             throw new RuntimeException(e);
         }
     }
@@ -47,6 +48,9 @@ public class AdminServlet extends HttpServlet {
         } catch (ServletException e) {
             e.printStackTrace(System.out);
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -6,7 +6,6 @@ import java.sql.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
 import Model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -24,7 +23,6 @@ public class RegistrationServlet extends HttpServlet {
             response.sendRedirect(contextPath + "/");
             return;
         }
-
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/registration.jsp");  //tenere d'occhio
         dispatcher.forward(request, response);
     }
@@ -70,14 +68,10 @@ public class RegistrationServlet extends HttpServlet {
             }
             if (Objects.requireNonNull(s).getAttribute("cart") != null) {
                 Cart cart = (Cart) s.getAttribute("cart");
-                Map<String, Integer> map = cart.getQuantities();
-                List<Comic> comics = cart.getComics();
                 int id;
                 if ((id = UserDAO.getUserId(email)) > 0) {
-                    for (Comic comic : comics) {
-                        if (!CartDAO.addCart(cart, id)) {
-                            throw new ServletException("Errore nel caricamento del carrello");
-                        }
+                    if (!CartDAO.addCart(cart, id)) {
+                        throw new ServletException("Errore nel caricamento del carrello");
                     }
                 } else {
                     throw new ServletException("Errore nel prendere l'id");
@@ -87,9 +81,9 @@ public class RegistrationServlet extends HttpServlet {
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/login");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         } catch (ServletException e) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/registration.jsp");   //tenere d'occhio
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/registration.jsp");
             dispatcher.forward(request, response);
         }
     }

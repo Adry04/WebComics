@@ -3,9 +3,17 @@
 <%@ page import="Model.Comic" %>
 <%@ page import="Model.ComicDAO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.sql.SQLException" %>
 <html>
 <%
-    List<Comic> comics = ComicDAO.getNews("", 4);   //Stringa vuota vuol dire che non vogliamo specificare la categoria 4 vogliamo che il limite di fumetti sia 4
+    List<Comic> comics = new ArrayList<>();
+    try {
+        comics = ComicDAO.getNews("", 4);    //Stringa vuota vuol dire che non vogliamo specificare la categoria 4 vogliamo che il limite di fumetti sia 4
+    } catch (SQLException e) {
+        e.printStackTrace(System.out);
+        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        throw new RuntimeException("Errore durante l'accesso al database", e);
+    }
 %>
 <head>
     <title> WebComics - Home </title>
@@ -31,15 +39,15 @@
     <h1 class="title-section">MANGA & FUMETTI</h1>
     <div class="comics-container">
         <%
-            if (comics != null) {
-            for(Comic comic : comics) {
-                DecimalFormat df = new DecimalFormat("#.00");
-                String price = df.format(comic.getPrice());
-                String finalPrice = df.format(comic.getFinalPrice());
-                boolean isWished = false;
-                if(wishComics != null && !wishComics.isEmpty()) {
-                    isWished = wishComics.contains(comic);
-                }
+            if (!comics.isEmpty()) {
+                for(Comic comic : comics) {
+                    DecimalFormat df = new DecimalFormat("#.00");
+                    String price = df.format(comic.getPrice());
+                    String finalPrice = df.format(comic.getFinalPrice());
+                    boolean isWished = false;
+                    if(wishComics != null && !wishComics.isEmpty()) {
+                        isWished = wishComics.contains(comic);
+                    }
         %>
            <%@include file="WEB-INF/comicCard.jsp"%>
         <%

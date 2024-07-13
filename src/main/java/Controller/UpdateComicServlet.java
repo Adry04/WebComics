@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 @WebServlet("/admin-update-comic")
@@ -37,6 +38,9 @@ public class UpdateComicServlet extends HttpServlet {
         } catch (ServletException e) {
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/");
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -93,9 +97,12 @@ public class UpdateComicServlet extends HttpServlet {
                 String contextPath = request.getContextPath();
                 response.sendRedirect(contextPath + "/admin");
             }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
             e.printStackTrace(System.out);
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/admin/comic.jsp");  //tenere d'occhio
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/admin/comic.jsp");
             dispatcher.forward(request, response);
         }
     }

@@ -1,14 +1,12 @@
 package Controller.Filters;
 
 import Model.*;
-import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
+import java.sql.SQLException;
+import java.util.Objects;
 
 @WebFilter(filterName = "AuthFilter", urlPatterns = "/*")
 public class AuthFilter extends HttpFilter implements Filter {
@@ -17,7 +15,6 @@ public class AuthFilter extends HttpFilter implements Filter {
         HttpSession session = httpRequest.getSession();
         Cookie[] cookies = httpRequest.getCookies();
         String token = null;
-        List<String> cartParts = new ArrayList<>();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("authToken")) {
@@ -27,14 +24,20 @@ public class AuthFilter extends HttpFilter implements Filter {
             }
         }
         if (token != null && TokenUtil.validateToken(token) && session.getAttribute("userId") == null) {
-            String email = TokenUtil.getEmailFromToken(token);
-            User user = UserDAO.getUserFromEmail(email);
-            session.setAttribute("email", email);
-            session.setAttribute("nome", user.getFirstName());
-            session.setAttribute("cognome", user.getLastName());
-            session.setAttribute("isAdmin", user.getIsAdmin());
-            session.setAttribute("userId", user.getId());
-            session.setAttribute("cart", CartDAO.getCart(user.getId()));
+            try {
+                String email = TokenUtil.getEmailFromToken(token);
+                User user = UserDAO.getUserFromEmail(email);
+                session.setAttribute("email", email);
+                session.setAttribute("nome", Objects.requireNonNull(user).getFirstName());
+                session.setAttribute("cognome", user.getLastName());
+                session.setAttribute("isAdmin", user.getIsAdmin());
+                session.setAttribute("userId", user.getId());
+                session.setAttribute("cart", CartDAO.getCart(user.getId()));
+            } catch (SQLException e) {
+                e.printStackTrace(System.out); // (Opzionale) stampa l'eccezione per il debug
+                HttpServletResponse httpResponse = (HttpServletResponse) response;
+                httpResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
             chain.doFilter(request, response);
         }  else if (token == null && session.getAttribute("userId") != null) {
             session.setAttribute("email", null);

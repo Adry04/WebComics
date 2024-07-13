@@ -100,11 +100,10 @@ public class ComicFormServlet extends HttpServlet {
         } catch (ServletException e) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/admin/comic-form.jsp");  //tenere d'occhio
             dispatcher.forward(request, response);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new ServletException("Errore durante il salvataggio del file", e);
+        } catch (SQLException | IOException e) {
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
             e.printStackTrace(System.out);
         }
     }

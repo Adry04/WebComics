@@ -2,6 +2,7 @@
 package Controller;
 
 import java.io.*;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 
@@ -48,7 +49,12 @@ public class AccountServlet extends HttpServlet {
                 session.invalidate();
             } else {
                 Cart cart = (Cart) session.getAttribute("cart");
-                CartDAO.addCart(cart, (Integer) session.getAttribute("userId"));
+                try {
+                    CartDAO.addCart(cart, (Integer) session.getAttribute("userId"));
+                } catch (SQLException e) {
+                    e.printStackTrace(System.out);
+                    response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
+                }
                 session.invalidate();
             }
         }

@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/search")
 public class SearchServlet extends HttpServlet {
@@ -27,10 +28,9 @@ public class SearchServlet extends HttpServlet {
             e.printStackTrace(System.out);
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/");
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         }
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

@@ -32,6 +32,7 @@ public class AdminUserServlet extends HttpServlet {
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/");
         } catch (SQLException e) {
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
             throw new RuntimeException(e);
         }
     }

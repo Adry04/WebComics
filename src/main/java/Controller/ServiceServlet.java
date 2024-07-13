@@ -14,8 +14,4 @@ public class ServiceServlet extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/service.jsp");
         dispatcher.forward(request, response);
     }
-
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
-
-    }
 }

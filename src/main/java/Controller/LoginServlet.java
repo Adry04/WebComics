@@ -2,6 +2,7 @@
 package Controller;
 
 import java.io.*;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -75,13 +76,9 @@ public class LoginServlet extends HttpServlet {
                         if (userComics.contains(comic)) {
                             int comicQuantity = Integer.parseInt(map.get(comic.getISBN()).toString());
                             int userComicQuantity = Integer.parseInt(userMap.get(comic.getISBN()).toString());
-                            if(!CartDAO.changeQuantity(comic.getISBN(), user.getId(), (comicQuantity+userComicQuantity))) {
-                                throw new ServletException("Errore nel cambio quantità");
-                            }
+                            CartDAO.changeQuantity(comic.getISBN(), user.getId(), (comicQuantity+userComicQuantity));
                         } else {
-                            if(!CartDAO.addComic(user.getId(), comic, map.get(comic.getISBN()))) {
-                                throw new ServletException("Errore nell'aggiungere");
-                            }
+                            CartDAO.addComic(user.getId(), comic, map.get(comic.getISBN()));
                         }
                     }
                 }
@@ -98,6 +95,7 @@ public class LoginServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace(System.out);
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         }
     }
 }

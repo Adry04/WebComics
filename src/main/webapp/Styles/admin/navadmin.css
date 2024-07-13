@@ -58,3 +58,91 @@ nav {
     height: 100vh;
     padding: 0;
 }
+
+.mobile-nav {
+    width: 80%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    z-index: 101;
+    background-color: #FBCA03;
+    padding: 0;
+    transform: translateX(100%);
+    transition: .4s;
+    visibility: hidden;
+}
+
+.background-mobile-nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, .5);
+    height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.button-mobile-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width:  3em;
+    height: 3em;
+    background-color: transparent;
+    display: none;
+    border: none;
+    z-index: 99;
+}
+
+.display-background-mobile-nav {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.display-mobile-nav {
+    transform: translateX(0);
+    visibility: visible;
+}
+
+.mobile-nav .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 3.4em;
+    height: 3.4em;
+    border: none;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 1400px){
+    .container-page {
+        width: 76%;
+    }
+
+    nav {
+        background-color: #FBCA03;
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 800px){
+    nav {
+        display: none;
+    }
+
+    .container-page {
+        width: 96%;
+    }
+
+    .top-section {
+        padding: 0 2%;
+        width: 96%;
+    }
+
+    .button-mobile-menu {
+        display: block;
+    }
+}

@@ -4,11 +4,10 @@ package Controller;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Objects;
 
 import Model.Cart;
 import Model.CartDAO;
-import Model.Comic;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;

@@ -41,6 +41,7 @@ public class OrderDAO {
             ps.setDouble(4, comic.getFinalPrice());
             ps.executeUpdate();
         }
+        con.close();
         return true;
     }
 
@@ -94,6 +95,7 @@ public class OrderDAO {
             }
         }
         Objects.requireNonNull(order).setComics(comics);
+        con.close();
         return order;
     }
 
@@ -140,6 +142,7 @@ public class OrderDAO {
             }
             orders.add(new Order(idUtente, idOrdine, dataOrder, prezzoOrder, quantita, comics, indirizzo, cap, cdc, cc));
         }
+        con.close();
         return orders;
     }
 
@@ -161,6 +164,7 @@ public class OrderDAO {
             int cc = rs.getInt("idcc");
             orders.add(new Order(idUtente, idOrdine, dataOrder, prezzoOrder, quantita, indirizzo, cap, cdc, cc));
         }
+        con.close();
         return orders;
     }
 }

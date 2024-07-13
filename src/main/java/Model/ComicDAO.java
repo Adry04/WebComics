@@ -24,6 +24,7 @@ public class ComicDAO {
         LocalDate currentDate = LocalDate.now();
         ps.setDate(9, java.sql.Date.valueOf(currentDate));
         ps.executeUpdate();
+        con.close();
         return true;
     }
 
@@ -47,6 +48,7 @@ public class ComicDAO {
             String comicDate = data.format(formatter);
             comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
         }
+        con.close();
         return comics;
     }
 
@@ -70,6 +72,7 @@ public class ComicDAO {
             String comicDate = data.format(formatter);
             return new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate);
         }
+        con.close();
         return null;
     }
 
@@ -80,6 +83,7 @@ public class ComicDAO {
         ps.setString(1, isbn);
         ps.setString(2, titolo);
         ResultSet rs = ps.executeQuery();
+        con.close();
         return rs.next();
     }
 
@@ -134,6 +138,7 @@ public class ComicDAO {
             String comicDate = data.format(formatter);
             comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
         }
+        con.close();
         return comics;
     }
 
@@ -144,6 +149,7 @@ public class ComicDAO {
         ps.setInt(1, idUtente);
         ps.setString(2, isbn);
         ps.executeUpdate();
+        con.close();
         return true;
     }
 
@@ -168,6 +174,7 @@ public class ComicDAO {
             String comicDate = data.format(formatter);
             wishComics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
         }
+        con.close();
         return wishComics;
     }
 
@@ -178,6 +185,7 @@ public class ComicDAO {
         ps.setInt(1, idUtente);
         ps.setString(2, isbn);
         ps.executeUpdate();
+        con.close();
         return true;
     }
 
@@ -188,6 +196,7 @@ public class ComicDAO {
         ps.setInt(1, idUtente);
         ps.setString(2, isbn);
         ResultSet rs = ps.executeQuery();
+        con.close();
         return rs.next();
     }
 
@@ -203,6 +212,7 @@ public class ComicDAO {
         ps.setString(7, comic.getImmagine());
         ps.setString(8, comic.getISBN());
         ps.executeUpdate();
+        con.close();
         return true;
     }
 
@@ -211,6 +221,7 @@ public class ComicDAO {
         PreparedStatement ps = con.prepareStatement("DELETE FROM fumetto WHERE isbn = ?", Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, ISBN);
         ps.executeUpdate();
+        con.close();
         return true;
     }
 
@@ -238,6 +249,7 @@ public class ComicDAO {
             String comicDate = data.format(formatter);
             comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
         }
+        con.close();
         return comics;
     }
 }

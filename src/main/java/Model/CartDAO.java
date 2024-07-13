@@ -44,6 +44,7 @@ public class CartDAO {
         ps.setString(2, comic.getISBN());
         ps.setInt(3, quantita);
         ps.executeUpdate();
+        con.close();
         return true;
     }
 
@@ -55,7 +56,6 @@ public class CartDAO {
         ResultSet rs = ps.executeQuery();
         List<Comic> comics = new ArrayList<>();
         Map<String, Integer> quantities = new HashMap<>();
-
         while (rs.next()) {
             String ISBN = rs.getString("ISBN");
             String autore = rs.getString("autore");
@@ -78,6 +78,7 @@ public class CartDAO {
         for (Map.Entry<String, Integer> entry : quantities.entrySet()) {
             cart.updateQuantity(entry.getKey(), entry.getValue());
         }
+        con.close();
         return cart;
     }
 
@@ -89,21 +90,19 @@ public class CartDAO {
         ps.setInt(2, idUtente);
         ps.setString(3, ISBN);
         ps.executeUpdate();
+        con.close();
         return true;
     }
 
-    public static boolean isIn(String ISBN, int idUtente) {
-        try (Connection con = ConPool.getConnection()){
-            String query = "SELECT * FROM carrello WHERE isbn = ? AND idUtente = ?";
-            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, ISBN);
-            ps.setInt(2, idUtente);
-            ResultSet rs = ps.executeQuery();
-            return rs.next();
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-            return false;
-        }
+    public static boolean isIn(String ISBN, int idUtente) throws SQLException {
+        Connection con = ConPool.getConnection();
+        String query = "SELECT * FROM carrello WHERE isbn = ? AND idUtente = ?";
+        PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, ISBN);
+        ps.setInt(2, idUtente);
+        ResultSet rs = ps.executeQuery();
+        con.close();
+        return rs.next();
     }
 
     public static boolean removeComic(String ISBN, int idUtente) throws SQLException {
@@ -113,6 +112,7 @@ public class CartDAO {
         ps.setString(1, ISBN);
         ps.setInt(2, idUtente);
         ps.executeUpdate();
+        con.close();
         return true;
     }
 
@@ -128,6 +128,7 @@ public class CartDAO {
         ps.setInt(2, idUtente);
         ps.setString(3, ISBN);
         ps.executeUpdate();
+        con.close();
         return true;
     }
 
@@ -147,9 +148,11 @@ public class CartDAO {
             ps.setInt(2, idUtente);
             ps.setString(3, ISBN);
             ps.executeUpdate();
+            con.close();
             return true;
         } else {
             System.out.println("Nessuna voce trovata nel carrello per l'utente e ISBN specificati.");
+            con.close();
             return false;
         }
     }

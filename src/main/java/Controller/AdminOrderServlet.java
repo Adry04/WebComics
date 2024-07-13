@@ -1,4 +1,4 @@
-//Servlet per la gestione deglio ogini Admin
+//Servlet per la gestione degli ordini Admin
 package Controller;
 
 import Model.Order;

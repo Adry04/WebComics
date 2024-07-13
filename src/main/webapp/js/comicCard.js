@@ -19,7 +19,7 @@ const url = window.location.origin + "/tswProject_war_exploded/wishlist";
                  counterWishes.setAttribute("data-wishes", numberWishes);
                  counterWishes.innerHTML = numberWishes;
                  checkDisplay("ELEMENTO AGGIUNTO ALLA WISHLIST"); //si trova dentro nav.js
-             } else if (this.readyState === 4 && this.status === 500) {
+             } else if (this.readyState === 4 && this.status === 400) {
                  alert("È necessario eseguire l'accesso");
              }
          }

@@ -59,7 +59,7 @@ public class WishlistServlet extends HttpServlet {
             }
         } catch (ServletException e) {
             request.setAttribute("error", e);
-            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
+            response.setStatus(response.SC_BAD_REQUEST);
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             response.setStatus(response.SC_INTERNAL_SERVER_ERROR);

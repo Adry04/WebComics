@@ -3,6 +3,7 @@ const svgClose = document.getElementById("closeEye");
 const password = document.getElementById("password-input");
 const passwordConfirm = document.getElementById("password-confirm")
 
+//Visualizza la password del'utente quando inserita nel form
 function displayPassword() {
     svgOpen.classList.add("no-display")
     svgClose.classList.remove("no-display")
@@ -12,6 +13,7 @@ function displayPassword() {
     }
 }
 
+//Nascondi la password dell'utente quando inserita nel form
 function hidePassword() {
     svgOpen.classList.remove("no-display");
     svgClose.classList.add("no-display");

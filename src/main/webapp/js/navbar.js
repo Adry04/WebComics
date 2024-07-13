@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })
 
+//Display verde di operazione eseguita
 function checkDisplay(text){
     let check = document.getElementById("check-box");
     let checkText = document.getElementById("check-box-text");
@@ -26,6 +27,7 @@ function checkDisplay(text){
     }
 }
 
+//Display rosso di operazione non valida
 function checkErrorDisplay(text){
     let check = document.getElementById("check-error-box");
     let checkText = document.getElementById("check-error-box-text");
@@ -38,20 +40,24 @@ function checkErrorDisplay(text){
     }
 }
 
+//Mostra la searchbar
 function displaySearchBar() {
     document.getElementById("form-search-bar").classList.add("display-form")
 }
 
+//Nascondi la searchbar
 function hideSearchBar() {
     document.getElementById("form-search-bar").classList.remove("display-form")
 }
 
+//Apertura Hamburger menù da mobile
 function openMobileNav() {
     document.body.style.overflow = 'hidden';
     document.getElementById("background-mobile-nav").classList.add("display-background-mobile-nav")
     document.getElementById("mobile-nav").classList.add("display-mobile-nav")
 }
 
+//Chiusura menù hamburger da mobile
 function closeMobileNav() {
     document.body.style.overflow = 'auto';
     document.getElementById("background-mobile-nav").classList.remove("display-background-mobile-nav")

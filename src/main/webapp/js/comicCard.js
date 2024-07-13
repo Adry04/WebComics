@@ -2,7 +2,8 @@ const counterWishes = document.getElementById("counter-wishes");
 let numberWishes = parseInt(counterWishes.getAttribute("data-wishes"), 10);
 const url = window.location.origin + "/tswProject_war_exploded/wishlist";
 
- function toggleWish(isbn) {
+//Eliminazione dell'elemento in maniera asincrona
+function toggleWish(isbn) {
      const wishContainer = document.getElementById("wish-container-"+isbn);
      const noWish = document.getElementById("no-wish-" + isbn);
      const wish = document.getElementById("wish-" + isbn);
@@ -50,6 +51,7 @@ const url = window.location.origin + "/tswProject_war_exploded/wishlist";
 
 const urlCart = window.location.origin + "/tswProject_war_exploded/cart";
 
+//Aggiunta al carrello in maniera asincrona
 function addCart(isbn, quantita, comic) {
     let counterCarts = document.getElementById("counter-carts");
     let numberCarts = counterCarts.getAttribute("data-carts");

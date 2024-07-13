@@ -1,3 +1,4 @@
+//Validazione dell'indirizzo front-end con RegExp
 function addressFormValidation() {
     const capPattern = /^\d{5}$/;
     const cap = document.getElementById("cap")

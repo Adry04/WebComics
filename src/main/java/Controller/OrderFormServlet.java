@@ -40,7 +40,7 @@ public class OrderFormServlet extends HttpServlet {
         } catch (ServletException e) {
             e.printStackTrace(System.out);
             String contextPath = request.getContextPath();
-            response.sendRedirect(contextPath + "/");
+            response.sendRedirect(contextPath + "/login");
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             response.setStatus(response.SC_INTERNAL_SERVER_ERROR);

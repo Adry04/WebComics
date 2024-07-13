@@ -1,3 +1,4 @@
+//Cancellazione del fumetto in maniera sincrona
 function deleteComic (isbn) {
     if(confirm("Vuoi davvero eliminare questo prodotto?")) {
         const urlPageDelete = window.location.origin + "/tswProject_war_exploded/admin"

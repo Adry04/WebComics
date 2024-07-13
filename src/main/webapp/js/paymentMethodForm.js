@@ -1,6 +1,6 @@
-const creditCard = document.getElementById("credit-card")
-const bankAccount = document.getElementById("bank-account")
-const errorText = document.getElementById("error-text")
+const creditCard = document.getElementById("credit-card");
+const bankAccount = document.getElementById("bank-account");
+const errorText = document.getElementById("error-text");
 
 const cvcPattern = /^[0-9]{3}$/;
 const numberPattern = /^(?:[0-9]{4}[-\s]?){3}[0-9]{4}$/;
@@ -9,6 +9,7 @@ const bankIbanPattern = /^[A-Z]{2}[0-9A-Z]{25}$/;
 const ownerPattern = /^[a-zA-Zà-ÿÀ-ÿ'’\- ]+$/;
 const bicPattern = /^[A-Z]{6}[0-9]{2}$/;
 
+//Mostra il metodo di pagamento Carta di Credito
 function showCreditCard() {
     creditCard.classList.add("show-form")
     creditCard.classList.remove("no-display-form")
@@ -18,6 +19,7 @@ function showCreditCard() {
     errorText.innerHTML = "";
 }
 
+//Mostra il metodo di pagamento Conto Corrente
 function showBankAccount() {
     bankAccount.classList.add("show-form")
     bankAccount.classList.remove("no-display-form")
@@ -27,6 +29,7 @@ function showBankAccount() {
     errorText.innerHTML = "";
 }
 
+//Scelta mutuamente esclusiva del metodo di pagamento
 window.onload = function() {
     let radios = document.getElementsByName('choose-method');
     for (let i = 0; i < radios.length; i++) {
@@ -34,21 +37,22 @@ window.onload = function() {
     }
 }
 
+//Prende il metodo di pagamento scelto con il Radio Button
 function getSelectedPaymentMethod() {
     let radios = document.getElementsByName('choose-method');
     for (let i = 0; i < radios.length; i++) {
         if (radios[i].checked) {
-            // Puoi anche fare altro con il valore selezionato, ad esempio assegnarlo a una variabile o mostrarlo in una pagina
             return radios[i].value;
         }
     }
 }
 
+//Validazione dei metodi di pagamento Front-end con RegExp
 function controlForm() {
     const selectedMethod = getSelectedPaymentMethod()
 
     if(selectedMethod === "CreditCard") {
-        // Card Attribute
+        // Card Attributes
         const cardNumber = document.getElementById("card-number")
         const cardOwner = document.getElementById("card-owner")
         const cardCvc = document.getElementById("cvc")

@@ -1,3 +1,4 @@
+//Cancellazione della carta di credito in maniera asincrona
 function deleteCreditCard (id) {
     if(confirm("Vuoi davvero eliminare questa carta di credito?")){
         const creditCard = document.getElementById("credit-card-" + id)
@@ -21,6 +22,7 @@ function deleteCreditCard (id) {
     }
 }
 
+//Cancellazione del conto corrente in maniera asincrona
 function deleteBankAccount (id) {
     if(confirm("Vuoi davvero eliminare questo conto?")){
         const bankAccount = document.getElementById("bank-account-" + id)
@@ -44,6 +46,7 @@ function deleteBankAccount (id) {
     }
 }
 
+//Cancellazione dell'indirizzo di spedizione in maniera asincrona
 function deleteAddress (id) {
     if(confirm("Vuoi davvero eliminare questo indirizzo?")){
         const address = document.getElementById("address-" + id)

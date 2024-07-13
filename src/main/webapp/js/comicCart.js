@@ -4,6 +4,7 @@ const counterCarts = document.getElementById("counter-carts");
 const cartComicContainer = document.getElementById("cart-comics-container")
 const checkoutSection = document.getElementById("checkout-section")
 
+//Incremento della quantità di un prodotto (non nel database) nel carrello in maniera asincrona
 function incrementQuantity (isbn, comic, price) {
     if (!requestInProgress) {
         const prezzo = document.getElementById("prezzo");
@@ -43,6 +44,7 @@ function incrementQuantity (isbn, comic, price) {
     }
 }
 
+//Decremento della quantità di un prodotto (non nel database) nel carrello in maniera asincrona
 function decrementQuantity (isbn, comic, price) {
     if(!requestInProgress) {
         const prezzo = document.getElementById("prezzo");
@@ -89,6 +91,7 @@ function decrementQuantity (isbn, comic, price) {
     }
 }
 
+//Rimozione del prodotto (non nel database) nel carrello in maniera asincrona
 function remove (isbn, comic, price) {
     if(!requestInProgress) {
         requestInProgress = true;

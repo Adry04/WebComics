@@ -43,7 +43,8 @@
         %>
            <%@include file="WEB-INF/comicCard.jsp"%>
         <%
-            }}
+                }
+            }
         %>
     </div>
     <%@include file="WEB-INF/footer.jsp"%>

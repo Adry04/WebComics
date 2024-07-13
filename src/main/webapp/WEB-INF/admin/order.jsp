@@ -21,16 +21,17 @@
         <div class="order-container">
             <%
                 List<Order> orders = new ArrayList<>();
-                if(session.getAttribute("orders") != null) {
-                    orders = (List<Order>) session.getAttribute("orders");
+                if(request.getAttribute("orders") != null) {
+                    orders = (List<Order>) request.getAttribute("orders");
                 }
                 for (Order order : orders) {
                     DecimalFormat df = new DecimalFormat("#.00");
                     String totalPrice = df.format(order.getPrezzoTotale());
             %>
             <div class="order-section" onclick="location.href = 'order-page?id=<%=order.getIdOrdine()%>'">
-                <p class="data">Quantità: <%=order.getQuantita()%></p>
-                <p class="price">Prezzo: <%=totalPrice%> €</p>
+                <p>Quantità: <%=order.getQuantita()%></p>
+                <p>ID Ordine: <%=order.getIdOrdine()%></p>
+                <p>Prezzo: <%=totalPrice%> €</p>
             </div>
             <%
                 }

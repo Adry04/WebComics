@@ -66,8 +66,9 @@ public class UpdateComicServlet extends HttpServlet {
                 }
                 String path = request.getServletContext().getRealPath("") + File.separator;
                 String filePath = path + File.separator + "uploads" + File.separator + fileName;
+                String dirPath = path + File.separator + "uploads";
                 String oldFilePath = path + oldComic.getImmagine();
-                File dir = new File(path);
+                File dir = new File(dirPath);
                 if (!dir.exists()) {
                     if (!dir.mkdir()) {
                         throw new ServletException("Errore nel salvataggio del file");
@@ -76,7 +77,6 @@ public class UpdateComicServlet extends HttpServlet {
                 File uploadedFile = new File(filePath);
                 immagine = "uploads" + File.separator + fileName;
                 if (!uploadedFile.exists()) {
-                    System.out.println("File caricato con successo: " + fileName);
                     filePart.write(filePath);
                     File oldFile = new File(oldFilePath);
                     if(oldFile.exists()) {
@@ -93,7 +93,7 @@ public class UpdateComicServlet extends HttpServlet {
                 String contextPath = request.getContextPath();
                 response.sendRedirect(contextPath + "/admin");
             }
-        } catch (ServletException e) {
+        } catch (Exception e) {
             e.printStackTrace(System.out);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/admin/comic.jsp");  //tenere d'occhio
             dispatcher.forward(request, response);

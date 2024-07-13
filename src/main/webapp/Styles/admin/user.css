@@ -17,14 +17,14 @@
 .user-container {
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    gap: 1em;
     width: 100%;
     margin: 3em 0;
 }
 
 .user-section {
     width: 90%;
-    padding: .8em 5%;
+    padding: .4em 5%;
     background-color: #67C7EB;
     border-radius: 10px;
     -webkit-box-shadow: 1px 3px 15px -3px rgba(0,0,0,0.43);

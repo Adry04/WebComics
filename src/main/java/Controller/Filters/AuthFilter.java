@@ -1,13 +1,12 @@
 package Controller.Filters;
 
-import Model.CartDAO;
-import Model.TokenUtil;
-import Model.User;
-import Model.UserDAO;
+import Model.*;
+import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.*;
 import java.io.IOException;
+import java.util.Base64;
 
 @WebFilter(filterName = "AuthFilter", urlPatterns = "/*")
 public class AuthFilter extends HttpFilter implements Filter {
@@ -16,6 +15,7 @@ public class AuthFilter extends HttpFilter implements Filter {
         HttpSession session = httpRequest.getSession();
         Cookie[] cookies = httpRequest.getCookies();
         String token = null;
+        String cartJson = null;
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("authToken")) {
@@ -23,6 +23,17 @@ public class AuthFilter extends HttpFilter implements Filter {
                     break;
                 }
             }
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("cart")) {
+                    cartJson = cookie.getValue();
+                    break;
+                }
+            }
+        }
+        Gson gson = new Gson();
+        if(cartJson != null && session.getAttribute("cart") == null) {
+            String encodedCartJson = new String(Base64.getUrlDecoder().decode(cartJson));
+            session.setAttribute("cart", gson.fromJson(encodedCartJson, Cart.class));
         }
         if (token != null && TokenUtil.validateToken(token) && session.getAttribute("userId") == null) {
             String email = TokenUtil.getEmailFromToken(token);

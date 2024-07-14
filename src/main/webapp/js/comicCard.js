@@ -73,6 +73,8 @@ function addCart(isbn, quantita, comic) {
             checkDisplay("ELEMENTO AGGIUNTO AL CARRELLO"); //si trova dentro nav.js
         } else if (this.readyState === 4 && this.status === 400) {
             checkErrorDisplay("LA QUANTITA' NON PUO ESSERE NEGATIVA");
+        } else if(this.readyState === 4 && this.status === 401) {
+            checkErrorDisplay("Il prodotto non è più disponibile")
         }
     }
     xhttp.open("POST", urlCart, true);

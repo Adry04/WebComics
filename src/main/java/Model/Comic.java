@@ -68,6 +68,15 @@ public class Comic {
         this.finalPrice = finalPrice;
         this.data = data;
     }
+
+    public Comic(String isbn, double prezzo, String titolo, String immagine) {
+        this.ISBN = isbn;
+        this.price = prezzo;
+        this.title = titolo;
+        this.immagine = immagine;
+        this.finalPrice = price;
+    }
+
     public String getISBN() {
         return ISBN;
     }
@@ -153,7 +162,11 @@ public class Comic {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comic comic = (Comic) o;
-        return ISBN.equals(comic.ISBN);
+        if(ISBN != null) {
+            return ISBN.equals(comic.ISBN);
+        } else {
+            return title.equals(comic.title);
+        }
     }
 
     @Override

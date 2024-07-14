@@ -1,6 +1,8 @@
 //Servlet del carrello
 package Controller;
 
+import Controller.Exception.ComicDisponibility;
+import Controller.Exception.QuantityException;
 import Model.Cart;
 import Model.Comic;
 import Model.ComicDAO;
@@ -32,6 +34,9 @@ public class CartServlet extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             String ISBN = request.getParameter("ISBN");
+            if(ISBN.equals("null")) {
+                throw new ComicDisponibility("fumetto non disponibile");
+            }
             int quantita = Integer.parseInt(request.getParameter("quantita"));
             String comicJson = request.getParameter("comic");
             Gson gson = new Gson();
@@ -42,13 +47,13 @@ public class CartServlet extends HttpServlet {
             if (request.getParameter("actual-quantity") != null) {
                 int actualQuantity = Integer.parseInt(request.getParameter("actual-quantity"));
                 if(actualQuantity <= 0) {
-                    throw new ServletException("Errore quantità");
+                    throw new QuantityException("Errore quantità");
                 }
             }
             switch (type) {
                 case "add":
                     if (quantita < 1) {
-                        throw new ServletException("Errore di quantità");
+                        throw new QuantityException("Errore di quantità");
                     }
                     if (session.getAttribute("userId") != null) {
                         List<Comic> cartComics = new ArrayList<>();
@@ -115,9 +120,12 @@ public class CartServlet extends HttpServlet {
                     break;
                 }
             }
-        } catch (ServletException e) {
+        } catch (QuantityException e) {
             e.printStackTrace(System.out);
+            String error = String.valueOf(e);
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } catch (ComicDisponibility e) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         } catch (Exception e) {
             e.printStackTrace(System.out);
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

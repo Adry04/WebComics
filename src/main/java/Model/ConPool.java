@@ -16,7 +16,7 @@ public class ConPool {
             p.setUrl("jdbc:mysql://localhost:3306/webcomics?serverTimezone=" + TimeZone.getDefault().getID());  //Dipende dalla porta del server e dal database
             p.setDriverClassName("com.mysql.cj.jdbc.Driver");
             p.setUsername("root");
-            p.setPassword("mysql"); //dipende dalla password del tuo MySql Workbench
+            p.setPassword("Pellegrino!22"); //dipende dalla password del tuo MySql Workbench
             p.setMaxActive(10);
             p.setInitialSize(10);
             p.setMinIdle(10);

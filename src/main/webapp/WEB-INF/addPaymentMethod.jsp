@@ -51,7 +51,7 @@
                     <input type="text" placeholder="Inserire l'IBAN'" id="iban" name="iban" maxlength="27"/>
                 </div>
                 <div>
-                    <label for="bic">Inserisci l'IBAN</label>
+                    <label for="bic">Inserisci il BIC</label>
                     <input type="text" placeholder="Inserire il BIC" id="bic" name="bic" maxlength="8"/>
                 </div>
             </div>

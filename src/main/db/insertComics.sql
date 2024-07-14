@@ -2,7 +2,7 @@ INSERT INTO Fumetto (
     ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, ddi
 ) VALUES
       (
-          '0000000000000',
+          '0000000000030',
           'Geronimo Stilton',
           15.00,
           'Le Avventure di Geronimo Stilton',

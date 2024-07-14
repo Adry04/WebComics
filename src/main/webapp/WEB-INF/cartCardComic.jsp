@@ -20,17 +20,17 @@
     <div class="operation-section">
         <div class="separation">
             <div class="quantity-section">
-                <button class="click-quantity onclick-button" onclick='decrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)' aria-label="Decrement Quantity" onkeydown='decrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)'>
+                <button class="click-quantity onclick-button" onclick='decrementQuantity("<%=comic.getISBN()%>", <%=comicJson%>, <%=comic.getFinalPrice()%>)' aria-label="Decrement Quantity" onkeydown='decrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)'>
                     -
                 </button>
                 <span data-quantity="<%=cart.getQuantity(comic.getISBN())%>" id="quantity-cart-<%=comic.getISBN()%>"><%=cart.getQuantity(comic.getISBN())%></span>
-                <button class="click-quantity onclick-button" onclick='incrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)' aria-label="Increment Quantity" onkeydown='incrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)'>
+                <button class="click-quantity onclick-button" onclick='incrementQuantity("<%=comic.getISBN()%>", <%=comicJson%>, <%=comic.getFinalPrice()%>)' aria-label="Increment Quantity" onkeydown='incrementQuantity(<%=comic.getISBN()%>, <%=comicJson%>, <%=comic.getFinalPrice()%>)'>
                     +
                 </button>
             </div>
         </div>
         <div class="separation">
-            <button onclick='remove(<%=comic.getISBN()%>, <%=comicJson%>, <%=finalPrice%>)'>Rimuovi</button>
+            <button onclick='remove("<%=comic.getISBN()%>", <%=comicJson%>, <%=finalPrice%>)'>Rimuovi</button>
         </div>
     </div>
 </div>

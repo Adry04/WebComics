@@ -151,4 +151,15 @@ public class OrderDAO {
         con.close();
         return orders;
     }
+
+    public static boolean isImageInOrder(String immagine) throws SQLException {
+        Connection con = ConPool.getConnection();
+        String query = "SELECT * FROM fumettoordinato WHERE immagine_fumetto = ?";
+        PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, immagine);
+        ResultSet rs = ps.executeQuery();
+        con.close();
+        System.out.println(immagine + "IMMAGINE DAO");
+        return rs.next();
+    }
 }

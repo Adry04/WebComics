@@ -3,6 +3,7 @@ package Controller;
 
 import Model.Comic;
 import Model.ComicDAO;
+import Model.OrderDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -47,9 +48,11 @@ public class AdminServlet extends HttpServlet {
             String path = request.getServletContext().getRealPath("") + File.separator;
             String filePath = path + comic.getImmagine();
             File oldFile = new File(filePath);
-            if(oldFile.exists()) {
-                if (!oldFile.delete()) {
-                    throw new ServletException("Errore nella cancellazione del file");
+            if(!OrderDAO.isImageInOrder(comic.getImmagine())) {
+                if (oldFile.exists()) {
+                    if (!oldFile.delete()) {
+                        throw new ServletException("Errore nella cancellazione del file");
+                    }
                 }
             }
             if(!ComicDAO.doDelete(ISBN)){

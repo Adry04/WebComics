@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -41,6 +43,15 @@ public class AdminServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String ISBN = request.getParameter("ISBN");
+            Comic comic = ComicDAO.getComic(ISBN);
+            String path = request.getServletContext().getRealPath("") + File.separator;
+            String filePath = path + comic.getImmagine();
+            File oldFile = new File(filePath);
+            if(oldFile.exists()) {
+                if (!oldFile.delete()) {
+                    throw new ServletException("Errore nella cancellazione del file");
+                }
+            }
             if(!ComicDAO.doDelete(ISBN)){
                 throw new ServletException("Errore eliminazione prodotto");
             }

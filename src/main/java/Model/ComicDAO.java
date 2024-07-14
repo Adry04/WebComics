@@ -70,6 +70,7 @@ public class ComicDAO {
             LocalDate data = rs.getDate("ddi").toLocalDate();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
             String comicDate = data.format(formatter);
+            con.close();
             return new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate);
         }
         con.close();

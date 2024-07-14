@@ -22,7 +22,7 @@
             DecimalFormat df = new DecimalFormat("#.00");
             double totalPrice = cart.getTotalPrice();
             String totalPriceString = df.format(totalPrice);
-            for (Comic comic : cartComics) {
+            for (Comic comic : cart.getComics()) {
                 String finalPrice = df.format(comic.getFinalPrice());
         %>
             <%@include file="cartCardComic.jsp"%>

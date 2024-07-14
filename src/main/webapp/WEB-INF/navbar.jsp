@@ -11,7 +11,6 @@
     int sizeWishes = 0;
     int sizeCartComics = 0;
     List<Comic> wishComics = new ArrayList<>();
-    List<Comic> cartComics = new ArrayList<>();
     Cart cart = new Cart();
     if(session.getAttribute("userId") != null) {
         try {
@@ -23,18 +22,21 @@
         sizeWishes = wishComics.size();
     }
     if (session.getAttribute("cart") != null) {
-      cart = (Cart) session.getAttribute("cart");
-      cartComics = cart.getComics();
-      sizeCartComics = cart.getTotalQuantity();
+        try {
+            cart = CartDAO.refreshComics((Cart) session.getAttribute("cart"));
+            sizeCartComics = cart.getTotalQuantity();
+        } catch (SQLException e) {
+            response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
+        }
     } else if (session.getAttribute("userId") != null) {
         try {
             cart = CartDAO.getCart((int) session.getAttribute("userId"));
+            sizeCartComics = cart.getTotalQuantity();
         } catch (SQLException e) {
             response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
             throw new RuntimeException("Errore durante l'accesso al database", e);
         }
-        cartComics = Objects.requireNonNull(cart).getComics();
-      sizeCartComics = cart.getTotalQuantity();
+
     }
 %>
 <div class="top-nav">

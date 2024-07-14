@@ -1,6 +1,7 @@
 //Servlet della wishlist
 package Controller;
 
+import Controller.Exception.ComicDisponibility;
 import Model.Comic;
 import Model.ComicDAO;
 import jakarta.servlet.RequestDispatcher;
@@ -44,6 +45,9 @@ public class WishlistServlet extends HttpServlet {
             }
             int idUtente = (int) session.getAttribute("userId");
             String ISBN = request.getParameter("ISBN");
+            if(ISBN.equals("null")) {
+                throw new ComicDisponibility("Fumetto non più disponibile");
+            }
             String type = request.getParameter("requestType");
             if(type.equals("add")) {
                 if (ComicDAO.addWish(ISBN, idUtente)) {
@@ -61,6 +65,8 @@ public class WishlistServlet extends HttpServlet {
         } catch (ServletException e) {
             request.setAttribute("error", e);
             response.setStatus(response.SC_BAD_REQUEST);
+        } catch (ComicDisponibility e) {
+            response.setStatus(response.SC_UNAUTHORIZED);
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             response.setStatus(response.SC_INTERNAL_SERVER_ERROR);

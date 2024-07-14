@@ -78,6 +78,8 @@ public class OrderFormServlet extends HttpServlet {
                 request.setAttribute("error-form", "Errore nel salvataggio riprova più tardi");
                 throw new ServletException("Errore salvataggio ordine");
             } else {
+                Cart cart = new Cart((int) session.getAttribute("userId"));
+                session.setAttribute("cart", cart);
                 String contextPath = request.getContextPath();
                 response.sendRedirect(contextPath + "/order");
             }

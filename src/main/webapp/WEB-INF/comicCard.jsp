@@ -3,6 +3,7 @@
 <%
     Gson gson = new Gson();
     String comicJson = gson.toJson(comic);
+    System.out.println(comic.getImmagine());
 %>
 <div class="comic-card" id="comic-card-<%=comic.getISBN()%>">
     <button class="image-button" onclick="location.href = 'comic?isbn=<%=comic.getISBN()%>'" aria-label="Comic Page" tabindex="0" onkeydown="location.href = 'comic?isbn=<%=comic.getISBN()%>'">

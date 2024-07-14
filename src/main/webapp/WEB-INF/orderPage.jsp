@@ -23,7 +23,6 @@
                 DecimalFormat df = new DecimalFormat("#.00");
                 String price = df.format(comic.getPrice());
                 String finalPrice = df.format(comic.getPrice());
-                System.out.println("fumetto");
                 boolean isWished = false;
                 if (wishComics != null && !wishComics.isEmpty()) {
                     isWished = wishComics.contains(comic);

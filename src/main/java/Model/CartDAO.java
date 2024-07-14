@@ -117,6 +117,60 @@ public class CartDAO {
         return true;
     }
 
+    public static Cart refreshComics(Cart cart) throws SQLException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            con = ConPool.getConnection();
+            Cart newCart = cart;
+            List<Comic> comics = new ArrayList<>(newCart.getComics());
+            List<Comic> comicsToRemove = new ArrayList<>();
+
+            for (Comic comic : comics) {
+                String query = "SELECT immagine FROM fumetto WHERE isbn = ?";
+                ps = con.prepareStatement(query);
+                ps.setString(1, comic.getISBN());
+                rs = ps.executeQuery();
+
+                if (rs.next()) {
+                    String newImage = rs.getString("immagine");
+                    if (!newImage.equals(comic.getImmagine())) {
+                        comic.setImmagine(newImage);
+                    }
+                } else {
+                    comicsToRemove.add(comic);
+                }
+                rs.close();
+                ps.close();
+            }
+
+            // Rimuovi i fumetti dalla lista e dalla mappa
+            for (Comic comic : comicsToRemove) {
+                comics.remove(comic);
+                newCart.removeQuantity(comic.getISBN());
+            }
+
+            newCart.setComics(comics);
+
+            return newCart;
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+
+
     public static boolean removeQuantity(String ISBN, int idUtente, int newQuantity) throws SQLException {
         Connection con = ConPool.getConnection();
         String firstQuery = "SELECT quantita FROM carrello WHERE idUtente = ? AND isbn = ?";

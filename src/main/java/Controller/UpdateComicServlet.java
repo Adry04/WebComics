@@ -77,9 +77,9 @@ public class UpdateComicServlet extends HttpServlet {
                     request.setAttribute("error-form", "Tipo di file non supportato");
                     throw new ServletException("Tipo di file non supportato");
                 }
-                String path = request.getServletContext().getRealPath("") + File.separator;
-                String filePath = path + File.separator + "uploads" + File.separator + fileName;
-                String dirPath = path + File.separator + "uploads";
+                String path = request.getServletContext().getRealPath("");
+                String filePath = path + "uploads" + File.separator + fileName;
+                String dirPath = path + "uploads";
                 String oldFilePath = path + oldComic.getImmagine();
                 File dir = new File(dirPath);
                 if (!dir.exists()) {

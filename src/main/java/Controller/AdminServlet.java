@@ -45,7 +45,7 @@ public class AdminServlet extends HttpServlet {
         try {
             String ISBN = request.getParameter("ISBN");
             Comic comic = ComicDAO.getComic(ISBN);
-            String path = request.getServletContext().getRealPath("") + File.separator;
+            String path = request.getServletContext().getRealPath("");
             String filePath = path + comic.getImmagine();
             File oldFile = new File(filePath);
             if(!OrderDAO.isImageInOrder(comic.getImmagine())) {

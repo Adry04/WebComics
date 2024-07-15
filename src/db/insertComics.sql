@@ -6,10 +6,14 @@ INSERT INTO Fumetto (
           'Geronimo Stilton',
           15.00,
           'Le Avventure di Geronimo Stilton',
-          'Segui Geronimo Stilton nelle sue divertenti avventure.',
+          'Segui Geronimo Stilton nelle sue divertenti avventure.
+          Geronimo Stilton è un topo giornalista che si trova sempre in situazioni comiche e stravaganti.
+          Le sue storie sono piene di umorismo e insegnamenti per i più piccoli.
+          Attraverso le sue avventure, Geronimo incontra molti amici e nemici.
+          Ogni episodio è una nuova emozionante avventura.',
           'Commedia',
           10,
-          'Geronimo Stilton.jpeg',
+          'uploads/Geronimo Stilton.jpeg',
           '2024-07-09'
       ),
       (
@@ -17,10 +21,14 @@ INSERT INTO Fumetto (
           'William Hanna & Joseph Barbera',
           12.50,
           'Tom & Jerry',
-          'Le classiche e spassose avventure di Tom e Jerry.',
+          'Le classiche e spassose avventure di Tom e Jerry.
+          Questo duo dinamico è conosciuto per le loro continue lotte e scherzi.
+          Tom, il gatto, cerca sempre di catturare Jerry, il topo, ma raramente ci riesce.
+          Le loro avventure sono piene di slapstick e situazioni comiche.
+          Nonostante la loro rivalità, ci sono momenti in cui Tom e Jerry dimostrano un legame inaspettato.',
           'Commedia',
           5,
-          'Tom & Jerry.jpeg',
+          'uploads/Tom & Jerry.jpeg',
           '2024-07-08'
       ),
       (
@@ -28,10 +36,14 @@ INSERT INTO Fumetto (
           'Walt Disney',
           18.00,
           'Topolino',
-          'Le avventure comiche di Topolino e dei suoi amici.',
+          'Le avventure comiche di Topolino e dei suoi amici.
+          Topolino è uno dei personaggi più iconici della Disney.
+          Con i suoi amici, tra cui Paperino, Pippo e Minnie, vive una serie di avventure indimenticabili.
+          Ogni storia è piena di momenti divertenti e insegnamenti morali.
+          Topolino rappresenta il coraggio e l\'amicizia in ogni episodio.',
           'Commedia',
           15,
-          'Topolino.jpeg',
+          'uploads/Topolino.jpeg',
           '2024-07-07'
       ),
       (
@@ -39,10 +51,14 @@ INSERT INTO Fumetto (
           'Michael Dante DiMartino & Bryan Konietzko',
           20.00,
           'Avatar: la leggenda di Aang',
-          'Le epiche avventure di Aang, l\'ultimo dominatore dell\'aria.',
+          'Le epiche avventure di Aang, l\'ultimo dominatore dell\'aria.
+          Aang è un giovane monaco con il compito di portare equilibrio al mondo.
+          Con i suoi amici, Katara, Sokka e Toph, affronta molte sfide.
+          Ogni libro della serie rappresenta una fase del suo viaggio come Avatar.
+          La serie mescola elementi di avventura, misticismo e crescita personale.',
           'Fantasy',
           10,
-          'Avatar.jpeg',
+          'uploads/Avatar.jpeg',
           '2024-07-06'
       ),
       (
@@ -50,10 +66,14 @@ INSERT INTO Fumetto (
           'Chad Moldenhauer & Jared Moldenhauer',
           17.50,
           'Cuphead',
-          'Le avventure di Cuphead e Mugman in un mondo fantastico.',
+          'Le avventure di Cuphead e Mugman in un mondo fantastico.
+          I due protagonisti devono affrontare una serie di sfide per pagare un debito con il diavolo.
+          Ogni capitolo è pieno di azione e avventure mozzafiato.
+          Il loro stile grafico si ispira ai cartoni animati degli anni \'30.
+          La storia è ricca di umorismo e riferimenti culturali.',
           'Fantasy',
           5,
-          'Cuphead.jpeg',
+          'uploads/Cuphead.jpeg',
           '2024-07-05'
       ),
       (
@@ -61,10 +81,14 @@ INSERT INTO Fumetto (
           'Marco Polo',
           22.00,
           'Drago Nero',
-          'Una storia epica di draghi e magia.',
+          'Una storia epica di draghi e magia.
+          Il protagonista deve affrontare una serie di prove per salvare il suo regno.
+          Ogni capitolo è pieno di battaglie epiche e momenti di suspense.
+          La storia esplora temi di coraggio, sacrificio e amicizia.
+          Il mondo di Drago Nero è ricco di creature magiche e misteri antichi.',
           'Fantasy',
           20,
-          'Drago nero.jpeg',
+          'uploads/Drago nero.jpeg',
           '2024-07-04'
       ),
       (
@@ -72,10 +96,14 @@ INSERT INTO Fumetto (
           'Giovanni Verdi',
           19.99,
           'La Fantascienza a Fumetti',
-          'Raccolta di storie di fantascienza in formato fumetto.',
+          'Raccolta di storie di fantascienza in formato fumetto.
+          Ogni storia esplora un diverso aspetto del futuro e della tecnologia.
+          I protagonisti affrontano sfide in mondi alieni e realtà alternative.
+          La serie è nota per la sua narrazione avvincente e le illustrazioni dettagliate.
+          Le storie esplorano temi di umanità, progresso e moralità.',
           'Fantasy',
           15,
-          'Fantasy.jpeg',
+          'uploads/Fantasy.jpeg',
           '2024-07-03'
       ),
       (
@@ -83,10 +111,14 @@ INSERT INTO Fumetto (
           'Tiziano Sclavi',
           16.00,
           'Dylan Dog',
-          'Le indagini dell\'indagatore dell\'incubo Dylan Dog.',
+          'Le indagini dell\'indagatore dell\'incubo Dylan Dog.
+          Dylan Dog è un detective che si occupa di casi sovrannaturali.
+          Ogni caso lo porta a confrontarsi con creature mostruose e fenomeni inspiegabili.
+          La serie è nota per il suo tono dark e le storie avvincenti.
+          Dylan Dog esplora i confini tra realtà e incubo.',
           'Horror',
           10,
-          'Dylan Dog.jpeg',
+          'uploads/Dylan Dog.jpeg',
           '2024-07-02'
       ),
       (
@@ -94,10 +126,14 @@ INSERT INTO Fumetto (
           'Joe Hill & Gabriel Rodríguez',
           18.50,
           'Locke & Key',
-          'Le avventure horror della famiglia Locke nella loro misteriosa casa.',
+          'Le avventure horror della famiglia Locke nella loro misteriosa casa.
+          Dopo la morte del padre, i figli Locke scoprono chiavi magiche con poteri unici.
+          Ogni chiave apre porte a mondi diversi e pericolosi.
+          La storia è piena di suspense, misteri e colpi di scena.
+          La serie esplora temi di perdita, famiglia e redenzione.',
           'Horror',
           15,
-          'Locke & Key.jpg',
+          'uploads/Locke & Key.jpg',
           '2024-07-09'
       ),
       (
@@ -105,10 +141,14 @@ INSERT INTO Fumetto (
           'R.L. Stine',
           14.99,
           'Piccoli Brividi',
-          'Racconti di terrore per ragazzi che amano i brividi.',
+          'Racconti di terrore per ragazzi che amano i brividi.
+          Ogni storia è autonoma e presenta nuovi personaggi e situazioni.
+          I racconti esplorano paure comuni in modi inaspettati e spaventosi.
+          La serie è amata per il suo stile avvincente e i colpi di scena.
+          Piccoli Brividi ha terrorizzato e affascinato generazioni di lettori giovani.',
           'Horror',
           20,
-          'Piccoli Brividi.jpg',
+          'uploads/Piccoli Brividi.jpg',
           '2024-07-08'
       ),
       (
@@ -116,10 +156,14 @@ INSERT INTO Fumetto (
           'Hanna-Barbera',
           12.75,
           'Scooby-Doo!',
-          'Le misteriose e spaventose avventure di Scooby-Doo e la sua gang.',
+          'Le misteriose e spaventose avventure di Scooby-Doo e la sua gang.
+          Scooby-Doo, Shaggy e i loro amici risolvono misteri soprannaturali.
+          Ogni episodio è pieno di risate e momenti di suspense.
+          La gang scopre sempre che i mostri sono in realtà truffatori mascherati.
+          La serie è un classico amato per il suo mix di umorismo e mistero.',
           'Horror',
           5,
-          'Scooby-Doo!.jpg',
+          'uploads/Scooby-Doo!.jpg',
           '2024-07-07'
       ),
       (
@@ -127,10 +171,14 @@ INSERT INTO Fumetto (
           'Stan Lee',
           21.99,
           'Iron Man',
-          'Le avventure del miliardario e supereroe Iron Man.',
+          'Le avventure del miliardario e supereroe Iron Man.
+          Tony Stark usa la sua intelligenza e le sue risorse per combattere il crimine.
+          La sua armatura tecnologica è il simbolo della sua identità da supereroe.
+          Le storie esplorano temi di responsabilità, tecnologia e redenzione.
+          Iron Man affronta numerosi nemici e sfide personali lungo il suo cammino.',
           'Supereroi',
           10,
-          'Iron man.png',
+          'uploads/Iron man.png',
           '2024-07-06'
       ),
       (
@@ -138,10 +186,14 @@ INSERT INTO Fumetto (
           'Stan Lee',
           18.75,
           'Loky',
-          'Le avventure di Loky, il dio dell\'inganno.',
+          'Le avventure di Loky, il dio dell\'inganno.
+          Loky è noto per il suo spirito ingannevole e il suo fascino.
+          Le sue storie esplorano i suoi piani machiavellici e la sua redenzione.
+          Ogni avventura è piena di intrighi, tradimenti e colpi di scena.
+          Loky affronta sia nemici mortali che dei, dimostrando la sua astuzia.',
     'Supereroi',
     15,
-    'Loky.jpg',
+    'uploads/Loky.jpg',
     '2024-07-05'
 ),
 (
@@ -149,10 +201,14 @@ INSERT INTO Fumetto (
     'Stan Lee & Steve Ditko',
     23.50,
     'Spiderman',
-    'Le incredibili avventure dell\'uomo ragno.',
+    'Le incredibili avventure dell\'uomo ragno.
+    Peter Parker, uno studente di liceo, diventa l\'eroe Spider-Man dopo essere stato morso da un ragno radioattivo.
+    Le sue storie esplorano la lotta tra la sua vita personale e le sue responsabilità da supereroe.
+    Spider-Man affronta numerosi nemici iconici e sfide personali.
+    La serie è nota per il suo approccio realistico e le emozioni profonde.',
           'Supereroi',
           20,
-          'spiderman.jpg',
+          'uploads/spiderman.jpg',
           '2024-07-04'
       ),
       (
@@ -160,10 +216,14 @@ INSERT INTO Fumetto (
           'Stan Lee & Jack Kirby',
           25.00,
           'X-Men',
-          'Le avventure del gruppo di mutanti X-Men.',
+          'Le avventure del gruppo di mutanti X-Men.
+          I mutanti sono esseri umani con poteri speciali, spesso temuti e discriminati dalla società.
+          La squadra di X-Men, guidata dal Professor Xavier, combatte per l\'uguaglianza e la giustizia.
+          Ogni membro della squadra ha abilità uniche e storie personali avvincenti.
+          Le loro avventure esplorano temi di accettazione, discriminazione e eroismo.',
           'Supereroi',
           5,
-          'X-Men.jpg',
+          'uploads/X-Men.jpg',
           '2024-07-03'
       ),
       (
@@ -171,10 +231,14 @@ INSERT INTO Fumetto (
           'Osamu Tezuka',
           22.99,
           'Barbara',
-          'La storia di una misteriosa donna di nome Barbara.',
+          'La storia di una misteriosa donna di nome Barbara.
+          Barbara è una figura enigmatica che entra nella vita del protagonista, un noto scrittore.
+          La loro relazione si sviluppa attraverso una serie di eventi strani e mistici.
+          La storia esplora temi di amore, arte e follia.
+          Il manga è noto per il suo stile narrativo unico e le sue profonde riflessioni filosofiche.',
           'Josei',
           10,
-          'barbara.jpg',
+          'uploads/barbara.jpg',
           '2024-07-02'
       ),
       (
@@ -182,10 +246,14 @@ INSERT INTO Fumetto (
           'Matsuri Akino',
           19.75,
           'Petshop of Horrors',
-          'Le inquietanti storie del negozio di animali di Count D.',
+          'Le inquietanti storie del negozio di animali di Count D.
+          Ogni cliente che entra nel negozio trova un animale che sembra soddisfare un desiderio profondo.
+          Tuttavia, ogni vendita è accompagnata da condizioni che, se infrante, portano a terribili conseguenze.
+          La serie è nota per il suo tono dark e i suoi colpi di scena.
+          Le storie esplorano temi di desiderio, responsabilità e destino.',
           'Josei',
           15,
-          'petshop of horrors.jpg',
+          'uploads/petshop of horrors.jpg',
           '2024-07-01'
       ),
       (
@@ -193,10 +261,14 @@ INSERT INTO Fumetto (
           'Yuki Urushibara',
           20.50,
           'Takahashi del Negozio di Biciclette',
-          'Le vicende di Takahashi e il suo negozio di biciclette.',
+          'Le vicende di Takahashi e il suo negozio di biciclette.
+          Ogni cliente che entra nel negozio ha una storia unica da raccontare.
+          Takahashi offre non solo riparazioni meccaniche, ma anche consigli di vita.
+          La serie esplora temi di comunità, amore e resilienza.
+          Ogni episodio è un ritratto toccante della vita quotidiana e delle relazioni umane.',
           'Josei',
           20,
-          'takahashi del negozio di biciclette.jpg',
+          'uploads/takahashi del negozio di biciclette.jpg',
           '2024-07-08'
       ),
       (
@@ -204,10 +276,14 @@ INSERT INTO Fumetto (
           'Fujiko Fujio',
           14.99,
           'Carletto il Principe dei Mostri',
-          'Le divertenti avventure di Carletto, il principe dei mostri.',
+          'Le divertenti avventure di Carletto, il principe dei mostri.
+          Carletto e i suoi amici mostri vivono situazioni comiche e stravaganti.
+          Ogni episodio esplora i temi dell\'amicizia e dell\'accettazione delle diversità.
+          Le storie sono piene di humor e avventure per i più giovani.
+          Carletto è un personaggio amato che ha affascinato generazioni di lettori.',
           'Kodomo',
           10,
-          'Carletto il principe dei mostri.jpeg',
+          'uploads/Carletto il principe dei mostri.jpeg',
           '2024-07-07'
       ),
       (
@@ -215,10 +291,14 @@ INSERT INTO Fumetto (
           'Fujiko F. Fujio',
           16.50,
           'Doraemon',
-          'Le avventure del gatto robot Doraemon e del suo amico Nobita.',
+          'Le avventure del gatto robot Doraemon e del suo amico Nobita.
+          Doraemon viene dal futuro per aiutare Nobita con i suoi gadget tecnologici.
+          Ogni storia è un mix di avventura, insegnamenti morali e umorismo.
+          Doraemon e Nobita affrontano insieme vari problemi quotidiani e sfide.
+          La serie è amata per la sua creatività e i messaggi positivi.',
           'Kodomo',
           15,
-          'doraemon.jpg',
+          'uploads/doraemon.jpg',
           '2024-07-06'
       ),
       (
@@ -226,10 +306,14 @@ INSERT INTO Fumetto (
           'Tenya Yabuno',
           18.75,
           'Inazuma Eleven Go',
-          'Le avventure calcistiche del giovane team di Inazuma Eleven.',
+          'Le avventure calcistiche del giovane team di Inazuma Eleven.
+          La serie combina sport e elementi di fantasia, creando partite epiche e drammatiche.
+          Ogni membro del team ha abilità uniche e storie personali che si intrecciano.
+          La storia esplora temi di amicizia, impegno e crescita personale.
+          Le partite di calcio sono rappresentate con un mix di strategia e spettacolarità.',
           'Kodomo',
           20,
-          'inazuma eleven go.jpg',
+          'uploads/inazuma eleven go.jpg',
           '2024-07-05'
       ),
       (
@@ -237,10 +321,14 @@ INSERT INTO Fumetto (
           'Masahiro Sakurai',
           19.99,
           'Kirby',
-          'Le avventure di Kirby, il piccolo eroe rosa.',
+          'Le avventure di Kirby, il piccolo eroe rosa.
+          Kirby affronta numerosi nemici e sfide nel suo mondo colorato e vivace.
+          Le storie sono piene di azione, umorismo e momenti dolci.
+          Kirby è noto per la sua abilità di inghiottire i nemici e acquisire i loro poteri.
+          La serie è amata per la sua semplicità e il suo fascino universale.',
           'Kodomo',
           5,
-          'Kirby.jpg',
+          'uploads/Kirby.jpg',
           '2024-07-04'
       ),
       (
@@ -248,10 +336,14 @@ INSERT INTO Fumetto (
           'Kouta Hirano',
           24.99,
           'Hellsing',
-          'Le avventure di Alucard e l\'organizzazione Hellsing.',
+          'Le avventure di Alucard e l\'organizzazione Hellsing.
+          Alucard è un potente vampiro che lavora per l\'organizzazione Hellsing, che protegge l\'Inghilterra dalle minacce soprannaturali.
+          La serie è nota per le sue scene di azione intense e la sua atmosfera dark.
+          Ogni capitolo esplora i confini tra bene e male, umano e mostro.
+          Hellsing affronta nemici potenti e complotti sinistri, mantenendo un tono avvincente e gotico.',
     'Seinen',
     15,
-    'Hellsing.jpeg',
+    'uploads/Hellsing.jpeg',
     '2024-07-03'
 ),
 (
@@ -259,10 +351,14 @@ INSERT INTO Fumetto (
     'Autore Sconosciuto',
     20.00,
     'Nippon Sangoku',
-    'Una storia avvincente ambientata in un Giappone futuristico.',
+    'Una storia avvincente ambientata in un Giappone futuristico.
+    I protagonisti si trovano coinvolti in intrighi politici e battaglie epiche.
+    Ogni capitolo esplora i temi di potere, onore e destino.
+    La narrazione è ricca di colpi di scena e personaggi complessi.
+    Nippon Sangoku offre una visione unica e affascinante del futuro.',
     'Seinen',
     10,
-    'nippon sangoku i tre regni del giappone.jpg',
+    'uploads/nippon sangoku i tre regni del giappone.jpg',
     '2024-07-02'
 ),
 (
@@ -270,10 +366,14 @@ INSERT INTO Fumetto (
     'Autore Sconosciuto',
     18.50,
     'Plastic Girl',
-    'Le avventure di una ragazza in un mondo distopico.',
+    'Le avventure di una ragazza in un mondo distopico.
+    La protagonista deve navigare un mondo pieno di pericoli e misteri.
+    Ogni episodio esplora temi di sopravvivenza, identità e resistenza.
+    La serie è nota per il suo stile visivo unico e le sue storie provocatorie.
+    Plastic Girl è un\'opera che riflette sulle sfide e le speranze dell\'umanità.',
     'Seinen',
     15,
-    'plastic girl.jpg',
+    'uploads/plastic girl.jpg',
     '2024-07-01'
 ),
 (
@@ -281,53 +381,73 @@ INSERT INTO Fumetto (
     'Shinya Umemura & Ajichika',
     22.50,
     'Record of Ragnarok',
-    'Il torneo epico tra divinità e umani per il destino del mondo.',
-    'Seinen',
-    20,
-    'record of ragnarok.jpg',
-    '2024-07-09'
-),
-(
-    '0000000000026',
-    'Gosho Aoyama',
-    17.99,
-    'Conan',
-    'Le avventure del giovane detective Conan Edogawa.',
-    'Shonen',
-    10,
-    'Conan.jpg',
-    '2024-07-08'
-),
-(
-    '0000000000027',
-    'Masami Kurumada',
-    19.50,
-    'I Cavalieri dello Zodiaco',
-    'Le epiche battaglie dei cavalieri di Atena per proteggere la Terra.',
-    'Shonen',
-    15,
-    'I cavalieri dello zodiaco.jpg',
-    '2024-07-07'
-),
-(
-    '0000000000028',
-    'Adachitoka',
-    16.75,
-    'Noragami',
-    'Le avventure di Yato, un dio minore senza templi.',
-    'Shonen',
-    10,
-    'Noragami.jpg',
-    '2024-07-06'
-),
-(
-    '0000000000029',
-    'Ken Wakui',
-    21.99,
-    'Tokyo Revengers',
-    'Un giovane torna indietro nel tempo per cambiare il corso degli eventi.',
-    'Shonen',
-    5,
-    'Tokyo Revengers.jpeg',
-    '2024-07-05'
-);
+    'Il torneo epico tra divinità e umani per il destino del mondo.
+    Ogni combattimento è una battaglia all\'ultimo sangue con posta in gioco altissima.
+    La serie esplora le motivazioni e le storie dei suoi partecipanti.
+    Le scene di combattimento sono spettacolari e piene di tensione.
+    Record of Ragnarok combina mitologia e azione in modo unico e avvincente.',
+          'Seinen',
+          20,
+          'uploads/record of ragnarok.jpg',
+          '2024-07-09'
+      ),
+      (
+          '0000000000026',
+          'Gosho Aoyama',
+          17.99,
+          'Conan',
+          'Le avventure del giovane detective Conan Edogawa.
+          Conan risolve misteri complessi con la sua intelligenza acuta e le sue abilità deduttive.
+          Ogni caso è un intricato puzzle pieno di indizi e sorprese.
+          La serie è nota per i suoi colpi di scena e la sua attenzione ai dettagli.
+          Conan affronta criminali astuti e pericolosi, mantenendo sempre la sua identità segreta.',
+          'Shonen',
+          10,
+          'uploads/Conan.jpg',
+          '2024-07-08'
+      ),
+      (
+          '0000000000027',
+          'Masami Kurumada',
+          19.50,
+          'I Cavalieri dello Zodiaco',
+          'Le epiche battaglie dei cavalieri di Atena per proteggere la Terra.
+          Ogni cavaliere rappresenta una costellazione e possiede poteri unici.
+          Le storie esplorano temi di sacrificio, lealtà e coraggio.
+          Le battaglie sono intense e spettacolari, con tecniche speciali e colpi di scena.
+          I Cavalieri dello Zodiaco è una saga leggendaria che ha ispirato generazioni di lettori.',
+          'Shonen',
+          15,
+          'uploads/I cavalieri dello zodiaco.jpg',
+          '2024-07-07'
+      ),
+      (
+          '0000000000028',
+          'Adachitoka',
+          16.75,
+          'Noragami',
+          'Le avventure di Yato, un dio minore senza templi.
+          Yato cerca di guadagnare fama e seguaci per diventare un dio venerato.
+          Ogni episodio esplora il mondo soprannaturale e le sue complessità.
+          La serie è nota per il suo mix di umorismo, azione e momenti toccanti.
+          Noragami offre una visione unica della mitologia e delle credenze giapponesi.',
+          'Shonen',
+          10,
+          'uploads/Noragami.jpg',
+          '2024-07-06'
+      ),
+      (
+          '0000000000029',
+          'Ken Wakui',
+          21.99,
+          'Tokyo Revengers',
+          'Un giovane torna indietro nel tempo per cambiare il corso degli eventi.
+          La serie esplora temi di redenzione, amicizia e crescita personale.
+          Ogni episodio è una corsa contro il tempo per salvare coloro che ama.
+          Tokyo Revengers è nota per i suoi colpi di scena e la sua narrazione avvincente.
+          Le storie sono piene di emozioni forti e momenti drammatici.',
+          'Shonen',
+          5,
+          'uploads/Tokyo Revengers.jpeg',
+          '2024-07-05'
+      );

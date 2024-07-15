@@ -38,6 +38,7 @@
     margin: 0;
     max-height: 28em;
     overflow: auto;
+    text-align: left;
 }
 
 .comic-page .data-section .author {

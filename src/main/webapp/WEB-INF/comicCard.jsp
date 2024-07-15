@@ -1,19 +1,21 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.google.gson.Gson" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
     Gson gson = new Gson();
     String comicJson = gson.toJson(comic);
 %>
 <div class="comic-card" id="comic-card-<%=comic.getISBN()%>">
-    <c:choose>
-        <c:when test="${comic.ISBN != null}">
-            <button class="image-button" onclick="location.href = 'comic?isbn=<%=comic.getISBN()%>'" aria-label="Comic Page" tabindex="0" onkeydown="location.href = 'comic?isbn=<%=comic.getISBN()%>'">
-        </c:when>
-        <c:when test="${comic.ISBN == null}">
-            <button class="image-button" aria-label="Comic Page">
-        </c:when>
-    </c:choose>
+    <%
+        if(comic.getISBN() != null) {
+    %>
+       <button class="image-button" onclick="location.href = 'comic?isbn=<%=comic.getISBN()%>'" aria-label="Comic Page" tabindex="0" onkeydown="location.href = 'comic?isbn=<%=comic.getISBN()%>'">
+    <%
+       } else if (comic.getISBN() == null) {
+    %>
+       <button class="image-button" aria-label="Comic Page">
+    <%
+        }
+    %>
         <img src="<%=comic.getImmagine()%>" alt="<%=comic.getTitle()%>">
     </button>
     <p class="title">

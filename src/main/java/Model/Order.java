@@ -1,6 +1,7 @@
 //Bean degli ordini
 package Model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,17 @@ public class Order {
         this.idcc = idcc;
     }
 
+    public Order(int idOrdine, String dataOrdine, double prezzoOrdine, int quantita, String indirizzo, String cap, int idcdc, int idcc) {
+        this.idOrdine = idOrdine;
+        this.data = dataOrdine;
+        this.prezzoTotale = prezzoOrdine;
+        this.quantita = quantita;
+        this.indirizzo = indirizzo;
+        this.CAP = cap;
+        this.idcdc = idcdc;
+        this.idcc = idcc;
+    }
+
     public int getIdUtente() {
         return idUtente;
     }
@@ -60,6 +72,11 @@ public class Order {
 
     public double getPrezzoTotale() {
         return prezzoTotale;
+    }
+
+    public String getStringPrezzoTotale() {
+        DecimalFormat df = new DecimalFormat("#.00");
+        return df.format(prezzoTotale);
     }
 
     public void setPrezzoTotale(double prezzoTotale) {

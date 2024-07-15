@@ -1,6 +1,7 @@
-<%@ page import="Model.Order" %>
 <%@ page import="java.text.DecimalFormat" %>
+<%@ page import="Model.*" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>WebComics - Ordini</title>
@@ -16,7 +17,15 @@
 %>
 <body>
     <%@include file="navbar.jsp"%>
-    <h1 class="title-section">ORDINE NUMERO: <%=order.getIdOrdine()%></h1>
+    <div class="title-container">
+        <h1 class="title-section">ORDINE NUMERO: <%=order.getIdOrdine()%></h1>
+        <h1 class="title-section">Totale ordine: <%=order.getStringPrezzoTotale()%> €</h1>
+        <c:if test="${sessionScope.isAdmin && requestScope.orderUser != null}">
+            <% User user = (User) request.getAttribute("orderUser"); %>
+            <h1 class="title-section">Utente: <%=user.getEmail()%></h1>
+        </c:if>
+        <h1 class="title-section">Indirizzo: <%=order.getIndirizzo()%>, <%=order.getCAP()%></h1>
+        </div>
     <div class="comics-container">
         <%
             List<Comic> comics = order.getComics();

@@ -84,6 +84,42 @@ public class OrderDAO {
         return order;
     }
 
+
+    public static Order getOrderAdmin(int id) throws SQLException {
+        Connection con = ConPool.getConnection();
+        String query = "SELECT * FROM ordine WHERE ordine.id = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        List<Comic> comics = new ArrayList<>();
+        Order order = null;
+        while (rs.next()) {
+            String dataOrdine = String.valueOf(rs.getDate("dataordine"));
+            double prezzoOrdine = rs.getDouble("prezzoacquisto");
+            int quantita = rs.getInt("quantita");
+            String indirizzo = rs.getString("indirizzo");
+            String CAP = rs.getString("CAP");
+            int idcdc = rs.getInt("idcdc");
+            int idcc = rs.getInt("idcc");
+            order = new Order(id, dataOrdine, prezzoOrdine, quantita, indirizzo, CAP, idcdc, idcc);
+            query = "SELECT isbn, prezzo_fumetto, titolo_fumetto, immagine_fumetto, quantita FROM fumettoordinato WHERE ordineid = ?";
+            ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rsComic = ps.executeQuery();
+            while (rsComic.next()) {
+                String ISBN = rsComic.getString("ISBN");
+                double prezzo_fumetto = rsComic.getDouble("prezzo_fumetto");
+                String titolo_fumetto = rsComic.getString("titolo_fumetto");
+                String immagine_fumetto = rsComic.getString("immagine_fumetto");
+                int quantitaFumetto = rsComic.getInt("quantita");
+                comics.add(new Comic(ISBN, prezzo_fumetto, titolo_fumetto, immagine_fumetto, quantitaFumetto));
+            }
+        }
+        Objects.requireNonNull(order).setComics(comics);
+        con.close();
+        return order;
+    }
+
     public static List<Order> getOrders(int idUtente) throws SQLException {
         Connection con = ConPool.getConnection();
         String query = "SELECT * FROM ordine WHERE idUtente = ?";
@@ -162,5 +198,22 @@ public class OrderDAO {
         con.close();
         System.out.println(immagine + "IMMAGINE DAO");
         return rs.next();
+    }
+
+    public static User getUserFromOrder(int id) throws SQLException {
+        Connection con = ConPool.getConnection();
+        String query = "SELECT utente.id, utente.email, utente.isAdmin, utente.nome, utente.cognome FROM ordine JOIN utente ON ordine.idUtente = utente.id WHERE ordine.id = ?";
+        PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            int idUtente = rs.getInt("id");
+            String email = rs.getString("email");
+            boolean isAdmin = rs.getBoolean("isAdmin");
+            String nome = rs.getString("nome");
+            String cognome = rs.getString("cognome");
+            return new User(nome, cognome, email, isAdmin, idUtente);
+        }
+        return null;
     }
 }

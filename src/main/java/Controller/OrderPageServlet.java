@@ -22,7 +22,13 @@ public class OrderPageServlet extends HttpServlet {
            } else if (request.getParameter("id") == null || request.getParameter("id").isEmpty()) {
                throw new ServletException("Parametro id mancante");
            }
-           request.setAttribute("order", OrderDAO.getOrder(Integer.parseInt(request.getParameter("id")), (int) session.getAttribute("userId")));
+           if(!(Boolean) session.getAttribute("isAdmin")) {
+               request.setAttribute("order", OrderDAO.getOrder(Integer.parseInt(request.getParameter("id")), (int) session.getAttribute("userId")));
+           } else {
+               System.out.println("IS ADMIN");
+               request.setAttribute("order", OrderDAO.getOrderAdmin(Integer.parseInt(request.getParameter("id"))));
+               request.setAttribute("orderUser", OrderDAO.getUserFromOrder(Integer.parseInt(request.getParameter("id"))));
+           }
            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/orderPage.jsp");  //tenere d'occhio
            dispatcher.forward(request, response);
        } catch (ServletException e) {

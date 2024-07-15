@@ -48,6 +48,13 @@ public class UpdateComicServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            HttpSession session = request.getSession(false);
+            if(session == null || ! (Boolean)session.getAttribute("isAdmin")) {
+                response.setStatus(response.SC_UNAUTHORIZED);
+                String contextPath = request.getContextPath();
+                response.sendRedirect(contextPath + "/");
+                return;
+            }
             String ISBN = request.getParameter("isbn");
             String autore = request.getParameter("autore");
             double prezzo = Double.parseDouble(request.getParameter("prezzo"));

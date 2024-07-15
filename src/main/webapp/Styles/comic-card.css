@@ -9,7 +9,8 @@ span {
     margin: 4em auto 8em auto;
     display: grid;
     grid-template-columns: 24% 24% 24% 24%;
-    gap: 1%;
+    column-gap: 1%;
+    row-gap: 1em;
     flex-direction: row;
 }
 
@@ -204,8 +205,8 @@ span {
 @media screen and (max-width: 600px) {
     .comics-container {
         width: 96%;
-        gap: 4%;
-        margin-bottom: 18em;
+        column-gap: 4%;
+        row-gap: 1.8em;
     }
     .comic-card {
         width: 100%;
@@ -215,6 +216,13 @@ span {
         display: flex;
         flex-direction: column;
         position: relative;
+    }
+
+    .comic-card:hover {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        outline: none;
     }
 
     .comic-card .title {
@@ -270,8 +278,5 @@ span {
     .comic-card .wish-container {
         top: 8px;
         right: 8px;
-    }
-    .comics-container {
-        margin-bottom: 14em;
     }
 }

@@ -70,14 +70,6 @@ public class ComicFormServlet extends HttpServlet {
             }
             File uploadedFile = new File(filePath);
             String immagine = "uploads" + File.separator + fileName;
-            if (!uploadedFile.exists()) {
-                System.out.println("File caricato con successo: " + fileName);
-                filePart.write(filePath);
-            } else {
-                request.setAttribute("error-form", "L'immagine esiste già");
-                System.out.println("Errore nel caricamento del file: " + fileName);
-                throw new ServletException("L'immagine esiste già");
-            }
             if(!request.getParameter("sconto").isEmpty()) {
                 sconto = Integer.parseInt(request.getParameter("sconto"));
             }
@@ -89,6 +81,14 @@ public class ComicFormServlet extends HttpServlet {
             LocalDate currentDate = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
             String formattedDate = currentDate.format(formatter);
+            if (!uploadedFile.exists()) {
+                System.out.println("File caricato con successo: " + fileName);
+                filePart.write(filePath);
+            } else {
+                request.setAttribute("error-form", "L'immagine esiste già");
+                System.out.println("Errore nel caricamento del file: " + fileName);
+                throw new ServletException("L'immagine esiste già");
+            }
             Comic comic = new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, formattedDate);
             if(!ComicDAO.doSave(comic)){
                 request.setAttribute("error-form", "Errore nell'aggiunta del fumetto");

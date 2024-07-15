@@ -97,6 +97,9 @@ public class CartServlet extends HttpServlet {
                     break;
                 case "decrease": {
                     List<Comic> cartComics;
+                    if(session.getAttribute("cart") == null) {
+                        throw new ServletException("Carrello non disponibile");
+                    }
                     Cart cart = (Cart) session.getAttribute("cart");
                     cartComics = cart.getComics();
                     if ((cart.getQuantity(Objects.requireNonNull(comic).getISBN())-quantita) <= 0) {
@@ -112,6 +115,9 @@ public class CartServlet extends HttpServlet {
                 }
                 case "remove": {
                     List<Comic> cartComics;
+                    if (session.getAttribute("cart") == null) {
+                        throw new ServletException("Carrello non disponibile");
+                    }
                     Cart cart = (Cart) session.getAttribute("cart");
                     cartComics = cart.getComics();
                     cartComics.remove(comic);

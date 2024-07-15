@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function checkDisplay(text){
     let check = document.getElementById("check-box");
     let checkText = document.getElementById("check-box-text");
-    if(!check.classList.contains("check-box-display")) {
+    let checkError = document.getElementById("check-error-box");
+    if(!check.classList.contains("check-box-display") && !checkError.classList.contains("check-box-display")) {
         check.classList.add('check-box-display');
         checkText.innerHTML = text;
         setTimeout(function () {
@@ -29,9 +30,10 @@ function checkDisplay(text){
 
 //Display rosso di operazione non valida
 function checkErrorDisplay(text){
+    let checkTrue = document.getElementById("check-box");
     let check = document.getElementById("check-error-box");
     let checkText = document.getElementById("check-error-box-text");
-    if(!check.classList.contains("check-box-display")) {
+    if(!check.classList.contains("check-box-display") && !checkTrue.classList.contains("check-box-display") ) {
         check.classList.add('check-box-display');
         checkText.innerHTML = text;
         setTimeout(function () {

@@ -18,9 +18,9 @@ INSERT INTO Fumetto (
       ),
       (
           '0000000000001',
-          'William Hanna & Joseph Barbera',
+          'William Hanna e Joseph Barbera',
           12.50,
-          'Tom & Jerry',
+          'Tom e Jerry',
           'Le classiche e spassose avventure di Tom e Jerry.
           Questo duo dinamico è conosciuto per le loro continue lotte e scherzi.
           Tom, il gatto, cerca sempre di catturare Jerry, il topo, ma raramente ci riesce.
@@ -28,7 +28,7 @@ INSERT INTO Fumetto (
           Nonostante la loro rivalità, ci sono momenti in cui Tom e Jerry dimostrano un legame inaspettato.',
           'Commedia',
           5,
-          'uploads/Tom & Jerry.jpeg',
+          'uploads/Tom e Jerry.jpeg',
           '2024-07-08'
       ),
       (
@@ -48,7 +48,7 @@ INSERT INTO Fumetto (
       ),
       (
           '0000000000003',
-          'Michael Dante DiMartino & Bryan Konietzko',
+          'Michael Dante DiMartino e Bryan Konietzko',
           20.00,
           'Avatar: la leggenda di Aang',
           'Le epiche avventure di Aang, l\'ultimo dominatore dell\'aria.
@@ -63,7 +63,7 @@ INSERT INTO Fumetto (
       ),
       (
           '0000000000004',
-          'Chad Moldenhauer & Jared Moldenhauer',
+          'Chad Moldenhauer e Jared Moldenhauer',
           17.50,
           'Cuphead',
           'Le avventure di Cuphead e Mugman in un mondo fantastico.
@@ -123,9 +123,9 @@ INSERT INTO Fumetto (
       ),
       (
           '0000000000008',
-          'Joe Hill & Gabriel Rodríguez',
+          'Joe Hill e Gabriel Rodríguez',
           18.50,
-          'Locke & Key',
+          'Locke e Key',
           'Le avventure horror della famiglia Locke nella loro misteriosa casa.
           Dopo la morte del padre, i figli Locke scoprono chiavi magiche con poteri unici.
           Ogni chiave apre porte a mondi diversi e pericolosi.
@@ -133,7 +133,7 @@ INSERT INTO Fumetto (
           La serie esplora temi di perdita, famiglia e redenzione.',
           'Horror',
           15,
-          'uploads/Locke & Key.jpg',
+          'uploads/Locke e Key.jpg',
           '2024-07-09'
       ),
       (
@@ -198,7 +198,7 @@ INSERT INTO Fumetto (
 ),
 (
     '0000000000013',
-    'Stan Lee & Steve Ditko',
+    'Stan Lee e Steve Ditko',
     23.50,
     'Spiderman',
     'Le incredibili avventure dell\'uomo ragno.
@@ -213,7 +213,7 @@ INSERT INTO Fumetto (
       ),
       (
           '0000000000014',
-          'Stan Lee & Jack Kirby',
+          'Stan Lee e Jack Kirby',
           25.00,
           'X-Men',
           'Le avventure del gruppo di mutanti X-Men.
@@ -378,7 +378,7 @@ INSERT INTO Fumetto (
 ),
 (
     '0000000000025',
-    'Shinya Umemura & Ajichika',
+    'Shinya Umemura e Ajichika',
     22.50,
     'Record of Ragnarok',
     'Il torneo epico tra divinità e umani per il destino del mondo.

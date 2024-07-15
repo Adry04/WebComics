@@ -52,7 +52,7 @@ public class PaymentMethodServlet extends HttpServlet {
                     }
                 } else if (paymentType.equalsIgnoreCase("conto")) {
                     if(!UserDAO.doDeleteBankAccount(id)){
-                        throw new ServletException("Errore eliminazione carta");
+                        throw new ServletException("Errore eliminazione conto bancario");
                     }
                 } else {
                     throw new ServletException("Errore metodo di pagamento");

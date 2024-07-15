@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession s = request.getSession(false);
         String contextPath = request.getContextPath();
         if (s != null && s.getAttribute("userId") != null) {
-            response.sendRedirect(contextPath + "/");
+            response.setStatus(response.SC_UNAUTHORIZED);
             return;
         }
         try {
@@ -44,8 +44,8 @@ public class LoginServlet extends HttpServlet {
             String emailPattern =  "^[a-zA-Z0-9._-]+@[a-zA-Z0-9_.-]+\\.[a-zA-Z]{2,}$";
             String passwordPattern = "^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z]).{6,}$";
             if(!email.matches(emailPattern)) {
-                request.setAttribute("error", "Email non valida");
-                throw new ServletException("Email non valida");
+                    request.setAttribute("error", "Email non valida");
+                    throw new ServletException("Email non valida");
             } if (!password.matches(passwordPattern)){
                 request.setAttribute("error", "La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero.");
                 throw new ServletException("La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero.");

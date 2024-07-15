@@ -91,6 +91,7 @@ public class PaymentMethodForm extends HttpServlet {
                     throw new ServletException("IBAN non valido");
                 } else if (!bic.matches(bicPattern)) {
                     request.setAttribute("error-payment", "Codice BIC non valido");
+                    throw new ServletException("Bic non valido");
                 } else {
                     BankAccount b = new BankAccount(intestatario, IBAN, bic);
                     if (!UserDAO.doBankAccountSave((int) session.getAttribute("userId"), b)) {

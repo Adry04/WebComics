@@ -21,7 +21,7 @@ function toggleWish(isbn) {
                  counterWishes.innerHTML = numberWishes;
                  checkDisplay("ELEMENTO AGGIUNTO ALLA WISHLIST"); //si trova dentro nav.js
              } else if (this.readyState === 4 && this.status === 400) {
-                 checkErrorDisplay("E' necessario seguire l'accesso")
+                 checkErrorDisplay("E' necessario eseguire l'accesso")
              } else if (this.readyState === 4 && this.status === 401) {
                  checkErrorDisplay("Fumetto non più disponibile")
              }

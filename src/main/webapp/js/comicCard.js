@@ -42,7 +42,7 @@ function toggleWish(isbn) {
                  if(document.URL.includes("wishlist")) {
                      comicCard.classList.add("no-display");
                  }
-                 checkDisplay("ELEMENTO TOLTO DALLA WISHLIST"); //si trova dentro nav.js
+                 checkDisplay("ELEMENTO RIMOSSO DALLA WISHLIST"); //si trova dentro nav.js
              }
          }
          xhttp.open("POST", url, true);

@@ -30,6 +30,7 @@
     font-weight: bold;
     width: 90%;
     margin: 0 10% 0 0;
+    text-align: left;
 }
 
 .comic-page .data-section .description {
@@ -46,6 +47,7 @@
     font-size: 18px;
     margin: 0;
     font-weight: bold;
+    text-align: left;
 }
 
 .wish {

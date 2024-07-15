@@ -1,6 +1,8 @@
 //Salvataggi di utenti nel db e query utenti
 package Model;
 
+import Controller.Exception.PaymentNotExists;
+
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
@@ -220,13 +222,16 @@ public class UserDAO {
         return a;
     }
 
-    public static CreditCard getCard(int idCarta) throws SQLException {
+    public static CreditCard getCard(int idCarta) throws SQLException, PaymentNotExists {
         Connection con = ConPool.getConnection();
         String query = "SELECT * FROM CDC where id = ?";
         PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setInt(1, idCarta);
         ResultSet rs = ps.executeQuery();
         CreditCard c = null;
+        if(!rs.next()) {
+            throw new PaymentNotExists();
+        }
         while(rs.next()){
             String numero = rs.getString("numero");
             String intestatario = rs.getString("intestatario");
@@ -257,13 +262,16 @@ public class UserDAO {
         return cards;
     }
 
-    public static BankAccount getBankAccount(int idBankAccount) throws SQLException {
+    public static BankAccount getBankAccount(int idBankAccount) throws SQLException, PaymentNotExists {
         Connection con = ConPool.getConnection();
         String query = "SELECT * FROM cc where id = ?";
         PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setInt(1, idBankAccount);
         ResultSet rs = ps.executeQuery();
         BankAccount b = null;
+        if(!rs.next()) {
+            throw new PaymentNotExists();
+        }
         while (rs.next()) {
             String intestatario = rs.getString("intestatario");
             String iban = rs.getString("IBAN");

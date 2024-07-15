@@ -1,5 +1,6 @@
 package Controller;
 
+import Controller.Exception.PaymentNotExists;
 import Model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -90,6 +91,10 @@ public class OrderFormServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
+        } catch (PaymentNotExists e) {
+            response.setStatus(response.SC_BAD_REQUEST);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + "/order-form");
         }
     }
 }

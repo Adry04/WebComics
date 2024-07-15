@@ -5,6 +5,8 @@ import java.io.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import Controller.Exception.UserNotExists;
 import Model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -49,6 +51,10 @@ public class LoginServlet extends HttpServlet {
                 throw new ServletException("La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero.");
             }
             User user = UserDAO.getUserFromEmail(email);
+            if(user == null) {
+                request.setAttribute("error", "Utente non trovato");
+                throw new UserNotExists();
+            }
             String hashedPassword = UserDAO.getPassword(Objects.requireNonNull(user).getId());
             if (Hash.checkPassword(password, hashedPassword)) {
                 HttpSession session = request.getSession();
@@ -88,6 +94,10 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("error", "Password sbagliata");
                 throw new ServletException("Password sbagliata");
             }
+        } catch (UserNotExists e) {
+            response.setStatus(response.SC_BAD_REQUEST);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");
+            dispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace(System.out);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");

@@ -45,7 +45,7 @@
         <%
             if (!comics.isEmpty()) {
         %>
-            <h1 class="title-section">NUOVE USCITE - FUMETTI</h1>
+            <h1 class="title-section">NUOVE USCITE</h1>
             <div class="comics-container">
             <%
                 for(Comic comic : comics) {
@@ -87,7 +87,7 @@
         <%
             if (!comicsFumetto.isEmpty()) {
         %>
-        <h1 class="title-section">NUOVI FUMETTI</h1>
+        <h1 class="title-section">NUOVE USCITE - FUMETTI</h1>
     <div class="comics-container">
         <%
             for(Comic comic : comicsFumetto) {

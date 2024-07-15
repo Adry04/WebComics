@@ -88,7 +88,7 @@
             <button onclick="location.href = 'search?parameter=shonen'" aria-label="Shonen" onkeydown="location.href = 'search?parameter=shonen'">SHONEN</button>
             <button onclick="location.href = 'search?parameter=seinen'" aria-label="Seinen" onkeydown="location.href = 'search?parameter=seinen'">SEINEN</button>
             <button onclick="location.href = 'search?parameter=josei'" aria-label="Josei" onkeydown="location.href = 'search?parameter=josei'">JOSEI</button>
-            <button onclick="location.href = 'search?parameter=codomo'" aria-label="Codomo" onkeydown="location.href = 'search?parameter=codomo'">CODOMO</button>
+            <button onclick="location.href = 'search?parameter=kodomo'" aria-label="Kodomo" onkeydown="location.href = 'search?parameter=kodomo'">KODOMO</button>
           </div>
         </li>
         <li id="category-fumetti">

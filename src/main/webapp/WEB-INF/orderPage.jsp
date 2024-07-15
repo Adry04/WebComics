@@ -29,7 +29,10 @@
                     isWished = wishComics.contains(comic);
                 }
         %>
-            <%@include file="comicCard.jsp"%>
+            <div class="single-card-container">
+                <p class="quantity-text">x <%=comic.getQuantita()%></p>
+                <%@include file="comicCard.jsp"%>
+            </div>
         <%
             }
         %>

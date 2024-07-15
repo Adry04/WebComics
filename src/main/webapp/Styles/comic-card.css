@@ -161,6 +161,19 @@ span {
     margin: 2em 0 1em 0;
 }
 
+.single-card-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: .4em;
+}
+
+.single-card-container .quantity-text {
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
 @media screen and (max-width: 1000px) {
     .comics-container {
         grid-template-columns: 32% 32% 32%;

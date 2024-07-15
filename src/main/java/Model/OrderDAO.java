@@ -66,7 +66,7 @@ public class OrderDAO {
             int idcdc = rs.getInt("idcdc");
             int idcc = rs.getInt("idcc");
             order = new Order(idUtente, id, dataOrdine, prezzoOrdine, quantita, indirizzo, CAP, idcdc, idcc);
-            query = "SELECT isbn, prezzo_fumetto, titolo_fumetto, immagine_fumetto FROM fumettoordinato WHERE ordineid = ?";
+            query = "SELECT isbn, prezzo_fumetto, titolo_fumetto, immagine_fumetto, quantita FROM fumettoordinato WHERE ordineid = ?";
             ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, id);
             ResultSet rsComic = ps.executeQuery();
@@ -75,7 +75,8 @@ public class OrderDAO {
                 double prezzo_fumetto = rsComic.getDouble("prezzo_fumetto");
                 String titolo_fumetto = rsComic.getString("titolo_fumetto");
                 String immagine_fumetto = rsComic.getString("immagine_fumetto");
-                comics.add(new Comic(ISBN, prezzo_fumetto, titolo_fumetto, immagine_fumetto));
+                int quantitaFumetto = rsComic.getInt("quantita");
+                comics.add(new Comic(ISBN, prezzo_fumetto, titolo_fumetto, immagine_fumetto, quantitaFumetto));
             }
         }
         Objects.requireNonNull(order).setComics(comics);

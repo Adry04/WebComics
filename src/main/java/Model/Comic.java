@@ -15,6 +15,7 @@ public class Comic {
     private String immagine;
     private double finalPrice;
     private String data;
+    private int quantita;
 
     public Comic(String ISBN, String author, double price, String title, String desc, String category, int sale, String immagine, String data) {
         this.ISBN = ISBN;
@@ -69,12 +70,13 @@ public class Comic {
         this.data = data;
     }
 
-    public Comic(String isbn, double prezzo, String titolo, String immagine) {
+    public Comic(String isbn, double prezzo, String titolo, String immagine, int quantita) {
         this.ISBN = isbn;
         this.price = prezzo;
         this.title = titolo;
         this.immagine = immagine;
         this.finalPrice = price;
+        this.quantita = quantita;
     }
 
     public String getISBN() {
@@ -172,5 +174,13 @@ public class Comic {
     @Override
     public int hashCode() {
         return Objects.hash(ISBN);
+    }
+
+    public int getQuantita() {
+        return quantita;
+    }
+
+    public void setQuantita(int quantita) {
+        this.quantita = quantita;
     }
 }

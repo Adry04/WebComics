@@ -224,15 +224,14 @@ public class UserDAO {
 
     public static CreditCard getCard(int idCarta) throws SQLException, PaymentNotExists {
         Connection con = ConPool.getConnection();
-        String query = "SELECT * FROM CDC where id = ?";
+        String query = "SELECT * FROM cdc where id = ?";
         PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setInt(1, idCarta);
         ResultSet rs = ps.executeQuery();
         CreditCard c = null;
         if(!rs.next()) {
             throw new PaymentNotExists();
-        }
-        while(rs.next()){
+        } else {
             String numero = rs.getString("numero");
             String intestatario = rs.getString("intestatario");
             String cvc  = rs.getString("cvc");
@@ -271,8 +270,7 @@ public class UserDAO {
         BankAccount b = null;
         if(!rs.next()) {
             throw new PaymentNotExists();
-        }
-        while (rs.next()) {
+        } else {
             String intestatario = rs.getString("intestatario");
             String iban = rs.getString("IBAN");
             String bic = rs.getString("bic");

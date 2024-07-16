@@ -37,8 +37,4 @@ public class AdminOrderServlet extends HttpServlet {
             response.setStatus(response.SC_INTERNAL_SERVER_ERROR);
         }
     }
-
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-    }
 }

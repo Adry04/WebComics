@@ -36,8 +36,4 @@ public class AdminUserServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

@@ -61,6 +61,7 @@ public class UserDAO {
         ps.setString(1, email);
         ResultSet rs = ps.executeQuery();
         if(rs.next()) {
+            connection.close();
             return rs.getInt("id");
         }
         connection.close();

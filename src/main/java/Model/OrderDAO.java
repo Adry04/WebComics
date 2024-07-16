@@ -187,7 +187,6 @@ public class OrderDAO {
         ps.setString(1, immagine);
         ResultSet rs = ps.executeQuery();
         con.close();
-        System.out.println(immagine + "IMMAGINE DAO");
         return rs.next();
     }
 
@@ -203,6 +202,7 @@ public class OrderDAO {
             boolean isAdmin = rs.getBoolean("isAdmin");
             String nome = rs.getString("nome");
             String cognome = rs.getString("cognome");
+            con.close();
             return new User(nome, cognome, email, isAdmin, idUtente);
         }
         return null;

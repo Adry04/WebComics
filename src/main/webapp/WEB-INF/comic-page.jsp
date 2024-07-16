@@ -52,7 +52,7 @@
                     <span id="quantity">1</span>
                     <span onclick="incrementQuantity()" class="click-quantity">+</span>
                 </div>
-                <button class="cart-button" onclick='addCart(<%=comic.getISBN()%>, -1, <%=comicJson%>)'>Aggiungi al carrello</button>
+                <button class="cart-button" onclick='addCart("<%=comic.getISBN()%>", -1, <%=comicJson%>)'>Aggiungi al carrello</button>
             </div>
         </div>
         <div class="wish-container" data-is-wished="<%=isWished%>" onclick="toggleWish('<%=comic.getISBN()%>')" id="wish-container-<%=comic.getISBN()%>">

@@ -24,6 +24,7 @@
     width: 100%;
     border: none;
     height: 100%;
+    cursor: pointer;
 }
 
 .slide button img {

@@ -140,30 +140,17 @@ public class OrderDAO {
             String cap = rs.getString("CAP");
             int cdc = rs.getInt("idcdc");
             int cc = rs.getInt("idcc");
-            query = "SELECT ISBN FROM fumettoordinato WHERE ordineid = ?";
+            query = "SELECT * FROM fumettoordinato WHERE ordineid = ?";
             ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, rs.getInt("id"));
             ResultSet rsComic = ps.executeQuery();
             List<Comic> comics = new ArrayList<>();
             while (rsComic.next()) {
-                String queryComic = "SELECT * FROM fumetto WHERE ISBN = ?";
-                PreparedStatement psComic = con.prepareStatement(queryComic, Statement.RETURN_GENERATED_KEYS);
-                psComic.setString(1, rsComic.getString("ISBN"));
-                ResultSet rsComics = psComic.executeQuery();
-                while (rsComics.next()) {
-                    String ISBN = rsComics.getString("ISBN");
-                    String autore = rsComics.getString("autore");
-                    double prezzo = rsComics.getDouble("prezzo");
-                    String titolo = rsComics.getString("titolo");
-                    String descrizione = rsComics.getString("descrizione");
-                    String categoria = rsComics.getString("categoria");
-                    int sconto = rsComics.getInt("sconto");
-                    String immagine = rsComics.getString("immagine");
-                    LocalDate data = rsComics.getDate("ddi").toLocalDate();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ITALIAN);
-                    String comicDate = data.format(formatter);
-                    comics.add(new Comic(ISBN, autore, prezzo, titolo, descrizione, categoria, sconto, immagine, comicDate));
-                }
+                String ISBN = rsComic.getString("ISBN");
+                double prezzo = rsComic.getDouble("prezzo_fumetto");
+                String titolo = rsComic.getString("titolo_fumetto");
+                String immagine = rsComic.getString("immagine_fumetto");
+                comics.add(new Comic(ISBN, prezzo, titolo, immagine));
             }
             orders.add(new Order(idUtente, idOrdine, dataOrder, prezzoOrder, quantita, comics, indirizzo, cap, cdc, cc));
         }

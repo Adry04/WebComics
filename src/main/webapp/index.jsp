@@ -35,7 +35,7 @@
     <div class="slider">
         <div class="slides">
             <div class="slide"><button onclick="location.href ='search?parameter=supereroi'" aria-label="Supereroi" tabindex="0" onkeydown="location.href ='search?parameter=supereroi'"><img title="Visualizza i nostri fumetti di supereroi" src="assets/slider-image/image1.png" alt="Image 1"></button></div>
-            <div class="slide"><button onclick="location.href ='search?parameter=seinen'" aria-label="Seinen" tabindex="0" onkeydown="location.href ='search?parameter=seisen'"><img title="Visualizza le nostre nuove uscite" src="assets/slider-image/image2.png" alt="Image 2"></button></div>
+            <div class="slide"><button onclick="location.href ='search?parameter=seinen'" aria-label="Seinen" tabindex="0" onkeydown="location.href ='search?parameter=seinen'"><img title="Visualizza le nostre nuove uscite" src="assets/slider-image/image2.png" alt="Image 2"></button></div>
             <div class="slide"><button onclick="location.href = 'search?parameter=shonen'" aria-label="Shonen" tabindex="0" onkeydown="location.href = 'search?parameter=shonen'"><img title="Visualizza i nostri shonen" src="assets/slider-image/image3.png" alt="Image 3"></button></div>
         </div>
         <button class="prev" onclick="moveSlide(-1)" aria-label="Prev Slide">&#10094;</button>

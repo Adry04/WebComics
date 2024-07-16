@@ -1,6 +1,5 @@
 //Apertura della Navbar per cellulare
 function openMobileNav() {
-    console.log("CIAO")
     document.body.style.overflow = 'hidden';
     document.getElementById("background-mobile-nav").classList.add("display-background-mobile-nav")
     document.getElementById("mobile-nav").classList.add("display-mobile-nav")

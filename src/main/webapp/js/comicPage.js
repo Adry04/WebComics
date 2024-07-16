@@ -4,8 +4,9 @@ const quantity = document.getElementById("quantity");
 function incrementQuantity () {
     if (isNaN(parseInt(quantity.innerHTML, 10))) {
         console.log("Errore, Il valore non è un numero");
+    } else {
+        quantity.innerHTML = parseInt(quantity.innerHTML, 10) + 1;
     }
-    quantity.innerHTML = parseInt(quantity.innerHTML, 10) + 1;
 }
 
 //Decremento della quantità dell'elemento nella pagina del fumetto
@@ -13,7 +14,8 @@ function decrementQuantity () {
     if(parseInt(quantity.innerHTML) > 1) {
         if (isNaN(parseInt(quantity.innerHTML, 10))) {
             console.log("Errore, Il valore non è un numero");
+        } else {
+            quantity.innerHTML = parseInt(quantity.innerHTML, 10) - 1;
         }
-        quantity.innerHTML = parseInt(quantity.innerHTML, 10) - 1;
     }
 }

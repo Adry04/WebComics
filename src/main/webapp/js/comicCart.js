@@ -14,6 +14,7 @@ function incrementQuantity (isbn, comic, price) {
         let actualQuantity = quantity.getAttribute("data-quantity");
         if (isNaN(parseInt(quantity.innerHTML, 10))) {
             console.log("Errore, Il valore non è un numero");
+            checkErrorDisplay("Errore generale riprovare più tardi")
         }
         let newQuantity = parseInt(quantity.innerHTML, 10) + 1;
         const xhttp = new XMLHttpRequest();
@@ -33,7 +34,6 @@ function incrementQuantity (isbn, comic, price) {
                 prezzo.setAttribute("data-prezzo", newPrezzo);
                 let sizeCartComics = cartComicContainer.getAttribute("data-size-cart-comics")
                 cartComicContainer.setAttribute("data-size-cart-comics", parseInt(sizeCartComics, 10) +1)
-                console.log(cartComicContainer.getAttribute("data-size-cart-comics"))
             } else if (this.readyState === 4 && this.status === 400) {
                 checkErrorDisplay("Errore di quantità");
             }
@@ -55,6 +55,7 @@ function decrementQuantity (isbn, comic, price) {
         let actualQuantity = quantity.getAttribute("data-quantity");
         if (isNaN(parseInt(quantity.innerHTML, 10))) {
             console.log("Errore, Il valore non è un numero");
+            checkErrorDisplay("Errore generale riprovare più tardi")
         }
         let newQuantity = actualQuantity - 1;
         const xhttp = new XMLHttpRequest();
@@ -77,7 +78,6 @@ function decrementQuantity (isbn, comic, price) {
                 prezzo.setAttribute("data-prezzo", newPrezzo);
                 let sizeCartComics = cartComicContainer.getAttribute("data-size-cart-comics")
                 cartComicContainer.setAttribute("data-size-cart-comics", parseInt(sizeCartComics, 10) -1)
-                console.log(cartComicContainer.getAttribute("data-size-cart-comics"))
                 if(parseInt(cartComicContainer.getAttribute("data-size-cart-comics")) === 0) {
                     checkoutSection.style.display = 'none'
                 }
@@ -101,6 +101,7 @@ function remove (isbn, comic, price) {
         let totalPrice = checkoutSection.getAttribute("data-price")
         if (isNaN(parseInt(quantity.innerHTML, 10))) {
             console.log("Errore, Il valore non è un numero");
+            checkErrorDisplay("Errore generale riprovare più tardi")
         }
         let actualQuantity = quantity.getAttribute("data-quantity");
         const xhttp = new XMLHttpRequest();
@@ -119,7 +120,6 @@ function remove (isbn, comic, price) {
                 prezzo.setAttribute("data-prezzo", newPrezzo);
                 let sizeCartComics = cartComicContainer.getAttribute("data-size-cart-comics")
                 cartComicContainer.setAttribute("data-size-cart-comics", parseInt(sizeCartComics, 10) - parseInt(quantity.getAttribute("data-quantity"), 10))
-                console.log(cartComicContainer.getAttribute("data-size-cart-comics"))
                 if(parseInt(cartComicContainer.getAttribute("data-size-cart-comics")) === 0) {
                     checkoutSection.style.display = 'none'
                 }

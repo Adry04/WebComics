@@ -40,7 +40,6 @@ public class AccountSettingServlet extends HttpServlet {
             String emailPattern = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9_.-]+\\.[a-zA-Z]{2,}$";
             String passwordPattern = "^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z]).{6,}$";
             if((request.getParameter("nome") != null && !request.getParameter("nome").isEmpty()) && (request.getParameter("email") != null && !request.getParameter("email").isEmpty()) && (request.getParameter("cognome") != null && !request.getParameter("cognome").isEmpty())) {
-                //TODO testare con un altro utente con la stessa email
                 String nome = request.getParameter("nome");
                 String email = request.getParameter("email");
                 String cognome = request.getParameter("cognome");

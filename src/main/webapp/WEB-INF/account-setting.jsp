@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: rinog
-  Date: 16/07/2024
-  Time: 15:27
-  To change this template use File | Settings | File Templates.
---%>
 <html>
 <head>
     <title>Impostazioni Account</title>
@@ -42,15 +35,15 @@
         <p class="title-form">Cambia Password</p>
         <div class="input-container">
             <div>
-                <label for="old-password">La tua password</label>
+                <label for="old-password">La tua password precedente</label>
                 <input type="password" placeholder="La tua password" name="old-password" required id="old-password">
             </div>
             <div>
-                <label for="new-password">La tua password</label>
+                <label for="new-password">La tua nuova password</label>
                 <input type="password" placeholder="La tua nuova passoword" name="new-password" required id="new-password">
             </div>
             <div>
-                <label for="confirm-new-password">La tua password</label>
+                <label for="confirm-new-password">Conferma la tua nuova password</label>
                 <input type="password" placeholder="Conferma la tua nuova password" name="confirm-new-password" required id="confirm-new-password">
             </div>
             <p class="error-text <%=request.getAttribute("error-password") == null ? "remove-item" : ""%>"><%=request.getAttribute("error-password") != null ? request.getAttribute("error-password") : ""%></p>

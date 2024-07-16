@@ -229,7 +229,7 @@ public class UserDAO {
         PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setInt(1, idCarta);
         ResultSet rs = ps.executeQuery();
-        CreditCard c = null;
+        CreditCard c;
         if(!rs.next()) {
             throw new PaymentNotExists();
         } else {
@@ -268,7 +268,7 @@ public class UserDAO {
         PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setInt(1, idBankAccount);
         ResultSet rs = ps.executeQuery();
-        BankAccount b = null;
+        BankAccount b;
         if(!rs.next()) {
             throw new PaymentNotExists();
         } else {

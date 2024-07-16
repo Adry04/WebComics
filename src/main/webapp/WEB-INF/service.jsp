@@ -15,11 +15,11 @@
         <h1>Benvenuto nel servizio clienti, da qui potrai contattarci attraverso i seguenti numeri e indirizzi mail:</h1>
         <ul>
             <li>
-                <a href="tel: +39">Pellegrino:</a>
+                <a href="tel: +39 392 757 1857">Pellegrino:</a>
                 <a href="mailto:rinogianni9@gmail.com">rinogianni9@gmail.com</a>
             </li>
             <li>
-                <a href="tel: +39">Christian:</a>
+                <a href="tel: +39 334 361 3268">Christian:</a>
                 <a href="mailto:biancochristian62@gmail.com">biancochristian62@gmail.com</a>
             </li>
             <li>

@@ -37,6 +37,8 @@ public class AccountSettingServlet extends HttpServlet {
             if (session == null || session.getAttribute("userId") == null) {
                 throw new ServletException("Devi essere loggato");
             }
+            String emailPattern = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9_.-]+\\.[a-zA-Z]{2,}$";
+            String passwordPattern = "^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z]).{6,}$";
             if((request.getParameter("nome") != null && !request.getParameter("nome").isEmpty()) && (request.getParameter("email") != null && !request.getParameter("email").isEmpty()) && (request.getParameter("cognome") != null && !request.getParameter("cognome").isEmpty())) {
                 //TODO testare con un altro utente con la stessa email
                 String nome = request.getParameter("nome");
@@ -46,11 +48,19 @@ public class AccountSettingServlet extends HttpServlet {
                     request.setAttribute("error", "I dati non sono stati cambiati");
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/account-setting.jsp");
                     rd.forward(request, response);
+                    return;
                 }
                 if(UserDAO.isExistsEmail(email) && !session.getAttribute("email").equals(email)){
                     request.setAttribute("error", "Email già esistente");
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/account-setting.jsp");
                     rd.forward(request, response);
+                    return;
+                }
+                if(!email.matches(emailPattern)) {
+                    request.setAttribute("error", "Email non valida");
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/account-setting.jsp");
+                    rd.forward(request, response);
+                    return;
                 }
                 UserDAO.doUpdateUser(email, nome, cognome, (int) session.getAttribute("userId"));
                 session.setAttribute("email", email);
@@ -59,15 +69,20 @@ public class AccountSettingServlet extends HttpServlet {
                 String contextPath = request.getContextPath();
                 response.sendRedirect(contextPath + "/account");
             } else if((request.getParameter("old-password") != null && !request.getParameter("old-password").isEmpty()) && (request.getParameter("new-password") != null && !request.getParameter("new-password").isEmpty()) && (request.getParameter("confirm-new-password") != null && !request.getParameter("confirm-new-password").isEmpty())) {
-                //TODO aggiungere pattern della password
                 String oldPassword = request.getParameter("old-password");
                 String newPassword = request.getParameter("new-password");
                 String confirmNewPasssword = request.getParameter("confirm-new-password");
                 String hashedPassword = UserDAO.getPassword((Integer) session.getAttribute("userId"));
                 if(Hash.checkPassword(oldPassword, hashedPassword)) {
                     if(newPassword.equals(confirmNewPasssword)) {
-                        String newHashedPassword = Hash.hashPassword(newPassword);
-                        UserDAO.doUpdateUserPassword(newHashedPassword, (Integer) session.getAttribute("userId"));
+                        if(newPassword.matches(passwordPattern)) {
+                            String newHashedPassword = Hash.hashPassword(newPassword);
+                            UserDAO.doUpdateUserPassword(newHashedPassword, (Integer) session.getAttribute("userId"));
+                        } else {
+                            request.setAttribute("error-password", "La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero");
+                            RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/account-setting.jsp");
+                            rd.forward(request, response);
+                        }
                     } else {
                         request.setAttribute("error-password", "Le due password devono coincidere");
                         RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/account-setting.jsp");

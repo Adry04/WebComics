@@ -228,4 +228,10 @@ input[type="radio"]:focus {
     form {
         width: 90%;
     }
+    form .back {
+        width: 1.6em;
+        height: 1.6em;
+        top: -10px;
+        left: -10px;
+    }
 }

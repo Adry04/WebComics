@@ -20,7 +20,10 @@
             <h2>Metodi di pagamento</h2>
         </button>
         <button class="subsection" onclick="location.href = 'address'" aria-label="Indirizzi di spedizione" onkeydown="location.href = 'address'">
-            <h2 >Indirizzi di spedizione</h2>
+            <h2>Indirizzi di spedizione</h2>
+        </button>
+        <button class="subsection" onclick="location.href = 'account-setting    '" aria-label="Impostazioni account" onkeydown="location.href = 'account-setting'">
+            <h2>Impostazioni account</h2>
         </button>
         <button type="button" onclick="logout()" class="logout-button">LOGOUT</button>
     </div>

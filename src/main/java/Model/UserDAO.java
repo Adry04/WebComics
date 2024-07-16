@@ -350,4 +350,38 @@ public class UserDAO {
         con.close();
         return true;
     }
+
+    public static boolean doUpdateUser(String email, String nome, String cognome, int idUtente) throws SQLException {
+        Connection con = ConPool.getConnection();
+        String query = "UPDATE utente SET email = ?, nome = ?, cognome = ? WHERE id = ?";
+        PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, email);
+        ps.setString(2, nome);
+        ps.setString(3, cognome);
+        ps.setInt(4, idUtente);
+        ps.executeUpdate();
+        con.close();
+        return true;
+    }
+
+    public static boolean doUpdateUserPassword(String password, int idUtente) throws SQLException{
+        Connection con = ConPool.getConnection();
+        String query = "UPDATE utente SET password = ? WHERE id = ?";
+        PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, password);
+        ps.setInt(2, idUtente);
+        ps.executeUpdate();
+        con.close();
+        return true;
+    }
+
+    public static boolean isExistsEmail(String email) throws SQLException{
+        Connection con = ConPool.getConnection();
+        String query = "SELECT * FROM utente WHERE email = ?";
+        PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, email);
+        ResultSet rs = ps.executeQuery();
+        con.close();
+        return rs.next();
+    }
 }

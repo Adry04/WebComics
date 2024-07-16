@@ -191,12 +191,18 @@
 }
 
 @media screen and (max-width: 500px){
+    .comics-container {
+        grid-template-columns: 48% 48%;
+        column-gap: 4%;
+        row-gap: 0;
+    }
+
     .comic-card {
         height: 340px;
     }
 
-    .comic-card img {
-        height: 205px;
+    .comic-card button img {
+        height: 200px;
     }
 
     .comic-card .title, .author{
@@ -209,5 +215,10 @@
 
     .comic-card .sale-section .sale {
         font-size: 13px;
+    }
+    .comic-card:hover {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
     }
 }

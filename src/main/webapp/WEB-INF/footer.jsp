@@ -13,7 +13,7 @@
         <button class="onclick-button" onclick="location.href = 'service'" aria-label="Contattaci" onkeydown="location.href = 'service'">
             <p class="subtext">Contattaci</p>
         </button>
-        <p class="trademark subtext">WebComics© All Rights Reserved</p>
+        <p class="trademark subtext">WebComics 2024© All Rights Reserved</p>
     </div>
     <div class="subsection">
         <p class="title">IL TUO ACCOUNT</p>

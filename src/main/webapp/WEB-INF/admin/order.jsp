@@ -28,11 +28,11 @@
                     DecimalFormat df = new DecimalFormat("#.00");
                     String totalPrice = df.format(order.getPrezzoTotale());
             %>
-            <div class="order-section" onclick="location.href = 'order-page?id=<%=order.getIdOrdine()%>'">
+            <button class="order-section" onclick="location.href = 'order-page?id=<%=order.getIdOrdine()%>'" aria-label="Order Button" tabindex="0" onkeydown="location.href = 'order-page?id=<%=order.getIdOrdine()%>'">
                 <p>Quantità: <%=order.getQuantita()%></p>
                 <p>ID Ordine: <%=order.getIdOrdine()%></p>
                 <p>Prezzo: <%=totalPrice%> €</p>
-            </div>
+            </button>
             <%
                 }
             %>

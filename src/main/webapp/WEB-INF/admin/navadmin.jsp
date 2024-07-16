@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <nav>
-    <div class="top-section">
-        <img onclick="window.open('./')" src="assets/logo.png" alt="Logo WebComics" title="Visualizza il sito">
-    </div>
+    <button class="top-section" onclick="window.open('./')" aria-label="Logo Button" tabindex="0" onkeydown="window.open('./')">
+        <img src="assets/logo.png" alt="Logo WebComics" title="Visualizza il sito">
+    </button>
     <div class="link-section">
         <a href="admin">
             <div class="link-container">

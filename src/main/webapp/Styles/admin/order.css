@@ -32,6 +32,8 @@
     box-shadow: 1px 3px 15px -3px rgba(0,0,0,0.43);
     transition: .5s;
     cursor: pointer;
+    border: none;
+    text-align: left;
 }
 
 .order-section:hover {

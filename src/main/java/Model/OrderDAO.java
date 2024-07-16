@@ -1,6 +1,8 @@
 //Salvataggio degli ordini del db e query degli ordini
 package Model;
 
+import Controller.Exception.PaymentNotExists;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,7 +12,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class OrderDAO {
-    public static boolean doSave(int idUtente, Cart cart, Address a, CreditCard cdc, BankAccount cc) throws SQLException {
+    public static boolean doSave(int idUtente, Cart cart, Address a, CreditCard cdc, BankAccount cc) throws SQLException, PaymentNotExists {
         Connection con = ConPool.getConnection();
         PreparedStatement ps = con.prepareStatement("INSERT INTO Ordine (idUtente, dataordine, prezzoacquisto, quantita, indirizzo, CAP, idcdc, idcc) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
         ps.setInt(1, idUtente);
@@ -20,12 +22,14 @@ public class OrderDAO {
         ps.setInt(4, cart.getTotalQuantity());
         ps.setString(5, a.getIndirizzo());
         ps.setString(6, a.getCap());
-        if (cdc == null) {
+        if (cdc == null && cc != null) {
             ps.setObject(7, null);
             ps.setInt(8, cc.getId());
-        } else if (cc == null) {
+        } else if (cc == null && cdc != null) {
             ps.setInt(7, cdc.getId());
             ps.setObject(8, null);
+        } else {
+            throw new PaymentNotExists();
         }
         ps.executeUpdate();
         ResultSet generatedKeys = ps.getGeneratedKeys();

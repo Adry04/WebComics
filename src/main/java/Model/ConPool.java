@@ -17,10 +17,10 @@ public class ConPool {
             p.setDriverClassName("com.mysql.cj.jdbc.Driver");
             p.setUsername("root");
             p.setPassword("Pellegrino!22"); //dipende dalla password del tuo MySql Workbench
-            p.setMaxActive(10);
+            p.setMaxActive(20);
             p.setInitialSize(10);
             p.setMinIdle(10);
-            p.setMaxIdle(10);
+            p.setMaxIdle(20);
             p.setRemoveAbandonedTimeout(60);
             p.setRemoveAbandoned(true);
             datasource = new DataSource();

@@ -35,14 +35,17 @@
                 <div>
                     <label for="categoria">Categoria</label>
                     <select id="categoria" name="categoria">
-                        <option value="shonen" <%=comic.getCategory().equals("shonen") ? "selected" : ""%>>SHONEN</option>
-                        <option value="seinen" <%=comic.getCategory().equals("seinn") ? "selected" : ""%>>SEINEN</option>
-                        <option value="josei" <%=comic.getCategory().equals("josei") ? "selected" : ""%>>JOSEI</option>
-                        <option value="codomo" <%=comic.getCategory().equals("codomo") ? "selected" : ""%>>CODOMO</option>
-                        <option value="fantasy" <%=comic.getCategory().equals("fantasy") ? "selected" : ""%>>FANTASY</option>
-                        <option value="commedia" <%=comic.getCategory().equals("commedia") ? "selected" : ""%>>COMMEDIA</option>
-                        <option value="supereroi" <%=comic.getCategory().equals("supereroi") ? "selected" : ""%>>SUPEREROI</option>
-                        <option value="horror" <%=comic.getCategory().equals("horror") ? "selected" : ""%>>HORROR</option>
+                        <%
+                            String categoria = comic.getCategory();
+                        %>
+                        <option <%=categoria.equalsIgnoreCase("shonen") ? "selected" : ""%> value="shonen" <%=comic.getCategory().equals("shonen") ? "selected" : ""%>>SHONEN</option>
+                        <option <%=categoria.equalsIgnoreCase("seinen") ? "selected" : ""%> value="seinen" <%=comic.getCategory().equals("seinn") ? "selected" : ""%>>SEINEN</option>
+                        <option <%=categoria.equalsIgnoreCase("josei") ? "selected" : ""%> value="josei" <%=comic.getCategory().equals("josei") ? "selected" : ""%>>JOSEI</option>
+                        <option <%=categoria.equalsIgnoreCase("codomo") ? "selected" : ""%> value="codomo" <%=comic.getCategory().equals("codomo") ? "selected" : ""%>>CODOMO</option>
+                        <option <%=categoria.equalsIgnoreCase("fantasy") ? "selected" : ""%> value="fantasy" <%=comic.getCategory().equals("fantasy") ? "selected" : ""%>>FANTASY</option>
+                        <option <%=categoria.equalsIgnoreCase("commedia") ? "selected" : ""%> value="commedia" <%=comic.getCategory().equals("commedia") ? "selected" : ""%>>COMMEDIA</option>
+                        <option <%=categoria.equalsIgnoreCase("supereroi") ? "selected" : ""%> value="supereroi" <%=comic.getCategory().equals("supereroi") ? "selected" : ""%>>SUPEREROI</option>
+                        <option <%=categoria.equalsIgnoreCase("horror") ? "selected" : ""%> value="horror" <%=comic.getCategory().equals("horror") ? "selected" : ""%>>HORROR</option>
                     </select>
                 </div>
                 <div>

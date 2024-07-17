@@ -11,9 +11,9 @@
     List<Comic> comicsManga = new ArrayList<>();
     List<Comic> comicsFumetto = new ArrayList<>();
     try {
-        comics = ComicDAO.getNews("", 8);    //Stringa vuota vuol dire che non vogliamo specificare la categoria 4 vogliamo che il limite di fumetti sia 4
-        comicsManga = ComicDAO.getNews("manga", 8);
-        comicsFumetto = ComicDAO.getNews("fumetto", 8);
+        //Stringa vuota vuol dire che non vogliamo specificare la categoria 4 vogliamo che il limite di fumetti sia 4
+        comicsManga = ComicDAO.getNews("manga", 12);
+        comicsFumetto = ComicDAO.getNews("fumetto", 12);
     } catch (SQLException e) {
         e.printStackTrace(System.out);
         response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
@@ -41,28 +41,6 @@
         <button class="prev" onclick="moveSlide(-1)" aria-label="Prev Slide">&#10094;</button>
         <button class="next" onclick="moveSlide(1)" aria-label="Next Slide">&#10095;</button>
     </div>
-
-        <%
-            if (!comics.isEmpty()) {
-        %>
-            <h1 class="title-section">NUOVE USCITE</h1>
-            <div class="comics-container">
-            <%
-                for(Comic comic : comics) {
-                    DecimalFormat df = new DecimalFormat("#.00");
-                    String price = df.format(comic.getPrice());
-                    String finalPrice = df.format(comic.getFinalPrice());
-                    boolean isWished = false;
-                    if(wishComics != null && !wishComics.isEmpty()) {
-                        isWished = wishComics.contains(comic);
-                    }
-            %>
-               <%@include file="WEB-INF/comicCard.jsp"%>
-            <%
-                    }
-                }
-            %>
-            </div>
         <%
             if (!comicsManga.isEmpty()) {
         %>

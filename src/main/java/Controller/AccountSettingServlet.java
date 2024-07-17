@@ -77,6 +77,8 @@ public class AccountSettingServlet extends HttpServlet {
                         if(newPassword.matches(passwordPattern)) {
                             String newHashedPassword = Hash.hashPassword(newPassword);
                             UserDAO.doUpdateUserPassword(newHashedPassword, (Integer) session.getAttribute("userId"));
+                            String contextPath = request.getContextPath();
+                            response.sendRedirect(contextPath + "/account");
                         } else {
                             request.setAttribute("error-password", "La password deve contenere almeno 6 caratteri, una maiuscola, un carattere speciale e un numero");
                             RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/account-setting.jsp");

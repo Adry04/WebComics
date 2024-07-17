@@ -366,7 +366,7 @@ public class UserDAO {
 
     public static boolean doUpdateUserPassword(String password, int idUtente) throws SQLException{
         Connection con = ConPool.getConnection();
-        String query = "UPDATE utente SET password = ? WHERE id = ?";
+        String query = "UPDATE utente SET pass = ? WHERE id = ?";
         PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, password);
         ps.setInt(2, idUtente);

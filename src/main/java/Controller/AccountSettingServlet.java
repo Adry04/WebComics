@@ -33,7 +33,7 @@ public class AccountSettingServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
-                HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession(false);
             if (session == null || session.getAttribute("userId") == null) {
                 throw new ServletException("Devi essere loggato");
             }
@@ -43,7 +43,7 @@ public class AccountSettingServlet extends HttpServlet {
                 String nome = request.getParameter("nome");
                 String email = request.getParameter("email");
                 String cognome = request.getParameter("cognome");
-                if(session.getAttribute("nome").equals(nome) && session.getAttribute("email").equals(cognome) && session.getAttribute("cognome").equals(cognome)) {
+                if(session.getAttribute("nome").equals(nome) && session.getAttribute("email").equals(email) && session.getAttribute("cognome").equals(cognome)) {
                     request.setAttribute("error", "I dati non sono stati cambiati");
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/account-setting.jsp");
                     rd.forward(request, response);

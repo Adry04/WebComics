@@ -20,7 +20,9 @@ public class SearchServlet extends HttpServlet {
             }
             if (request.getParameter("nuove-uscite") != null && request.getParameter("nuove-uscite").equals("1")) {
                 request.setAttribute("comics", ComicDAO.getNews(request.getParameter("parameter"), 0));
-            } else {
+            } else if(request.getParameter("c") != null && request.getParameter("c").equals("1")) {
+                request.setAttribute("comics", ComicDAO.getNews(request.getParameter("parameter"), 0));
+            } else{
                 request.setAttribute("comics", ComicDAO.search(request.getParameter("parameter")));
             }
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/searchPage.jsp");

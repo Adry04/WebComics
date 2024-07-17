@@ -135,6 +135,12 @@ public class ComicDAO {
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, limit);
             rs = ps.executeQuery();
+        } else if(limit == 0) {
+            String query = "SELECT * FROM fumetto WHERE categoria = ? ORDER BY ddi";
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            System.out.println(category);
+            ps.setString(1, category);
+            rs = ps.executeQuery();
         } else {
             String query = "SELECT * FROM fumetto WHERE categoria = ? ORDER BY ddi LIMIT ?";
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);

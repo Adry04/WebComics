@@ -85,10 +85,10 @@
           </a>
           <div id="list-category-manga" class="subcontainer">
             <button onclick="location.href = 'search?parameter=manga&nuove-uscite=1'" aria-label="Nuove uscite" onkeydown="location.href = 'search?parameter=manga&nuove-uscite=1'">NUOVE USCITE</button>
-            <button onclick="location.href = 'search?parameter=shonen'" aria-label="Shonen" onkeydown="location.href = 'search?parameter=shonen'">SHONEN</button>
-            <button onclick="location.href = 'search?parameter=seinen'" aria-label="Seinen" onkeydown="location.href = 'search?parameter=seinen'">SEINEN</button>
-            <button onclick="location.href = 'search?parameter=josei'" aria-label="Josei" onkeydown="location.href = 'search?parameter=josei'">JOSEI</button>
-            <button onclick="location.href = 'search?parameter=kodomo'" aria-label="Kodomo" onkeydown="location.href = 'search?parameter=kodomo'">KODOMO</button>
+            <button onclick="location.href = 'search?parameter=shonen&c=1'" aria-label="Shonen" onkeydown="location.href = 'search?parameter=shonen&c=1'">SHONEN</button>
+            <button onclick="location.href = 'search?parameter=seinen&c=1'" aria-label="Seinen" onkeydown="location.href = 'search?parameter=seinen&c=1'">SEINEN</button>
+            <button onclick="location.href = 'search?parameter=josei&c=1'" aria-label="Josei" onkeydown="location.href = 'search?parameter=josei&c=1'">JOSEI</button>
+            <button onclick="location.href = 'search?parameter=kodomo&c=1'" aria-label="Kodomo" onkeydown="location.href = 'search?parameter=kodomo&c=1'">KODOMO</button>
           </div>
         </li>
         <li id="category-fumetti">
@@ -97,10 +97,10 @@
           </a>
           <div id="list-category-fumetti" class="subcontainer">
             <button onclick="location.href = 'search?parameter=fumetto&nuove-uscite=1'" aria-label="Nuove uscite" onkeydown="location.href = 'search?parameter=fumetto&nuove-uscite=1'">NUOVE USCITE</button>
-            <button onclick="location.href = 'search?parameter=fantasy'" aria-label="Fantasy" onkeydown="location.href = 'search?parameter=fantasy'">FANTASY</button>
-            <button onclick="location.href = 'search?parameter=commedia'" aria-label="Commedia" onkeydown="location.href = 'search?parameter=commedia'">COMMEDIA</button>
-            <button onclick="location.href = 'search?parameter=supereroi'" aria-label="Supereroi" onkeydown="location.href = 'search?parameter=supereroi'">SUPEREROI</button>
-            <button onclick="location.href = 'search?parameter=horror'" aria-label="Horror" onkeydown="location.href = 'search?parameter=horror'">HORROR</button>
+            <button onclick="location.href = 'search?parameter=fantasy&c=1'" aria-label="Fantasy" onkeydown="location.href = 'search?parameter=fantasy&c=1'">FANTASY</button>
+            <button onclick="location.href = 'search?parameter=commedia&c=1'" aria-label="Commedia" onkeydown="location.href = 'search?parameter=commedia&c=1'">COMMEDIA</button>
+            <button onclick="location.href = 'search?parameter=supereroi&c=1'" aria-label="Supereroi" onkeydown="location.href = 'search?parameter=supereroi&c=1'">SUPEREROI</button>
+            <button onclick="location.href = 'search?parameter=horror&c=1'" aria-label="Horror" onkeydown="location.href = 'search?parameter=horror&c=1'">HORROR</button>
           </div>
         </li>
       </ul>
@@ -150,14 +150,14 @@
     </form>
     <div class="mobile-link-section">
         <button class="onclick-button" onclick="location.href = 'search?parameter=fumetto&nuove-uscite=1'" onkeydown="location.href = 'search?parameter=fumetto&nuove-uscite=1'" aria-label="Nuove uscite">NUOVE USCITE</button>
-        <button class="onclick-button" onclick="location.href = 'search?parameter=fantasy'" onkeydown="location.href = 'search?parameter=fantasy'" aria-label="Fantasy">FANTASY</button>
-        <button class="onclick-button" onclick="location.href = 'search?parameter=commedia'" aria-label="Commedia" onkeydown="location.href = 'search?parameter=commedia'">COMMEDIA</button>
-        <button class="onclick-button" onclick="location.href = 'search?parameter=supereroi'" aria-label="Supereroi" onkeydown="location.href = 'search?parameter=supereroi'">SUPEREROI</button>
-        <button class="onclick-button" onclick="location.href = 'search?parameter=horror'" aria-label="Horror" onkeydown="location.href = 'search?parameter=horror'">HORROR</button>
-        <button class="onclick-button" onclick="location.href = 'search?parameter=shonen'" aria-label="Shonen" onkeydown="location.href = 'search?parameter=shonen'">SHONEN</button>
-        <button class="onclick-button" onclick="location.href = 'search?parameter=shinen'" aria-label="Seinen" onkeydown="location.href = 'search?parameter=shinen'">SEINEN</button>
-        <button class="onclick-button" onclick="location.href = 'search?parameter=josei'" aria-label="Josei" onkeydown="location.href = 'search?parameter=josei'">JOSEI</button>
-        <button class="onclick-button" onclick="location.href = 'search?parameter=codomo'" aria-label="Codomo" onkeydown="location.href = 'search?parameter=codomo'">CODOMO</button>
+        <button class="onclick-button" onclick="location.href = 'search?parameter=fantasy&c=1'" onkeydown="location.href = 'search?parameter=fantasy&c=1'" aria-label="Fantasy">FANTASY</button>
+        <button class="onclick-button" onclick="location.href = 'search?parameter=commedia&c=1'" aria-label="Commedia" onkeydown="location.href = 'search?parameter=commedia&c=1'">COMMEDIA</button>
+        <button class="onclick-button" onclick="location.href = 'search?parameter=supereroi&c=1'" aria-label="Supereroi" onkeydown="location.href = 'search?parameter=supereroi&c=1'">SUPEREROI</button>
+        <button class="onclick-button" onclick="location.href = 'search?parameter=horror&c=1'" aria-label="Horror" onkeydown="location.href = 'search?parameter=horror&c=1'">HORROR</button>
+        <button class="onclick-button" onclick="location.href = 'search?parameter=shonen&c=1'" aria-label="Shonen" onkeydown="location.href = 'search?parameter=shonen&c=1'">SHONEN</button>
+        <button class="onclick-button" onclick="location.href = 'search?parameter=shinen&c=1'" aria-label="Seinen" onkeydown="location.href = 'search?parameter=shinen&c=1'">SEINEN</button>
+        <button class="onclick-button" onclick="location.href = 'search?parameter=josei&c=1'" aria-label="Josei" onkeydown="location.href = 'search?parameter=josei&c=1'">JOSEI</button>
+        <button class="onclick-button" onclick="location.href = 'search?parameter=codomo&c=1'" aria-label="Codomo" onkeydown="location.href = 'search?parameter=codomo&c=1'">CODOMO</button>
     </div>
     <button class="onclick-button mobile-text-service" onclick="location.href = 'service'" aria-label="Servizio Clienti" onkeydown="location.href = 'service'">
         Servizio Clienti

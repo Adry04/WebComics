@@ -1,9 +1,6 @@
 <html>
 <head>
     <title>Impostazioni Account</title>
-    <link rel="stylesheet" href="Styles/nav.css">
-    <link rel="stylesheet" href="Styles/footer.css">
-    <script src="js/navbar.js" type="text/javascript"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="Styles/form.css">

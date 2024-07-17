@@ -18,11 +18,12 @@ public class ComicPageServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
             HttpSession session = request.getSession(false);
-            String isbn = request.getParameter("isbn");
-            if(isbn.isEmpty()) {
+            if(request.getParameter("isbn") == null || request.getParameter("isbn").isEmpty()) {
                 String contextPath = request.getContextPath();
                 response.sendRedirect(contextPath + "/");
+                return;
             }
+            String isbn = request.getParameter("isbn");
             Comic comic = ComicDAO.getComic(isbn);
             request.setAttribute("comic", comic);
             boolean isWished = false;

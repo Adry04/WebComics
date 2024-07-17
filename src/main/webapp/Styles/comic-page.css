@@ -70,6 +70,7 @@
     -webkit-box-shadow: 0 0 13px 0 rgba(204,204,204,1);
     -moz-box-shadow: 0 0 13px 0 rgba(204,204,204,1);
     box-shadow: 0 0 13px 0 rgba(204,204,204,1);
+    border: none;
 }
 
 .price-section, .sale-section {
@@ -136,7 +137,12 @@
     padding: .4em 2%;
 }
 
-.button-section .quantity-section span {
+.button-section .quantity-section button {
+    background-color: transparent;
+    border: none;
+}
+
+.button-section .quantity-section span, button span {
     color: black;
     font-family: "Poppins", sans-serif;
     font-weight: 500;

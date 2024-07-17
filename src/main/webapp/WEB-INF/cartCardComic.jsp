@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="separation">
-            <button onclick='remove("<%=comic.getISBN()%>", <%=comicJson%>, <%=finalPrice%>)'>Rimuovi</button>
+            <button onclick='remove("<%=comic.getISBN()%>", <%=comicJson%>, <%=comic.getFinalPrice()%>)'>Rimuovi</button>
         </div>
     </div>
 </div>
